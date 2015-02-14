@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Eli.Models.tblPatient>
+
+@{
+    ViewBag.Title = "childs";
+}
+
+<h2>childs</h2>
+
+@foreach (var item in Model) { 
+    <h2>Id : @item.ID </h2>
+}
