@@ -27,5 +27,11 @@ namespace Eli.Models
         }
 
 
+        public void addPatient(tblPatient patient)
+        {
+            Patients.InsertOnSubmit(patient);
+            db.SubmitChanges();
+        }
+
     }
 }

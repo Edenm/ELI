@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/bootstrapcss")
+</head>
+<body>
+    <div style="text-align:right">
+        <form class="form-horizontal" method="post" action="~/Home/AddPatient">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>הוספת מטופל</legend>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="Id">תעודת זהות</label>
+                    <div class="controls">
+                        <input id="Id" name="Id" type="text" placeholder="תעודת זהות 9 ספרות" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="firstName">שם פרטי</label>
+                    <div class="controls">
+                        <input id="firstName" name="firstName" type="text" placeholder="" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="lastName">שם משפחה</label>
+                    <div class="controls">
+                        <input id="lastName" name="lastName" type="text" placeholder="" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Multiple Radios (inline) -->
+                <div class="control-group">
+                    <label class="control-label" for="gender">מגדר</label>
+                    <div class="controls">
+                        <label class="radio inline" for="gender-0">
+                            <input type="radio" name="gender" id="gender-0" value="זכר" checked="checked">
+                            זכר
+                        </label>
+                        <label class="radio inline" for="gender-1">
+                            <input type="radio" name="gender" id="gender-1" value="נקבה">
+                            נקבה
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="education">מסגרת חינוכית</label>
+                    <div class="controls">
+                        <input id="education" name="education" type="text" placeholder="" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="date">תאריך לידה</label>
+                    <div class="controls">
+                        <input id="date" name="date" type="text" placeholder="" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="phone1">טלפון</label>
+                    <div class="controls">
+                        <input id="phone1" name="phone1" type="text" placeholder="" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="phone2">טלפון נוסף</label>
+                    <div class="controls">
+                        <input id="phone2" name="phone2" type="text" placeholder="" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="city">עיר מגורים</label>
+                    <div class="controls">
+                        <input id="city" name="city" type="text" placeholder="" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="street">רחוב</label>
+                    <div class="controls">
+                        <input id="street" name="street" type="text" placeholder="" class="input-medium" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="homeNumber">מספר בית</label>
+                    <div class="controls">
+                        <input id="homeNumber" name="homeNumber" type="text" placeholder="" class="input-mini" >
+
+                    </div>
+                </div>
+
+                <!-- Button (Double) -->
+                <div class="control-group">
+                    <label class="control-label" for="submit"></label>
+                    <div class="controls">
+                        <button id="submit" name="submit" type="submit" class="btn btn-info">הוספה</button>
+                        <button id="ביטול" name="ביטול" class="btn btn-danger">בטל</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+</html>
