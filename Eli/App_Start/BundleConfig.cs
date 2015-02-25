@@ -11,19 +11,19 @@ namespace Eli
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-           // bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-             //           "~/Scripts/jquery-ui-{version}.js"));
-//
-         //   bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-           //             "~/Scripts/jquery.unobtrusive*",
-            //            "~/Scripts/jquery.validate*"));
+             // bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            //           "~/Scripts/jquery-ui-{version}.js"));
+
+           //   bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+          //             "~/Scripts/jquery.unobtrusive*",
+         //              "~/Scripts/jquery.validate*"));
 
            bundles.Add(new ScriptBundle("~/bundles/bootstrapjs").Include(
-                        "~/Scripts/bootstrap.min.js"));
+                        "~/Scripts/bootstrap.js"));
                                                    
            bundles.Add(new ScriptBundle("~/Content/bootstrapcss").Include(
-                       "~/Content/bootstrap.min.css",
-                       "~/Content/bootstrap-theme.min.css"));
+                       "~/Content/bootstrap.css",
+                       "~/Content/bootstrap-theme.css"));
            //responsive
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

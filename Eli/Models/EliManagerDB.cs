@@ -20,13 +20,15 @@ namespace Eli.Models
             db = SQLConnection.GetDataContextInstance();
         }
 
-        
+//-------------------------Tables----------------------------------------------------------
+ 
         public Table<tblPatient> Patients
         {
             get { return db.tblPatients; }
         }
 
 
+//-------------------------Add methods----------------------------------------------------------
         public void addPatient(tblPatient patient)
         {
             Patients.InsertOnSubmit(patient);
@@ -34,4 +36,9 @@ namespace Eli.Models
         }
 
     }
+
+//-------------------------Remove methods----------------------------------------------------------
+
+
+
 }

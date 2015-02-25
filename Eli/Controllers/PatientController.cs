@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Eli.Controllers
 {
-    public class HomeController : Controller
+    public class PatientController : Controller
     {
         public ActionResult Index()
         {
@@ -68,20 +68,6 @@ namespace Eli.Controllers
             var pat = db.Patients.ToArray();
 
             return View(pat);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
