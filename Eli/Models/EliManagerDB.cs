@@ -28,6 +28,12 @@ namespace Eli.Models
         }
 
 
+        public Table<tblBrotherSister> BrotherSister
+        {
+            get { return db.tblBrotherSisters
+; }
+        }
+
 //-------------------------Add methods----------------------------------------------------------
         public void addPatient(tblPatient patient)
         {
