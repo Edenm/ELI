@@ -30,8 +30,7 @@ namespace Eli.Models
 
         public Table<tblBrotherSister> BrotherSister
         {
-            get { return db.tblBrotherSisters
-; }
+            get { return db.tblBrotherSisters; }
         }
 
 //-------------------------Add methods----------------------------------------------------------

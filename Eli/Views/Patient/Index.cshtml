@@ -1,45 +1,99 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-}
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
+﻿
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/themes/base/css")
+    
+    <link rel="stylesheet" href="css/blue/style.css">
+    <script src="js/jquery-latest.min.js"></script>
+    <script src="js/jquery.tablesorter.min.js"></script>
+    <script src="js/jquery.tablesorter.widgets.min.js"></script>
+
+</head>
+<body>
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th>Account #</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Total</th>
+                <th>Discount</th>
+                <th>Diff</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A43</td>
+                <td>Peter</td>
+                <td>Parker</td>
+                <td>28</td>
+                <td>9.99</td>
+                <td>20.3%</td>
+                <td>+3</td>
+            </tr>
+            <tr>
+                <td>A255</td>
+                <td>John</td>
+                <td>Hood</td>
+                <td>33</td>
+                <td>19.99</td>
+                <td>25.1%</td>
+                <td>-7</td>
+            </tr>
+            <tr>
+                <td>A33</td>
+                <td>Clark</td>
+                <td>Kent</td>
+                <td>18</td>
+                <td>15.89</td>
+                <td>44.2%</td>
+                <td>-15</td>
+            </tr>
+            <tr>
+                <td>A1</td>
+                <td>Bruce</td>
+                <td>Almighty</td>
+                <td>45</td>
+                <td>153.19</td>
+                <td>44%</td>
+                <td>+19</td>
+            </tr>
+            <tr>
+                <td>A102</td>
+                <td>Bruce</td>
+                <td>Evans</td>
+                <td>56</td>
+                <td>153.19</td>
+                <td>23%</td>
+                <td>+9</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- pager -->
+    <div id="pager" class="pager">
+        <form>
+            <img src="first.png" class="first" />
+            <img src="prev.png" class="prev" />
+            <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
+            <img src="next.png" class="next" />
+            <img src="last.png" class="last" />
+            <select class="pagesize">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+            </select>
+        </form>
+    </div>
+</body>
+</html>

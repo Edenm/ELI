@@ -187,7 +187,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PatientController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -261,6 +260,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Eli-Log.jpg" />
     <Content Include="Models\DataConnection.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataConnection.designer.cs</LastGenOutput>
@@ -307,7 +307,6 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Patient\About.cshtml" />
     <Content Include="Views\Patient\Contact.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -320,6 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

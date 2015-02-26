@@ -13,17 +13,13 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <p class="site-title">@Html.ActionLink(" ","Index","Home",null ,new {style = "background: url('" + Url.Content("~/Images/Eli-Log.jpg") + "') no-repeat center right; display:block; height:84px; width:264px;"})
                 </div>
                 <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
                     <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <ul id="main" class="nav nav-pills">
+                            <li role="presentation" ><a href="~/Patient/NewPatient">יומן פגישות</a></li>
+                            <li role="presentation" class="active"><a href="~/Patient/Index">מטופלים</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -38,7 +34,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - Eden & Shahar</p>
                 </div>
             </div>
         </footer>
