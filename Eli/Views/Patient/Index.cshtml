@@ -1,8 +1,4 @@
-﻿
-
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,90 +6,113 @@
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/bootstrapcss")
     @Styles.Render("~/Content/themes/base/css")
-    
-    <link rel="stylesheet" href="css/blue/style.css">
-    <script src="js/jquery-latest.min.js"></script>
-    <script src="js/jquery.tablesorter.min.js"></script>
-    <script src="js/jquery.tablesorter.widgets.min.js"></script>
+
+       <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" 
+    href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <script type="text/javascript" 
+    src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" 
+    src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   
 
 </head>
 <body>
-    <table class="tablesorter">
-        <thead>
-            <tr>
-                <th>Account #</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>Total</th>
-                <th>Discount</th>
-                <th>Diff</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>A43</td>
-                <td>Peter</td>
-                <td>Parker</td>
-                <td>28</td>
-                <td>9.99</td>
-                <td>20.3%</td>
-                <td>+3</td>
-            </tr>
-            <tr>
-                <td>A255</td>
-                <td>John</td>
-                <td>Hood</td>
-                <td>33</td>
-                <td>19.99</td>
-                <td>25.1%</td>
-                <td>-7</td>
-            </tr>
-            <tr>
-                <td>A33</td>
-                <td>Clark</td>
-                <td>Kent</td>
-                <td>18</td>
-                <td>15.89</td>
-                <td>44.2%</td>
-                <td>-15</td>
-            </tr>
-            <tr>
-                <td>A1</td>
-                <td>Bruce</td>
-                <td>Almighty</td>
-                <td>45</td>
-                <td>153.19</td>
-                <td>44%</td>
-                <td>+19</td>
-            </tr>
-            <tr>
-                <td>A102</td>
-                <td>Bruce</td>
-                <td>Evans</td>
-                <td>56</td>
-                <td>153.19</td>
-                <td>23%</td>
-                <td>+9</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table id="myTable" class="display table" width="100%">
+                <thead>
+                    <tr>
+                        <th>ENO</th>
+                        <th>EMPName</th>
+                        <th>Country</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Anusha</td>
+                        <td>India</td>
+                        <td>10000</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Charles</td>
+                        <td>United Kingdom</td>
+                        <td>28000</td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Sravani</td>
+                        <td>Australia</td>
+                        <td>7000</td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Amar</td>
+                        <td>India</td>
+                        <td>18000</td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>Lakshmi</td>
+                        <td>India</td>
+                        <td>12000</td>
+                    </tr>
+                    <tr>
+                        <td>006</td>
+                        <td>James</td>
+                        <td>Canada</td>
+                        <td>50000</td>
+                    </tr>
 
-    <!-- pager -->
-    <div id="pager" class="pager">
-        <form>
-            <img src="first.png" class="first" />
-            <img src="prev.png" class="prev" />
-            <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
-            <img src="next.png" class="next" />
-            <img src="last.png" class="last" />
-            <select class="pagesize">
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-            </select>
-        </form>
-    </div>
+                    <tr>
+                        <td>007</td>
+                        <td>Ronald</td>
+                        <td>US</td>
+                        <td>75000</td>
+                    </tr>
+                    <tr>
+                        <td>008</td>
+                        <td>Mike</td>
+                        <td>Belgium</td>
+                        <td>100000</td>
+                    </tr>
+                    <tr>
+                        <td>009</td>
+                        <td>Andrew</td>
+                        <td>Argentina</td>
+                        <td>45000</td>
+                    </tr>
+
+                    <tr>
+                        <td>010</td>
+                        <td>Stephen</td>
+                        <td>Austria</td>
+                        <td>30000</td>
+                    </tr>
+                    <tr>
+                        <td>011</td>
+                        <td>Sara</td>
+                        <td>China</td>
+                        <td>750000</td>
+                    </tr>
+                    <tr>
+                        <td>012</td>
+                        <td>JonRoot</td>
+                        <td>Argentina</td>
+                        <td>65000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+            <script>
+                alert("121");
+                    $('#myTable').dataTable();
+                alert("222");
+            </script>
+
 </body>
 </html>
