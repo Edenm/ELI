@@ -11,9 +11,11 @@ namespace Eli.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            EliManagerDB db = new EliManagerDB();
 
-            return View();
+            var pat = db.Patients.ToArray();
+
+            return View(pat);
         }
 
         public ActionResult NewPatient()

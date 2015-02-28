@@ -260,6 +260,18 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\DataTable\back_disabled.png" />
+    <Content Include="Images\DataTable\back_enabled.png" />
+    <Content Include="Images\DataTable\back_enabled_hover.png" />
+    <Content Include="Images\DataTable\favicon.ico" />
+    <Content Include="Images\DataTable\forward_disabled.png" />
+    <Content Include="Images\DataTable\forward_enabled.png" />
+    <Content Include="Images\DataTable\forward_enabled_hover.png" />
+    <Content Include="Images\DataTable\sort_asc.png" />
+    <Content Include="Images\DataTable\sort_asc_disabled.png" />
+    <Content Include="Images\DataTable\sort_both.png" />
+    <Content Include="Images\DataTable\sort_desc.png" />
+    <Content Include="Images\DataTable\sort_desc_disabled.png" />
     <Content Include="Images\Eli-Log.jpg" />
     <Content Include="Models\DataConnection.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -268,9 +280,20 @@
     </Content>
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Images\DataTable\Sorting icons.psd" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\DataTable\dataTables.keyTable.css" />
+    <Content Include="Scripts\DataTable\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTable\dataTables.keyTable.min.css" />
+    <Content Include="Scripts\DataTable\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTable\jquery.dataTables.css" />
+    <Content Include="Scripts\DataTable\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTable\jquery.dataTables.min.css" />
+    <Content Include="Scripts\DataTable\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTable\jquery.dataTables_themeroller.css" />
+    <Content Include="Scripts\DataTable\jquery.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
