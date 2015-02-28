@@ -1,0 +1,101 @@
+﻿
+@model IEnumerable<Eli.Models.tblPatient>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <script type="text/javascript"
+            src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"
+            src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+    <div class="table-responsive">
+        <table id="myTable" class="display table" width="100%">
+            <thead>
+                <tr>
+                    <th>הוספת פגישה</th>
+                    <th>פרטים נוספים</th>
+                    <th>טלפון</th>
+                    <th>שם משפחה</th>
+                    <th>שם פרטי</th>
+                    <th>תעודת זהות</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        
+                        <!--<td><img src="~/Images/add.png" id=@item.ID height="10" width="10"> </td>-->
+                        <!--<td><img src="~/Images/info.png" id=@item.ID height="10" width="10" onclick="PatientDetails(id)"> </td>-->
+
+                        
+                        
+                       
+                        <td><img src="~/Images/info.png" id=@item.ID height="10" width="10" onclick="PatientDetails(id)"> </td>
+                        <td>@Html.ActionLink("פרטים נוספים", "PatientDetails", "Patient", new { id = item.ID }, null)</td>
+                        <td> @item.ContcatPhoneNumber1 </td>
+                        <td> @item.PatientSurName </td>
+                        <td> @item.PatientFirstName </td>
+                        <td> @item.ID </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+   
+
+       
+    <script>
+
+        $('#myTable').dataTable();
+
+    </script>
+
+
+
+
+
+    
+
+
+    
+
+    
+    <script>
+    function PatientDetails(id) {
+
+        
+
+        window.location = ' @Url.Action("PatientDetails", "Patient", new { id ="222222222" })';
+
+    }
+
+    </script>
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+</html>
