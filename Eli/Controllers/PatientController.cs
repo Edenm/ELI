@@ -69,5 +69,29 @@ namespace Eli.Controllers
 
             return View(pat);
         }
+
+        public ActionResult MainPatients()
+        {
+
+
+            EliManagerDB db = new EliManagerDB();
+
+            var pat = db.Patients.ToArray();
+
+            return View(pat);
+        }
+
+
+        public ActionResult PatientDetails(String id)
+        {
+            
+            EliManagerDB db = new EliManagerDB();
+            
+            var pat = db.Patients.ToArray();
+            tblPatient patient = db.Patients.ToArray().Single(p => p.ID.ToString()==(id));
+
+            return View(patient);
+        }
+        
     }
 }
