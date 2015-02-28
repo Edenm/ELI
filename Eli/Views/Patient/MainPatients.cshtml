@@ -24,7 +24,7 @@
         <table id="myTable" class="display table" width="100%">
             <thead>
                 <tr>
-                    <th>הוספת פגישה</th>
+                  
                     <th>פרטים נוספים</th>
                     <th>טלפון</th>
                     <th>שם משפחה</th>
@@ -37,14 +37,11 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        
-                        <!--<td><img src="~/Images/add.png" id=@item.ID height="10" width="10"> </td>-->
-                        <td><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"  id=@item.ID> </td>
-
+                       
                         
                         
                        
-                        <!--<td><img src="~/Images/info.png" id=@item.ID height="10" width="10" onclick="PatientDetails(id)"> </td>-->
+                       
                         <td>@Html.ActionLink("פרטים נוספים", "PatientDetails", "Patient", new { id = item.ID }, null)</td>
                         <td> @item.ContcatPhoneNumber1 </td>
                         <td> @item.PatientSurName </td>
@@ -55,10 +52,6 @@
             </tbody>
         </table>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Launch demo modal
-        </button>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -123,6 +116,7 @@
                 </div>
             </div>
         </div>
+
 
 
        
