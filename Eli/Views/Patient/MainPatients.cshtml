@@ -42,9 +42,15 @@
                         
                        
                        
-                        <td>@Html.ActionLink("פרטים נוספים", "PatientDetails", "Patient", new { id = item.ID }, null)</td>
+                       
+                        
+                        <td>
+                            <a href="@Url.Action("PatientDetails", "Patient", new { id = item.ID })" title="info">
+                                <img src="~/Images/info.png" />
+                            </a>
+                        </td>
                         <td> @item.ContcatPhoneNumber1 </td>
-                        <td> @item.PatientSurName </td>
+<td> @item.PatientSurName </td>
                         <td> @item.PatientFirstName </td>
                         <td> @item.ID </td>
                     </tr>
