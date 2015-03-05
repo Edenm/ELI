@@ -1,76 +1,87 @@
-﻿@model Eli.Models.tblPatient
+﻿@model Eli.Models.BrotherSister
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title></title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- Button trigger modal -->
+
+
+
+    <div class="bs-example">
+
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            פרטים אודות משפחה
+        </button>
+        <input type="button" title="Delete" value="D" onclick="location.href='@Url.Action("Reference", "Patient", new { id =Model.patient.ID })'" />
 </head>
 <body>
+
+
+
 
     <div align="right">
         <h2>פרטי מטופל</h2>
         <div class="list-group">
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">תעודת זהות</h4>
-                <p class="list-group-item-text">@Model.ID</p>
+                <p class="list-group-item-text">@Model.patient.ID</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">שם פרטי</h4>
-                <p class="list-group-item-text">@Model.PatientFirstName</p>
+                <p class="list-group-item-text">@Model.patient.PatientFirstName</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">שם משפחה</h4>
-                <p class="list-group-item-text">@Model.PatientSurName</p>
+                <p class="list-group-item-text">@Model.patient.PatientSurName</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">תאריך לידה</h4>
-                <p class="list-group-item-text">@Model.BirthDate</p>
+                <p class="list-group-item-text">@Model.patient.BirthDate</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">מגדר</h4>
-                <p class="list-group-item-text">@Model.Gender</p>
+                <p class="list-group-item-text">@Model.patient.Gender</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">מסגרת חינוכית</h4>
-                <p class="list-group-item-text">@Model.EducationalFramework</p>
+                <p class="list-group-item-text">@Model.patient.EducationalFramework</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">עיר</h4>
-                <p class="list-group-item-text">@Model.City</p>
+                <p class="list-group-item-text">@Model.patient.City</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">רחוב</h4>
-                <p class="list-group-item-text">@Model.Street</p>
+                <p class="list-group-item-text">@Model.patient.Street</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">מספר בית</h4>
-                <p class="list-group-item-text">@Model.HomeNumber</p>
+                <p class="list-group-item-text">@Model.patient.HomeNumber</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">מספר טלפון 1</h4>
-                <p class="list-group-item-text">@Model.ContcatPhoneNumber1</p>
+                <p class="list-group-item-text">@Model.patient.ContcatPhoneNumber1</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">מספר טלפון 2</h4>
-                <p class="list-group-item-text">@Model.ContcatPhoneNumber2</p>
+                <p class="list-group-item-text">@Model.patient.ContcatPhoneNumber2</p>
             </a>
             <a href="#" class="list-group-item">
                 <h4 class="list-group-item-heading">מייל</h4>
-                <p class="list-group-item-text">@Model.ContactMail</p>
+                <p class="list-group-item-text">@Model.patient.ContactMail</p>
             </a>
         </div>
     </div>
-
 </body>
-
 <div align="right">
     <img src="~/Images/go-back-button.png" height="40" width="100" onclick="back()">
 </div>
-
 <script>
     function back() {
 
@@ -81,77 +92,94 @@
 </script>
 
 
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+
             </div>
             <div class="modal-body">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">תעודת זהות</h4>
-                        <p class="list-group-item-text">@Model.ID</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">שם פרטי</h4>
-                        <p class="list-group-item-text">@Model.PatientFirstName</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">שם משפחה</h4>
-                        <p class="list-group-item-text">@Model.PatientSurName</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">תאריך לידה</h4>
-                        <p class="list-group-item-text">@Model.BirthDate</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">מגדר</h4>
-                        <p class="list-group-item-text">@Model.Gender</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">מסגרת חינוכית</h4>
-                        <p class="list-group-item-text">@Model.EducationalFramework</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">עיר</h4>
-                        <p class="list-group-item-text">@Model.City</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">רחוב</h4>
-                        <p class="list-group-item-text">@Model.Street</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">מספר בית</h4>
-                        <p class="list-group-item-text">@Model.HomeNumber</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">מספר טלפון 1</h4>
-                        <p class="list-group-item-text">@Model.ContcatPhoneNumber1</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">מספר טלפון 2</h4>
-                        <p class="list-group-item-text">@Model.ContcatPhoneNumber2</p>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h4 class="list-group-item-heading">מייל</h4>
-                        <p class="list-group-item-text">@Model.ContactMail</p>
-                    </a>
+                <h4 align="right">פרטי הורים</h4>
+                <div class="table-responsive">
+                    <table id="myTable" class="display table" width="100%">
+                        <thead>
+                            <tr>
+
+                                <th>האם עובד</th>
+                                <th>מייל</th>
+                                <th>2טלפון</th>
+                                <th>1טלפון</th>
+                                <th>מגדר</th>
+                                <th>שם משפחה</th>
+                                <th>שם פרטי</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Parents.ToList())
+                            {
+                                <tr>
+                                    <td> @item.IsWorking </td>
+                                    <td> @item.ContactMail </td>
+                                    <td> @item.ContcatPhoneNumber2 </td>
+                                    <td> @item.ContcatPhoneNumber1 </td>
+                                    <td> @item.Gender </td>
+                                    <td> @item.SurName </td>
+                                    <td> @item.FirstName </td>
+
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+
+
+
+                    <h4 align="right">פרטי אחים</h4>
+                    <div class="table-responsive">
+                        <table id="myTable" class="display table" width="100%">
+                            <thead>
+                                <tr>
+
+                                    <th>מסגרת לימודית</th>
+                                    <th>תאריך לידה</th>
+
+                                    <th>מגדר</th>
+                                    <th>שם משפחה</th>
+                                    <th>שם פרטי</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.BrotherSisters.ToList())
+                                {
+                                    <tr>
+                                        <td> @item.StudyFramework </td>
+                                        <td> @item.BirthDate </td>
+                                        <td> @item.Gender </td>
+                                        <td> @item.SurName </td>
+                                        <td> @item.FirstName </td>
+
+
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
-           
         </div>
-    </div>
-</div>
-
 </html>
-
-
