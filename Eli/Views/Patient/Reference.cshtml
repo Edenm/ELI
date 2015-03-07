@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Eli.Models.tblReference>
+﻿@model Eli.Models.Reference
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +16,11 @@
 </head>
 <body>
     <h4 align="center">:הפניות עבור מטופל </h4>
-    <h4 align="center"> @Model.ElementAt(0).PatientID </h4>
-   
-    
+    <h4 align="center"> @Model.r.ElementAt(0).PatientID </h4>
+    <button type="button" align="left" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        פרטים אודות משפחה
+    </button>
+
     <h4 align="right">:חיפוש</h4>
     <div class="table-responsive">
         <table id="myTable" class="display table" width="100%">
@@ -35,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.r.ToList())
                 {
                     <tr>
 
