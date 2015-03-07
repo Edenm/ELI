@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<Eli.Models.tblPatient>
+﻿@model IEnumerable<Eli.Models.tblPatient>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,28 +23,28 @@
         <table id="myTable" class="display table" width="100%">
             <thead>
                 <tr>
-                  
+
                     <th>פרטים נוספים</th>
                     <th>טלפון</th>
                     <th>שם משפחה</th>
                     <th>שם פרטי</th>
                     <th>תעודת זהות</th>
-                
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-  
-                        
+
+
                         <td>
                             <a href="@Url.Action("PatientDetails", "Patient", new { id = item.ID })" title="info">
                                 <img src="~/Images/info.png" />
                             </a>
                         </td>
                         <td> @item.ContcatPhoneNumber1 </td>
-<td> @item.PatientSurName </td>
+                        <td> @item.PatientSurName </td>
                         <td> @item.PatientFirstName </td>
                         <td> @item.ID </td>
                     </tr>
@@ -120,35 +119,35 @@
 
 
 
-       
-    <script>
 
-    
-        var table = $('#myTable').DataTable();
-        new $.fn.dataTable.KeyTable(table);
-
-    </script>
+        <script>
 
 
+            var table = $('#myTable').DataTable();
+            new $.fn.dataTable.KeyTable(table);
+
+        </script>
 
 
 
-    
 
 
-    
 
-    
-    <script>
-    function PatientDetails(id) {
 
-        
 
-        window.location = ' @Url.Action("PatientDetails", "Patient", new { id ="222222222" })';
 
-    }
 
-    </script>
+
+        <script>
+            function PatientDetails(id) {
+
+
+
+                window.location = ' @Url.Action("PatientDetails", "Patient", new { id ="222222222" })';
+
+            }
+
+        </script>
 
 
 
