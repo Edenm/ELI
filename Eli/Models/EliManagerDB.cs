@@ -38,6 +38,35 @@ namespace Eli.Models
             get { return db.tblBrotherSisterPatients; }
         }
 
+        public Table<tblReference> Refernce
+        {
+            get { return db.tblReferences; }
+        }
+
+        public Table<tblTherapist> Therapist
+        {
+            get { return db.tblTherapists; }
+        }
+
+        public Table<tblTreatment> Treatment
+        {
+            get { return db.tblTreatments; }
+        }
+        public Table<tblReferenceTherapistTreatment> ReferenceTherapistTreatment
+        {
+            get { return db.tblReferenceTherapistTreatments; }
+        }
+
+        public Table<tblParentPatient> ParentPatient
+        {
+            get { return db.tblParentPatients; }
+        }
+
+        public Table<tblParent> Parent
+        {
+            get { return db.tblParents; }
+        }
+
 //-------------------------Add methods----------------------------------------------------------
         public void addPatient(tblPatient patient)
         {
