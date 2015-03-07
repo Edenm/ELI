@@ -200,10 +200,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\gsdk-base.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -258,6 +261,17 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\prettify.css" />
+    <Content Include="Content\themes\Form\blank.gif" />
+    <Content Include="Content\themes\Form\bottom.png" />
+    <Content Include="Content\themes\Form\calendar.gif" />
+    <Content Include="Content\themes\Form\calendar.js" />
+    <Content Include="Content\themes\Form\form.html" />
+    <Content Include="Content\themes\Form\iepngfix.htc" />
+    <Content Include="Content\themes\Form\shadow.gif" />
+    <Content Include="Content\themes\Form\top.png" />
+    <Content Include="Content\themes\Form\view.css" />
+    <Content Include="Content\themes\Form\view.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\add.png" />
@@ -297,6 +311,8 @@
     <Content Include="Scripts\DataTable\jquery.dataTables.min.js" />
     <Content Include="Scripts\DataTable\jquery.dataTables_themeroller.css" />
     <Content Include="Scripts\DataTable\jquery.js" />
+    <Content Include="Scripts\jquery.bootstrap.wizard.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -310,6 +326,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\prettify.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -336,7 +353,6 @@
     <Content Include="Views\Patient\Contact.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Patient\childs.cshtml" />
