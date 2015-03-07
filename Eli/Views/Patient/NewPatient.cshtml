@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-   
+
     <title></title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
@@ -21,242 +21,493 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
+
     <!----------------------------script for adress from google--------------------------------->
     <script>
-    // This example displays an address form, using the autocomplete feature
-    // of the Google Places API to help users fill in the information.
+        // This example displays an address form, using the autocomplete feature
+        // of the Google Places API to help users fill in the information.
 
-    var placeSearch, autocomplete;
-    var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-    };
+        var placeSearch, autocomplete;
+        var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'short_name',
+            country: 'long_name',
+            postal_code: 'short_name'
+        };
 
-    function initialize() {
-        // Create the autocomplete object, restricting the search
-        // to geographical location types.
-        autocomplete = new google.maps.places.Autocomplete(
-            /** type {HTMLInputElement} */
-            (document.getElementById('autocomplete')),
-        { types: ['geocode'] });
-    // When the user selects an address from the dropdown,
-    // populate the address fields in the form.
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-        fillInAddress();
-    });
-    }
-
-    // [START region_fillform]
-    function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-
-        for (var component in componentForm) {
-            document.getElementById(component).value = '';
-            document.getElementById(component).disabled = false;
-        }
-
-        // Get each component of the address from the place details
-        // and fill the corresponding field on the form.
-        for (var i = 0; i < place.address_components.length; i++) {
-            var addressType = place.address_components[i].types[0];
-            if (componentForm[addressType]) {
-                var val = place.address_components[i][componentForm[addressType]];
-                document.getElementById(addressType).value = val;
-            }
-        }
-    }
-    // [END region_fillform]
-
-    // [START region_geolocation]
-    // Bias the autocomplete object to the user's geographical location,
-    // as supplied by the browser's 'navigator.geolocation' object.
-    function geolocate() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var geolocation = new google.maps.LatLng(
-                    position.coords.latitude, position.coords.longitude);
-                var circle = new google.maps.Circle({
-                    center: geolocation,
-                    radius: position.coords.accuracy
-                });
-                autocomplete.setBounds(circle.getBounds());
+        function initialize() {
+            // Create the autocomplete object, restricting the search
+            // to geographical location types.
+            autocomplete = new google.maps.places.Autocomplete(
+                /** type {HTMLInputElement} */
+                (document.getElementById('autocomplete')),
+            { types: ['geocode'] });
+            // When the user selects an address from the dropdown,
+            // populate the address fields in the form.
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                fillInAddress();
             });
         }
-    }
-    // [END region_geolocation]
+
+        // [START region_fillform]
+        function fillInAddress() {
+            // Get the place details from the autocomplete object.
+            var place = autocomplete.getPlace();
+
+            for (var component in componentForm) {
+                document.getElementById(component).value = '';
+                document.getElementById(component).disabled = false;
+            }
+
+            // Get each component of the address from the place details
+            // and fill the corresponding field on the form.
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    document.getElementById(addressType).value = val;
+                }
+            }
+        }
+        // [END region_fillform]
+
+        // [START region_geolocation]
+        // Bias the autocomplete object to the user's geographical location,
+        // as supplied by the browser's 'navigator.geolocation' object.
+        function geolocate() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var geolocation = new google.maps.LatLng(
+                        position.coords.latitude, position.coords.longitude);
+                    var circle = new google.maps.Circle({
+                        center: geolocation,
+                        radius: position.coords.accuracy
+                    });
+                    autocomplete.setBounds(circle.getBounds());
+                });
+            }
+        }
+        // [END region_geolocation]
 
     </script>
 
 </head>
 <body onload="initialize()">
-    <div class="float-right">
-        <div class="bs-example">
-            <ul class="nav nav-tabs">
+    <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-6">
+            <ul class=" nav nav-tabs" role="tablist" id="myTab">
                 <li role="presentation">
-                    <a href=" #step3" data-toggle="tab">
+                    <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
                         <h4 class="list-group-item-heading" align="right">שלב 3</h4>
                         <p class="list-group-item-text">פתיחת פנייה</p>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href=" #step2" data-toggle="tab">
+                    <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
                         <h4 class="list-group-item-heading" align="right">שלב 2</h4>
                         <p class="list-group-item-text">פרטים נוספים</p>
                     </a>
                 </li>
                 <li role="presentation" class="active">
-                    <a href="#step1" data-toggle="tab">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
                         <h4 class="list-group-item-heading" align="right">שלב 1</h4>
                         <p class="list-group-item-text">פרטים אישים</p>
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="tab-content" style="width: 100%;">
-            <form id="form_980618" class="appnitro" method="post" action="">
-                <div id="step1" class="tab-pane fade in active" text-align:right">
-                    <img id="top" src="~/Content/themes/Form/top.png" alt="">
-                    <div id="form_container">
+    </div>
 
-                        <h1><a> פרטים אישיים</a></h1>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <form id="form_980618" class="" method="post" action="">
 
-                        <div class="form_description" style="text-align:right;">
-                            <h2> פרטים אישיים</h2>
-                            <p>הכנסת פרטים אישיים של המטופל</p>
-                        </div>
-                        <ul>
-                            <li id="li_1" style="width:100%">
-                                <div style="text-align:right; float:right;">
-                                    <label class="description" for="element_1">תעודת זהות </label>
-                                    <div>
-                                        <input id="element_1" name="element_1" class="element text " type="text" maxlength="255" value="" style="text-align:right; " />
-                                    </div>
-                                </div>
-                            </li>
-                            <li id="li_2" style="width:100%">
-                                <div style="text-align:right; float:right;">
-                                    <label class="description" for="element_2">שם </label>
-                                    <span>
-                                        <input id="element_2_2" name="element_2_2" class="element text" maxlength="255" size="8" value="" style="text-align:right; " />
-                                        <label>משפחה</label>
-                                    </span>
-                                    <span>
-                                        <input id="element_2_1" name="element_2_1" class="element text" maxlength="255" size="14" value="" style="text-align:right; " />
-                                        <label>פרטי</label>
-                                    </span>
-                                </div>
-                            </li>
-                            <li id="li_8" style="width:100%">
-                                <div style="text-align:right; float:right;">
-                                    <label class="description" for="element_8">מגדר </label>
-                                    <div>
-                                        <select class="element text" id="element_8" name="element_8">
-                                            <option value="1" selected="selected">זכר</option>
-                                            <option value="2">נקבה</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </li>
-                            <li id="li_4" style="width:100%">
-                                <div style="text-align:right; float:right;">
-                                    <label class="description" for="element_4">תאריך לידה </label>
-                                    <span>
-                                        <input id="element_4_1" name="element_4_1" class="element text medium" size="2" maxlength="2" value="" type="text"> /
-                                        <label for="element_4_1">DD</label>
-                                    </span>
-                                    <span>
-                                        <input id="element_4_2" name="element_4_2" class="element text medium" size="2" maxlength="2" value="" type="text"> /
-                                        <label for="element_4_2">MM</label>
-                                    </span>
-                                    <span>
-                                        <input id="element_4_3" name="element_4_3" class="element text medium" size="4" maxlength="4" value="" type="text">
-                                        <label for="element_4_3">YYYY</label>
-                                    </span>
+                <img id="top" src="~/Content/themes/Form/top.png" alt="">
+                <div id="form_container">
 
-                                    <span id="calendar_4">
-                                        <img id="cal_img_4" class="datepicker" src="~/Content/themes/Form/calendar.gif" alt="Pick a date.">
-                                    </span>
-                                    <script type="text/javascript">
-                                        Calendar.setup({
-                                            inputField: "element_4_3",
-                                            baseField: "element_4",
-                                            displayArea: "calendar_4",
-                                            button: "cal_img_4",
-                                            ifFormat: "%B %e, %Y",
-                                            onSelect: selectEuropeDate
-                                        });
-                                    </script>
+                    <h1><a> פרטים אישיים</a></h1>
 
-                            </li>
-                            <li id="li_6" style="width:100%">
-                                <div style="text-align:right; float:right;">
-                                    <label class="description" for="element_6">טלפון </label>
-                                    <div>
-                                        <input id="element_6" name="element_6" class="element text " type="text" maxlength="255" value="" />
-                                    </div>
-                                </div>
-                            </li>
-                            <li id="li_7" style="width:100%">
-                                <div style="text-align:right; float:right;">
-                                    <label class="description" for="element_7">טלפון נוסף </label>
-                                    <div>
-                                        <input id="element_7" name="element_7" class="element text " type="text" maxlength="255" value="" />
-                                    </div>
-                                </div>
-                            </li>
-                            <li id="li_5" style="width:100%">
-                                <div style="text-align:right; float:right;">
-                                    <label class="description" for="element_5">כתובת</label>
-                                    <div id="locationField">
-                                        <input id="autocomplete" class="element text input-xxlarge" placeholder="הכנס כתובת מלאה" style="text-align:right;" onfocus=" geolocate()" type="text" />
-                                    </div>
-                                </div>
-                            </li>
-
-
-                            <li id="li_3" style="width:100%">
-                                <div style="text-align:right; float:right;">
-                                    <label class="description" for="element_3">מייל </label>
-                                    <div>
-                                        <input id="element_3" name="element_3" class="element text" type="text" maxlength="255" value="" />
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="buttons" style="width:100%">
-                                <input type="hidden" name="form_id" value="980618" />
-
-                                <input id="saveForm" class="button_text" type="submit" name="submit" value="שלח" />
-                            </li>
-                        </ul>
-
+                    <div class="form_description" style="text-align:center;">
+                        <h2> הנפגע</h2>
+                        <p>הכנסת פרטים אישיים של המטופל</p>
                     </div>
-                    <img id="bottom" src="~/Content/themes/Form/bottom.png" alt="">
+                    <ul>
+                        <li id="li_1" style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_1">תעודת זהות </label>
+                                <div>
+                                    <input id="element_1" name="element_1" class="element text " type="text" maxlength="255" value="" style="text-align:right; " />
+                                </div>
+                            </div>
+                        </li>
+                        <li id="li_2" style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_2">שם </label>
+                                <span>
+                                    <input id="element_2_2" name="element_2_2" class="element text" maxlength="255" size="8" value="" style="text-align:right; " />
+                                    <label>משפחה</label>
+                                </span>
+                                <span>
+                                    <input id="element_2_1" name="element_2_1" class="element text" maxlength="255" size="14" value="" style="text-align:right; " />
+                                    <label>פרטי</label>
+                                </span>
+                            </div>
+                        </li>
+                        <li id="li_8" style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_8">מגדר </label>
+                                <div>
+                                    <select class="element text pull-right" id="element_8" name="element_8">
+                                        <option value="1" selected="selected">זכר</option>
+                                        <option value="2">נקבה</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="li_4" style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_4">תאריך לידה </label>
+                                <span>
+                                    <input id="element_4_1" name="element_4_1" class="element text medium" size="2" maxlength="2" value="" type="text"> /
+                                    <label for="element_4_1">DD</label>
+                                </span>
+                                <span>
+                                    <input id="element_4_2" name="element_4_2" class="element text medium" size="2" maxlength="2" value="" type="text"> /
+                                    <label for="element_4_2">MM</label>
+                                </span>
+                                <span>
+                                    <input id="element_4_3" name="element_4_3" class="element text medium" size="4" maxlength="4" value="" type="text">
+                                    <label for="element_4_3">YYYY</label>
+                                </span>
 
+                                <span id="calendar_4">
+                                    <img id="cal_img_4" class="datepicker" src="~/Content/themes/Form/calendar.gif" alt="Pick a date.">
+                                </span>
+                            </div>
+                        </li>
+                        <li id="li_5" style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_5">כתובת</label>
+                                <div id="locationField">
+                                    <input id="autocomplete" class="element text input-xxlarge" placeholder="הכנס כתובת מלאה" style="text-align:right;" onfocus=" geolocate()" type="text" />
+                                </div>
+                            </div>
+                        </li>
+
+                        <li style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_6">טלפון </label>
+                                <div>
+                                    <input id="element_8" name="element_6" class="element text " type="text" maxlength="255" value="" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div id="step2" class="tab-pane fade" style="background-color:lightgrey; width: 100%; padding: 2%; border: solid navy; text-align:right">
+            </form>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="settings">
+            <form id="form_980619" class="" method="post" action="">
 
+                <img id="top" src="~/Content/themes/Form/top.png" alt="">
+                <div id="form_container2">
+
+                    <h1><a> פרטי משפחה</a></h1>
+
+                    <div class="form_description" style="text-align:center;">
+                        <h2> משפחה</h2>
+                        <p>הכנסת פרטים של משפחת המטופל</p>
+                    </div>
+                    <ul>
+                        <li style="width:100%">
+                            <label class="description pull-right">הורים </label><br />
+                            <table class=" table table-bordered table-hover" id="tab_Parent">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="text-align:right;">
+                                            פירוט
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            האם עובד?
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            מייל
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            כתובת
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            טלפון
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            תאריך לידה
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            שם משפחה
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            שם פרטי
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            תעודת זהות
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            #
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name='explainf' placeholder='פירוט' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='isworkf' placeholder='האם עובד?' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='mailf' placeholder='מייל' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='adressf' placeholder='כתובת' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='phonef' placeholder='פלאפון' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='birthdatef' placeholder='תאריך לידה' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='lnamef' placeholder='שם משפחה' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='fnamef' placeholder='שם פרטי' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='idf' placeholder='תעודת זהות' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            אב
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name='explainm' placeholder='פירוט' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='isworkm' placeholder='האם עובד?' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='mailm' placeholder='מייל' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='adressm' placeholder='כתובת' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='phonem' placeholder='פלאפון' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='birthdatem' placeholder='תאריך לידה' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='lnamem' placeholder='שם משפחה' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='fnamem' placeholder='שם פרטי' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='idm' placeholder='תעודת זהות' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            אם
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+
+                        <li style="width:100%">
+                            <label class="description pull-right">אחים ואחיות </label><br />
+                            <table class=" table table-bordered table-hover" id="tab_logic">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="text-align:right;">
+                                            מסגרת לימודים
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            מגדר
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            תאריך לידה
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            שם משפחה
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            שם פרטי
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            תעודת זהות
+                                        </th>
+                                        <th class="text-center" style="text-align:right;">
+                                            #
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id='addr0'>
+                                        <td>
+                                            <input type="text" name='education1' placeholder='מסגרת לימודים' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='sex1' placeholder='מגדר' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='birthdate1' placeholder='תאריך לידה' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='lname1' placeholder='שם משפחה' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='fname1' placeholder='שם פרטי' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='id1' placeholder='תעודת זהות' class="form-control" style="text-align:right;" />
+                                        </td>
+                                        <td>
+                                            1
+                                        </td>
+                                    </tr>
+                                    <tr id='addr1'></tr>
+                                </tbody>
+                            </table>
+                        </li>
+                        <li style="width:100%">
+                            <a id="add_row" class="btn btn-default pull-right"><img src="~/Images/add.png" /></a>
+                            <a id='delete_row' class="pull-left btn btn-default">מחק</a>
+                        </li>
+                    </ul>
                 </div>
-                <div id="step3" class="tab-pane fade" style="background-color:lightgrey; width: 100%; padding: 2%; border: solid navy; text-align:right">
+            </form>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="messages">
 
+            <form id="form_980620" class="" method="post" action="">
+
+                <img id="top" src="~/Content/themes/Form/top.png" alt="">
+                <div id="form_container3">
+
+                    <h1><a> פרטי משפחה</a></h1>
+
+                    <div class="form_description" style="text-align:center;">
+                        <h2> פנייה</h2>
+                        <p>הכנסת פרטי פנייה</p>
+                    </div>
+
+                    <ul>
+                        <li style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_1">מספר פנייה </label>
+                                <div>
+                                    <input id="element_1" name="element_1" class="element text" type="text" maxlength="255" value="" />
+                                </div>
+                            </div>
+                        </li>
+                        <li style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_4">סטאטוס </label>
+                                <div>
+                                    <select class="element select" id="element_4" name="element_4">
+                                        <option value="1" selected="selected">פוגע</option>
+                                        <option value="2">נפגע</option>
+                                        <option value="3">פוגע ונפגע</option>
+                                        <option value="4">אחר</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_2">(פירוט (אחר </label>
+                                <div>
+                                    <input id="element_2" name="element_2" class="element text input-xxlarge" type="text" maxlength="255" value="" />
+                                </div>
+                            </div>
+                        </li>
+                        <li style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_5">סוג הפגיעה </label>
+                                <div>
+                                    <select class="element select" id="element_5" name="element_5">
+                                        <option value="1" selected="selected">פיזית</option>
+                                        <option value="2">הזנחה</option>
+                                        <option value="3">מינית</option>
+                                        <option value="4">רגשית</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li style="width:100%">
+                            <div style="text-align:right; float:right;">
+                                <label class="description" for="element_6">כיצד הגיע </label>
+                                <div>
+                                    <select class="element select" id="element_6" name="element_6">
+                                        <option value="1" selected="selected">הסברה</option>
+                                        <option value="2">מדיה</option>
+                                        <option value="3">הפניית איש מקצוע</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="buttons" style="width:100%;">
+                            <input id="saveForm" class="btn btn-primary" type="submit" style="float:right" name="submit" value="שלח" />
+                        </li>
+                    </ul>
                 </div>
             </form>
         </div>
     </div>
-    <style type="text/css">
-        .bs-example {
-            margin: 20px;
-        }
-    </style>
 
 
+
+
+
+    <script>
+        $(document).ready(function () {
+            var i = 1;
+            $("#add_row").click(function () {
+
+                $('#addr' + i).html("<td><input name='education1" + i + "' type='text' placeholder=' מסגרת לימודים' class='form-control input-md' style='text-align:right;'  /> </td><td><input  name=' sex " + i + "' type='text' placeholder='מגדר'  class='form-control input-md' style='text-align:right;'></td><td><input  name=' birthdate" + i + "' type='text' placeholder=' תאריך לידה '  class='form-control input-md'></td><td><input  name=' lname " + i + "' type='text' placeholder=' שם משפחה '  class='form-control input-md'></td><td><input  name=' fname " + i + "' type='text' placeholder='שם פרטי'  class='form-control input-md'></td><td><input  name=' id" + i + "' type='text' placeholder='תעודת זהות'  class='form-control input-md'></td><td>" + (i + 1) + "</td>");
+
+                $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
+                i++;
+            });
+
+            $("#delete_row").click(function () {
+                if (i > 1) {
+                    $("#addr" + (i - 1)).html('');
+                    i--;
+                }
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        Calendar.setup({
+            inputField: "element_4_3",
+            baseField: "element_4",
+            displayArea: "calendar_4",
+            button: "cal_img_4",
+            ifFormat: "%B %e, %Y",
+            onSelect: selectEuropeDate
+        });
+    </script>
 
 </body>
-</html>
 
+</html>
