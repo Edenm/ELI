@@ -796,6 +796,8 @@ namespace Eli.Models
 		
 		private string _IsWorking;
 		
+		private string _Explain;
+		
 		private EntitySet<tblParentPatient> _tblParentPatients;
 		
     #region Extensibility Method Definitions
@@ -820,6 +822,8 @@ namespace Eli.Models
     partial void OnContactMailChanged();
     partial void OnIsWorkingChanging(string value);
     partial void OnIsWorkingChanged();
+    partial void OnExplainChanging(string value);
+    partial void OnExplainChanged();
     #endregion
 		
 		public tblParent()
@@ -1004,6 +1008,26 @@ namespace Eli.Models
 					this._IsWorking = value;
 					this.SendPropertyChanged("IsWorking");
 					this.OnIsWorkingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Explain", DbType="VarChar(MAX)")]
+		public string Explain
+		{
+			get
+			{
+				return this._Explain;
+			}
+			set
+			{
+				if ((this._Explain != value))
+				{
+					this.OnExplainChanging(value);
+					this.SendPropertyChanging();
+					this._Explain = value;
+					this.SendPropertyChanged("Explain");
+					this.OnExplainChanged();
 				}
 			}
 		}

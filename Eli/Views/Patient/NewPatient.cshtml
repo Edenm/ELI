@@ -95,7 +95,7 @@
 
 </head>
 <body onload="initialize()">
-    <form id="form" class="" method="post" action="">
+    <form id="form" class="" method="post" action="~/Patient/AddPatient">
         <div class="row">
             <div class="col-xs-6">
             </div>
@@ -274,6 +274,7 @@
                                         </td>
                                         <td>
                                             <input type="text" name='fnamef' placeholder='שם פרטי' class="form-control" />
+                                        </td>
                                         <td>
                                             <input type="text" name='lnamef' placeholder='שם משפחה' class="form-control" />
                                         </td>
@@ -290,7 +291,10 @@
                                             <input type="text" name='mailf' placeholder='מייל' class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='isworkf' placeholder='האם עובד?' class="form-control" />
+                                            <select name="isworkf"  type='text' placeholder='מגדר' dir='rtl'>
+                                                <option value="כן" selected="selected">כן</option>
+                                                <option value="לא">לא</option>
+                                            </select>
                                         </td>
                                         <td>
                                             <input type="text" name='explainf' placeholder='פירוט' class="form-control" />
@@ -305,6 +309,7 @@
                                         </td>
                                         <td>
                                             <input type="text" name='fnamem' placeholder='שם פרטי' class="form-control" />
+                                        </td>
                                         <td>
                                             <input type="text" name='lnamem' placeholder='שם משפחה' class="form-control" />
                                         </td>
@@ -321,7 +326,10 @@
                                             <input type="text" name='mailm' placeholder='מייל' class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='isworkm' placeholder='האם עובד?' class="form-control" />
+                                            <select name="isworkm" type='text' placeholder='מגדר'  dir='rtl'>
+                                                <option value="כן" selected="selected">כן</option>
+                                                <option value="לא">לא</option>
+                                            </select>
                                         </td>
                                         <td>
                                             <input type="text" name='explainm' placeholder='פירוט' class="form-control" />
@@ -361,30 +369,32 @@
                                 </thead>
 
                                 <tbody>
-                                    <!--
                                     <tr id='addr0'>
                                         <td>
-                                            <input type="text" name='education1' placeholder='מסגרת לימודים' class="form-control" dir="rtl" />
-                                        </td>
-                                        <td>
-                                            <input type="text" name='sex1' placeholder='מגדר' class="form-control" dir="rtl" />
-                                        </td>
-                                        <td>
-                                            <input type="text" name='birthdate1' placeholder='תאריך לידה' class="form-control" dir="rtl" />
-                                        </td>
-                                        <td>
-                                            <input type="text" name='lname1' placeholder='שם משפחה' class="form-control" dir="rtl" />
-                                        </td>
-                                        <td>
-                                            <input type="text" name='fname1' placeholder='שם פרטי' class="form-control" dir="rtl" />
+                                            1
                                         </td>
                                         <td>
                                             <input type="text" name='id1' placeholder='תעודת זהות' class="form-control" dir="rtl" />
                                         </td>
                                         <td>
-                                            1
+                                            <input type="text" name='fname1' placeholder='שם פרטי' class="form-control" dir="rtl" />
                                         </td>
-                                    </tr> -->
+                                        <td>
+                                            <input type="text" name='lname1' placeholder='שם משפחה' class="form-control" dir="rtl" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name='birthdate1' placeholder='תאריך לידה' class="form-control" dir="rtl" />
+                                        </td>
+                                        <td>
+                                            <select name="gender1" type='text' placeholder='מגדר' class="form-control input-md" dir='rtl'>
+                                                <option value="זכר" selected="selected">זכר</option>
+                                                <option value="נקבה">נקבה</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" name='education1' placeholder='מסגרת לימודים' class="form-control" dir="rtl" />
+                                        </td>
+                                    </tr>
                                     <tr id='addr1'></tr>
                                 </tbody>
                             </table>
@@ -414,10 +424,10 @@
                                 <label class="description" for="element_4">סטאטוס </label>
                                 <div>
                                     <select class="element select" id="status" dir="rtl" name="status">
-                                        <option value="1" selected="selected">פוגע</option>
-                                        <option value="2">נפגע</option>
-                                        <option value="3">פוגע ונפגע</option>
-                                        <option value="4">אחר</option>
+                                        <option value="פוגע" selected="selected">פוגע</option>
+                                        <option value="נפגע">נפגע</option>
+                                        <option value="פוגע ונפגע">פוגע ונפגע</option>
+                                        <option value="אחר">אחר</option>
                                     </select>
                                 </div>
                             </div>
@@ -435,10 +445,10 @@
                                 <label class="description" for="element_5">סוג הפגיעה </label>
                                 <div>
                                     <select class="element select" id="type" dir="rtl" name="type">
-                                        <option value="1" selected="selected">פיזית</option>
-                                        <option value="2">הזנחה</option>
-                                        <option value="3">מינית</option>
-                                        <option value="4">רגשית</option>
+                                        <option value="פיזית" selected="selected">פיזית</option>
+                                        <option value="הזנחה">הזנחה</option>
+                                        <option value="מינית">מינית</option>
+                                        <option value="רגשית">רגשית</option>
                                     </select>
                                 </div>
                             </div>
@@ -448,9 +458,9 @@
                                 <label class="description" for="element_6">?כיצד הגיע </label>
                                 <div>
                                     <select class="element select" id="arrive" dir="rtl" name="arrive">
-                                        <option value="1" selected="selected">הסברה</option>
-                                        <option value="2">מדיה</option>
-                                        <option value="3">הפניית איש מקצוע</option>
+                                        <option value="הסברה" selected="selected">הסברה</option>
+                                        <option value="מדיה">מדיה</option>
+                                        <option value="הפניית איש מקצוע">הפניית איש מקצוע</option>
                                     </select>
                                 </div>
                             </div>
@@ -468,10 +478,10 @@
 
     <script>
         $(document).ready(function () {
-            var i = 0;
+            var i = 1;
             $("#add_row").click(function () {
 
-                $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input  name=' id" + i + "' type='text' placeholder='תעודת זהות' dir='rtl' class='form-control input-md'></td><td><input  name=' fname " + i + "' type='text' placeholder='שם פרטי' dir='rtl' class='form-control input-md'></td><td><input  name=' lname " + i + "' type='text' placeholder=' שם משפחה ' dir='rtl' class='form-control input-md'></td><td><input  name=' birthdate" + i + "' type='text' placeholder=' תאריך לידה ' dir='rtl' class='form-control input-md'></td><td><select name='gender " + i + "' type='text' placeholder='מגדר' class='form-control input-md' dir='rtl'><option value=’1’ selected=’selected’>זכר</option><option value=’2’>נקבה</option></select></td><td><input name='education1" + i + "' type='text' placeholder=' מסגרת לימודים' class='form-control input-md' dir='rtl'  /> </td>");
+                $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input  name=' id" + i + "' type='text' placeholder='תעודת זהות' dir='rtl' class='form-control input-md'></td><td><input  name=' fname " + i + "' type='text' placeholder='שם פרטי' dir='rtl' class='form-control input-md'></td><td><input  name=' lname " + i + "' type='text' placeholder=' שם משפחה ' dir='rtl' class='form-control input-md'></td><td><input  name=' birthdate" + i + "' type='text' placeholder=' תאריך לידה ' dir='rtl' class='form-control input-md'></td><td><select name='gender " + i + "' type='text' placeholder='מגדר' class='form-control input-md' dir='rtl'><option value=’זכר’ selected=’selected’>זכר</option><option value=’נקבה’>נקבה</option></select></td><td><input name='education1" + i + "' type='text' placeholder=' מסגרת לימודים' class='form-control input-md' dir='rtl'  /> </td>");
 
                 $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
                 i++;

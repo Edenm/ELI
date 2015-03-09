@@ -21,79 +21,75 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href="~/Scripts/DataTable/ModalSize.less" rel="stylesheet" />
     <!-- Button trigger modal -->
-    <h4 align="center">:מיקומך במערכת</h4>
-
-    <h4 align="center">@Html.ActionLink(" פרטי מטופל", "PatientDetails", "Patient", new { id = Model.patient.ID })<----@Html.ActionLink(" רשימת מטופלים", "MainPatients", "Patient") </h4>
-
-    <div class="bs-example">
-
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            פרטים אודות משפחה
-        </button>
-
-        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Reference", "Patient", new { id =Model.patient.ID })'" />
-        הצג הפניות עבור מטופל
-        </button>
+    
 
 </head>
 <body>
+    <h4 align="center">:מיקומך במערכת</h4>
+    <h4 align="center">@Html.ActionLink(" פרטי מטופל", "PatientDetails", "Patient", new { id = Model.patient.ID })<----@html.actionlink(" רשימת מטופלים", "mainpatients", "patient") </h4>
+    <div class="bs-example">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            פרטים אודות משפחה
+        </button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Reference", "Patient", new { id =Model.patient.ID })'" />
+        הצג הפניות עבור מטופל
+        </button>
+     </div>
 
 
-
-
-    <div align="right">
-        <h2>פרטי מטופל</h2>
-        <div class="list-group">
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">תעודת זהות</h4>
-                <p class="list-group-item-text">@Model.patient.ID</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">שם פרטי</h4>
-                <p class="list-group-item-text">@Model.patient.PatientFirstName</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">שם משפחה</h4>
-                <p class="list-group-item-text">@Model.patient.PatientSurName</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">תאריך לידה</h4>
-                <p class="list-group-item-text">@Model.patient.BirthDate</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">מגדר</h4>
-                <p class="list-group-item-text">@Model.patient.Gender</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">מסגרת חינוכית</h4>
-                <p class="list-group-item-text">@Model.patient.EducationalFramework</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">עיר</h4>
-                <p class="list-group-item-text">@Model.patient.City</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">רחוב</h4>
-                <p class="list-group-item-text">@Model.patient.Street</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">מספר בית</h4>
-                <p class="list-group-item-text">@Model.patient.HomeNumber</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">מספר טלפון 1</h4>
-                <p class="list-group-item-text">@Model.patient.ContcatPhoneNumber1</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">מספר טלפון 2</h4>
-                <p class="list-group-item-text">@Model.patient.ContcatPhoneNumber2</p>
-            </a>
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">מייל</h4>
-                <p class="list-group-item-text">@Model.patient.ContactMail</p>
-            </a>
+        <div align="right">
+            <h2>פרטי מטופל</h2>
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">תעודת זהות</h4>
+                    <p class="list-group-item-text">@Model.patient.ID</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">שם פרטי</h4>
+                    <p class="list-group-item-text">@Model.patient.PatientFirstName</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">שם משפחה</h4>
+                    <p class="list-group-item-text">@Model.patient.PatientSurName</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">תאריך לידה</h4>
+                    <p class="list-group-item-text">@Model.patient.BirthDate</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">מגדר</h4>
+                    <p class="list-group-item-text">@Model.patient.Gender</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">מסגרת חינוכית</h4>
+                    <p class="list-group-item-text">@Model.patient.EducationalFramework</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">עיר</h4>
+                    <p class="list-group-item-text">@Model.patient.City</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">רחוב</h4>
+                    <p class="list-group-item-text">@Model.patient.Street</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">מספר בית</h4>
+                    <p class="list-group-item-text">@Model.patient.HomeNumber</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">מספר טלפון 1</h4>
+                    <p class="list-group-item-text">@Model.patient.ContcatPhoneNumber1</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">מספר טלפון 2</h4>
+                    <p class="list-group-item-text">@Model.patient.ContcatPhoneNumber2</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">מייל</h4>
+                    <p class="list-group-item-text">@Model.patient.ContactMail</p>
+                </a>
+            </div>
         </div>
-    </div>
 </body>
 <div align="right">
     <img src="~/Images/go-back-button.png" height="40" width="100" onclick="back()">

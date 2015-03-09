@@ -41,6 +41,7 @@
       <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="ContactMail" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="IsWorking" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Explain" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="tblParent_tblParentPatient" Member="tblParentPatients" ThisKey="ID" OtherKey="ParentID" Type="tblParentPatient" />
     </Type>
   </Table>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Eli.Models.tblPatient>
+﻿@model Eli.Models.tblParent
 
 @{
     ViewBag.Title = "childs";
@@ -9,30 +9,37 @@
 
 <table>
     <thead>
-    <td>מייל</td>
-    <td>מספר טלפון 2</td>
-    <td>מספר טלפון 1</td>
-    <td>כתובת</td>
-    <td>מסגרת לימודים</td>
-    <td>מין</td>
-    <td>תאריך לידה</td>
-    <td>שם משפחה</td>
-    <td>שם פרטי</td>
-    <td>תעדות זהות</td>
-    </thead>
-        @foreach (var item in Model)
+        <th>תעדות זהות</th>
+        <th>שם פרטי</th>
+        <th>שם משפחה</th>
+        
+        <th>מספר טלפון </th>
+        <th>כתובת</th>
+        <th>מייל</th>
+        <th>האם עובד</th>
+        </thead>
+
+        
         {
             <tr>
-                <td> @item.ContactMail </td>
-                <td> @item.ContcatPhoneNumber2 </td>
-                <td> @item.ContcatPhoneNumber1 </td>
-                <td> @(item.City + " " + item.Street + " " + item.HomeNumber) </td>
-                <td> @item.EducationalFramework </td>
-                <td> @item.Gender </td>
-                <td> @item.BirthDate </td>
-                <td> @item.PatientSurName </td>
-                <td> @item.PatientFirstName </td>
-                <td> @item.ID </td>
+                <td> @Model.ID </td>
+                <td> @Model.FirstName </td>
+                <td> @Model.SurName </td>
+                
+                <td> @Model.ContcatPhoneNumber </td>
+                <td> @Model.Address </td>
+                <td> @Model.ContactMail </td>
+                <td> @Model.IsWorking </td>
             </tr>
         }
+    @if (@Model.Address=="")
+    {
+        <h1>yes</h1>
+    }
+    @if (@Model.Address=="0")
+    {
+        <h1>No</h1>
+    }
+
+    foreach (var item in Model)
 </table>

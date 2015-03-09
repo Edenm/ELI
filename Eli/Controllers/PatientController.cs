@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Collections;
 
 namespace Eli.Controllers
 {
@@ -44,14 +45,66 @@ namespace Eli.Controllers
                 PatientSurName = lName,
                 Gender = gender,
                 EducationalFramework = education,
-                ContcatPhoneNumber = phone
+                ContcatPhoneNumber = phone,
+                Address=address
             };
 
-            db.addPatient(tp);
+            String idf = Request.Form["idf"];
+            String idm = Request.Form["idf"];
+            String fnamef= Request.Form["fnamef"];
+            String fnamem= Request.Form["fnamem"];
+            String lnamef= Request.Form["lnamef"];
+            String lnamem= Request.Form["lnamem"];
+            String birthdatef= Request.Form["birthdatef"];
+            String birthdatem= Request.Form["birthdatem"];
+            String phonef= Request.Form["phonef"];
+            String phonem= Request.Form["phonem"];
+            String adressf= Request.Form["adressf"];
+            String adressm= Request.Form["adressm"];
+            String mailf= Request.Form["mailf"];
+            String mailm= Request.Form["mailm"];
+            String isworkf= Request.Form["isworkf"];
+            String isworkm= Request.Form["isworkm"];
+            String explainf= Request.Form["explainf"];
+            String explainm= Request.Form["explainm"];
 
-            var pat = db.Patients.ToArray();
 
-            return View(pat);
+            tblParent tparf = new tblParent()
+            {
+                ID = idf,
+                FirstName = fnamef,
+                SurName = lnamef,
+                //BirthDate = Convert.ToDateTime(birthdatef),
+                ContcatPhoneNumber = phonef,
+                Address = adressf,
+                ContactMail = mailf,
+                IsWorking = isworkf
+            };
+
+            tblParent tparm = new tblParent()
+            {
+                ID = idm,
+                FirstName = fnamem,
+                SurName = lnamem,
+                //BirthDate = Convert.ToDateTime(birthdatem),
+                ContcatPhoneNumber = phonem,
+                Address = adressm,
+                ContactMail = mailm,
+                IsWorking = isworkm
+            };
+
+           // db.addPatient(tp);
+
+           // var pat = db.Patients.ToArray();
+
+            ArrayList ap = new ArrayList();
+            
+        
+
+            ap.Add(tparm);
+            ap.Add(tparf);
+
+            return View(tparf);
         }
 
 
