@@ -23,6 +23,8 @@ namespace Eli.Controllers
             return View();
         }
 
+       
+
         public ActionResult AddPatient()
         {
             EliManagerDB db = new EliManagerDB();
@@ -64,6 +66,7 @@ namespace Eli.Controllers
             return View(pat);
         }
 
+       
         public ActionResult childs()
         {
             EliManagerDB db = new EliManagerDB();
@@ -83,6 +86,9 @@ namespace Eli.Controllers
 
             return View(pat);
         }
+
+
+        
 
 
 
@@ -128,6 +134,7 @@ namespace Eli.Controllers
 
             EliManagerDB db = new EliManagerDB();
 
+            
             List<tblTherapist> Therapist = new List<tblTherapist>();
             List<tblTreatment> Treatment = new List<tblTreatment>();
             List<tblReferenceTherapistTreatment> RTT = db.ReferenceTherapistTreatment.ToArray().Where(a => a.ReferenceNumber == (idRef)).ToList();
@@ -145,7 +152,7 @@ namespace Eli.Controllers
             r.tr = Treatment.ToList();
             return View(r);
         }
-
+      
         public ActionResult PatientDetails(String id)
         {
             EliManagerDB db = new EliManagerDB();

@@ -186,6 +186,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FinanceFactorController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -294,14 +295,14 @@
     <Content Include="Images\edit.png" />
     <Content Include="Images\Eli-Log.jpg" />
     <Content Include="Images\info.png" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Images\DataTable\Sorting icons.psd" />
     <Content Include="Models\DataConnection.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataConnection.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Images\DataTable\Sorting icons.psd" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -364,6 +365,10 @@
     <Content Include="Views\Patient\PatientDetails.cshtml" />
     <Content Include="Views\Patient\Reference.cshtml" />
     <Content Include="Views\Patient\TreatByReference.cshtml" />
+    <Content Include="Views\FinanceFactor\FinancingFactor.cshtml" />
+    <Content Include="Views\FinanceFactor\FinancingFactorDetails.cshtml" />
+    <Content Include="Views\FinanceFactor\NewFinanceFactor.cshtml" />
+    <Content Include="Views\FinanceFactor\AddFinanceFactor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

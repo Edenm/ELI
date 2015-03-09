@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Eli" Class="DataConnectionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=EDEN-PC\SQLEXPRESS1;Initial Catalog=Eli;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EliConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SHAHAR-PC\SQLEXPRESS;Initial Catalog=Eli;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EliConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblBrotherSister" Member="tblBrotherSisters">
     <Type Name="tblBrotherSister">
       <Column Name="ID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -24,7 +24,6 @@
       <Column Name="FinancingFactorNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="FinancingFactorType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="TreatmentGoal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="ContactName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="ContactMail" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
@@ -62,11 +61,11 @@
       <Column Name="PatientFirstName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="PatientSurName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="BirthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
       <Column Name="EducationalFramework" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="City" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="Street" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="HomeNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HomeNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ContcatPhoneNumber1" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="ContcatPhoneNumber2" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="ContactMail" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />

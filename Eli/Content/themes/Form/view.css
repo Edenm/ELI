@@ -6,7 +6,10 @@ body
 	margin:8px 0 16px;
 	text-align:center;
 }
-
+input {
+    float:right;
+    clear:both;
+}
 #form_container
 {
 	background:#fff;

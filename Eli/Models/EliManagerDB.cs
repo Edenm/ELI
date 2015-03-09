@@ -27,6 +27,11 @@ namespace Eli.Models
             get { return db.tblPatients; }
         }
 
+        public Table<tblFinancingFactor> FinancingFactor
+        {
+            get { return db.tblFinancingFactors; }
+        }
+
 
         public Table<tblBrotherSister> BrotherSister
         {

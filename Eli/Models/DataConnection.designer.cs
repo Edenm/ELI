@@ -66,7 +66,7 @@ namespace Eli.Models
     #endregion
 		
 		public DataConnectionDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["EliConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["EliConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -574,8 +574,6 @@ namespace Eli.Models
 		
 		private string _FinancingFactorType;
 		
-		private string _TreatmentGoal;
-		
 		private string _ContactName;
 		
 		private string _ContcatPhoneNumber;
@@ -594,8 +592,6 @@ namespace Eli.Models
     partial void OnNameChanged();
     partial void OnFinancingFactorTypeChanging(string value);
     partial void OnFinancingFactorTypeChanged();
-    partial void OnTreatmentGoalChanging(string value);
-    partial void OnTreatmentGoalChanged();
     partial void OnContactNameChanging(string value);
     partial void OnContactNameChanged();
     partial void OnContcatPhoneNumberChanging(string value);
@@ -666,26 +662,6 @@ namespace Eli.Models
 					this._FinancingFactorType = value;
 					this.SendPropertyChanged("FinancingFactorType");
 					this.OnFinancingFactorTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(50)")]
-		public string TreatmentGoal
-		{
-			get
-			{
-				return this._TreatmentGoal;
-			}
-			set
-			{
-				if ((this._TreatmentGoal != value))
-				{
-					this.OnTreatmentGoalChanging(value);
-					this.SendPropertyChanging();
-					this._TreatmentGoal = value;
-					this.SendPropertyChanged("TreatmentGoal");
-					this.OnTreatmentGoalChanged();
 				}
 			}
 		}
@@ -1340,7 +1316,7 @@ namespace Eli.Models
 		
 		private string _Street;
 		
-		private int _HomeNumber;
+		private System.Nullable<int> _HomeNumber;
 		
 		private string _ContcatPhoneNumber1;
 		
@@ -1374,7 +1350,7 @@ namespace Eli.Models
     partial void OnCityChanged();
     partial void OnStreetChanging(string value);
     partial void OnStreetChanged();
-    partial void OnHomeNumberChanging(int value);
+    partial void OnHomeNumberChanging(System.Nullable<int> value);
     partial void OnHomeNumberChanged();
     partial void OnContcatPhoneNumber1Changing(string value);
     partial void OnContcatPhoneNumber1Changed();
@@ -1472,7 +1448,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
 		public string Gender
 		{
 			get
@@ -1552,8 +1528,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HomeNumber", DbType="Int NOT NULL")]
-		public int HomeNumber
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HomeNumber", DbType="Int")]
+		public System.Nullable<int> HomeNumber
 		{
 			get
 			{

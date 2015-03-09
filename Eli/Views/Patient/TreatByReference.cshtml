@@ -47,7 +47,11 @@
                         <td> @Model.th.ElementAt(i).TherapistSurName </td>
                         <td> @Model.th.ElementAt(i).TherapistFirstName </td>
                         <td> @Model.th.ElementAt(i).ID </td>
-                        <td> @Model.tr.ElementAt(i).FinancingFactorNumber </td>
+                        <td>
+                            <a href="@Url.Action("FinancingFactorDetails", "FinanceFactor", new { id = Model.tr.ElementAt(i).FinancingFactorNumber })" title="info">
+                                <img src="~/Images/info.png" />
+                            </a>
+                        </td>
 
                         <td> @Model.tr.ElementAt(i).IsPaid </td>
                         <td> @Model.tr.ElementAt(i).Place </td>
