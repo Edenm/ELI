@@ -10,15 +10,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- Button trigger modal -->
+    <h4 align="center">:מיקומך במערכת</h4>
 
-
+    <h4 align="center">@Html.ActionLink(" פרטי מטופל", "PatientDetails", "Patient", new { id = Model.patient.ID })<----@Html.ActionLink(" רשימת מטופלים", "MainPatients", "Patient") </h4>
 
     <div class="bs-example">
 
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
             פרטים אודות משפחה
         </button>
-        <input type="button" title="Delete" value="D" onclick="location.href='@Url.Action("Reference", "Patient", new { id =Model.patient.ID })'" />
+
+        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Reference", "Patient", new { id =Model.patient.ID })'" />
+        הצג הפניות עבור מטופל
+        </button>
+
 </head>
 <body>
 
@@ -183,3 +188,4 @@
             </div>
         </div>
 </html>
+

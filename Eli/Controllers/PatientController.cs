@@ -122,19 +122,28 @@ namespace Eli.Controllers
             r.tr = Treatment.ToList();
             return View(r);
         }
-       
-        public ActionResult TreatByReference(String id)
+
+        public ActionResult TreatByReference(int idRef, string pId)
         {
 
             EliManagerDB db = new EliManagerDB();
 
+            List<tblTherapist> Therapist = new List<tblTherapist>();
+            List<tblTreatment> Treatment = new List<tblTreatment>();
+            List<tblReferenceTherapistTreatment> RTT = db.ReferenceTherapistTreatment.ToArray().Where(a => a.ReferenceNumber == (idRef)).ToList();
 
-            tblReference reference = db.Refernce.ToArray().Single(p => p.PatientID.ToString() == (id));
+            for (int i = 0; i < RTT.Count; i++)
+            {
+                Therapist.Add(db.Therapist.ToArray().Single(p => p.ID.ToString() == (RTT.ElementAt(i).TherapistID)));
+                Treatment.Add(db.Treatment.ToArray().Single(a => a.TreatmentNumber == (RTT.ElementAt(i).TreatmentNumber)));
 
-
-
-
-            return View(reference);
+            }
+            TreatByRef r = new TreatByRef();
+            r.pId = pId;
+            r.rId = idRef;
+            r.th = Therapist.ToList();
+            r.tr = Treatment.ToList();
+            return View(r);
         }
 
         public ActionResult PatientDetails(String id)
