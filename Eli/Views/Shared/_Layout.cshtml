@@ -1,45 +1,74 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Styles.Render("~/Content/bootstrapcss")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink(" ","Index","Home",null ,new {style = "background: url('" + Url.Content("~/Images/Eli-Log.jpg") + "') no-repeat center right; display:block; height:84px; width:264px;"})
-                </div>
-                <div class="float-right">
-                    <nav>
-                        <ul id="main" class="nav nav-pills">
-                            <li role="presentation" ><a href="~/Patient/NewPatient">יומן פגישות</a></li>
-                            <li role="presentation" class="active"><a href="~/Patient/Index">מטופלים</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - Eden & Shahar</p>
-                </div>
-            </div>
-        </footer>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/modernizr")
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">@Html.ActionLink(" ", "Index", "Home", null, new { style = "background: url('" + Url.Content("~/Images/Eli-Log.jpg") + "') no-repeat center right; display:block; height:84px; width:264px;" })
+            </div>
+            <div role="tabpanel" class="float-right">
+
+                <!-- Nav tabs
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation">
+                        @Html.ActionLink("גורמים מממנים", "NewPatient", "Patient")
+                        <a href="#Patient" aria-controls="Patient" role="tab" data-toggle="tab"></a>
+                     </li>
+                    <li role="presentation">
+                        @Html.ActionLink("מטפלים", "NewPatient", "Patient")
+                    <li role="presentation">
+                        @Html.ActionLink("יומן פגישות", "Index", "Patient")
+                    </li>
+                    <li role="presentation" class="active">
+                        @Html.ActionLink("מטופלים", "MainPatients", "Patient")
+                    </li>
+                </ul>-->
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("מטופלים", "", "Patient")</li>
+                        <li>@Html.ActionLink("יומן פגישות", "", "Patient")</li>
+                        <li>@Html.ActionLink("מטפלים", "", "Patient")</li>
+                        <li>@Html.ActionLink("גורמים מממנים", "", "Patient")</li>
+                        <li>@Html.ActionLink("מטופל חדש", "NewPatient", "Patient")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Eden & Shahar</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+
 </html>

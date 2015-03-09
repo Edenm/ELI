@@ -23,26 +23,19 @@ namespace Eli.Controllers
             return View();
         }
 
-       
+
 
         public ActionResult AddPatient()
         {
             EliManagerDB db = new EliManagerDB();
 
-            String Id = Request.Form["Id"];
-            String fName = Request.Form["firstName"];
-            String lName = Request.Form["lastName"];
+            String Id = Request.Form["id"];
+            String fName = Request.Form["fname"];
+            String lName = Request.Form["lname"];
             String gender = Request.Form["gender"];
+            String phone = Request.Form["phone"];
+            String address = Request.Form["address"];
             String education = Request.Form["education"];
-            String phone1 = Request.Form["phone1"];
-            String phone2 = Request.Form["phone2"];
-            String city = Request.Form["city"];
-            String street = Request.Form["street"];
-
-            int homeNumber;
-            int.TryParse(Request.Form["homeNumber"], out homeNumber);
-
-            String mail = Request.Form["mail"];
 
             tblPatient tp = new tblPatient()
             {
@@ -51,12 +44,7 @@ namespace Eli.Controllers
                 PatientSurName = lName,
                 Gender = gender,
                 EducationalFramework = education,
-                ContcatPhoneNumber1 = phone1,
-                ContcatPhoneNumber2 = phone2,
-                City = city,
-                Street = street,
-                HomeNumber = homeNumber,
-                ContactMail = mail,
+                ContcatPhoneNumber = phone
             };
 
             db.addPatient(tp);
@@ -65,6 +53,7 @@ namespace Eli.Controllers
 
             return View(pat);
         }
+
 
        
         public ActionResult childs()

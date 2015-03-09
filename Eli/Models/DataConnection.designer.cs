@@ -22,7 +22,7 @@ namespace Eli.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Eli")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
 	public partial class DataConnectionDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -66,7 +66,7 @@ namespace Eli.Models
     #endregion
 		
 		public DataConnectionDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["EliConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ELIConnectionString2"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -626,7 +626,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
 			get
@@ -646,7 +646,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorType", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorType", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string FinancingFactorType
 		{
 			get
@@ -666,7 +666,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactName", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string ContactName
 		{
 			get
@@ -788,19 +788,13 @@ namespace Eli.Models
 		
 		private string _Gender;
 		
-		private string _City;
+		private string _Address;
 		
-		private string _Street;
-		
-		private int _HomeNumber;
-		
-		private string _ContcatPhoneNumber1;
-		
-		private string _ContcatPhoneNumber2;
+		private string _ContcatPhoneNumber;
 		
 		private string _ContactMail;
 		
-		private System.Nullable<bool> _IsWorking;
+		private string _IsWorking;
 		
 		private EntitySet<tblParentPatient> _tblParentPatients;
 		
@@ -818,19 +812,13 @@ namespace Eli.Models
     partial void OnBirthDateChanged();
     partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    partial void OnStreetChanging(string value);
-    partial void OnStreetChanged();
-    partial void OnHomeNumberChanging(int value);
-    partial void OnHomeNumberChanged();
-    partial void OnContcatPhoneNumber1Changing(string value);
-    partial void OnContcatPhoneNumber1Changed();
-    partial void OnContcatPhoneNumber2Changing(string value);
-    partial void OnContcatPhoneNumber2Changed();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnContcatPhoneNumberChanging(string value);
+    partial void OnContcatPhoneNumberChanged();
     partial void OnContactMailChanging(string value);
     partial void OnContactMailChanged();
-    partial void OnIsWorkingChanging(System.Nullable<bool> value);
+    partial void OnIsWorkingChanging(string value);
     partial void OnIsWorkingChanged();
     #endregion
 		
@@ -940,102 +928,42 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string City
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
+		public string Address
 		{
 			get
 			{
-				return this._City;
+				return this._Address;
 			}
 			set
 			{
-				if ((this._City != value))
+				if ((this._Address != value))
 				{
-					this.OnCityChanging(value);
+					this.OnAddressChanging(value);
 					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Street", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Street
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string ContcatPhoneNumber
 		{
 			get
 			{
-				return this._Street;
+				return this._ContcatPhoneNumber;
 			}
 			set
 			{
-				if ((this._Street != value))
+				if ((this._ContcatPhoneNumber != value))
 				{
-					this.OnStreetChanging(value);
+					this.OnContcatPhoneNumberChanging(value);
 					this.SendPropertyChanging();
-					this._Street = value;
-					this.SendPropertyChanged("Street");
-					this.OnStreetChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HomeNumber", DbType="Int NOT NULL")]
-		public int HomeNumber
-		{
-			get
-			{
-				return this._HomeNumber;
-			}
-			set
-			{
-				if ((this._HomeNumber != value))
-				{
-					this.OnHomeNumberChanging(value);
-					this.SendPropertyChanging();
-					this._HomeNumber = value;
-					this.SendPropertyChanged("HomeNumber");
-					this.OnHomeNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber1", DbType="Char(10) NOT NULL", CanBeNull=false)]
-		public string ContcatPhoneNumber1
-		{
-			get
-			{
-				return this._ContcatPhoneNumber1;
-			}
-			set
-			{
-				if ((this._ContcatPhoneNumber1 != value))
-				{
-					this.OnContcatPhoneNumber1Changing(value);
-					this.SendPropertyChanging();
-					this._ContcatPhoneNumber1 = value;
-					this.SendPropertyChanged("ContcatPhoneNumber1");
-					this.OnContcatPhoneNumber1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber2", DbType="Char(10) NOT NULL", CanBeNull=false)]
-		public string ContcatPhoneNumber2
-		{
-			get
-			{
-				return this._ContcatPhoneNumber2;
-			}
-			set
-			{
-				if ((this._ContcatPhoneNumber2 != value))
-				{
-					this.OnContcatPhoneNumber2Changing(value);
-					this.SendPropertyChanging();
-					this._ContcatPhoneNumber2 = value;
-					this.SendPropertyChanged("ContcatPhoneNumber2");
-					this.OnContcatPhoneNumber2Changed();
+					this._ContcatPhoneNumber = value;
+					this.SendPropertyChanged("ContcatPhoneNumber");
+					this.OnContcatPhoneNumberChanged();
 				}
 			}
 		}
@@ -1060,8 +988,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsWorking", DbType="Bit")]
-		public System.Nullable<bool> IsWorking
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsWorking", DbType="VarChar(2)")]
+		public string IsWorking
 		{
 			get
 			{
@@ -1312,17 +1240,9 @@ namespace Eli.Models
 		
 		private string _EducationalFramework;
 		
-		private string _City;
+		private string _Address;
 		
-		private string _Street;
-		
-		private System.Nullable<int> _HomeNumber;
-		
-		private string _ContcatPhoneNumber1;
-		
-		private string _ContcatPhoneNumber2;
-		
-		private string _ContactMail;
+		private string _ContcatPhoneNumber;
 		
 		private EntitySet<tblBrotherSisterPatient> _tblBrotherSisterPatients;
 		
@@ -1346,18 +1266,10 @@ namespace Eli.Models
     partial void OnGenderChanged();
     partial void OnEducationalFrameworkChanging(string value);
     partial void OnEducationalFrameworkChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    partial void OnStreetChanging(string value);
-    partial void OnStreetChanged();
-    partial void OnHomeNumberChanging(System.Nullable<int> value);
-    partial void OnHomeNumberChanged();
-    partial void OnContcatPhoneNumber1Changing(string value);
-    partial void OnContcatPhoneNumber1Changed();
-    partial void OnContcatPhoneNumber2Changing(string value);
-    partial void OnContcatPhoneNumber2Changed();
-    partial void OnContactMailChanging(string value);
-    partial void OnContactMailChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnContcatPhoneNumberChanging(string value);
+    partial void OnContcatPhoneNumberChanged();
     #endregion
 		
 		public tblPatient()
@@ -1488,122 +1400,42 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string City
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
+		public string Address
 		{
 			get
 			{
-				return this._City;
+				return this._Address;
 			}
 			set
 			{
-				if ((this._City != value))
+				if ((this._Address != value))
 				{
-					this.OnCityChanging(value);
+					this.OnAddressChanging(value);
 					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Street", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Street
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string ContcatPhoneNumber
 		{
 			get
 			{
-				return this._Street;
+				return this._ContcatPhoneNumber;
 			}
 			set
 			{
-				if ((this._Street != value))
+				if ((this._ContcatPhoneNumber != value))
 				{
-					this.OnStreetChanging(value);
+					this.OnContcatPhoneNumberChanging(value);
 					this.SendPropertyChanging();
-					this._Street = value;
-					this.SendPropertyChanged("Street");
-					this.OnStreetChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HomeNumber", DbType="Int")]
-		public System.Nullable<int> HomeNumber
-		{
-			get
-			{
-				return this._HomeNumber;
-			}
-			set
-			{
-				if ((this._HomeNumber != value))
-				{
-					this.OnHomeNumberChanging(value);
-					this.SendPropertyChanging();
-					this._HomeNumber = value;
-					this.SendPropertyChanged("HomeNumber");
-					this.OnHomeNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber1", DbType="Char(10) NOT NULL", CanBeNull=false)]
-		public string ContcatPhoneNumber1
-		{
-			get
-			{
-				return this._ContcatPhoneNumber1;
-			}
-			set
-			{
-				if ((this._ContcatPhoneNumber1 != value))
-				{
-					this.OnContcatPhoneNumber1Changing(value);
-					this.SendPropertyChanging();
-					this._ContcatPhoneNumber1 = value;
-					this.SendPropertyChanged("ContcatPhoneNumber1");
-					this.OnContcatPhoneNumber1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber2", DbType="Char(10) NOT NULL", CanBeNull=false)]
-		public string ContcatPhoneNumber2
-		{
-			get
-			{
-				return this._ContcatPhoneNumber2;
-			}
-			set
-			{
-				if ((this._ContcatPhoneNumber2 != value))
-				{
-					this.OnContcatPhoneNumber2Changing(value);
-					this.SendPropertyChanging();
-					this._ContcatPhoneNumber2 = value;
-					this.SendPropertyChanged("ContcatPhoneNumber2");
-					this.OnContcatPhoneNumber2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string ContactMail
-		{
-			get
-			{
-				return this._ContactMail;
-			}
-			set
-			{
-				if ((this._ContactMail != value))
-				{
-					this.OnContactMailChanging(value);
-					this.SendPropertyChanging();
-					this._ContactMail = value;
-					this.SendPropertyChanged("ContactMail");
-					this.OnContactMailChanged();
+					this._ContcatPhoneNumber = value;
+					this.SendPropertyChanged("ContcatPhoneNumber");
+					this.OnContcatPhoneNumberChanged();
 				}
 			}
 		}
@@ -1791,7 +1623,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherStatus", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherStatus", DbType="VarChar(MAX)")]
 		public string OtherStatus
 		{
 			get
@@ -2413,15 +2245,9 @@ namespace Eli.Models
 		
 		private string _Gender;
 		
-		private string _City;
+		private string _Address;
 		
-		private string _Street;
-		
-		private int _HomeNumber;
-		
-		private string _ContcatPhoneNumber1;
-		
-		private string _ContcatPhoneNumber2;
+		private string _ContcatPhoneNumber;
 		
 		private string _ContactMail;
 		
@@ -2445,16 +2271,10 @@ namespace Eli.Models
     partial void OnBirthDateChanged();
     partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    partial void OnStreetChanging(string value);
-    partial void OnStreetChanged();
-    partial void OnHomeNumberChanging(int value);
-    partial void OnHomeNumberChanged();
-    partial void OnContcatPhoneNumber1Changing(string value);
-    partial void OnContcatPhoneNumber1Changed();
-    partial void OnContcatPhoneNumber2Changing(string value);
-    partial void OnContcatPhoneNumber2Changed();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnContcatPhoneNumberChanging(string value);
+    partial void OnContcatPhoneNumberChanged();
     partial void OnContactMailChanging(string value);
     partial void OnContactMailChanged();
     partial void OnUserNameChanging(string value);
@@ -2569,102 +2389,42 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string City
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
+		public string Address
 		{
 			get
 			{
-				return this._City;
+				return this._Address;
 			}
 			set
 			{
-				if ((this._City != value))
+				if ((this._Address != value))
 				{
-					this.OnCityChanging(value);
+					this.OnAddressChanging(value);
 					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Street", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Street
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string ContcatPhoneNumber
 		{
 			get
 			{
-				return this._Street;
+				return this._ContcatPhoneNumber;
 			}
 			set
 			{
-				if ((this._Street != value))
+				if ((this._ContcatPhoneNumber != value))
 				{
-					this.OnStreetChanging(value);
+					this.OnContcatPhoneNumberChanging(value);
 					this.SendPropertyChanging();
-					this._Street = value;
-					this.SendPropertyChanged("Street");
-					this.OnStreetChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HomeNumber", DbType="Int NOT NULL")]
-		public int HomeNumber
-		{
-			get
-			{
-				return this._HomeNumber;
-			}
-			set
-			{
-				if ((this._HomeNumber != value))
-				{
-					this.OnHomeNumberChanging(value);
-					this.SendPropertyChanging();
-					this._HomeNumber = value;
-					this.SendPropertyChanged("HomeNumber");
-					this.OnHomeNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber1", DbType="Char(10) NOT NULL", CanBeNull=false)]
-		public string ContcatPhoneNumber1
-		{
-			get
-			{
-				return this._ContcatPhoneNumber1;
-			}
-			set
-			{
-				if ((this._ContcatPhoneNumber1 != value))
-				{
-					this.OnContcatPhoneNumber1Changing(value);
-					this.SendPropertyChanging();
-					this._ContcatPhoneNumber1 = value;
-					this.SendPropertyChanged("ContcatPhoneNumber1");
-					this.OnContcatPhoneNumber1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber2", DbType="Char(10) NOT NULL", CanBeNull=false)]
-		public string ContcatPhoneNumber2
-		{
-			get
-			{
-				return this._ContcatPhoneNumber2;
-			}
-			set
-			{
-				if ((this._ContcatPhoneNumber2 != value))
-				{
-					this.OnContcatPhoneNumber2Changing(value);
-					this.SendPropertyChanging();
-					this._ContcatPhoneNumber2 = value;
-					this.SendPropertyChanged("ContcatPhoneNumber2");
-					this.OnContcatPhoneNumber2Changed();
+					this._ContcatPhoneNumber = value;
+					this.SendPropertyChanged("ContcatPhoneNumber");
+					this.OnContcatPhoneNumberChanged();
 				}
 			}
 		}
@@ -2787,11 +2547,13 @@ namespace Eli.Models
 		
 		private string _TreatmentDescription;
 		
-		private System.Nullable<System.TimeSpan> _StartTime;
+		private System.DateTime _Date;
+		
+		private System.TimeSpan _Time;
 		
 		private string _Place;
 		
-		private System.Nullable<bool> _IsPaid;
+		private string _IsPaid;
 		
 		private int _FinancingFactorNumber;
 		
@@ -2809,11 +2571,13 @@ namespace Eli.Models
     partial void OnTreatmentGoalChanged();
     partial void OnTreatmentDescriptionChanging(string value);
     partial void OnTreatmentDescriptionChanged();
-    partial void OnStartTimeChanging(System.Nullable<System.TimeSpan> value);
-    partial void OnStartTimeChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnTimeChanging(System.TimeSpan value);
+    partial void OnTimeChanged();
     partial void OnPlaceChanging(string value);
     partial void OnPlaceChanged();
-    partial void OnIsPaidChanging(System.Nullable<bool> value);
+    partial void OnIsPaidChanging(string value);
     partial void OnIsPaidChanged();
     partial void OnFinancingFactorNumberChanging(int value);
     partial void OnFinancingFactorNumberChanged();
@@ -2846,7 +2610,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string TreatmentGoal
 		{
 			get
@@ -2866,7 +2630,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDescription", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDescription", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentDescription
 		{
 			get
@@ -2886,27 +2650,47 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Time")]
-		public System.Nullable<System.TimeSpan> StartTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
+		public System.DateTime Date
 		{
 			get
 			{
-				return this._StartTime;
+				return this._Date;
 			}
 			set
 			{
-				if ((this._StartTime != value))
+				if ((this._Date != value))
 				{
-					this.OnStartTimeChanging(value);
+					this.OnDateChanging(value);
 					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Place", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time NOT NULL")]
+		public System.TimeSpan Time
+		{
+			get
+			{
+				return this._Time;
+			}
+			set
+			{
+				if ((this._Time != value))
+				{
+					this.OnTimeChanging(value);
+					this.SendPropertyChanging();
+					this._Time = value;
+					this.SendPropertyChanged("Time");
+					this.OnTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Place", DbType="VarChar(MAX)")]
 		public string Place
 		{
 			get
@@ -2926,8 +2710,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPaid", DbType="Bit")]
-		public System.Nullable<bool> IsPaid
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPaid", DbType="VarChar(2)")]
+		public string IsPaid
 		{
 			get
 			{
