@@ -25,86 +25,91 @@ namespace Eli.Controllers
         }
 
 
+        /* The Method get parameters of patient and add him to system  **/
 
         public ActionResult AddPatient()
         {
+
             EliManagerDB db = new EliManagerDB();
 
-            String Id = Request.Form["id"];
-            String fName = Request.Form["fname"];
-            String lName = Request.Form["lname"];
-            String gender = Request.Form["gender"];
-            String phone = Request.Form["phone"];
-            String address = Request.Form["address"];
-            String education = Request.Form["education"];
 
-            tblPatient tp = new tblPatient()
+       //-----------personal details of patients--------------------------
+
+            tblPatient tbP = new tblPatient()
             {
-                ID = Id,
-                PatientFirstName = fName,
-                PatientSurName = lName,
-                Gender = gender,
-                EducationalFramework = education,
-                ContcatPhoneNumber = phone,
-                Address=address
+                ID = Request.Form["id"],
+                PatientFirstName = Request.Form["fname"],
+                PatientSurName = Request.Form["lname"],
+                Gender = Request.Form["gender"],
+                EducationalFramework = Request.Form["education"],
+                ContcatPhoneNumber = Request.Form["phone"],
+                Address = Request.Form["address"]
             };
 
-            String idf = Request.Form["idf"];
-            String idm = Request.Form["idf"];
-            String fnamef= Request.Form["fnamef"];
-            String fnamem= Request.Form["fnamem"];
-            String lnamef= Request.Form["lnamef"];
-            String lnamem= Request.Form["lnamem"];
-            String birthdatef= Request.Form["birthdatef"];
-            String birthdatem= Request.Form["birthdatem"];
-            String phonef= Request.Form["phonef"];
-            String phonem= Request.Form["phonem"];
-            String adressf= Request.Form["adressf"];
-            String adressm= Request.Form["adressm"];
-            String mailf= Request.Form["mailf"];
-            String mailm= Request.Form["mailm"];
-            String isworkf= Request.Form["isworkf"];
-            String isworkm= Request.Form["isworkm"];
-            String explainf= Request.Form["explainf"];
-            String explainm= Request.Form["explainm"];
 
+      //-----------more details of patients parents--------------------------
 
-            tblParent tparf = new tblParent()
+            tblParent tbPF = new tblParent()
             {
-                ID = idf,
-                FirstName = fnamef,
-                SurName = lnamef,
+                ID = Request.Form["idf"],
+                FirstName = Request.Form["fnamef"],
+                SurName = Request.Form["lnamef"],
                 //BirthDate = Convert.ToDateTime(birthdatef),
-                ContcatPhoneNumber = phonef,
-                Address = adressf,
-                ContactMail = mailf,
-                IsWorking = isworkf
+                ContcatPhoneNumber = Request.Form["phonef"],
+                Address = Request.Form["adressf"],
+                ContactMail = Request.Form["mailf"],
+                IsWorking = Request.Form["isworkf"],
+                Explain=Request.Form["explainf"]
             };
 
-            tblParent tparm = new tblParent()
+            tblParent tbPM = new tblParent()
             {
-                ID = idm,
-                FirstName = fnamem,
-                SurName = lnamem,
-                //BirthDate = Convert.ToDateTime(birthdatem),
-                ContcatPhoneNumber = phonem,
-                Address = adressm,
-                ContactMail = mailm,
-                IsWorking = isworkm
+                 ID = Request.Form["idm"],
+                FirstName = Request.Form["fnamem"],
+                SurName = Request.Form["lnamem"],
+                //BirthDate = Convert.ToDateTime(birthdatef),
+                ContcatPhoneNumber = Request.Form["phonem"],
+                Address = Request.Form["adressm"],
+                ContactMail = Request.Form["mailm"],
+                IsWorking = Request.Form["isworkm"],
+                Explain=Request.Form["explainm"]
             };
 
-           // db.addPatient(tp);
 
-           // var pat = db.Patients.ToArray();
+       //-----------more details of patients brothers and sisters--------------------------
 
-            ArrayList ap = new ArrayList();
+            List<tblBrotherSister> arrBS = new List<tblBrotherSister>();
+
+            for (int i = 1; Request.Form["id" + i] == ""; i++)
+            {
+                tblBrotherSister tbBS = new tblBrotherSister()
+                {
+                    ID = Request.Form["id" + i],
+                    FirstName = Request.Form["fname" + i],
+                    SurName = Request.Form["lname" + i],
+                    // BirthDate=Request.Form["birthdate"],
+                    Gender = Request.Form["gender" + i],
+                    StudyFramework = Request.Form["education" + i]
+                };
+
+                arrBS.Add(tbBS);
+            }
+
+      //-----------more details of patients reference--------------------------
+
+            tblReference tbR = new tblReference()
+            {
+                StatusReference = Request.Form["status"],
+                OtherStatus = Request.Form["description"],
+                AbuseType = Request.Form["type"],
+                ReferenceSource = Request.Form["source"],
+                PatientID = Request.Form["id"]
+            };
             
-        
+            db.addPatient(tbP, tbPF, tbPM, tbR,arrBS);
 
-            ap.Add(tparm);
-            ap.Add(tparf);
+            return View(tbPF);
 
-            return View(tparf);
         }
 
 
@@ -120,8 +125,6 @@ namespace Eli.Controllers
 
         public ActionResult MainPatients()
         {
-
-
             EliManagerDB db = new EliManagerDB();
 
             var pat = db.Patients.ToArray();
@@ -144,7 +147,7 @@ namespace Eli.Controllers
 
             List<tblTherapist> Therapist = new List<tblTherapist>();
             List<tblTreatment> Treatment = new List<tblTreatment>();
-            List<tblReference> reference = db.Refernce.ToArray().Where(a => a.PatientID.ToString() == (id)).ToList();
+            List<tblReference> reference = db.Reference.ToArray().Where(a => a.PatientID.ToString() == (id)).ToList();
             var pat = db.ReferenceTherapistTreatment.ToArray();
 
             for (int i = 0; i < reference.Count; i++)
@@ -169,6 +172,7 @@ namespace Eli.Controllers
             r.th = Therapist.ToList();
             r.tr = Treatment.ToList();
             return View(r);
+
         }
 
         public ActionResult TreatByReference(int idRef, string pId)
@@ -193,6 +197,7 @@ namespace Eli.Controllers
             r.th = Therapist.ToList();
             r.tr = Treatment.ToList();
             return View(r);
+
         }
       
         public ActionResult PatientDetails(String id)

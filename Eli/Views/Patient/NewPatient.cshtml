@@ -95,26 +95,28 @@
 
 </head>
 <body onload="initialize()">
+
     <form id="form" class="" method="post" action="~/Patient/AddPatient">
+
         <div class="row">
             <div class="col-xs-6">
             </div>
             <div class="col-xs-6">
                 <ul class=" nav nav-tabs" role="tablist" id="myTab">
                     <li role="presentation">
-                        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
+                        <a href="#reference" aria-controls="reference" role="tab" data-toggle="tab">
                             <h4 class="list-group-item-heading" dir="rtl">שלב 3</h4>
                             <p class="list-group-item-text">פתיחת פנייה</p>
                         </a>
                     </li>
                     <li role="presentation">
-                        <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+                        <a href="#moreDetails" aria-controls="moreDetails" role="tab" data-toggle="tab">
                             <h4 class="list-group-item-heading" dir="rtl">שלב 2</h4>
                             <p class="list-group-item-text">פרטים נוספים</p>
                         </a>
                     </li>
                     <li role="presentation" class="active">
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                        <a href="#personal" aria-controls="personal" role="tab" data-toggle="tab">
                             <h4 class="list-group-item-heading" dir="rtl">שלב 1</h4>
                             <p class="list-group-item-text">פרטים אישים</p>
                         </a>
@@ -124,11 +126,11 @@
         </div>
 
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">
+            <div role="tabpanel" class="tab-pane active" id="personal">
                 <img id="top" src="~/Content/themes/Form/top.png" alt="">
-                <div id="form_container">
+                <div class="form_container">
 
-                    <h1><a> פרטים אישיים</a></h1>
+                    <h1><a></a></h1>
 
                     <div class="form_description" style="text-align:center;">
                         <h2> הנפגע</h2>
@@ -208,19 +210,19 @@
                             <div style="text-align:right; float:right;">
                                 <label class="description" for="element_10">מסגרת חינוכית </label>
                                 <div>
-                                    <input id="education" name="education" class="element text " type="text" maxlength="255" value="" />
+                                    <input id="education" name="education" class="element text " dir="rtl" type="text" maxlength="255" value="" />
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="settings">
+            <div role="tabpanel" class="tab-pane" id="moreDetails">
 
                 <img id="top" src="~/Content/themes/Form/top.png" alt="">
-                <div id="form_container2">
+                <div class="form_container">
 
-                    <h1><a> פרטי משפחה</a></h1>
+                    <h1><a> </a></h1>
 
                     <div class="form_description" style="text-align:center;">
                         <h2> משפחה</h2>
@@ -270,34 +272,34 @@
                                             אב
                                         </td>
                                         <td>
-                                            <input type="text" name='idf' placeholder='תעודת זהות' class="form-control" />
+                                            <input type="text" name='idf'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='fnamef' placeholder='שם פרטי' class="form-control" />
+                                            <input type="text" name='fnamef'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='lnamef' placeholder='שם משפחה' class="form-control" />
+                                            <input type="text" name='lnamef'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='birthdatef' placeholder='תאריך לידה' class="form-control" />
+                                            <input type="text" name='birthdatef'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='phonef' placeholder='פלאפון' class="form-control" />
+                                            <input type="text" name='phonef'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='adressf' placeholder='כתובת' class="form-control" />
+                                            <input type="text" name='adressf'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='mailf' placeholder='מייל' class="form-control" />
+                                            <input type="text" name='mailf'  class="form-control" />
                                         </td>
                                         <td>
-                                            <select name="isworkf"  type='text' placeholder='מגדר' dir='rtl'>
+                                            <select name="isworkf" type='text' class="form-control input-md" dir='rtl'>
                                                 <option value="כן" selected="selected">כן</option>
                                                 <option value="לא">לא</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" name='explainf' placeholder='פירוט' class="form-control" />
+                                            <input type="text" name='explainf'  class="form-control" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -305,34 +307,34 @@
                                             אם
                                         </td>
                                         <td>
-                                            <input type="text" name='idm' placeholder='תעודת זהות' class="form-control" />
+                                            <input type="text" name='idm'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='fnamem' placeholder='שם פרטי' class="form-control" />
+                                            <input type="text" name='fnamem'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='lnamem' placeholder='שם משפחה' class="form-control" />
+                                            <input type="text" name='lnamem'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='birthdatem' placeholder='תאריך לידה' class="form-control" />
+                                            <input type="text" name='birthdatem'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='phonem' placeholder='פלאפון' class="form-control" />
+                                            <input type="text" name='phonem'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='adressm' placeholder='כתובת' class="form-control" />
+                                            <input type="text" name='adressm'  class="form-control" />
                                         </td>
                                         <td>
-                                            <input type="text" name='mailm' placeholder='מייל' class="form-control" />
+                                            <input type="text" name='mailm'  class="form-control" />
                                         </td>
                                         <td>
-                                            <select name="isworkm" type='text' placeholder='מגדר'  dir='rtl'>
+                                            <select name="isworkm" type='text' class="form-control input-md" dir='rtl'>
                                                 <option value="כן" selected="selected">כן</option>
                                                 <option value="לא">לא</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" name='explainm' placeholder='פירוט' class="form-control" />
+                                            <input type="text" name='explainm'  class="form-control" />
                                         </td>
                                     </tr>
                                 </tbody>
@@ -374,25 +376,25 @@
                                             1
                                         </td>
                                         <td>
-                                            <input type="text" name='id1' placeholder='תעודת זהות' class="form-control" dir="rtl" />
+                                            <input type="text" name='id1' placeholder='תעודת זהות' class="form-control" dir="rtl" required />
                                         </td>
                                         <td>
-                                            <input type="text" name='fname1' placeholder='שם פרטי' class="form-control" dir="rtl" />
+                                            <input type="text" name='fname1' placeholder='שם פרטי' class="form-control" dir="rtl" required />
                                         </td>
                                         <td>
-                                            <input type="text" name='lname1' placeholder='שם משפחה' class="form-control" dir="rtl" />
+                                            <input type="text" name='lname1' placeholder='שם משפחה' class="form-control" dir="rtl" required />
                                         </td>
                                         <td>
-                                            <input type="text" name='birthdate1' placeholder='תאריך לידה' class="form-control" dir="rtl" />
+                                            <input type="text" name='birthdate1' placeholder='תאריך לידה' class="form-control" dir="rtl" required >
                                         </td>
                                         <td>
-                                            <select name="gender1" type='text' placeholder='מגדר' class="form-control input-md" dir='rtl'>
+                                            <select name="gender1" type='text' placeholder='מגדר' class="form-control input-md" dir='rtl' required >
                                                 <option value="זכר" selected="selected">זכר</option>
                                                 <option value="נקבה">נקבה</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" name='education1' placeholder='מסגרת לימודים' class="form-control" dir="rtl" />
+                                            <input type="text" name='education1' placeholder='מסגרת לימודים' class="form-control" dir="rtl" required />
                                         </td>
                                     </tr>
                                     <tr id='addr1'></tr>
@@ -406,12 +408,11 @@
                     </ul>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="messages">
+            <div role="tabpanel" class="tab-pane" id="reference">
 
                 <img id="top" src="~/Content/themes/Form/top.png" alt="">
-                <div id="form_container3">
-
-                    <h1><a> פרטי משפחה</a></h1>
+                <div class="form_container">
+                    <h1><a></a></h1>
 
                     <div class="form_description" style="text-align:center;">
                         <h2> פנייה</h2>
@@ -457,7 +458,7 @@
                             <div style="text-align:right; float:right;">
                                 <label class="description" for="element_6">?כיצד הגיע </label>
                                 <div>
-                                    <select class="element select" id="arrive" dir="rtl" name="arrive">
+                                    <select class="element select" id="source" dir="rtl" name="source">
                                         <option value="הסברה" selected="selected">הסברה</option>
                                         <option value="מדיה">מדיה</option>
                                         <option value="הפניית איש מקצוע">הפניית איש מקצוע</option>

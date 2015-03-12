@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Data;
 using System.Data.Linq;
 using System.Data.SqlClient;
@@ -43,7 +44,7 @@ namespace Eli.Models
             get { return db.tblBrotherSisterPatients; }
         }
 
-        public Table<tblReference> Refernce
+        public Table<tblReference> Reference
         {
             get { return db.tblReferences; }
         }
@@ -57,6 +58,7 @@ namespace Eli.Models
         {
             get { return db.tblTreatments; }
         }
+
         public Table<tblReferenceTherapistTreatment> ReferenceTherapistTreatment
         {
             get { return db.tblReferenceTherapistTreatments; }
@@ -73,10 +75,49 @@ namespace Eli.Models
         }
 
 //-------------------------Add methods----------------------------------------------------------
-        public void addPatient(tblPatient patient)
+        
+        /* The method add patient with all the details about him **/
+        public void addPatient(tblPatient patient, tblParent mother, tblParent father, tblReference reference, List<tblBrotherSister> BS)
         {
+
             Patients.InsertOnSubmit(patient);
+
+            Parent.InsertOnSubmit(mother);
+            Parent.InsertOnSubmit(father);
+
+            tblParentPatient tblFP= new tblParentPatient()
+            {
+                PatientID= patient.ID,
+                ParentID = father.ID
+            };
+
+            tblParentPatient tblMP= new tblParentPatient()
+            {
+                PatientID= patient.ID,
+                ParentID = mother.ID
+            };
+
+            ParentPatient.InsertOnSubmit(tblFP);
+            ParentPatient.InsertOnSubmit(tblMP);
+
+            foreach (var bs in BS)
+            {
+                BrotherSister.InsertOnSubmit(bs);
+
+                tblBrotherSisterPatient tbBSP = new tblBrotherSisterPatient()
+                {
+                    BrotherSisterID = bs.ID,
+                    PatientID = patient.ID
+                };
+
+                BrotherSisterPatient.InsertOnSubmit(tbBSP);
+
+            }
+
+            Reference.InsertOnSubmit(reference);
+
             db.SubmitChanges();
+
         }
 
     }

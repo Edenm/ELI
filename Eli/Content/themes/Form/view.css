@@ -10,13 +10,12 @@ input {
     float:right;
     clear:both;
 }
-#form_container
+.form_container
 {
 	background:#fff;
-	
 	margin:0 auto;
-	text-align:left;
-	width:640px;
+	text-align:right;
+	width:100%;
 }
 
 #top
@@ -24,7 +23,7 @@ input {
 	display:block;
 	height:10px;
 	margin:10px auto 0;
-	width:650px;
+	width:100%;
 }
 
 #footer
