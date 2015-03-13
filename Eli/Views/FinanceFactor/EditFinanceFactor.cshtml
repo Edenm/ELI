@@ -1,0 +1,77 @@
+﻿@model Eli.Models.tblFinancingFactor
+
+@{
+    ViewBag.Title = "EditFinanceFactor";
+}
+
+<h2 align="center">@Model.FinancingFactorNumber עריכת גורם מממן מספר </h2>
+<h2 align="center">@Model.Name  </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset align="right">
+        <legend>tblFinancingFactor</legend>
+
+        @Html.HiddenFor(model => model.FinancingFactorNumber)
+
+        <label float:right class="description" for="element_1">
+            שם גורם מממן
+        </label>
+        <br>
+        <input float:right dir="rtl" type="text" value=@Model.Name readonly>
+        <br>
+        <label float:right class="description" for="element_1">
+            סוג גורם מממן
+        </label>
+        <br>
+        <input float:right dir="rtl" type="text" value=@Model.FinancingFactorType readonly>
+        <br>
+
+        <label float:right class="description" for="element_1">
+            שם איש קשר
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ContactName)
+            @Html.ValidationMessageFor(model => model.ContactName)
+        </div>
+
+        <label float:right class="description" for="element_1">
+            טלפון איש קשר
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ContcatPhoneNumber)
+            @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
+        </div>
+
+        <label float:right class="description" for="element_1">
+            מייל איש קשר
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ContactMail)
+            @Html.ValidationMessageFor(model => model.ContactMail)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div align="right">
+    <img src="~/Images/go-back-button.png" height="40" width="100" onclick="back()">
+</div>
+<script>
+    function back() {
+
+
+        window.location = ' @Url.Action("MainFinancingFactor", "FinanceFactor")';
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

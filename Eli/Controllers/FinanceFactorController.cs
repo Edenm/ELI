@@ -5,10 +5,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+
+using System.IO;
 namespace Eli.Controllers
 {
     public class FinanceFactorController : Controller
     {
+
+        /* The Method adds a new finance factor to system  **/
+
         public ActionResult AddFinanceFactor()
         {
             EliManagerDB db = new EliManagerDB();
@@ -38,18 +49,69 @@ namespace Eli.Controllers
 
             };
 
-            // db.addPatient(tp);
+            db.addFinanceFactor(tp);
+
+            var temp = db.FinancingFactor.ToArray();
+
+            return View(temp);
 
 
 
-            return View(tp);
+
         }
 
+        /* The Method opens a new form of finance factors  **/
 
         public ActionResult NewFinanceFactor()
         {
             return View();
         }
+
+
+        /* The Methods updates finance factor details  **/
+
+        [HttpPost]
+        public ActionResult EditFinanceFactor(tblFinancingFactor t)
+        {
+            var manager = new EliManagerDB();
+            manager.EditFinanceFactor(t);
+            return View(t);
+        }
+
+        [HttpGet]
+        public ActionResult EditFinanceFactor(int id)
+        {
+            EliManagerDB db = new EliManagerDB();
+
+
+            tblFinancingFactor ff = db.FinancingFactor.ToArray().Single(p => p.FinancingFactorNumber == (id));
+
+            return View(ff);
+        }
+
+
+        /* The Method get parameters finance factor and removes its from system  **/
+
+        public ActionResult DeleteFinancingFactor(int id)
+        {
+            EliManagerDB db = new EliManagerDB();
+
+
+            tblFinancingFactor ff = db.FinancingFactor.ToArray().Single(p => p.FinancingFactorNumber == (id));
+            var manager = new EliManagerDB();
+            manager.removeFinanceFactor(ff);
+
+
+
+
+            return RedirectToAction("MainFinancingFactor");
+
+        }
+
+
+
+        /* The Method get parameters of finance factor and displays his details  **/
+
         public ActionResult FinancingFactorDetails(int id)
         {
             EliManagerDB db = new EliManagerDB();
@@ -62,7 +124,10 @@ namespace Eli.Controllers
             return View(ff);
 
         }
-        public ActionResult FinancingFactor()
+
+        /* The Method displays all the financefactor in the system-this is the main form of finance factor  **/
+
+        public ActionResult MainFinancingFactor()
         {
 
 

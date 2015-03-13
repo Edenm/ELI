@@ -33,6 +33,7 @@
                     <th>גורם מממן</th>
                     <th>האם שולם</th>
                     <th>מקום טיפול</th>
+                    <th>תאריך</th>
                     <th>שעת התחלה</th>
                     <th>תיאור טיפול</th>
                     <th>מטרת טיפול</th>
@@ -55,7 +56,8 @@
 
                         <td> @Model.tr.ElementAt(i).IsPaid </td>
                         <td> @Model.tr.ElementAt(i).Place </td>
-                        <td> @Model.tr.ElementAt(i).StartTime </td>
+                        <td> @Model.tr.ElementAt(i).Date </td>
+                        <td> @Model.tr.ElementAt(i).Time </td>
                         <td> @Model.tr.ElementAt(i).TreatmentDescription </td>
                         <td> @Model.tr.ElementAt(i).TreatmentGoal </td>
                         <td> @Model.tr.ElementAt(i).TreatmentNumber </td>

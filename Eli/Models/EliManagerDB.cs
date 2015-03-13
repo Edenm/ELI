@@ -120,9 +120,50 @@ namespace Eli.Models
 
         }
 
+        public void addFinanceFactor(tblFinancingFactor ff)
+        {
+            FinancingFactor.InsertOnSubmit(ff);
+            db.SubmitChanges();
+        }
+
+
+        //-------------------------Remove methods----------------------------------------------------------
+
+        public void removeFinanceFactor(tblFinancingFactor ff)
+        {
+
+
+            var FinanceFactores = from t in Treatment
+                                  where t.FinancingFactorNumber.Equals(ff.FinancingFactorNumber)
+                                  select t;
+            if (FinanceFactores.Any())
+                throw new Exception("You cant delete  Finance factor id=" + ff.FinancingFactorNumber + "name=" + ff.Name + "because its conected to treatment");
+            var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
+
+            FinancingFactor.DeleteOnSubmit(d);
+            db.SubmitChanges();
+
+            return;
+
+        }
+
+        //-------------------------Edit methods----------------------------------------------------------
+
+        public void EditFinanceFactor(tblFinancingFactor ff)
+        {
+            var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
+            d.ContactName = ff.ContactName;
+            d.ContactMail = ff.ContactMail;
+            d.ContcatPhoneNumber = ff.ContcatPhoneNumber;
+            db.SubmitChanges();
+        }
+        
+
+
     }
 
-//-------------------------Remove methods----------------------------------------------------------
+    
+
 
 
 

@@ -123,6 +123,8 @@ namespace Eli.Controllers
             return View(pat);
         }
 
+        /* The Method displays all the patients in the system-this is the main form of patients  **/
+
         public ActionResult MainPatients()
         {
             EliManagerDB db = new EliManagerDB();
@@ -133,12 +135,12 @@ namespace Eli.Controllers
         }
 
 
-        
 
 
 
 
 
+        /* The Method get parameters of patient and displays all his refernces  **/
         public ActionResult Reference(String id)
         {
 
@@ -174,6 +176,7 @@ namespace Eli.Controllers
             return View(r);
 
         }
+        /* The Method get parameters of patient and reference and displays all treatments of specific reference of patients  **/
 
         public ActionResult TreatByReference(int idRef, string pId)
         {
@@ -199,7 +202,10 @@ namespace Eli.Controllers
             return View(r);
 
         }
-      
+
+
+        /* The Method get parameters of patient and displays  his full details  **/
+
         public ActionResult PatientDetails(String id)
         {
             EliManagerDB db = new EliManagerDB();
