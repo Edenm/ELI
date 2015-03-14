@@ -293,6 +293,7 @@
     <Content Include="Images\DataTable\sort_both.png" />
     <Content Include="Images\DataTable\sort_desc.png" />
     <Content Include="Images\DataTable\sort_desc_disabled.png" />
+    <Content Include="Images\delete.png" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\Eli-Log.jpg" />
     <Content Include="Images\info.png" />
