@@ -94,18 +94,21 @@ namespace Eli.Controllers
 
         public ActionResult DeleteFinancingFactor(int id)
         {
-            EliManagerDB db = new EliManagerDB();
+
+            
+                EliManagerDB db = new EliManagerDB();
 
 
-            tblFinancingFactor ff = db.FinancingFactor.ToArray().Single(p => p.FinancingFactorNumber == (id));
-            var manager = new EliManagerDB();
-            manager.removeFinanceFactor(ff);
+                tblFinancingFactor ff = db.FinancingFactor.ToArray().Single(p => p.FinancingFactorNumber == (id));
+                var manager = new EliManagerDB();
+                manager.removeFinanceFactor(ff);
 
 
 
 
-            return RedirectToAction("MainFinancingFactor");
-
+                return RedirectToAction("MainFinancingFactor");
+           
+            
         }
 
 
