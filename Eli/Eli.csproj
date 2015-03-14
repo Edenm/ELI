@@ -368,7 +368,6 @@
     <Content Include="Views\FinanceFactor\FinancingFactor.cshtml" />
     <Content Include="Views\FinanceFactor\FinancingFactorDetails.cshtml" />
     <Content Include="Views\FinanceFactor\NewFinanceFactor.cshtml" />
-    <Content Include="Views\FinanceFactor\AddFinanceFactor.cshtml" />
     <Content Include="Views\Patient\MainPatients.cshtml" />
     <Content Include="Views\FinanceFactor\EditFinanceFactor.cshtml" />
     <Content Include="Views\FinanceFactor\MainFinancingFactor.cshtml" />

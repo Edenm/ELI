@@ -4,8 +4,10 @@
     ViewBag.Title = "EditFinanceFactor";
 }
 
-<h2 align="center">@Model.FinancingFactorNumber עריכת גורם מממן מספר </h2>
-<h2 align="center">@Model.Name  </h2>
+<h4 align="center">@Model.FinancingFactorNumber עריכת םרטי גורם מממן מספר </h4>
+<h4 align="center">@Model.Name  </h4>
+<h4 align="center"> מסוג @Model.FinancingFactorType  </h4>
+
 
 @using (Html.BeginForm())
 {
@@ -17,19 +19,7 @@
 
         @Html.HiddenFor(model => model.FinancingFactorNumber)
 
-        <label float:right class="description" for="element_1">
-            שם גורם מממן
-        </label>
-        <br>
-        <input float:right dir="rtl" type="text" value=@Model.Name readonly>
-        <br>
-        <label float:right class="description" for="element_1">
-            סוג גורם מממן
-        </label>
-        <br>
-        <input float:right dir="rtl" type="text" value=@Model.FinancingFactorType readonly>
-        <br>
-
+       
         <label float:right class="description" for="element_1">
             שם איש קשר
         </label>

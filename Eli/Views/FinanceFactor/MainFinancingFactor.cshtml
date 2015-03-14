@@ -42,9 +42,12 @@
             {
                 <tr>
                     <td>
-                        <a href="@Url.Action("DeleteFinancingFactor", "FinanceFactor", new { id = item.FinancingFactorNumber })" title="delete">
-                            <img src="~/Images/delete.png" />
-                        </a>
+                        @Html.ActionLink(
+                        "Delete",
+                     "DeleteFinancingFactor",
+                        new { id = item.FinancingFactorNumber },
+                        new { onclick = "return confirm('Are you sure you wish to delete this article?');" })
+                       
                     </td>
                     <td>
                         <a href="@Url.Action("EditFinanceFactor", "FinanceFactor", new { id = item.FinancingFactorNumber })" title="edit">

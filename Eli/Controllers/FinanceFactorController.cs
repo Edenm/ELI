@@ -53,7 +53,7 @@ namespace Eli.Controllers
 
             var temp = db.FinancingFactor.ToArray();
 
-            return View(temp);
+            return RedirectToAction("MainFinancingFactor");
 
 
 
@@ -75,7 +75,7 @@ namespace Eli.Controllers
         {
             var manager = new EliManagerDB();
             manager.EditFinanceFactor(t);
-            return View(t);
+            return RedirectToAction("MainFinancingFactor");
         }
 
         [HttpGet]
