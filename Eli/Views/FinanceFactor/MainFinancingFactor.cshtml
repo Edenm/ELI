@@ -41,15 +41,14 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    
                     <td>
-                        @Html.ActionLink(
-                        "Delete",
-                     "DeleteFinancingFactor",
-                        new { id = item.FinancingFactorNumber },
-                        new { onclick = "return confirm('Are you sure you wish to delete this article?');" })
-                       
+                        <a href="@Url.Action("DeleteFinancingFactor", "FinanceFactor", new { id = item.FinancingFactorNumber })" title="delete">
+                            <img src="~/Images/delete.png" />
+                        </a>
                     </td>
-                    <td>
+
+                     <td>
                         <a href="@Url.Action("EditFinanceFactor", "FinanceFactor", new { id = item.FinancingFactorNumber })" title="edit">
                             <img src="~/Images/edit.png" />
                         </a>
