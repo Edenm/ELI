@@ -14,13 +14,11 @@
     <div id="form_container">
 
 
-        <form id="form_981481" class="appnitro" method="post" action="http://localhost:58903/FinanceFactor/AddFinanceFactor">
+        <form id="myForm" class="appnitro" method="post" onsubmit="return validateForm()" action="http://localhost:58903/FinanceFactor/AddFinanceFactor">
             <div align="right" class="form_description">
                 <h2>הוספת גורם מממן חדש למערכת</h2>
-
             </div>
             <ul>
-
                 <li id="Name1" style="width:100%">
                     <div style="text-align:right; float:right;">
                         <label class="description" for="element_1">
@@ -36,14 +34,13 @@
                         <label class="description" for="element_2">סוג גורם ממן </label>
                         <div>
                             <select dir="rtl" class="element select" id="type" name="type">
-
+                                <option value="בחר">אנא בחר סוג גורם מממן</option>
                                 <option value="פרטי">פרטי</option>
                                 <option value="עירייה">עירייה</option>
                                 <option value="קרן">קרן</option>
                                 <option value="מערכת חינוך">מערכת חינוך</option>
                                 <option value="פרויקט">פרויקט</option>
                                 <option value="פנימייה">פנימייה</option>
-
                             </select>
                         </div>
                     </div>
@@ -83,4 +80,58 @@
     </div>
 
 </body>
+
+
+
+
+
+
+
+<script type="text/javascript">
+    function validateForm() {
+        var FinanceName = document.forms["myForm"]["Name"].value;
+        var Type = document.getElementById("type").value;
+        var ContactName = document.forms["myForm"]["contactname"].value;
+        var Phone = document.forms["myForm"]["phone"].value;
+        var Mail = document.forms["myForm"]["mail"].value;
+        if (FinanceName == null || FinanceName == "") {
+            alert("חובה למלא שם גורם מממן");
+            return false;
+        }
+        if (Type == null || Type == "בחר") {
+            alert("חובה למלא סוג גורם מממן");
+            return false;
+        }
+        if (ContactName == null || ContactName == "") {
+            alert("חובה למלא שם איש קשר");
+            return false;
+        }
+        if (Phone == null || Phone == "") {
+            alert("חובה למלא מספר טלפון של איש קשר");
+            return false;
+        }
+        if (Mail == null || Mail == "") {
+            alert("חובה למלא  מייל של איש קשר");
+
+            return false;
+        }
+        var mob = /^[1-9]{1}[0-9]{9}$/;
+
+        if (isNaN(Phone)) {
+            alert("אנא ודא כי מספר הטלפון נכון");
+            return false;
+        }
+        if (Phone.length!=10) {
+            alert("מספר הפלאפון חייב להכיל 10 ספרות");
+            return false;
+        }
+        if (Phone.charAt(0) != "0" || Phone.charAt(1) != "5") {
+            alert("מספר הפלאפון אינו חוקי");
+            return false;
+        }
+
+       
+    }
+
+</script>
 </html>
