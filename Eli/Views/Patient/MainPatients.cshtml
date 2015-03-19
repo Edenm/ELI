@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<Eli.Models.tblPatient>
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +26,6 @@
     <h4 align="center">@Html.ActionLink(" רשימת מטופלים", "MainPatients", "Patient") </h4>
     <h4 align="right">:חיפוש</h4>
 
-
     <table id="myTable" class="display nowrap" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -38,7 +41,7 @@
             {
                 <tr>
                     <td>
-                        <a href="@Url.Action("PatientDetails", "Patient", new { id = item.ID })" title="info">
+                        <a type="button" src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
                             <img src="~/Images/info.png" />
                         </a>
                     </td>
@@ -50,10 +53,60 @@
             }
         </tbody>
     </table>
+    @foreach (tblPatient item in Model) { 
+                <!-- Modal -->
+                <div class="modal fade" id="@item.ID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div align="right">
+                                    <h2>פרטי מטופל</h2>
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">תעודת זהות</h4>
+                                            <p class="list-group-item-text">@item.ID</p>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">שם פרטי</h4>
+                                            <p class="list-group-item-text">@item.PatientFirstName</p>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">שם משפחה</h4>
+                                            <p class="list-group-item-text">@item.PatientSurName</p>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">תאריך לידה</h4>
+                                            <p class="list-group-item-text">@item.BirthDate</p>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">מגדר</h4>
+                                            <p class="list-group-item-text">@item.Gender</p>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">מסגרת חינוכית</h4>
+                                            <p class="list-group-item-text">@item.EducationalFramework</p>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">כתובת</h4>
+                                            <p class="list-group-item-text">@item.Address</p>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">מספר טלפון </h4>
+                                            <p class="list-group-item-text">@item.ContcatPhoneNumber</p>
+                                        </a>
 
-
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    }
     <script>
-
 
         var table = $('#myTable').DataTable();
         new $.fn.dataTable.KeyTable(table);
@@ -67,14 +120,10 @@
 
 
 
-
-
-
-
-
-
-
 </body>
+
+
+
 
 
 
