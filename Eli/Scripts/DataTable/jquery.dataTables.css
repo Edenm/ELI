@@ -215,7 +215,7 @@ table.dataTable.compact tbody td {
 }
 table.dataTable th.dt-left,
 table.dataTable td.dt-left {
-  text-align: left;
+  text-align: center;
 }
 table.dataTable th.dt-center,
 table.dataTable td.dt-center,
@@ -238,7 +238,7 @@ table.dataTable thead th.dt-head-left,
 table.dataTable thead td.dt-head-left,
 table.dataTable tfoot th.dt-head-left,
 table.dataTable tfoot td.dt-head-left {
-  text-align: left;
+  text-align: center;
 }
 table.dataTable thead th.dt-head-center,
 table.dataTable thead td.dt-head-center,
@@ -266,7 +266,7 @@ table.dataTable tfoot td.dt-head-nowrap {
 }
 table.dataTable tbody th.dt-body-left,
 table.dataTable tbody td.dt-body-left {
-  text-align: left;
+  text-align: center;
 }
 table.dataTable tbody th.dt-body-center,
 table.dataTable tbody td.dt-body-center {
@@ -314,7 +314,7 @@ table.dataTable td {
 }
 .dataTables_wrapper .dataTables_info {
   clear: both;
-  float: left;
+  float: right;
   padding-top: 0.755em;
 }
 .dataTables_wrapper .dataTables_paginate {

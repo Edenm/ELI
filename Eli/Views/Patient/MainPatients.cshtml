@@ -21,91 +21,57 @@
     @Styles.Render("~/Content/themes/base/css")
 
 </head>
-<body>
-    <h4 align="center">:מיקומך במערכת</h4>
-    <h4 align="center">@Html.ActionLink(" רשימת מטופלים", "MainPatients", "Patient") </h4>
+<body >
+    <h2 align="center" style="color:blue">מטופלים</h2>
     <h4 align="right">:חיפוש</h4>
-
-    <table id="myTable" class="display nowrap" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>פרטים נוספים</th>
-                <th>טלפון</th>
-                <th>שם משפחה</th>
-                <th>שם פרטי</th>
-                <th>תעודת זהות</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div dir="rtl">
+        <table id="myTable" class="display nowrap"  width="100%">
+            <thead align="center">
                 <tr>
-                    <td>
-                        <a type="button" src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
-                            <img src="~/Images/info.png" />
-                        </a>
-                    </td>
-                    <td> @item.ContcatPhoneNumber </td>
-                    <td> @item.PatientSurName </td>
-                    <td> @item.PatientFirstName </td>
-                    <td> @item.ID </td>
+                    <th>תעודת זהות</th>
+                    <th>שם פרטי</th>
+                    <th>שם משפחה</th>
+                    <th>טלפון</th>
+                    <th>פרטים נוספים</th>
+                    <th>משפחה</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    @foreach (tblPatient item in Model) { 
-                <!-- Modal -->
-                <div class="modal fade" id="@item.ID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <div align="right">
-                                    <h2>פרטי מטופל</h2>
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item">
-                                            <h4 class="list-group-item-heading">תעודת זהות</h4>
-                                            <p class="list-group-item-text">@item.ID</p>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <h4 class="list-group-item-heading">שם פרטי</h4>
-                                            <p class="list-group-item-text">@item.PatientFirstName</p>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <h4 class="list-group-item-heading">שם משפחה</h4>
-                                            <p class="list-group-item-text">@item.PatientSurName</p>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <h4 class="list-group-item-heading">תאריך לידה</h4>
-                                            <p class="list-group-item-text">@item.BirthDate</p>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <h4 class="list-group-item-heading">מגדר</h4>
-                                            <p class="list-group-item-text">@item.Gender</p>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <h4 class="list-group-item-heading">מסגרת חינוכית</h4>
-                                            <p class="list-group-item-text">@item.EducationalFramework</p>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <h4 class="list-group-item-heading">כתובת</h4>
-                                            <p class="list-group-item-text">@item.Address</p>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <h4 class="list-group-item-heading">מספר טלפון </h4>
-                                            <p class="list-group-item-text">@item.ContcatPhoneNumber</p>
-                                        </a>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr align="center">
+                        <td> @item.ID </td>
+                        <td> @item.PatientFirstName </td>
+                        <td> @item.PatientSurName </td>
+                        <td> @item.ContcatPhoneNumber </td>
+                        <td>
+                            <a type="button" src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
+                                <img src="~/Images/info.png" />
+                            </a>
+                        </td>
+                        <td>
+                            @{
+                                String id = "1" + @item.ID;
+                            }
+                            <a type="button" src="~/Images/info.png" data-toggle="modal" data-target="#id">
+                                <img src="~/Images/info.png" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    @foreach (tblPatient item in Model)
+    {
+                @Html.Partial("_Patient", item);
     }
+    @foreach (tblPatient item in Model)
+    {
+                @Html.Action("_EditFamily", "Patient", new { id = item.ID });
+    }
+
     <script>
 
         var table = $('#myTable').DataTable();
@@ -113,20 +79,6 @@
 
     </script>
 
-
-
-
-
-
-
-
 </body>
-
-
-
-
-
-
-
 </html>
 

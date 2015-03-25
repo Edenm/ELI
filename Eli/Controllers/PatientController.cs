@@ -1,10 +1,12 @@
 ﻿using Eli.Models;
+using Eli.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Collections;
+
 
 namespace Eli.Controllers
 {
@@ -124,7 +126,7 @@ namespace Eli.Controllers
         }
 
         /* The Method displays all the patients in the system-this is the main form of patients  **/
-
+        [HttpGet]
         public ActionResult MainPatients()
         {
             EliManagerDB db = new EliManagerDB();
@@ -135,7 +137,34 @@ namespace Eli.Controllers
         }
 
 
+        /* The method get a patient details and update the patient **/
+        [HttpPost]
+        public ActionResult MainPatients(tblPatient obj)
+        {
+            EliManagerDB db = new EliManagerDB();
 
+            Type type = obj.GetType();
+            String str = type.Name;
+
+            if (obj.GetType()==typeof(tblPatient))
+                db.EditPatient((tblPatient)obj);
+
+            //if (obj is Family)
+               // db.EditFamily((Family)obj);
+
+            var pat = db.Patients.ToArray();
+
+            return View(pat);
+        }
+
+        [HttpGet]
+        public ActionResult _EditFamily(String id)
+        {
+            EliManagerDB db = new EliManagerDB();
+
+            Family objFam = new Family(id);
+            return PartialView(objFam);
+        }
 
 
 

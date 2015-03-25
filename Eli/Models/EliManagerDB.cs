@@ -6,6 +6,7 @@ using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Eli.ViewModel;
 
 namespace Eli.Models
 {
@@ -157,8 +158,73 @@ namespace Eli.Models
             d.ContcatPhoneNumber = ff.ContcatPhoneNumber;
             db.SubmitChanges();
         }
-        
 
+        /* The method is editing exist patient**/
+        public void EditPatient(tblPatient pat)
+        {
+            var patient = Patients.First(p => p.ID == pat.ID);
+            patient.ID = pat.ID;
+            patient.PatientFirstName = pat.PatientFirstName;
+            patient.PatientSurName = pat.PatientSurName;
+            patient.Address = pat.Address;
+            patient.BirthDate = pat.BirthDate;
+            patient.ContcatPhoneNumber = pat.ContcatPhoneNumber;
+            patient.EducationalFramework = pat.EducationalFramework;
+
+            db.SubmitChanges();
+        }
+
+        /* The method is editing exist patient**/
+        public void EditFamily(Family fam)
+        {
+            foreach (tblBrotherSister tbs in fam.BrotherSister){
+                var broSis = BrotherSister.First(bs => bs.ID == tbs.ID);
+                broSis.ID = tbs.ID;
+                broSis.FirstName = tbs.FirstName;
+                broSis.SurName = tbs.SurName;
+                broSis.StudyFramework = tbs.StudyFramework;
+                broSis.Gender = tbs.Gender;
+                broSis.BirthDate = tbs.BirthDate;
+            }
+
+            foreach (tblParent tp in fam.Parent)
+            {
+                var parent = Parent.First(bs => bs.ID == tp.ID);
+                parent.ID = tp.ID;
+                parent.FirstName = tp.FirstName;
+                parent.SurName = tp.SurName;
+                parent.Address = tp.Address;
+                parent.ContactMail = tp.ContactMail;
+                parent.Explain = tp.Explain;
+                parent.IsWorking = tp.IsWorking;
+                parent.ContactMail = tp.ContactMail;
+                parent.Gender = tp.Gender;
+                parent.BirthDate = tp.BirthDate;
+            }
+            
+            db.SubmitChanges();
+        }
+
+
+        //-----------------------Query Method----------------------------------------------------------------
+
+        public List<tblBrotherSister> getBrotherSisterByPatient(String PID)
+        {
+            var BSP= (BrotherSisterPatient.Where(bs => bs.PatientID==PID).Select(bs=> bs.BrotherSisterID));
+
+            var BS= (BrotherSister.Where(bs=> BSP.Contains(bs.ID))).ToList();
+         
+            return BS;
+        }
+
+        public List<tblParent> getParentsByPatient(String PID)
+        {
+            var PP = (ParentPatient.Where(p => p.PatientID == PID).Select(p=> p.ParentID));
+
+            var P = (Parent.Where(bs => PP.Contains(bs.ID))).ToList();
+
+            return P;
+        }
 
     }
 
