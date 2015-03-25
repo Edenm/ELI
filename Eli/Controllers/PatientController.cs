@@ -157,7 +157,7 @@ namespace Eli.Controllers
             return View(pat);
         }
 
-        [HttpGet]
+
         public ActionResult _EditFamily(String id)
         {
             EliManagerDB db = new EliManagerDB();
