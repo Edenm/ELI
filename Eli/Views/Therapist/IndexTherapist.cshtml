@@ -21,7 +21,7 @@
     <h2 align="center" style="color:blue">מטפלים</h2>
     <h4 align="right">:חיפוש</h4>
     <div dir="rtl">
-        <table id="myTable" class="display nowrap" width="100%">
+        <table id="myTable" class="display nowrap">
             <thead align="center">
                 <tr>
                     <th>תעודת זהות</th>
@@ -39,7 +39,7 @@
                         <td> @FullName</td>   
                         <td> @item.ContcatPhoneNumber </td>
                         <td>
-                            <a type="button" src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
+                            <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
                                 <img src="~/Images/info.png" />
                             </a>
                         </td>
@@ -53,6 +53,13 @@
     {
         @Html.Partial("_Therapist", item);
     }
+
+    <!-- Button trigger modal -->
+    <br /> <br />
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new" >
+        הוסף מטפל למערכת
+    </button>
+    @Html.Partial("_Therapist",new tblTherapist());
 
     <script>
 

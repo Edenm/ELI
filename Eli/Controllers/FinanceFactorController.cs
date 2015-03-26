@@ -17,6 +17,33 @@ namespace Eli.Controllers
 {
     public class FinanceFactorController : Controller
     {
+        [HttpGet]
+        public ActionResult IndexFinancingFactor()
+        {
+            EliManagerDB db = new EliManagerDB();
+
+            var finfac = db.FinancingFactor.ToArray();
+
+            return View(finfac);
+        }
+
+
+        [HttpPost]
+        public ActionResult IndexFinancingFactor(tblFinancingFactor ff, string submit)
+        {
+            EliManagerDB db = new EliManagerDB();
+
+            if (submit.Equals("צור"))
+                db.addFinanceFactor(ff);
+
+            else
+                db.EditFinanceFactor(ff);
+
+            var finfac = db.FinancingFactor.ToArray();
+
+            return View(finfac);
+        }
+
 
         /* The Method adds a new finance factor to system  **/
 
@@ -140,10 +167,7 @@ namespace Eli.Controllers
 
             return View(pat);
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
+       
 
     }
 }

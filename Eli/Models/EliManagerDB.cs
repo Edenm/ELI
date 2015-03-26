@@ -121,8 +121,18 @@ namespace Eli.Models
 
         }
 
+        /* Add Therapist to data base **/
+        public void addTherapist(tblTherapist tt)
+        {
+            Therapist.InsertOnSubmit(tt);
+            db.SubmitChanges();
+        }
+
+        /* Add FinancingFactor to data base **/
         public void addFinanceFactor(tblFinancingFactor ff)
         {
+            ff.FinancingFactorNumber = FinancingFactor.Count()+1;
+
             FinancingFactor.InsertOnSubmit(ff);
             db.SubmitChanges();
         }
@@ -132,8 +142,6 @@ namespace Eli.Models
 
         public void removeFinanceFactor(tblFinancingFactor ff)
         {
-
-
             var FinanceFactores = from t in Treatment
                                   where t.FinancingFactorNumber.Equals(ff.FinancingFactorNumber)
                                   select t;
@@ -153,9 +161,27 @@ namespace Eli.Models
         public void EditFinanceFactor(tblFinancingFactor ff)
         {
             var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
+            d.Name = ff.Name;
+            d.FinancingFactorType = ff.FinancingFactorType;
             d.ContactName = ff.ContactName;
             d.ContactMail = ff.ContactMail;
             d.ContcatPhoneNumber = ff.ContcatPhoneNumber;
+            db.SubmitChanges();
+        }
+
+        public void EditTherapist(tblTherapist tt)
+        {
+            var t = Therapist.First(x => x.ID == tt.ID);
+            t.ID = tt.ID;
+            t.TherapistFirstName = tt.TherapistFirstName;
+            t.TherapistSurName = tt.TherapistSurName;
+            t.BirthDate = tt.BirthDate;
+            t.Address = tt.Address;
+            t.Gender = tt.Gender;
+            t.Passcode = tt.Passcode;
+            t.UserName = tt.UserName;
+            t.ContactMail = tt.ContactMail;
+            t.ContcatPhoneNumber = tt.ContcatPhoneNumber;
             db.SubmitChanges();
         }
 

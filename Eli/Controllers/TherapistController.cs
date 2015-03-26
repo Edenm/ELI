@@ -9,10 +9,9 @@ namespace Eli.Controllers
 {
     public class TherapistController : Controller
     {
-        //
-        // GET: /Therapist/
 
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult IndexTherapist()
         {
             EliManagerDB db = new EliManagerDB();
 
@@ -21,5 +20,21 @@ namespace Eli.Controllers
             return View(therapist);
         }
 
+
+        [HttpPost]
+        public ActionResult IndexTherapist(tblTherapist tt, string submit)
+        {
+            EliManagerDB db = new EliManagerDB();
+
+            if (submit.Equals("צור"))
+                db.addTherapist(tt);
+
+            else
+                db.EditTherapist(tt);
+
+            var therapist = db.Therapist.ToArray();
+
+            return View(therapist);
+        }
     }
 }

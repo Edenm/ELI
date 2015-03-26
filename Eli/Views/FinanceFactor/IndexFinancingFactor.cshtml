@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Eli.Models.tblFinancingFactor>
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/DataTable/dataTables.keyTable.js"></script>
+    <script src="~/Scripts/DataTable/jquery.js"></script>
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+    <link href="~/Scripts/DataTable/dataTables.keyTable.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTable/jquery.dataTables.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/themes/base/css")
+</head>
+<body>
+    <h2 align="center" style="color:blue">גורמים מממנים</h2>
+    <h4 align="right">:חיפוש</h4>
+    <div dir="rtl">
+        <table id="myTable" class="display nowrap">
+            <thead align="center">
+                <tr>
+                    <th></th>
+                    <th>שם</th>
+                    <th>סוג</th>
+                    <th>שם איש קשר</th>
+                    <th>טלפון איש קשר</th>
+                    <th>מייל איש קשר</th>
+                    <th>פרטים נוספים</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr align="center">
+                        <td> @item.FinancingFactorNumber </td>
+                        <td> @item.Name </td>
+                        <td> @item.FinancingFactorType </td>
+                        <td> @item.ContactName</td>
+                        <td> @item.ContcatPhoneNumber</td>
+                        <td> @item.ContactMail </td>
+                        
+                        
+                        <td>
+                            <a type="button" src="~/Images/info.png" data-toggle="modal" data-target="#@item.FinancingFactorNumber">
+                                <img src="~/Images/info.png" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @foreach (tblFinancingFactor item in Model)
+    {
+        @Html.Partial("_FinancingFactor", item);
+    }
+
+    
+    <!-- Button trigger modal -->
+    <br /> <br />
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+        הוסף גורם מממן למערכת
+    </button>
+
+    @Html.Partial("_FinancingFactor", new tblFinancingFactor());
+
+    <script>
+
+        var table = $('#myTable').DataTable();
+        new $.fn.dataTable.KeyTable(table);
+
+    </script>
+
+</body>
+</html>

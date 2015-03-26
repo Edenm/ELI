@@ -371,18 +371,19 @@
     <Content Include="Views\Patient\PatientDetails.cshtml" />
     <Content Include="Views\Patient\Reference.cshtml" />
     <Content Include="Views\Patient\TreatByReference.cshtml" />
-    <Content Include="Views\FinanceFactor\FinancingFactor.cshtml" />
     <Content Include="Views\FinanceFactor\FinancingFactorDetails.cshtml" />
     <Content Include="Views\FinanceFactor\NewFinanceFactor.cshtml" />
     <Content Include="Views\Patient\MainPatients.cshtml" />
     <Content Include="Views\FinanceFactor\EditFinanceFactor.cshtml" />
     <Content Include="Views\FinanceFactor\MainFinancingFactor.cshtml" />
-    <Content Include="Views\Shared\_Patient.cshtml" />
+    <Content Include="Views\Patient\_Patient.cshtml" />
     <Content Include="Views\Patient\_Family.cshtml" />
     <Content Include="Views\Shared\_EditFamily.cshtml" />
     <Content Include="Views\Shared\_Parent.cshtml" />
-    <Content Include="Views\Therapist\Index.cshtml" />
-    <Content Include="Views\Shared\_Therapist.cshtml" />
+    <Content Include="Views\Therapist\IndexTherapist.cshtml" />
+    <Content Include="Views\Therapist\_Therapist.cshtml" />
+    <Content Include="Views\FinanceFactor\IndexFinancingFactor.cshtml" />
+    <Content Include="Views\FinanceFactor\_FinancingFactor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
