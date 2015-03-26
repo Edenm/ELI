@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Eli.Models.tblTherapist>
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/DataTable/dataTables.keyTable.js"></script>
+    <script src="~/Scripts/DataTable/jquery.js"></script>
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+    <link href="~/Scripts/DataTable/dataTables.keyTable.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTable/jquery.dataTables.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/themes/base/css")
+</head>
+<body>
+    <h2 align="center" style="color:blue">מטפלים</h2>
+    <h4 align="right">:חיפוש</h4>
+    <div dir="rtl">
+        <table id="myTable" class="display nowrap" width="100%">
+            <thead align="center">
+                <tr>
+                    <th>תעודת זהות</th>
+                    <th>שם</th>
+                    <th>טלפון</th>
+                    <th>פרטים נוספים</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr align="center">
+                        <td> @item.ID </td>
+                        @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
+                        <td> @FullName</td>   
+                        <td> @item.ContcatPhoneNumber </td>
+                        <td>
+                            <a type="button" src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
+                                <img src="~/Images/info.png" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @foreach (tblTherapist item in Model)
+    {
+        @Html.Partial("_Therapist", item);
+    }
+
+    <script>
+
+        var table = $('#myTable').DataTable();
+        new $.fn.dataTable.KeyTable(table);
+
+    </script>
+
+</body>
+</html>

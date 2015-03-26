@@ -116,180 +116,180 @@ namespace Eli.Controllers
 
 
        
-        public ActionResult childs()
-        {
-            EliManagerDB db = new EliManagerDB();
-
-            var pat = db.Patients.ToArray();
-
-            return View(pat);
-        }
-
-        /* The Method displays all the patients in the system-this is the main form of patients  **/
-        [HttpGet]
-        public ActionResult MainPatients()
-        {
-            EliManagerDB db = new EliManagerDB();
-
-            var pat = db.Patients.ToArray();
-
-            return View(pat);
-        }
-
-
-        /* The method get a patient details and update the patient **/
-        [HttpPost]
-        public ActionResult MainPatients(tblPatient obj)
-        {
-            EliManagerDB db = new EliManagerDB();
-
-            Type type = obj.GetType();
-            String str = type.Name;
-
-            if (obj.GetType()==typeof(tblPatient))
-                db.EditPatient((tblPatient)obj);
-
-            //if (obj is Family)
-               // db.EditFamily((Family)obj);
-
-            var pat = db.Patients.ToArray();
-
-            return View(pat);
-        }
-
-
-        public ActionResult _EditFamily(String id)
-        {
-            EliManagerDB db = new EliManagerDB();
-
-            Family objFam = new Family(id);
-            return PartialView(objFam);
-        }
-
-
-
-
-        /* The Method get parameters of patient and displays all his refernces  **/
-        public ActionResult Reference(String id)
-        {
-
-
-            EliManagerDB db = new EliManagerDB();
-
-            List<tblTherapist> Therapist = new List<tblTherapist>();
-            List<tblTreatment> Treatment = new List<tblTreatment>();
-            List<tblReference> reference = db.Reference.ToArray().Where(a => a.PatientID.ToString() == (id)).ToList();
-            var pat = db.ReferenceTherapistTreatment.ToArray();
-
-            for (int i = 0; i < reference.Count; i++)
+            public ActionResult childs()
             {
-                for (int j = 0; j < pat.Length; j++)
+                EliManagerDB db = new EliManagerDB();
+
+                var pat = db.Patients.ToArray();
+
+                return View(pat);
+            }
+
+            /* The Method displays all the patients in the system-this is the main form of patients  **/
+            [HttpGet]
+            public ActionResult MainPatients()
+            {
+                EliManagerDB db = new EliManagerDB();
+
+                var pat = db.Patients.ToArray();
+
+                return View(pat);
+            }
+
+
+            /* The method get a patient details and update the patient **/
+            [HttpPost]
+            public ActionResult MainPatients(tblPatient obj)
+            {
+                EliManagerDB db = new EliManagerDB();
+
+                Type type = obj.GetType();
+                String str = type.Name;
+
+                if (obj.GetType()==typeof(tblPatient))
+                    db.EditPatient((tblPatient)obj);
+
+                //if (obj is Family)
+                   // db.EditFamily((Family)obj);
+
+                var pat = db.Patients.ToArray();
+
+                return View(pat);
+            }
+
+
+            public ActionResult _EditFamily(String id)
+            {
+                EliManagerDB db = new EliManagerDB();
+
+                Family objFam = new Family(id);
+                return PartialView(objFam);
+            }
+
+
+
+
+            /* The Method get parameters of patient and displays all his refernces  **/
+            public ActionResult Reference(String id)
+            {
+
+
+                EliManagerDB db = new EliManagerDB();
+
+                List<tblTherapist> Therapist = new List<tblTherapist>();
+                List<tblTreatment> Treatment = new List<tblTreatment>();
+                List<tblReference> reference = db.Reference.ToArray().Where(a => a.PatientID.ToString() == (id)).ToList();
+                var pat = db.ReferenceTherapistTreatment.ToArray();
+
+                for (int i = 0; i < reference.Count; i++)
                 {
-
-                    int w = reference.ElementAt(i).ReferenceNumber;
-                    int z = pat.ElementAt(j).ReferenceNumber;
-
-                    if (w == z)
+                    for (int j = 0; j < pat.Length; j++)
                     {
-                        tblTherapist th = db.Therapist.ToArray().Single(p => p.ID.ToString() == (pat.ElementAt(j).TherapistID));
-                        tblTreatment tr = db.Treatment.ToArray().Single(a => a.TreatmentNumber == (pat.ElementAt(j).TreatmentNumber));
-                        Therapist.Add(th);
-                        Treatment.Add(tr);
+
+                        int w = reference.ElementAt(i).ReferenceNumber;
+                        int z = pat.ElementAt(j).ReferenceNumber;
+
+                        if (w == z)
+                        {
+                            tblTherapist th = db.Therapist.ToArray().Single(p => p.ID.ToString() == (pat.ElementAt(j).TherapistID));
+                            tblTreatment tr = db.Treatment.ToArray().Single(a => a.TreatmentNumber == (pat.ElementAt(j).TreatmentNumber));
+                            Therapist.Add(th);
+                            Treatment.Add(tr);
+                        }
                     }
                 }
+                Reference r = new Reference();
+                r.r = reference.ToList();
+                r.th = Therapist.ToList();
+                r.tr = Treatment.ToList();
+                return View(r);
+
             }
-            Reference r = new Reference();
-            r.r = reference.ToList();
-            r.th = Therapist.ToList();
-            r.tr = Treatment.ToList();
-            return View(r);
+            /* The Method get parameters of patient and reference and displays all treatments of specific reference of patients  **/
 
-        }
-        /* The Method get parameters of patient and reference and displays all treatments of specific reference of patients  **/
+            public ActionResult TreatByReference(int idRef, string pId)
+            {
 
-        public ActionResult TreatByReference(int idRef, string pId)
-        {
-
-            EliManagerDB db = new EliManagerDB();
+                EliManagerDB db = new EliManagerDB();
 
             
-            List<tblTherapist> Therapist = new List<tblTherapist>();
-            List<tblTreatment> Treatment = new List<tblTreatment>();
-            List<tblReferenceTherapistTreatment> RTT = db.ReferenceTherapistTreatment.ToArray().Where(a => a.ReferenceNumber == (idRef)).ToList();
+                List<tblTherapist> Therapist = new List<tblTherapist>();
+                List<tblTreatment> Treatment = new List<tblTreatment>();
+                List<tblReferenceTherapistTreatment> RTT = db.ReferenceTherapistTreatment.ToArray().Where(a => a.ReferenceNumber == (idRef)).ToList();
 
-            for (int i = 0; i < RTT.Count; i++)
-            {
-                Therapist.Add(db.Therapist.ToArray().Single(p => p.ID.ToString() == (RTT.ElementAt(i).TherapistID)));
-                Treatment.Add(db.Treatment.ToArray().Single(a => a.TreatmentNumber == (RTT.ElementAt(i).TreatmentNumber)));
+                for (int i = 0; i < RTT.Count; i++)
+                {
+                    Therapist.Add(db.Therapist.ToArray().Single(p => p.ID.ToString() == (RTT.ElementAt(i).TherapistID)));
+                    Treatment.Add(db.Treatment.ToArray().Single(a => a.TreatmentNumber == (RTT.ElementAt(i).TreatmentNumber)));
+
+                }
+                TreatByRef r = new TreatByRef();
+                r.pId = pId;
+                r.rId = idRef;
+                r.th = Therapist.ToList();
+                r.tr = Treatment.ToList();
+                return View(r);
 
             }
-            TreatByRef r = new TreatByRef();
-            r.pId = pId;
-            r.rId = idRef;
-            r.th = Therapist.ToList();
-            r.tr = Treatment.ToList();
-            return View(r);
-
-        }
 
 
-        /* The Method get parameters of patient and displays  his full details  **/
+            /* The Method get parameters of patient and displays  his full details  **/
 
-        public ActionResult PatientDetails(String id)
-        {
-            EliManagerDB db = new EliManagerDB();
-            BrotherSister BSview = new BrotherSister();
-            BSview.BrotherSisters = new List<tblBrotherSister>();
-
-            tblPatient patient = db.Patients.ToArray().Single(p => p.ID.ToString() == (id));
-
-
-            List<tblBrotherSisterPatient> BSP = db.BrotherSisterPatient.ToArray().Where(a => a.PatientID.ToString() == (id)).ToList();
-            var BS = db.BrotherSister.ToArray();
-
-            for (int i = 0; i < BSP.Count; i++)
+            public ActionResult PatientDetails(String id)
             {
-                for (int j = 0; j < BS.Length; j++)
+                EliManagerDB db = new EliManagerDB();
+                BrotherSister BSview = new BrotherSister();
+                BSview.BrotherSisters = new List<tblBrotherSister>();
+
+                tblPatient patient = db.Patients.ToArray().Single(p => p.ID.ToString() == (id));
+
+
+                List<tblBrotherSisterPatient> BSP = db.BrotherSisterPatient.ToArray().Where(a => a.PatientID.ToString() == (id)).ToList();
+                var BS = db.BrotherSister.ToArray();
+
+                for (int i = 0; i < BSP.Count; i++)
                 {
-
-                    String w = BSP.ToArray().ElementAt(i).BrotherSisterID;
-                    String z = BS.ToArray().ElementAt(j).ID;
-
-                    if (string.Compare(w, z) == 0)
+                    for (int j = 0; j < BS.Length; j++)
                     {
 
+                        String w = BSP.ToArray().ElementAt(i).BrotherSisterID;
+                        String z = BS.ToArray().ElementAt(j).ID;
 
-                        BSview.BrotherSisters.Add(BS.ElementAt(j));
+                        if (string.Compare(w, z) == 0)
+                        {
+
+
+                            BSview.BrotherSisters.Add(BS.ElementAt(j));
+                        }
                     }
                 }
-            }
 
-            List<tblParentPatient> parentpatient = db.ParentPatient.ToArray().Where(b => b.PatientID.ToString() == (id)).ToList();
-            var parent = db.Parent.ToArray();
+                List<tblParentPatient> parentpatient = db.ParentPatient.ToArray().Where(b => b.PatientID.ToString() == (id)).ToList();
+                var parent = db.Parent.ToArray();
 
-            BSview.Parents = new List<tblParent>();
-            for (int i = 0; i < parentpatient.Count; i++)
-            {
-                for (int j = 0; j < parent.Length; j++)
+                BSview.Parents = new List<tblParent>();
+                for (int i = 0; i < parentpatient.Count; i++)
                 {
-                    int x = 0;
-                    int y = 0;
-
-                    Int32.TryParse(parentpatient.ToArray().ElementAt(i).ParentID.ToString(), out x);
-                    Int32.TryParse(parent.ToArray().ElementAt(j).ID.ToString(), out y);
-                    if (x == y)
+                    for (int j = 0; j < parent.Length; j++)
                     {
-                        BSview.Parents.Add(parent.ToArray().ElementAt(j));
+                        int x = 0;
+                        int y = 0;
+
+                        Int32.TryParse(parentpatient.ToArray().ElementAt(i).ParentID.ToString(), out x);
+                        Int32.TryParse(parent.ToArray().ElementAt(j).ID.ToString(), out y);
+                        if (x == y)
+                        {
+                            BSview.Parents.Add(parent.ToArray().ElementAt(j));
+                        }
                     }
                 }
+
+
+                BSview.patient = patient;
+                return View(BSview);
+
             }
-
-
-            BSview.patient = patient;
-            return View(BSview);
-
         }
-    }
 }
 
 

@@ -188,6 +188,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\FinanceFactorController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\TherapistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -380,6 +381,8 @@
     <Content Include="Views\Patient\_Family.cshtml" />
     <Content Include="Views\Shared\_EditFamily.cshtml" />
     <Content Include="Views\Shared\_Parent.cshtml" />
+    <Content Include="Views\Therapist\Index.cshtml" />
+    <Content Include="Views\Shared\_Therapist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
