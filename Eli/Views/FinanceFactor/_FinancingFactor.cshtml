@@ -32,55 +32,55 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
-                    <fieldset>
-                        <legend>tblFinancingFactor</legend>
+    <fieldset align="right">
+        <legend>tblFinancingFactor</legend>
 
-                        @Html.HiddenFor(model => model.FinancingFactorNumber)
+        @Html.HiddenFor(model => model.FinancingFactorNumber)
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.Name)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.Name)
-                            @Html.ValidationMessageFor(model => model.Name)
-                        </div>
+        <label float:right class="description" for="element_1">
+            שם גורם מממן
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.FinancingFactorType)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.FinancingFactorType)
-                            @Html.ValidationMessageFor(model => model.FinancingFactorType)
-                        </div>
+        <label float:right class="description" for="element_1">
+            סוג גורם מממן
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.FinancingFactorType)
+            @Html.ValidationMessageFor(model => model.FinancingFactorType)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ContactName)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ContactName)
-                            @Html.ValidationMessageFor(model => model.ContactName)
-                        </div>
+        <label float:right class="description" for="element_1">
+            שם איש קשר
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ContactName)
+            @Html.ValidationMessageFor(model => model.ContactName)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ContcatPhoneNumber)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ContcatPhoneNumber)
-                            @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
-                        </div>
+        <label float:right class="description" for="element_1">
+            טלפון איש קשר
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ContcatPhoneNumber)
+            @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ContactMail)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ContactMail)
-                            @Html.ValidationMessageFor(model => model.ContactMail)
-                        </div>
+        <label float:right class="description" for="element_1">
+            מייל איש קשר
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ContactMail)
+            @Html.ValidationMessageFor(model => model.ContactMail)
+        </div>
 
-                        <p>
-                            <input type="submit" name="submit" value="@submit" />
-                        </p>
-                    </fieldset>
+        <p>
+            <input type="submit" name="submit" value="@submit" />
+        </p>
+    </fieldset>
                 }
 
                 <div>

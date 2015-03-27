@@ -23,8 +23,21 @@ namespace Eli.Controllers
             EliManagerDB db = new EliManagerDB();
 
             var finfac = db.FinancingFactor.ToArray();
-
+             List<SelectListItem> list = new List<SelectListItem>() {
+                new SelectListItem(){ Value="פרטי", Text="פרטי"},
+                new SelectListItem(){ Value="עירייה", Text="עירייה"},
+                new SelectListItem(){ Value="קרן", Text="קרן"},
+                new SelectListItem(){ Value="מערכת חינוך", Text="מערכת חינוך"},
+                new SelectListItem(){ Value="פרויקט", Text="פרויקט"},
+                
+               
+            };
+            
+            ViewBag.types= new SelectList(list, "Value", "Text");
+            
             return View(finfac);
+
+          
         }
 
 
