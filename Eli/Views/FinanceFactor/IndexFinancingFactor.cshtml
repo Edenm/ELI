@@ -31,6 +31,7 @@
                     <th>טלפון איש קשר</th>
                     <th>מייל איש קשר</th>
                     <th>פרטים נוספים</th>
+                    <th> מחיקה</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +49,11 @@
                             <td>
                                 <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.FinancingFactorNumber">
                                     <img src="~/Images/info.png" />
+                                </a>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("DeleteFinancingFactor", "FinanceFactor", new { id = item.FinancingFactorNumber })" title="delete">
+                                    <img src="~/Images/delete.png" />
                                 </a>
                             </td>
                         </tr>

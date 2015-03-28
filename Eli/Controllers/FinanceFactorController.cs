@@ -155,7 +155,7 @@ namespace Eli.Controllers
 
 
 
-                return RedirectToAction("MainFinancingFactor");
+                return RedirectToAction("IndexFinancingFactor");
            
             
         }
