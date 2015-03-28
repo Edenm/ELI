@@ -33,17 +33,20 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr align="center">
-                        <td> @item.ID </td>
-                        @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
-                        <td> @FullName</td>   
-                        <td> @item.ContcatPhoneNumber </td>
-                        <td>
-                            <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
-                                <img src="~/Images/info.png" />
-                            </a>
-                        </td>
-                    </tr>
+                    if (@item.ID != null)
+                    {
+                        <tr align="center">
+                            <td> @item.ID </td>
+                            @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
+                            <td> @FullName</td>   
+                            <td> @item.ContcatPhoneNumber </td>
+                            <td>
+                                <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
+                                    <img src="~/Images/info.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>
@@ -58,9 +61,8 @@
     <br /> <br />
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new" >
         הוסף מטפל למערכת
-    </button>
+    </button>   
 
-    @Html.Partial("_Therapist",new tblTherapist());
 
     <script>
 

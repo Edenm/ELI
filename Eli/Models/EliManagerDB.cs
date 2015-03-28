@@ -252,6 +252,18 @@ namespace Eli.Models
             return P;
         }
 
+        public List<tblReference> getAllReferencesByPatients(string Id)
+        {
+            var Ref = Reference.Where(r => r.PatientID == Id).ToList();
+
+            foreach (tblReference r in Ref)
+            {
+
+            }
+
+            return Ref;
+        }
+
     }
 
     

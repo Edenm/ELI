@@ -15,7 +15,9 @@ namespace Eli.Controllers
         {
             EliManagerDB db = new EliManagerDB();
 
-            var therapist = db.Therapist.ToArray();
+            List<tblTherapist> therapist = db.Therapist.ToList();
+
+            therapist.Add(new tblTherapist());
 
             return View(therapist);
         }
@@ -32,7 +34,9 @@ namespace Eli.Controllers
             else
                 db.EditTherapist(tt);
 
-            var therapist = db.Therapist.ToArray();
+            List<tblTherapist> therapist = db.Therapist.ToList();
+
+            therapist.Add(new tblTherapist());
 
             return View(therapist);
         }

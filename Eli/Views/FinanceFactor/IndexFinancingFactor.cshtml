@@ -36,21 +36,23 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr align="center">
-                        <td> @item.FinancingFactorNumber </td>
-                        <td> @item.Name </td>
-                        <td> @item.FinancingFactorType </td>
-                        <td> @item.ContactName</td>
-                        <td> @item.ContcatPhoneNumber</td>
-                        <td> @item.ContactMail </td>
-                        
-                        
-                        <td>
-                            <a type="button" src="~/Images/info.png" data-toggle="modal" data-target="#@item.FinancingFactorNumber">
-                                <img src="~/Images/info.png" />
-                            </a>
-                        </td>
-                    </tr>
+                    if (@item.FinancingFactorNumber!=0)
+                    {
+                        <tr align="center">
+                            <td> @item.FinancingFactorNumber </td>
+                            <td> @item.Name </td>
+                            <td> @item.FinancingFactorType </td>
+                            <td> @item.ContactName</td>
+                            <td> @item.ContcatPhoneNumber</td>
+                            <td> @item.ContactMail </td>
+                            <td>
+                                <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.FinancingFactorNumber">
+                                    <img src="~/Images/info.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
                 }
             </tbody>
         </table>
@@ -68,7 +70,7 @@
         הוסף גורם מממן למערכת
     </button>
 
-    @Html.Partial("_FinancingFactor", new tblFinancingFactor());
+   
 
     <script>
 

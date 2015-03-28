@@ -22,8 +22,11 @@ namespace Eli.Controllers
         {
             EliManagerDB db = new EliManagerDB();
 
-            var finfac = db.FinancingFactor.ToArray();
-            
+           // var finfac = db.FinancingFactor.ToArray();
+
+            List<tblFinancingFactor> finfac = db.FinancingFactor.ToList();
+
+            finfac.Add(new tblFinancingFactor());
             
             return View(finfac);
 
@@ -31,6 +34,7 @@ namespace Eli.Controllers
         }
 
 
+        /* This post Method add/edit finance factor  **/
         [HttpPost]
         public ActionResult IndexFinancingFactor(tblFinancingFactor ff, string submit)
         {
@@ -43,10 +47,24 @@ namespace Eli.Controllers
             else
                 db.EditFinanceFactor(ff);
 
-            var finfac = db.FinancingFactor.ToArray();
+            List<tblFinancingFactor> finfac = db.FinancingFactor.ToList();
+
+            finfac.Add(new tblFinancingFactor());
 
             return View(finfac);
         }
+
+
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+
 
 
         /* The Method adds a new finance factor to system  **/

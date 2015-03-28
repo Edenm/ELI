@@ -189,6 +189,7 @@
     <Compile Include="Controllers\FinanceFactorController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\TherapistController.cs" />
+    <Compile Include="Controllers\TreatmentReferenceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +208,7 @@
     <Compile Include="Models\TreatByRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Family.cs" />
+    <Compile Include="ViewModel\TeratmentReferencePatient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
@@ -325,9 +327,11 @@
     <Content Include="Scripts\DataTable\jquery.dataTables_themeroller.css" />
     <Content Include="Scripts\DataTable\jquery.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -384,6 +388,7 @@
     <Content Include="Views\Therapist\_Therapist.cshtml" />
     <Content Include="Views\FinanceFactor\IndexFinancingFactor.cshtml" />
     <Content Include="Views\FinanceFactor\_FinancingFactor.cshtml" />
+    <Content Include="Views\Shared\EditorTemplate\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
