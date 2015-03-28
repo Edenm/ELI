@@ -51,11 +51,15 @@
                                     <img src="~/Images/info.png" />
                                 </a>
                             </td>
+                            
+                            
+
                             <td>
-                                <a href="@Url.Action("DeleteFinancingFactor", "FinanceFactor", new { id = item.FinancingFactorNumber })" title="delete">
-                                    <img src="~/Images/delete.png" />
-                                </a>
+                                @Html.ActionLink("מחיקה", "DeleteFinancingFactor", "FinanceFactor", new { id = item.FinancingFactorNumber }, new { onclick = "return confirm('האם ברצונך למחוק את הגורם המממן?');" })
+
                             </td>
+
+
                         </tr>
                     }
 
