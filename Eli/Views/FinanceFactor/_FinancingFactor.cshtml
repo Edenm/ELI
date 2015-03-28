@@ -45,13 +45,24 @@
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
-        <label float:right class="description" for="element_1">
-            סוג גורם מממן
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.FinancingFactorType)
-            @Html.ValidationMessageFor(model => model.FinancingFactorType)
-        </div>
+        <li id="type1" style="width:100%">
+                    <div style="text-align:right; float:right;">
+                        <label class="description" for="element_2">סוג גורם ממן </label>
+                        <div>
+                            <select dir="rtl" class="element select" id="type" name="type">
+                                <option value="בחר">אנא בחר סוג גורם מממן</option>
+                                <option value="פרטי">פרטי</option>
+                                <option value="עירייה">עירייה</option>
+                                <option value="קרן">קרן</option>
+                                <option value="מערכת חינוך">מערכת חינוך</option>
+                                <option value="פרויקט">פרויקט</option>
+                                <option value="פנימייה">פנימייה</option>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+        <br />
+        <br />
 
         <label float:right class="description" for="element_1">
             שם איש קשר
