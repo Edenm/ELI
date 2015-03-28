@@ -3,6 +3,7 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+
 @{  
     string id;
     string submit;
@@ -17,6 +18,20 @@
         submit = "שמור";
     }
 }
+
+@{
+    string default_val;
+    if (@Model.FinancingFactorType != null)
+    {
+        default_val = @Model.FinancingFactorType;
+    }
+    else
+    {
+        default_val = "פרטי";
+    }
+}
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -45,24 +60,27 @@
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
-        <li id="type1" style="width:100%">
-                    <div style="text-align:right; float:right;">
-                        <label class="description" for="element_2">סוג גורם ממן </label>
-                        <div>
-                            <select dir="rtl" class="element select" id="type" name="type">
-                                <option value="בחר">אנא בחר סוג גורם מממן</option>
-                                <option value="פרטי">פרטי</option>
-                                <option value="עירייה">עירייה</option>
-                                <option value="קרן">קרן</option>
-                                <option value="מערכת חינוך">מערכת חינוך</option>
-                                <option value="פרויקט">פרויקט</option>
-                                <option value="פנימייה">פנימייה</option>
-                            </select>
-                        </div>
-                    </div>
-                </li>
-        <br />
-        <br />
+        <fieldset>
+            <div style="text-align:right; float:right;">
+                <select dir="rtl" class="element select" id="type" name="type">
+
+
+
+                    <option selected="selected" value="@default_val">@default_val</option>
+                    <option value="עירייה">עירייה</option>
+                    <option value="קרן">קרן</option>
+                    <option value="מערכת חינוך">מערכת חינוך</option>
+                    <option value="פרויקט">פרויקט</option>
+                    <option value="פנימייה">פנימייה</option>
+
+
+
+                </select>
+                </div>
+
+
+</fieldset>
+        
 
         <label float:right class="description" for="element_1">
             שם איש קשר
@@ -101,3 +119,8 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#type1').val('Holiday');
+    });
+</script>
