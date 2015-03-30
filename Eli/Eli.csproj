@@ -288,6 +288,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\add.png" />
+    <Content Include="Images\blueDelete.PNG" />
     <Content Include="Images\DataTable\back_disabled.png" />
     <Content Include="Images\DataTable\back_enabled.png" />
     <Content Include="Images\DataTable\back_enabled_hover.png" />
@@ -307,6 +308,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\DataTable\Sorting icons.psd" />
+    <Content Include="Images\minor.png" />
     <Content Include="Models\DataConnection.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataConnection.designer.cs</LastGenOutput>
@@ -389,6 +391,9 @@
     <Content Include="Views\FinanceFactor\IndexFinancingFactor.cshtml" />
     <Content Include="Views\FinanceFactor\_FinancingFactor.cshtml" />
     <Content Include="Views\Shared\EditorTemplate\DateTime.cshtml" />
+    <Content Include="Views\TreatmentReference\IndexTreatmentReference.cshtml" />
+    <Content Include="Views\TreatmentReference\_Treatment.cshtml" />
+    <Content Include="Views\TreatmentReference\View1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -60,6 +60,11 @@ namespace Eli.Models
             get { return db.tblTreatments; }
         }
 
+        public Table<tblReferenceTherapist> ReferenceTherapist
+        {
+            get { return db.tblReferenceTherapists; }
+        }
+
         public Table<tblReferenceTherapistTreatment> ReferenceTherapistTreatment
         {
             get { return db.tblReferenceTherapistTreatments; }
@@ -158,6 +163,7 @@ namespace Eli.Models
 
         //-------------------------Edit methods----------------------------------------------------------
 
+        /* The method is editing exist Finance Factor **/
         public void EditFinanceFactor(tblFinancingFactor ff)
         {
             var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
@@ -169,6 +175,7 @@ namespace Eli.Models
             db.SubmitChanges();
         }
 
+        /* The method is editing exist Therapist**/
         public void EditTherapist(tblTherapist tt)
         {
             var t = Therapist.First(x => x.ID == tt.ID);
@@ -185,7 +192,7 @@ namespace Eli.Models
             db.SubmitChanges();
         }
 
-        /* The method is editing exist patient**/
+        /* The method is editing exist Patient**/
         public void EditPatient(tblPatient pat)
         {
             var patient = Patients.First(p => p.ID == pat.ID);
@@ -234,6 +241,13 @@ namespace Eli.Models
 
         //-----------------------Query Method----------------------------------------------------------------
 
+        public tblPatient getPatientById(String pId)
+        {
+            var p = (Patients.Where(pat => pat.ID == pId)).First();
+
+            return p;
+        }
+
         public List<tblBrotherSister> getBrotherSisterByPatient(String PID)
         {
             var BSP= (BrotherSisterPatient.Where(bs => bs.PatientID==PID).Select(bs=> bs.BrotherSisterID));
@@ -252,17 +266,9 @@ namespace Eli.Models
             return P;
         }
 
-        public List<tblReference> getAllReferencesByPatients(string Id)
-        {
-            var Ref = Reference.Where(r => r.PatientID == Id).ToList();
 
-            foreach (tblReference r in Ref)
-            {
 
-            }
-
-            return Ref;
-        }
+       
 
     }
 

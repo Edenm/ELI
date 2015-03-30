@@ -2,6 +2,7 @@
 @using Eli.Models;
 @using System;
 @using System.Collections.Generic;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +42,7 @@
                             <td> @FullName</td>   
                             <td> @item.ContcatPhoneNumber </td>
                             <td>
-                                <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
+                                <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
                                     <img src="~/Images/info.png" />
                                 </a>
                             </td>
