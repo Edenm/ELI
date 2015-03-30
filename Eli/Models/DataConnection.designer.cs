@@ -20,6 +20,7 @@ namespace Eli.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
+    using System.ComponentModel.DataAnnotations;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
@@ -625,7 +626,8 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "חובה למלא שם גורן מממן")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם גורם מממן אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
@@ -665,7 +667,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא שם איש קשר")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  איש קשר אינו יכול להכיל מספרים")]
+        
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string ContactName
 		{
@@ -685,7 +690,12 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא מספר טלפון")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "טלפון חייב להכיל רק ספרות")]
+
+        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10) NOT NULL", CanBeNull=false)]
 		public string ContcatPhoneNumber
 		{
@@ -705,7 +715,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא דואר אלקטרוני")]
+        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
 		public string ContactMail
 		{
