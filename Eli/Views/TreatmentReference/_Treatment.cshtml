@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Eli.Models.tblTreatment>
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+
+
+<!-- Modal -->
+
+<div class="collapse" id="@ViewBag.Ref">
+    <div class="well">
+        <a class="btn " data-toggle="collapse" align="left" href="#@ViewBag.Ref" aria-expanded="false" aria-controls="collapseExample">
+            <img src="~/Images/blueDelete.PNG" />
+        </a>
+        <div align="right" dir="rtl">
+            <h4>טיפולים עבור הפניה @ViewBag.Ref</h4>
+            <h4 align="right">חיפוש:</h4>
+            <table id="myTable" class="display table">
+                <thead>
+                    <tr>
+                        <th>מספר טיפול</th>
+                        <th>מטרת טיפול</th>
+                        <th>תיאור טיפול</th>
+                        <th>מקום טיפול</th>
+                        <th>תאריך</th>
+                        <th>שעת התחלה</th>
+                        <th>האם שולם</th>
+                        <th>גורם מממן</th>
+                        <th>שם משפחה מטפל</th>
+                        <th>שם פרטי מטפל</th>
+                        <th>ת"ז מטפל</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td> @item.TreatmentNumber </td>
+                            <td> @item.TreatmentGoal </td>
+                            <td> @item.TreatmentDescription </td>
+                            <td> @item.Place </td>
+                            <td> @item.Date </td>
+                            <td> @item.Time </td>
+                            <td> @item.IsPaid </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    var table2 = $('#myTable').DataTable();
+    new $.fn.dataTable.KeyTable(table2);
+ </script>
