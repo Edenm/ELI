@@ -1,0 +1,84 @@
+﻿@model Eli.ViewModel.TeratmentReferencePatient
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/DataTable/dataTables.keyTable.js"></script>
+    <script src="~/Scripts/DataTable/jquery.js"></script>
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+    <link href="~/Scripts/DataTable/dataTables.keyTable.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTable/jquery.dataTables.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/themes/base/css")
+</head>
+<body>
+
+    <div align="right" dir="rtl">
+        <h2 align="center" style="color:blue">הפניות וטיפולים</h2>
+
+        @{String name = Model.Patient.ID + " " + Model.Patient.PatientFirstName + " " + Model.Patient.PatientSurName; }
+        <h4><b> @name</b></h4>
+
+
+        <div class="table-responsive">
+            <table id="reference" class="display table" width="100%">
+                <thead>
+                    <tr>
+                        <th>מספר הפנייה</th>
+                        <th>סטטוס הפניה</th>
+                        <th>תיאור</th>
+                        <th>כיצד הגיע</th>
+                        <th>סוג פגיעה</th>
+                        <th>טיפולים</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.getAllReferencesByPatients(@Model.Patient.ID))
+                    {
+                        <tr>
+                            <td> @item.ReferenceNumber</td>
+                            <td> @item.StatusReference </td>
+                            <td> @item.OtherStatus </td>
+                            <td> @item.AbuseType </td>
+                            <td> @item.ReferenceSource </td>
+                            <td>
+                                <a class="btn " data-toggle="collapse" href="#@item.ReferenceNumber" aria-expanded="false" aria-controls="collapseExample">
+                                    <img src="~/Images/info.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br /><br />
+
+        </div>
+    </div>
+
+    @foreach (tblReference item in Model.getAllReferencesByPatients(@Model.Patient.ID))
+    {
+        @Html.Partial("_Treatment", Model.getAllTreatmentByReferenceNumber(@item.ReferenceNumber), new ViewDataDictionary { { "Ref", @item.ReferenceNumber } });
+    }
+
+
+
+
+    <script>
+        var table1 = $('#reference').DataTable();
+        new $.fn.dataTable.KeyTable(table1);
+    </script>
+
+
+
+</body>
+
+</html>
+
+

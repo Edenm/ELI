@@ -393,7 +393,6 @@
     <Content Include="Views\Shared\EditorTemplate\DateTime.cshtml" />
     <Content Include="Views\TreatmentReference\IndexTreatmentReference.cshtml" />
     <Content Include="Views\TreatmentReference\_Treatment.cshtml" />
-    <Content Include="Views\TreatmentReference\View1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
