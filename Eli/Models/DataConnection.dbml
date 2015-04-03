@@ -79,6 +79,8 @@
       <Column Name="OtherStatus" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="AbuseType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="ReferenceSource" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="tblReference_tblReferenceTherapist" Member="tblReferenceTherapists" ThisKey="ReferenceNumber" OtherKey="ReferenceNumber" Type="tblReferenceTherapist" />
       <Association Name="tblReference_tblRefererencePatient" Member="tblRefererencePatients" ThisKey="ReferenceNumber" OtherKey="ReferenceNumber" Type="tblRefererencePatient" />
     </Type>
@@ -87,20 +89,9 @@
     <Type Name="tblReferenceTherapist">
       <Column Name="ReferenceNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TherapistID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Association Name="tblReferenceTherapist_tblReferenceTherapistTreatment" Member="tblReferenceTherapistTreatments" ThisKey="ReferenceNumber,TherapistID" OtherKey="ReferenceNumber,TherapistID" Type="tblReferenceTherapistTreatment" />
+      <Association Name="tblReferenceTherapist_tblTreatment" Member="tblTreatments" ThisKey="ReferenceNumber,TherapistID" OtherKey="ReferenceNumber,TherapistID" Type="tblTreatment" />
       <Association Name="tblReference_tblReferenceTherapist" Member="tblReference" ThisKey="ReferenceNumber" OtherKey="ReferenceNumber" Type="tblReference" IsForeignKey="true" />
       <Association Name="tblTherapist_tblReferenceTherapist" Member="tblTherapist" ThisKey="TherapistID" OtherKey="ID" Type="tblTherapist" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblReferenceTherapistTreatment" Member="tblReferenceTherapistTreatments">
-    <Type Name="tblReferenceTherapistTreatment">
-      <Column Name="ReferenceNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TherapistID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TreatmentNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="tblReferenceTherapist_tblReferenceTherapistTreatment" Member="tblReferenceTherapist" ThisKey="ReferenceNumber,TherapistID" OtherKey="ReferenceNumber,TherapistID" Type="tblReferenceTherapist" IsForeignKey="true" />
-      <Association Name="tblTreatment_tblReferenceTherapistTreatment" Member="tblTreatment" ThisKey="TreatmentNumber" OtherKey="TreatmentNumber" Type="tblTreatment" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblRefererencePatient" Member="tblRefererencePatients">
@@ -135,13 +126,15 @@
       <Column Name="TreatmentDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="SummaryTreatment" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="NextTreat" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="TreatmentDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
       <Column Name="Place" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="IsPaid" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
       <Column Name="FinancingFactorNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblTreatment_tblReferenceTherapistTreatment" Member="tblReferenceTherapistTreatments" ThisKey="TreatmentNumber" OtherKey="TreatmentNumber" Type="tblReferenceTherapistTreatment" />
+      <Column Name="ReferenceNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TherapistID" Type="System.String" DbType="Char(9)" CanBeNull="true" />
       <Association Name="tblFinancingFactor_tblTreatment" Member="tblFinancingFactor" ThisKey="FinancingFactorNumber" OtherKey="FinancingFactorNumber" Type="tblFinancingFactor" IsForeignKey="true" />
+      <Association Name="tblReferenceTherapist_tblTreatment" Member="tblReferenceTherapist" ThisKey="ReferenceNumber,TherapistID" OtherKey="ReferenceNumber,TherapistID" Type="tblReferenceTherapist" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

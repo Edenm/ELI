@@ -54,9 +54,6 @@ namespace Eli.Models
     partial void InserttblReferenceTherapist(tblReferenceTherapist instance);
     partial void UpdatetblReferenceTherapist(tblReferenceTherapist instance);
     partial void DeletetblReferenceTherapist(tblReferenceTherapist instance);
-    partial void InserttblReferenceTherapistTreatment(tblReferenceTherapistTreatment instance);
-    partial void UpdatetblReferenceTherapistTreatment(tblReferenceTherapistTreatment instance);
-    partial void DeletetblReferenceTherapistTreatment(tblReferenceTherapistTreatment instance);
     partial void InserttblRefererencePatient(tblRefererencePatient instance);
     partial void UpdatetblRefererencePatient(tblRefererencePatient instance);
     partial void DeletetblRefererencePatient(tblRefererencePatient instance);
@@ -159,14 +156,6 @@ namespace Eli.Models
 			get
 			{
 				return this.GetTable<tblReferenceTherapist>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblReferenceTherapistTreatment> tblReferenceTherapistTreatments
-		{
-			get
-			{
-				return this.GetTable<tblReferenceTherapistTreatment>();
 			}
 		}
 		
@@ -1661,6 +1650,10 @@ namespace Eli.Models
 		
 		private string _ReferenceSource;
 		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
 		private EntitySet<tblReferenceTherapist> _tblReferenceTherapists;
 		
 		private EntitySet<tblRefererencePatient> _tblRefererencePatients;
@@ -1681,6 +1674,10 @@ namespace Eli.Models
     partial void OnAbuseTypeChanged();
     partial void OnReferenceSourceChanging(string value);
     partial void OnReferenceSourceChanged();
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
     #endregion
 		
 		public tblReference()
@@ -1810,6 +1807,46 @@ namespace Eli.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblReference_tblReferenceTherapist", Storage="_tblReferenceTherapists", ThisKey="ReferenceNumber", OtherKey="ReferenceNumber")]
 		public EntitySet<tblReferenceTherapist> tblReferenceTherapists
 		{
@@ -1891,11 +1928,7 @@ namespace Eli.Models
 		
 		private string _TherapistID;
 		
-		private System.Nullable<System.DateTime> _StartDate;
-		
-		private System.Nullable<System.DateTime> _EndDate;
-		
-		private EntitySet<tblReferenceTherapistTreatment> _tblReferenceTherapistTreatments;
+		private EntitySet<tblTreatment> _tblTreatments;
 		
 		private EntityRef<tblReference> _tblReference;
 		
@@ -1909,15 +1942,11 @@ namespace Eli.Models
     partial void OnReferenceNumberChanged();
     partial void OnTherapistIDChanging(string value);
     partial void OnTherapistIDChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
     #endregion
 		
 		public tblReferenceTherapist()
 		{
-			this._tblReferenceTherapistTreatments = new EntitySet<tblReferenceTherapistTreatment>(new Action<tblReferenceTherapistTreatment>(this.attach_tblReferenceTherapistTreatments), new Action<tblReferenceTherapistTreatment>(this.detach_tblReferenceTherapistTreatments));
+			this._tblTreatments = new EntitySet<tblTreatment>(new Action<tblTreatment>(this.attach_tblTreatments), new Action<tblTreatment>(this.detach_tblTreatments));
 			this._tblReference = default(EntityRef<tblReference>);
 			this._tblTherapist = default(EntityRef<tblTherapist>);
 			OnCreated();
@@ -1971,56 +2000,16 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
-		public System.Nullable<System.DateTime> StartDate
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblReferenceTherapist_tblTreatment", Storage="_tblTreatments", ThisKey="ReferenceNumber,TherapistID", OtherKey="ReferenceNumber,TherapistID")]
+		public EntitySet<tblTreatment> tblTreatments
 		{
 			get
 			{
-				return this._StartDate;
+				return this._tblTreatments;
 			}
 			set
 			{
-				if ((this._StartDate != value))
-				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
-		public System.Nullable<System.DateTime> EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblReferenceTherapist_tblReferenceTherapistTreatment", Storage="_tblReferenceTherapistTreatments", ThisKey="ReferenceNumber,TherapistID", OtherKey="ReferenceNumber,TherapistID")]
-		public EntitySet<tblReferenceTherapistTreatment> tblReferenceTherapistTreatments
-		{
-			get
-			{
-				return this._tblReferenceTherapistTreatments;
-			}
-			set
-			{
-				this._tblReferenceTherapistTreatments.Assign(value);
+				this._tblTreatments.Assign(value);
 			}
 		}
 		
@@ -2112,214 +2101,16 @@ namespace Eli.Models
 			}
 		}
 		
-		private void attach_tblReferenceTherapistTreatments(tblReferenceTherapistTreatment entity)
+		private void attach_tblTreatments(tblTreatment entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblReferenceTherapist = this;
 		}
 		
-		private void detach_tblReferenceTherapistTreatments(tblReferenceTherapistTreatment entity)
+		private void detach_tblTreatments(tblTreatment entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblReferenceTherapist = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblReferenceTherapistTreatment")]
-	public partial class tblReferenceTherapistTreatment : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ReferenceNumber;
-		
-		private string _TherapistID;
-		
-		private int _TreatmentNumber;
-		
-		private EntityRef<tblReferenceTherapist> _tblReferenceTherapist;
-		
-		private EntityRef<tblTreatment> _tblTreatment;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnReferenceNumberChanging(int value);
-    partial void OnReferenceNumberChanged();
-    partial void OnTherapistIDChanging(string value);
-    partial void OnTherapistIDChanged();
-    partial void OnTreatmentNumberChanging(int value);
-    partial void OnTreatmentNumberChanged();
-    #endregion
-		
-		public tblReferenceTherapistTreatment()
-		{
-			this._tblReferenceTherapist = default(EntityRef<tblReferenceTherapist>);
-			this._tblTreatment = default(EntityRef<tblTreatment>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ReferenceNumber
-		{
-			get
-			{
-				return this._ReferenceNumber;
-			}
-			set
-			{
-				if ((this._ReferenceNumber != value))
-				{
-					if (this._tblReferenceTherapist.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReferenceNumberChanging(value);
-					this.SendPropertyChanging();
-					this._ReferenceNumber = value;
-					this.SendPropertyChanged("ReferenceNumber");
-					this.OnReferenceNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string TherapistID
-		{
-			get
-			{
-				return this._TherapistID;
-			}
-			set
-			{
-				if ((this._TherapistID != value))
-				{
-					if (this._tblReferenceTherapist.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTherapistIDChanging(value);
-					this.SendPropertyChanging();
-					this._TherapistID = value;
-					this.SendPropertyChanged("TherapistID");
-					this.OnTherapistIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int TreatmentNumber
-		{
-			get
-			{
-				return this._TreatmentNumber;
-			}
-			set
-			{
-				if ((this._TreatmentNumber != value))
-				{
-					if (this._tblTreatment.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTreatmentNumberChanging(value);
-					this.SendPropertyChanging();
-					this._TreatmentNumber = value;
-					this.SendPropertyChanged("TreatmentNumber");
-					this.OnTreatmentNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblReferenceTherapist_tblReferenceTherapistTreatment", Storage="_tblReferenceTherapist", ThisKey="ReferenceNumber,TherapistID", OtherKey="ReferenceNumber,TherapistID", IsForeignKey=true)]
-		public tblReferenceTherapist tblReferenceTherapist
-		{
-			get
-			{
-				return this._tblReferenceTherapist.Entity;
-			}
-			set
-			{
-				tblReferenceTherapist previousValue = this._tblReferenceTherapist.Entity;
-				if (((previousValue != value) 
-							|| (this._tblReferenceTherapist.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblReferenceTherapist.Entity = null;
-						previousValue.tblReferenceTherapistTreatments.Remove(this);
-					}
-					this._tblReferenceTherapist.Entity = value;
-					if ((value != null))
-					{
-						value.tblReferenceTherapistTreatments.Add(this);
-						this._ReferenceNumber = value.ReferenceNumber;
-						this._TherapistID = value.TherapistID;
-					}
-					else
-					{
-						this._ReferenceNumber = default(int);
-						this._TherapistID = default(string);
-					}
-					this.SendPropertyChanged("tblReferenceTherapist");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTreatment_tblReferenceTherapistTreatment", Storage="_tblTreatment", ThisKey="TreatmentNumber", OtherKey="TreatmentNumber", IsForeignKey=true)]
-		public tblTreatment tblTreatment
-		{
-			get
-			{
-				return this._tblTreatment.Entity;
-			}
-			set
-			{
-				tblTreatment previousValue = this._tblTreatment.Entity;
-				if (((previousValue != value) 
-							|| (this._tblTreatment.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblTreatment.Entity = null;
-						previousValue.tblReferenceTherapistTreatments.Remove(this);
-					}
-					this._tblTreatment.Entity = value;
-					if ((value != null))
-					{
-						value.tblReferenceTherapistTreatments.Add(this);
-						this._TreatmentNumber = value.TreatmentNumber;
-					}
-					else
-					{
-						this._TreatmentNumber = default(int);
-					}
-					this.SendPropertyChanged("tblTreatment");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -2817,9 +2608,9 @@ namespace Eli.Models
 		
 		private string _NextTreat;
 		
-		private System.Nullable<System.DateTime> _Date;
+		private System.Nullable<System.DateTime> _TreatmentDate;
 		
-		private System.Nullable<System.TimeSpan> _Time;
+		private System.Nullable<System.TimeSpan> _StartTime;
 		
 		private string _Place;
 		
@@ -2827,9 +2618,13 @@ namespace Eli.Models
 		
 		private System.Nullable<int> _FinancingFactorNumber;
 		
-		private EntitySet<tblReferenceTherapistTreatment> _tblReferenceTherapistTreatments;
+		private System.Nullable<int> _ReferenceNumber;
+		
+		private string _TherapistID;
 		
 		private EntityRef<tblFinancingFactor> _tblFinancingFactor;
+		
+		private EntityRef<tblReferenceTherapist> _tblReferenceTherapist;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2849,22 +2644,26 @@ namespace Eli.Models
     partial void OnSummaryTreatmentChanged();
     partial void OnNextTreatChanging(string value);
     partial void OnNextTreatChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateChanged();
-    partial void OnTimeChanging(System.Nullable<System.TimeSpan> value);
-    partial void OnTimeChanged();
+    partial void OnTreatmentDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnTreatmentDateChanged();
+    partial void OnStartTimeChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnStartTimeChanged();
     partial void OnPlaceChanging(string value);
     partial void OnPlaceChanged();
     partial void OnIsPaidChanging(string value);
     partial void OnIsPaidChanged();
     partial void OnFinancingFactorNumberChanging(System.Nullable<int> value);
     partial void OnFinancingFactorNumberChanged();
+    partial void OnReferenceNumberChanging(System.Nullable<int> value);
+    partial void OnReferenceNumberChanged();
+    partial void OnTherapistIDChanging(string value);
+    partial void OnTherapistIDChanged();
     #endregion
 		
 		public tblTreatment()
 		{
-			this._tblReferenceTherapistTreatments = new EntitySet<tblReferenceTherapistTreatment>(new Action<tblReferenceTherapistTreatment>(this.attach_tblReferenceTherapistTreatments), new Action<tblReferenceTherapistTreatment>(this.detach_tblReferenceTherapistTreatments));
 			this._tblFinancingFactor = default(EntityRef<tblFinancingFactor>);
+			this._tblReferenceTherapist = default(EntityRef<tblReferenceTherapist>);
 			OnCreated();
 		}
 		
@@ -3008,42 +2807,42 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date")]
-		public System.Nullable<System.DateTime> Date
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDate", DbType="Date")]
+		public System.Nullable<System.DateTime> TreatmentDate
 		{
 			get
 			{
-				return this._Date;
+				return this._TreatmentDate;
 			}
 			set
 			{
-				if ((this._Date != value))
+				if ((this._TreatmentDate != value))
 				{
-					this.OnDateChanging(value);
+					this.OnTreatmentDateChanging(value);
 					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
+					this._TreatmentDate = value;
+					this.SendPropertyChanged("TreatmentDate");
+					this.OnTreatmentDateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time")]
-		public System.Nullable<System.TimeSpan> Time
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> StartTime
 		{
 			get
 			{
-				return this._Time;
+				return this._StartTime;
 			}
 			set
 			{
-				if ((this._Time != value))
+				if ((this._StartTime != value))
 				{
-					this.OnTimeChanging(value);
+					this.OnStartTimeChanging(value);
 					this.SendPropertyChanging();
-					this._Time = value;
-					this.SendPropertyChanged("Time");
-					this.OnTimeChanged();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
 				}
 			}
 		}
@@ -3112,16 +2911,51 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTreatment_tblReferenceTherapistTreatment", Storage="_tblReferenceTherapistTreatments", ThisKey="TreatmentNumber", OtherKey="TreatmentNumber")]
-		public EntitySet<tblReferenceTherapistTreatment> tblReferenceTherapistTreatments
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNumber", DbType="Int")]
+		public System.Nullable<int> ReferenceNumber
 		{
 			get
 			{
-				return this._tblReferenceTherapistTreatments;
+				return this._ReferenceNumber;
 			}
 			set
 			{
-				this._tblReferenceTherapistTreatments.Assign(value);
+				if ((this._ReferenceNumber != value))
+				{
+					if (this._tblReferenceTherapist.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReferenceNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ReferenceNumber = value;
+					this.SendPropertyChanged("ReferenceNumber");
+					this.OnReferenceNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistID", DbType="Char(9)")]
+		public string TherapistID
+		{
+			get
+			{
+				return this._TherapistID;
+			}
+			set
+			{
+				if ((this._TherapistID != value))
+				{
+					if (this._tblReferenceTherapist.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTherapistIDChanging(value);
+					this.SendPropertyChanging();
+					this._TherapistID = value;
+					this.SendPropertyChanged("TherapistID");
+					this.OnTherapistIDChanged();
+				}
 			}
 		}
 		
@@ -3159,6 +2993,42 @@ namespace Eli.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblReferenceTherapist_tblTreatment", Storage="_tblReferenceTherapist", ThisKey="ReferenceNumber,TherapistID", OtherKey="ReferenceNumber,TherapistID", IsForeignKey=true)]
+		public tblReferenceTherapist tblReferenceTherapist
+		{
+			get
+			{
+				return this._tblReferenceTherapist.Entity;
+			}
+			set
+			{
+				tblReferenceTherapist previousValue = this._tblReferenceTherapist.Entity;
+				if (((previousValue != value) 
+							|| (this._tblReferenceTherapist.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblReferenceTherapist.Entity = null;
+						previousValue.tblTreatments.Remove(this);
+					}
+					this._tblReferenceTherapist.Entity = value;
+					if ((value != null))
+					{
+						value.tblTreatments.Add(this);
+						this._ReferenceNumber = value.ReferenceNumber;
+						this._TherapistID = value.TherapistID;
+					}
+					else
+					{
+						this._ReferenceNumber = default(Nullable<int>);
+						this._TherapistID = default(string);
+					}
+					this.SendPropertyChanged("tblReferenceTherapist");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3177,18 +3047,6 @@ namespace Eli.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_tblReferenceTherapistTreatments(tblReferenceTherapistTreatment entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblTreatment = this;
-		}
-		
-		private void detach_tblReferenceTherapistTreatments(tblReferenceTherapistTreatment entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblTreatment = null;
 		}
 	}
 }
