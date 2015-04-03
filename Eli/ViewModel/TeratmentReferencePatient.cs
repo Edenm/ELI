@@ -11,6 +11,8 @@ namespace Eli.ViewModel
     {
         public tblPatient Patient;
 
+        public List<tblRefererencePatient> referencePatients;
+
         public List<tblReference> references;
 
         public List<tblReferenceTherapist> referenceTherapists;
@@ -28,6 +30,8 @@ namespace Eli.ViewModel
 
             Patient = db.getPatientById(id);
 
+            referencePatients = db.RefererencePatients.ToList();
+
             references = db.Reference.ToList();
 
             referenceTherapists = db.ReferenceTherapist.ToList();
@@ -40,7 +44,9 @@ namespace Eli.ViewModel
 
         public List<tblReference> getAllReferencesByPatients(string id)
         {
-            var refe = references.Where(r => r.PatientID == id).ToList();
+            var referencesList = referencePatients.Where(p => p.PatientID == id).Select(re=> re.ReferenceNumber).ToList();
+
+            var refe = references.Where(r => referencesList.Contains(r.ReferenceNumber)).ToList();
 
             return refe;
         }

@@ -48,13 +48,7 @@
                                                         <div>אם</div>; 
                                                         }
                                                 </td>
-                                                <td>
-                                                    <div class="editor-field">
-                                                        @Html.EditorFor(model => model.Parent[count].FirstName)
-                                                        @Html.ValidationMessageFor(model => model.Parent[count].FirstName)
-                                                    </div>
-                                                    
-                                                </td>
+                                                <td> @item.FirstName </td>
                                                 <td> @item.SurName </td>
                                                 <td> @item.IsWorking </td>
                                                 <td> @item.ContcatPhoneNumber </td>

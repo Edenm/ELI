@@ -139,28 +139,6 @@ namespace Eli.Controllers
         }
 
 
-        /* The Method get parameters finance factor and removes its from system  **/
-
-        public ActionResult DeleteFinancingFactor(int id)
-        {
-
-            
-                EliManagerDB db = new EliManagerDB();
-
-
-                tblFinancingFactor ff = db.FinancingFactor.ToArray().Single(p => p.FinancingFactorNumber == (id));
-                var manager = new EliManagerDB();
-                manager.removeFinanceFactor(ff);
-
-
-
-
-                return RedirectToAction("IndexFinancingFactor");
-           
-            
-        }
-
-
 
         /* The Method get parameters of finance factor and displays his details  **/
 

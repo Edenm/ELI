@@ -194,9 +194,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BrotherSister.cs" />
-    <Compile Include="Models\DataConnection.cs">
-      <DependentUpon>DataConnection.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Models\DataConnection.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -379,13 +376,13 @@
     <Content Include="Views\Patient\TreatByReference.cshtml" />
     <Content Include="Views\FinanceFactor\FinancingFactorDetails.cshtml" />
     <Content Include="Views\FinanceFactor\NewFinanceFactor.cshtml" />
-    <Content Include="Views\Patient\MainPatients.cshtml" />
+    <Content Include="Views\Patient\IndexPatients.cshtml" />
     <Content Include="Views\FinanceFactor\EditFinanceFactor.cshtml" />
     <Content Include="Views\FinanceFactor\MainFinancingFactor.cshtml" />
     <Content Include="Views\Patient\_Patient.cshtml" />
     <Content Include="Views\Patient\_Family.cshtml" />
-    <Content Include="Views\Shared\_EditFamily.cshtml" />
-    <Content Include="Views\Shared\_Parent.cshtml" />
+    <Content Include="Views\Patient\_EditFamily.cshtml" />
+    <Content Include="Views\Patient\_Parent.cshtml" />
     <Content Include="Views\Therapist\IndexTherapist.cshtml" />
     <Content Include="Views\Therapist\_Therapist.cshtml" />
     <Content Include="Views\FinanceFactor\IndexFinancingFactor.cshtml" />

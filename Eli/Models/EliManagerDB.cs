@@ -80,6 +80,11 @@ namespace Eli.Models
             get { return db.tblParents; }
         }
 
+        public Table<tblRefererencePatient> RefererencePatients
+        {
+            get { return db.tblRefererencePatients; }
+        }
+
 //-------------------------Add methods----------------------------------------------------------
         
         /* The method add patient with all the details about him **/
@@ -141,25 +146,7 @@ namespace Eli.Models
             FinancingFactor.InsertOnSubmit(ff);
             db.SubmitChanges();
         }
-
-
-        //-------------------------Remove methods----------------------------------------------------------
-
-        public void removeFinanceFactor(tblFinancingFactor ff)
-        {
-            var FinanceFactores = from t in Treatment
-                                  where t.FinancingFactorNumber.Equals(ff.FinancingFactorNumber)
-                                  select t;
-            if (FinanceFactores.Any())
-                throw new Exception("You cant delete  Finance factor id=" + ff.FinancingFactorNumber + "name=" + ff.Name + "because its conected to treatment");
-            var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
-
-            FinancingFactor.DeleteOnSubmit(d);
-            db.SubmitChanges();
-
-            return;
-
-        }
+     
 
         //-------------------------Edit methods----------------------------------------------------------
 
@@ -239,7 +226,7 @@ namespace Eli.Models
         }
 
 
-        //-----------------------Query Method----------------------------------------------------------------
+        //-----------------------get Method----------------------------------------------------------------
 
         public tblPatient getPatientById(String pId)
         {
