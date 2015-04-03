@@ -20,7 +20,6 @@ namespace Eli.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-    using System.ComponentModel.DataAnnotations;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
@@ -58,6 +57,9 @@ namespace Eli.Models
     partial void InserttblReferenceTherapistTreatment(tblReferenceTherapistTreatment instance);
     partial void UpdatetblReferenceTherapistTreatment(tblReferenceTherapistTreatment instance);
     partial void DeletetblReferenceTherapistTreatment(tblReferenceTherapistTreatment instance);
+    partial void InserttblRefererencePatient(tblRefererencePatient instance);
+    partial void UpdatetblRefererencePatient(tblRefererencePatient instance);
+    partial void DeletetblRefererencePatient(tblRefererencePatient instance);
     partial void InserttblTherapist(tblTherapist instance);
     partial void UpdatetblTherapist(tblTherapist instance);
     partial void DeletetblTherapist(tblTherapist instance);
@@ -168,6 +170,14 @@ namespace Eli.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<tblRefererencePatient> tblRefererencePatients
+		{
+			get
+			{
+				return this.GetTable<tblRefererencePatient>();
+			}
+		}
+		
 		public System.Data.Linq.Table<tblTherapist> tblTherapists
 		{
 			get
@@ -197,7 +207,7 @@ namespace Eli.Models
 		
 		private string _SurName;
 		
-		private System.DateTime _BirthDate;
+		private System.Nullable<System.DateTime> _BirthDate;
 		
 		private string _Gender;
 		
@@ -215,7 +225,7 @@ namespace Eli.Models
     partial void OnFirstNameChanged();
     partial void OnSurNameChanging(string value);
     partial void OnSurNameChanged();
-    partial void OnBirthDateChanging(System.DateTime value);
+    partial void OnBirthDateChanging(System.Nullable<System.DateTime> value);
     partial void OnBirthDateChanged();
     partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
@@ -289,8 +299,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date NOT NULL")]
-		public System.DateTime BirthDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
+		public System.Nullable<System.DateTime> BirthDate
 		{
 			get
 			{
@@ -329,7 +339,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudyFramework", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudyFramework", DbType="VarChar(MAX)")]
 		public string StudyFramework
 		{
 			get
@@ -575,6 +585,8 @@ namespace Eli.Models
 		
 		private string _FinancingFactorType;
 		
+		private string _AddressFinancingFactor;
+		
 		private string _ContactName;
 		
 		private string _ContcatPhoneNumber;
@@ -593,6 +605,8 @@ namespace Eli.Models
     partial void OnNameChanged();
     partial void OnFinancingFactorTypeChanging(string value);
     partial void OnFinancingFactorTypeChanged();
+    partial void OnAddressFinancingFactorChanging(string value);
+    partial void OnAddressFinancingFactorChanged();
     partial void OnContactNameChanging(string value);
     partial void OnContactNameChanged();
     partial void OnContcatPhoneNumberChanging(string value);
@@ -626,9 +640,8 @@ namespace Eli.Models
 				}
 			}
 		}
-        [Required(ErrorMessage = "חובה למלא שם גורן מממן")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם גורם מממן אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(20)")]
 		public string Name
 		{
 			get
@@ -648,7 +661,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorType", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorType", DbType="VarChar(15)")]
 		public string FinancingFactorType
 		{
 			get
@@ -667,11 +680,28 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "חובה למלא שם איש קשר")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  איש קשר אינו יכול להכיל מספרים")]
-        
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddressFinancingFactor", DbType="VarChar(MAX)")]
+		public string AddressFinancingFactor
+		{
+			get
+			{
+				return this._AddressFinancingFactor;
+			}
+			set
+			{
+				if ((this._AddressFinancingFactor != value))
+				{
+					this.OnAddressFinancingFactorChanging(value);
+					this.SendPropertyChanging();
+					this._AddressFinancingFactor = value;
+					this.SendPropertyChanged("AddressFinancingFactor");
+					this.OnAddressFinancingFactorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactName", DbType="VarChar(20)")]
 		public string ContactName
 		{
 			get
@@ -690,13 +720,8 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "חובה למלא מספר טלפון")]
-        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "טלפון חייב להכיל רק ספרות")]
-
-        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
-
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10)")]
 		public string ContcatPhoneNumber
 		{
 			get
@@ -715,10 +740,8 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "חובה למלא דואר אלקטרוני")]
-        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30)")]
 		public string ContactMail
 		{
 			get
@@ -796,7 +819,7 @@ namespace Eli.Models
 		
 		private string _SurName;
 		
-		private System.DateTime _BirthDate;
+		private System.Nullable<System.DateTime> _BirthDate;
 		
 		private string _Gender;
 		
@@ -810,6 +833,8 @@ namespace Eli.Models
 		
 		private string _Explain;
 		
+		private string _Comment;
+		
 		private EntitySet<tblParentPatient> _tblParentPatients;
 		
     #region Extensibility Method Definitions
@@ -822,7 +847,7 @@ namespace Eli.Models
     partial void OnFirstNameChanged();
     partial void OnSurNameChanging(string value);
     partial void OnSurNameChanged();
-    partial void OnBirthDateChanging(System.DateTime value);
+    partial void OnBirthDateChanging(System.Nullable<System.DateTime> value);
     partial void OnBirthDateChanged();
     partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
@@ -836,6 +861,8 @@ namespace Eli.Models
     partial void OnIsWorkingChanged();
     partial void OnExplainChanging(string value);
     partial void OnExplainChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
     #endregion
 		
 		public tblParent()
@@ -904,8 +931,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date NOT NULL")]
-		public System.DateTime BirthDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
+		public System.Nullable<System.DateTime> BirthDate
 		{
 			get
 			{
@@ -964,7 +991,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10)")]
 		public string ContcatPhoneNumber
 		{
 			get
@@ -984,7 +1011,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30)")]
 		public string ContactMail
 		{
 			get
@@ -1040,6 +1067,26 @@ namespace Eli.Models
 					this._Explain = value;
 					this.SendPropertyChanged("Explain");
 					this.OnExplainChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(MAX)")]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
 				}
 			}
 		}
@@ -1270,7 +1317,7 @@ namespace Eli.Models
 		
 		private string _PatientSurName;
 		
-		private System.DateTime _BirthDate;
+		private System.Nullable<System.DateTime> _BirthDate;
 		
 		private string _Gender;
 		
@@ -1280,11 +1327,13 @@ namespace Eli.Models
 		
 		private string _ContcatPhoneNumber;
 		
+		private string _StatusPatient;
+		
 		private EntitySet<tblBrotherSisterPatient> _tblBrotherSisterPatients;
 		
 		private EntitySet<tblParentPatient> _tblParentPatients;
 		
-		private EntitySet<tblReference> _tblReferences;
+		private EntitySet<tblRefererencePatient> _tblRefererencePatients;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1296,7 +1345,7 @@ namespace Eli.Models
     partial void OnPatientFirstNameChanged();
     partial void OnPatientSurNameChanging(string value);
     partial void OnPatientSurNameChanged();
-    partial void OnBirthDateChanging(System.DateTime value);
+    partial void OnBirthDateChanging(System.Nullable<System.DateTime> value);
     partial void OnBirthDateChanged();
     partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
@@ -1306,13 +1355,15 @@ namespace Eli.Models
     partial void OnAddressChanged();
     partial void OnContcatPhoneNumberChanging(string value);
     partial void OnContcatPhoneNumberChanged();
+    partial void OnStatusPatientChanging(string value);
+    partial void OnStatusPatientChanged();
     #endregion
 		
 		public tblPatient()
 		{
 			this._tblBrotherSisterPatients = new EntitySet<tblBrotherSisterPatient>(new Action<tblBrotherSisterPatient>(this.attach_tblBrotherSisterPatients), new Action<tblBrotherSisterPatient>(this.detach_tblBrotherSisterPatients));
 			this._tblParentPatients = new EntitySet<tblParentPatient>(new Action<tblParentPatient>(this.attach_tblParentPatients), new Action<tblParentPatient>(this.detach_tblParentPatients));
-			this._tblReferences = new EntitySet<tblReference>(new Action<tblReference>(this.attach_tblReferences), new Action<tblReference>(this.detach_tblReferences));
+			this._tblRefererencePatients = new EntitySet<tblRefererencePatient>(new Action<tblRefererencePatient>(this.attach_tblRefererencePatients), new Action<tblRefererencePatient>(this.detach_tblRefererencePatients));
 			OnCreated();
 		}
 		
@@ -1376,8 +1427,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date NOT NULL")]
-		public System.DateTime BirthDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
+		public System.Nullable<System.DateTime> BirthDate
 		{
 			get
 			{
@@ -1396,7 +1447,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6)")]
 		public string Gender
 		{
 			get
@@ -1416,7 +1467,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EducationalFramework", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EducationalFramework", DbType="VarChar(MAX)")]
 		public string EducationalFramework
 		{
 			get
@@ -1456,7 +1507,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="VarChar(10)")]
 		public string ContcatPhoneNumber
 		{
 			get
@@ -1472,6 +1523,26 @@ namespace Eli.Models
 					this._ContcatPhoneNumber = value;
 					this.SendPropertyChanged("ContcatPhoneNumber");
 					this.OnContcatPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusPatient", DbType="VarChar(7)")]
+		public string StatusPatient
+		{
+			get
+			{
+				return this._StatusPatient;
+			}
+			set
+			{
+				if ((this._StatusPatient != value))
+				{
+					this.OnStatusPatientChanging(value);
+					this.SendPropertyChanging();
+					this._StatusPatient = value;
+					this.SendPropertyChanged("StatusPatient");
+					this.OnStatusPatientChanged();
 				}
 			}
 		}
@@ -1502,16 +1573,16 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblPatient_tblReference", Storage="_tblReferences", ThisKey="ID", OtherKey="PatientID")]
-		public EntitySet<tblReference> tblReferences
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblPatient_tblRefererencePatient", Storage="_tblRefererencePatients", ThisKey="ID", OtherKey="PatientID")]
+		public EntitySet<tblRefererencePatient> tblRefererencePatients
 		{
 			get
 			{
-				return this._tblReferences;
+				return this._tblRefererencePatients;
 			}
 			set
 			{
-				this._tblReferences.Assign(value);
+				this._tblRefererencePatients.Assign(value);
 			}
 		}
 		
@@ -1559,13 +1630,13 @@ namespace Eli.Models
 			entity.tblPatient = null;
 		}
 		
-		private void attach_tblReferences(tblReference entity)
+		private void attach_tblRefererencePatients(tblRefererencePatient entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblPatient = this;
 		}
 		
-		private void detach_tblReferences(tblReference entity)
+		private void detach_tblRefererencePatients(tblRefererencePatient entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblPatient = null;
@@ -1580,6 +1651,8 @@ namespace Eli.Models
 		
 		private int _ReferenceNumber;
 		
+		private string _ReasonReference;
+		
 		private string _StatusReference;
 		
 		private string _OtherStatus;
@@ -1588,11 +1661,9 @@ namespace Eli.Models
 		
 		private string _ReferenceSource;
 		
-		private string _PatientID;
-		
 		private EntitySet<tblReferenceTherapist> _tblReferenceTherapists;
 		
-		private EntityRef<tblPatient> _tblPatient;
+		private EntitySet<tblRefererencePatient> _tblRefererencePatients;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1600,6 +1671,8 @@ namespace Eli.Models
     partial void OnCreated();
     partial void OnReferenceNumberChanging(int value);
     partial void OnReferenceNumberChanged();
+    partial void OnReasonReferenceChanging(string value);
+    partial void OnReasonReferenceChanged();
     partial void OnStatusReferenceChanging(string value);
     partial void OnStatusReferenceChanged();
     partial void OnOtherStatusChanging(string value);
@@ -1608,14 +1681,12 @@ namespace Eli.Models
     partial void OnAbuseTypeChanged();
     partial void OnReferenceSourceChanging(string value);
     partial void OnReferenceSourceChanged();
-    partial void OnPatientIDChanging(string value);
-    partial void OnPatientIDChanged();
     #endregion
 		
 		public tblReference()
 		{
 			this._tblReferenceTherapists = new EntitySet<tblReferenceTherapist>(new Action<tblReferenceTherapist>(this.attach_tblReferenceTherapists), new Action<tblReferenceTherapist>(this.detach_tblReferenceTherapists));
-			this._tblPatient = default(EntityRef<tblPatient>);
+			this._tblRefererencePatients = new EntitySet<tblRefererencePatient>(new Action<tblRefererencePatient>(this.attach_tblRefererencePatients), new Action<tblRefererencePatient>(this.detach_tblRefererencePatients));
 			OnCreated();
 		}
 		
@@ -1635,6 +1706,26 @@ namespace Eli.Models
 					this._ReferenceNumber = value;
 					this.SendPropertyChanged("ReferenceNumber");
 					this.OnReferenceNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonReference", DbType="VarChar(MAX)")]
+		public string ReasonReference
+		{
+			get
+			{
+				return this._ReasonReference;
+			}
+			set
+			{
+				if ((this._ReasonReference != value))
+				{
+					this.OnReasonReferenceChanging(value);
+					this.SendPropertyChanging();
+					this._ReasonReference = value;
+					this.SendPropertyChanged("ReasonReference");
+					this.OnReasonReferenceChanged();
 				}
 			}
 		}
@@ -1719,30 +1810,6 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", DbType="Char(9) NOT NULL", CanBeNull=false)]
-		public string PatientID
-		{
-			get
-			{
-				return this._PatientID;
-			}
-			set
-			{
-				if ((this._PatientID != value))
-				{
-					if (this._tblPatient.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPatientIDChanging(value);
-					this.SendPropertyChanging();
-					this._PatientID = value;
-					this.SendPropertyChanged("PatientID");
-					this.OnPatientIDChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblReference_tblReferenceTherapist", Storage="_tblReferenceTherapists", ThisKey="ReferenceNumber", OtherKey="ReferenceNumber")]
 		public EntitySet<tblReferenceTherapist> tblReferenceTherapists
 		{
@@ -1756,37 +1823,16 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblPatient_tblReference", Storage="_tblPatient", ThisKey="PatientID", OtherKey="ID", IsForeignKey=true)]
-		public tblPatient tblPatient
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblReference_tblRefererencePatient", Storage="_tblRefererencePatients", ThisKey="ReferenceNumber", OtherKey="ReferenceNumber")]
+		public EntitySet<tblRefererencePatient> tblRefererencePatients
 		{
 			get
 			{
-				return this._tblPatient.Entity;
+				return this._tblRefererencePatients;
 			}
 			set
 			{
-				tblPatient previousValue = this._tblPatient.Entity;
-				if (((previousValue != value) 
-							|| (this._tblPatient.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblPatient.Entity = null;
-						previousValue.tblReferences.Remove(this);
-					}
-					this._tblPatient.Entity = value;
-					if ((value != null))
-					{
-						value.tblReferences.Add(this);
-						this._PatientID = value.ID;
-					}
-					else
-					{
-						this._PatientID = default(string);
-					}
-					this.SendPropertyChanged("tblPatient");
-				}
+				this._tblRefererencePatients.Assign(value);
 			}
 		}
 		
@@ -1821,6 +1867,18 @@ namespace Eli.Models
 			this.SendPropertyChanging();
 			entity.tblReference = null;
 		}
+		
+		private void attach_tblRefererencePatients(tblRefererencePatient entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblReference = this;
+		}
+		
+		private void detach_tblRefererencePatients(tblRefererencePatient entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblReference = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblReferenceTherapist")]
@@ -1833,7 +1891,7 @@ namespace Eli.Models
 		
 		private string _TherapistID;
 		
-		private System.DateTime _StartDate;
+		private System.Nullable<System.DateTime> _StartDate;
 		
 		private System.Nullable<System.DateTime> _EndDate;
 		
@@ -1851,7 +1909,7 @@ namespace Eli.Models
     partial void OnReferenceNumberChanged();
     partial void OnTherapistIDChanging(string value);
     partial void OnTherapistIDChanged();
-    partial void OnStartDateChanging(System.DateTime value);
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
     partial void OnStartDateChanged();
     partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
     partial void OnEndDateChanged();
@@ -1913,8 +1971,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date NOT NULL")]
-		public System.DateTime StartDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
+		public System.Nullable<System.DateTime> StartDate
 		{
 			get
 			{
@@ -2265,6 +2323,174 @@ namespace Eli.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblRefererencePatient")]
+	public partial class tblRefererencePatient : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _PatientID;
+		
+		private int _ReferenceNumber;
+		
+		private EntityRef<tblPatient> _tblPatient;
+		
+		private EntityRef<tblReference> _tblReference;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPatientIDChanging(string value);
+    partial void OnPatientIDChanged();
+    partial void OnReferenceNumberChanging(int value);
+    partial void OnReferenceNumberChanged();
+    #endregion
+		
+		public tblRefererencePatient()
+		{
+			this._tblPatient = default(EntityRef<tblPatient>);
+			this._tblReference = default(EntityRef<tblReference>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string PatientID
+		{
+			get
+			{
+				return this._PatientID;
+			}
+			set
+			{
+				if ((this._PatientID != value))
+				{
+					if (this._tblPatient.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPatientIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientID = value;
+					this.SendPropertyChanged("PatientID");
+					this.OnPatientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ReferenceNumber
+		{
+			get
+			{
+				return this._ReferenceNumber;
+			}
+			set
+			{
+				if ((this._ReferenceNumber != value))
+				{
+					if (this._tblReference.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReferenceNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ReferenceNumber = value;
+					this.SendPropertyChanged("ReferenceNumber");
+					this.OnReferenceNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblPatient_tblRefererencePatient", Storage="_tblPatient", ThisKey="PatientID", OtherKey="ID", IsForeignKey=true)]
+		public tblPatient tblPatient
+		{
+			get
+			{
+				return this._tblPatient.Entity;
+			}
+			set
+			{
+				tblPatient previousValue = this._tblPatient.Entity;
+				if (((previousValue != value) 
+							|| (this._tblPatient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblPatient.Entity = null;
+						previousValue.tblRefererencePatients.Remove(this);
+					}
+					this._tblPatient.Entity = value;
+					if ((value != null))
+					{
+						value.tblRefererencePatients.Add(this);
+						this._PatientID = value.ID;
+					}
+					else
+					{
+						this._PatientID = default(string);
+					}
+					this.SendPropertyChanged("tblPatient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblReference_tblRefererencePatient", Storage="_tblReference", ThisKey="ReferenceNumber", OtherKey="ReferenceNumber", IsForeignKey=true)]
+		public tblReference tblReference
+		{
+			get
+			{
+				return this._tblReference.Entity;
+			}
+			set
+			{
+				tblReference previousValue = this._tblReference.Entity;
+				if (((previousValue != value) 
+							|| (this._tblReference.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblReference.Entity = null;
+						previousValue.tblRefererencePatients.Remove(this);
+					}
+					this._tblReference.Entity = value;
+					if ((value != null))
+					{
+						value.tblRefererencePatients.Add(this);
+						this._ReferenceNumber = value.ReferenceNumber;
+					}
+					else
+					{
+						this._ReferenceNumber = default(int);
+					}
+					this.SendPropertyChanged("tblReference");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblTherapist")]
 	public partial class tblTherapist : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2277,7 +2503,7 @@ namespace Eli.Models
 		
 		private string _TherapistSurName;
 		
-		private System.DateTime _BirthDate;
+		private System.Nullable<System.DateTime> _BirthDate;
 		
 		private string _Gender;
 		
@@ -2303,7 +2529,7 @@ namespace Eli.Models
     partial void OnTherapistFirstNameChanged();
     partial void OnTherapistSurNameChanging(string value);
     partial void OnTherapistSurNameChanged();
-    partial void OnBirthDateChanging(System.DateTime value);
+    partial void OnBirthDateChanging(System.Nullable<System.DateTime> value);
     partial void OnBirthDateChanged();
     partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
@@ -2385,8 +2611,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date NOT NULL")]
-		public System.DateTime BirthDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
+		public System.Nullable<System.DateTime> BirthDate
 		{
 			get
 			{
@@ -2445,7 +2671,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10)")]
 		public string ContcatPhoneNumber
 		{
 			get
@@ -2465,7 +2691,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30)")]
 		public string ContactMail
 		{
 			get
@@ -2581,17 +2807,25 @@ namespace Eli.Models
 		
 		private string _TreatmentGoal;
 		
+		private string _SubjectTreatment;
+		
+		private string _StatusPatientTreatment;
+		
 		private string _TreatmentDescription;
 		
-		private System.DateTime _Date;
+		private string _SummaryTreatment;
 		
-		private System.TimeSpan _Time;
+		private string _NextTreat;
+		
+		private System.Nullable<System.DateTime> _Date;
+		
+		private System.Nullable<System.TimeSpan> _Time;
 		
 		private string _Place;
 		
 		private string _IsPaid;
 		
-		private int _FinancingFactorNumber;
+		private System.Nullable<int> _FinancingFactorNumber;
 		
 		private EntitySet<tblReferenceTherapistTreatment> _tblReferenceTherapistTreatments;
 		
@@ -2605,17 +2839,25 @@ namespace Eli.Models
     partial void OnTreatmentNumberChanged();
     partial void OnTreatmentGoalChanging(string value);
     partial void OnTreatmentGoalChanged();
+    partial void OnSubjectTreatmentChanging(string value);
+    partial void OnSubjectTreatmentChanged();
+    partial void OnStatusPatientTreatmentChanging(string value);
+    partial void OnStatusPatientTreatmentChanged();
     partial void OnTreatmentDescriptionChanging(string value);
     partial void OnTreatmentDescriptionChanged();
-    partial void OnDateChanging(System.DateTime value);
+    partial void OnSummaryTreatmentChanging(string value);
+    partial void OnSummaryTreatmentChanged();
+    partial void OnNextTreatChanging(string value);
+    partial void OnNextTreatChanged();
+    partial void OnDateChanging(System.Nullable<System.DateTime> value);
     partial void OnDateChanged();
-    partial void OnTimeChanging(System.TimeSpan value);
+    partial void OnTimeChanging(System.Nullable<System.TimeSpan> value);
     partial void OnTimeChanged();
     partial void OnPlaceChanging(string value);
     partial void OnPlaceChanged();
     partial void OnIsPaidChanging(string value);
     partial void OnIsPaidChanged();
-    partial void OnFinancingFactorNumberChanging(int value);
+    partial void OnFinancingFactorNumberChanging(System.Nullable<int> value);
     partial void OnFinancingFactorNumberChanged();
     #endregion
 		
@@ -2646,7 +2888,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(MAX)")]
 		public string TreatmentGoal
 		{
 			get
@@ -2666,7 +2908,47 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDescription", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubjectTreatment", DbType="VarChar(MAX)")]
+		public string SubjectTreatment
+		{
+			get
+			{
+				return this._SubjectTreatment;
+			}
+			set
+			{
+				if ((this._SubjectTreatment != value))
+				{
+					this.OnSubjectTreatmentChanging(value);
+					this.SendPropertyChanging();
+					this._SubjectTreatment = value;
+					this.SendPropertyChanged("SubjectTreatment");
+					this.OnSubjectTreatmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusPatientTreatment", DbType="VarChar(MAX)")]
+		public string StatusPatientTreatment
+		{
+			get
+			{
+				return this._StatusPatientTreatment;
+			}
+			set
+			{
+				if ((this._StatusPatientTreatment != value))
+				{
+					this.OnStatusPatientTreatmentChanging(value);
+					this.SendPropertyChanging();
+					this._StatusPatientTreatment = value;
+					this.SendPropertyChanged("StatusPatientTreatment");
+					this.OnStatusPatientTreatmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDescription", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentDescription
 		{
 			get
@@ -2686,8 +2968,48 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
-		public System.DateTime Date
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SummaryTreatment", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string SummaryTreatment
+		{
+			get
+			{
+				return this._SummaryTreatment;
+			}
+			set
+			{
+				if ((this._SummaryTreatment != value))
+				{
+					this.OnSummaryTreatmentChanging(value);
+					this.SendPropertyChanging();
+					this._SummaryTreatment = value;
+					this.SendPropertyChanged("SummaryTreatment");
+					this.OnSummaryTreatmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextTreat", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string NextTreat
+		{
+			get
+			{
+				return this._NextTreat;
+			}
+			set
+			{
+				if ((this._NextTreat != value))
+				{
+					this.OnNextTreatChanging(value);
+					this.SendPropertyChanging();
+					this._NextTreat = value;
+					this.SendPropertyChanged("NextTreat");
+					this.OnNextTreatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date")]
+		public System.Nullable<System.DateTime> Date
 		{
 			get
 			{
@@ -2706,8 +3028,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time NOT NULL")]
-		public System.TimeSpan Time
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Time
 		{
 			get
 			{
@@ -2766,8 +3088,8 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorNumber", DbType="Int NOT NULL")]
-		public int FinancingFactorNumber
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorNumber", DbType="Int")]
+		public System.Nullable<int> FinancingFactorNumber
 		{
 			get
 			{
@@ -2830,7 +3152,7 @@ namespace Eli.Models
 					}
 					else
 					{
-						this._FinancingFactorNumber = default(int);
+						this._FinancingFactorNumber = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblFinancingFactor");
 				}

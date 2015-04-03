@@ -5,9 +5,9 @@
       <Column Name="ID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FirstName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="SurName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Gender" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
-      <Column Name="StudyFramework" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StudyFramework" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="tblBrotherSister_tblBrotherSisterPatient" Member="tblBrotherSisterPatients" ThisKey="ID" OtherKey="BrotherSisterID" Type="tblBrotherSisterPatient" />
     </Type>
   </Table>
@@ -22,11 +22,12 @@
   <Table Name="dbo.tblFinancingFactor" Member="tblFinancingFactors">
     <Type Name="tblFinancingFactor">
       <Column Name="FinancingFactorNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="FinancingFactorType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="ContactName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
-      <Column Name="ContactMail" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FinancingFactorType" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="AddressFinancingFactor" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ContactName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ContactMail" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Association Name="tblFinancingFactor_tblTreatment" Member="tblTreatments" ThisKey="FinancingFactorNumber" OtherKey="FinancingFactorNumber" Type="tblTreatment" />
     </Type>
   </Table>
@@ -35,13 +36,14 @@
       <Column Name="ID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FirstName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="SurName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Gender" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
-      <Column Name="ContactMail" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ContactMail" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="IsWorking" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
       <Column Name="Explain" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="tblParent_tblParentPatient" Member="tblParentPatients" ThisKey="ID" OtherKey="ParentID" Type="tblParentPatient" />
     </Type>
   </Table>
@@ -58,33 +60,34 @@
       <Column Name="ID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="PatientFirstName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="PatientSurName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
-      <Column Name="EducationalFramework" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="EducationalFramework" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ContcatPhoneNumber" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="StatusPatient" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
       <Association Name="tblPatient_tblBrotherSisterPatient" Member="tblBrotherSisterPatients" ThisKey="ID" OtherKey="PatientID" Type="tblBrotherSisterPatient" />
       <Association Name="tblPatient_tblParentPatient" Member="tblParentPatients" ThisKey="ID" OtherKey="PatientID" Type="tblParentPatient" />
-      <Association Name="tblPatient_tblReference" Member="tblReferences" ThisKey="ID" OtherKey="PatientID" Type="tblReference" />
+      <Association Name="tblPatient_tblRefererencePatient" Member="tblRefererencePatients" ThisKey="ID" OtherKey="PatientID" Type="tblRefererencePatient" />
     </Type>
   </Table>
   <Table Name="dbo.tblReference" Member="tblReferences">
     <Type Name="tblReference">
       <Column Name="ReferenceNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ReasonReference" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="StatusReference" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="OtherStatus" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="AbuseType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="ReferenceSource" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="PatientID" Type="System.String" DbType="Char(9) NOT NULL" CanBeNull="false" />
       <Association Name="tblReference_tblReferenceTherapist" Member="tblReferenceTherapists" ThisKey="ReferenceNumber" OtherKey="ReferenceNumber" Type="tblReferenceTherapist" />
-      <Association Name="tblPatient_tblReference" Member="tblPatient" ThisKey="PatientID" OtherKey="ID" Type="tblPatient" IsForeignKey="true" />
+      <Association Name="tblReference_tblRefererencePatient" Member="tblRefererencePatients" ThisKey="ReferenceNumber" OtherKey="ReferenceNumber" Type="tblRefererencePatient" />
     </Type>
   </Table>
   <Table Name="dbo.tblReferenceTherapist" Member="tblReferenceTherapists">
     <Type Name="tblReferenceTherapist">
       <Column Name="ReferenceNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TherapistID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="tblReferenceTherapist_tblReferenceTherapistTreatment" Member="tblReferenceTherapistTreatments" ThisKey="ReferenceNumber,TherapistID" OtherKey="ReferenceNumber,TherapistID" Type="tblReferenceTherapistTreatment" />
       <Association Name="tblReference_tblReferenceTherapist" Member="tblReference" ThisKey="ReferenceNumber" OtherKey="ReferenceNumber" Type="tblReference" IsForeignKey="true" />
@@ -100,16 +103,24 @@
       <Association Name="tblTreatment_tblReferenceTherapistTreatment" Member="tblTreatment" ThisKey="TreatmentNumber" OtherKey="TreatmentNumber" Type="tblTreatment" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblRefererencePatient" Member="tblRefererencePatients">
+    <Type Name="tblRefererencePatient">
+      <Column Name="PatientID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ReferenceNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="tblPatient_tblRefererencePatient" Member="tblPatient" ThisKey="PatientID" OtherKey="ID" Type="tblPatient" IsForeignKey="true" />
+      <Association Name="tblReference_tblRefererencePatient" Member="tblReference" ThisKey="ReferenceNumber" OtherKey="ReferenceNumber" Type="tblReference" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.tblTherapist" Member="tblTherapists">
     <Type Name="tblTherapist">
       <Column Name="ID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TherapistFirstName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="TherapistSurName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Gender" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
-      <Column Name="ContactMail" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ContcatPhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="ContactMail" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="UserName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="Passcode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Association Name="tblTherapist_tblReferenceTherapist" Member="tblReferenceTherapists" ThisKey="ID" OtherKey="TherapistID" Type="tblReferenceTherapist" />
@@ -118,13 +129,17 @@
   <Table Name="dbo.tblTreatment" Member="tblTreatments">
     <Type Name="tblTreatment">
       <Column Name="TreatmentNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TreatmentGoal" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="TreatmentDescription" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="TreatmentGoal" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SubjectTreatment" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="StatusPatientTreatment" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TreatmentDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SummaryTreatment" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NextTreat" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
       <Column Name="Place" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="IsPaid" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
-      <Column Name="FinancingFactorNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FinancingFactorNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tblTreatment_tblReferenceTherapistTreatment" Member="tblReferenceTherapistTreatments" ThisKey="TreatmentNumber" OtherKey="TreatmentNumber" Type="tblReferenceTherapistTreatment" />
       <Association Name="tblFinancingFactor_tblTreatment" Member="tblFinancingFactor" ThisKey="FinancingFactorNumber" OtherKey="FinancingFactorNumber" Type="tblFinancingFactor" IsForeignKey="true" />
     </Type>
