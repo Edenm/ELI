@@ -17,6 +17,18 @@ else
 }
 }
 
+@{
+    string default_val;
+    if (@Model.Gender != null)
+    {
+        default_val = @Model.Gender;
+    }
+    else
+    {
+        default_val = "זכר";
+    }
+}
+
 
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -66,13 +78,23 @@ else
             @Html.ValidationMessageFor(model => model.BirthDate)
         </div>
 
-        <label float:right class="description" for="element_1">
-            מגדר
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.Gender)
-            @Html.ValidationMessageFor(model => model.Gender)
-        </div>
+        <fieldset>
+            <label float:right class="description" for="element_1">
+                מגדר
+            </label>
+            <br />
+            <div style="text-align:right; float:right;">
+                <select dir="rtl" class="element select" id="type" name="type">
+
+                    <option selected="selected" value="@default_val">@default_val</option>
+                    <option value="זכר">זכר</option>
+                    <option value="נקבה">נקבה</option>
+                  
+
+                </select>
+            </div>
+
+        </fieldset>
 
         <label float:right class="description" for="element_1">
             כתובת
