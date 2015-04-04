@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Eli.ViewModel.Treatment>
+
+@using Eli.Models;
+@using Eli.ViewModel;
+@using System;
+@using System.Collections.Generic;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/DataTable/dataTables.keyTable.js"></script>
+    <script src="~/Scripts/DataTable/jquery.js"></script>
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+    <link href="~/Scripts/DataTable/dataTables.keyTable.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTable/jquery.dataTables.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/LinkStyle.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/themes/base/css")
+
+</head>
+<body>
+    <h3 align="right">
+        @Html.ActionLink("מטופלים", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
+        ->
+        @Html.ActionLink("הפניות", "IndexReference", "Reference", new { pid = @ViewBag.Id},new { @class = "link" })
+        ->
+        טיפולים
+</h3>
+
+    <div align="right" dir="rtl">
+        <h2 align="center" style="color:blue">טיפולים</h2>
+
+        @{String name = ViewBag.Id + " " + ViewBag.Name; }
+        <h4>טיפולים עבור הפניה @ViewBag.Ref</h4>
+
+
+        <div class="table-responsive">
+            <table id="myTable" class="display table table-bordered" width="100%">
+                <thead>
+                    <tr>
+                        <th>מספר</th>
+                        <th>תאריך</th>
+                        <th>שעה</th>
+                        <th>מקום</th>
+                        <th>מטרה </th>
+                        <th>נושא</th>
+                        <th>מצב המטופל</th>
+                        <th>תיאור</th>
+                        <th>האם שולם?</th>
+                        <th>מטפל</th>
+                        <th>גורם מממן</th>
+                        <th>עריכה</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td> @item.treatment.TreatmentNumber </td>
+                            <td> @item.treatment.TreatmentDate </td>
+                            <td> @item.treatment.StartTime </td>
+                            <td> @item.treatment.Place </td>
+                            <td> @item.treatment.TreatmentGoal</td>
+                            <td> @item.treatment.SubjectTreatment </td>
+                            <td> @item.treatment.StatusPatientTreatment </td>
+                            <td> @item.treatment.TreatmentDescription </td>
+                            <td> @item.treatment.IsPaid </td>
+                            <td> @item.therapist.TherapistFirstName @item.therapist.TherapistSurName</td>
+                            <td> @item.financingFactor.Name</td>
+                            <td>
+                                <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.treatment.TreatmentNumber">
+                                    <img src="~/Images/info.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br /><br />
+
+        </div>
+    </div>
+
+    @foreach (Treatment item in Model)
+    {
+        @Html.Partial("_Treatment", item.treatment);                                                                                                                 }
+    }
+
+
+
+
+    <script>
+        var table = $('#myTable').DataTable();
+        new $.fn.dataTable.KeyTable(table);
+    </script>
+
+
+
+</body>
+
+</html>
