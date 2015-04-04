@@ -20,6 +20,12 @@ namespace Eli.ViewModel
         
         EliManagerDB db;
 
+
+        public Treatment() 
+        {
+            treatment = new tblTreatment();
+        }
+
         public Treatment(int treatNum)
         {
 
