@@ -20,6 +20,7 @@ namespace Eli.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
+    using System.ComponentModel.DataAnnotations;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
@@ -227,7 +228,10 @@ namespace Eli.Models
 			this._tblBrotherSisterPatients = new EntitySet<tblBrotherSisterPatient>(new Action<tblBrotherSisterPatient>(this.attach_tblBrotherSisterPatients), new Action<tblBrotherSisterPatient>(this.detach_tblBrotherSisterPatients));
 			OnCreated();
 		}
-		
+        [Required(ErrorMessage = "חובה למלא מספר תעודת זהות")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string ID
 		{
@@ -247,7 +251,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא שם פרטי")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(20)")]
 		public string FirstName
 		{
@@ -267,7 +273,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא שם משפחה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם משפחה אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="VarChar(20)")]
 		public string SurName
 		{
@@ -327,7 +335,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא שם מסגרת לימודים ")]
+        
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudyFramework", DbType="VarChar(MAX)")]
 		public string StudyFramework
 		{
@@ -629,7 +639,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "חובה למלא שם גורם מממן")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם גורם מממן אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(20)")]
 		public string Name
 		{
@@ -689,7 +702,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+
+        [Required(ErrorMessage = "חובה למלא שם איש קשר")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  איש קשר אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactName", DbType="VarChar(20)")]
 		public string ContactName
 		{
@@ -709,7 +726,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא מספר טלפון")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "טלפון חייב להכיל רק ספרות")]
+
+        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10)")]
 		public string ContcatPhoneNumber
 		{
@@ -729,7 +750,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא דואר אלקטרוני")]
+        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30)")]
 		public string ContactMail
 		{
@@ -879,7 +902,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא שם פרטי")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(20)")]
 		public string FirstName
 		{
@@ -899,7 +924,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא שם משפחה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="VarChar(20)")]
 		public string SurName
 		{
@@ -959,7 +986,8 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "חובה למלא כתובת")]
+       
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
 		public string Address
 		{
@@ -1039,7 +1067,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "חובה למלא הסבר ")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Explain", DbType="VarChar(MAX)")]
 		public string Explain
 		{
@@ -1059,7 +1087,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא הערות")]
+       
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(MAX)")]
 		public string Comment
 		{
@@ -1375,7 +1405,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא שם פרטי")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientFirstName", DbType="VarChar(20)")]
 		public string PatientFirstName
 		{
@@ -1395,7 +1427,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "חובה למלא שם משפחה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientSurName", DbType="VarChar(20)")]
 		public string PatientSurName
 		{
@@ -1455,7 +1490,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא מסגרת לימודית")]
+       
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EducationalFramework", DbType="VarChar(MAX)")]
 		public string EducationalFramework
 		{
@@ -1475,7 +1512,8 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "חובה למלא כתובת")]
+      
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
 		public string Address
 		{
@@ -1706,7 +1744,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא סיבת הפנייה")]
+       
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonReference", DbType="VarChar(MAX)")]
 		public string ReasonReference
 		{
@@ -1726,7 +1766,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא סטטוס הפנייה")]
+        
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusReference", DbType="VarChar(20)")]
 		public string StatusReference
 		{
@@ -1786,7 +1828,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "חובה למלא מקור הפנייה")]
+        
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceSource", DbType="VarChar(20)")]
 		public string ReferenceSource
 		{
@@ -1807,6 +1852,9 @@ namespace Eli.Models
 			}
 		}
 		
+
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
 		public System.Nullable<System.DateTime> StartDate
 		{
@@ -2168,7 +2216,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא מספר הפנייה")]
+        
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int ReferenceNumber
 		{
@@ -2361,7 +2411,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא שם פרטי")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistFirstName", DbType="VarChar(20)")]
 		public string TherapistFirstName
 		{
@@ -2381,7 +2433,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "חובה למלא שם מספחה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistSurName", DbType="VarChar(20)")]
 		public string TherapistSurName
 		{
@@ -2401,7 +2456,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "חובה למלא תאריך לידה")]
+       
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BirthDate
 		{
@@ -2441,7 +2499,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "חובה למלא כתובת")]
+       
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
 		public string Address
 		{
@@ -2686,7 +2747,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא מטרת טיפול")]
+        
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(MAX)")]
 		public string TreatmentGoal
 		{
@@ -2706,7 +2769,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא נושא טיפול")]
+        
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubjectTreatment", DbType="VarChar(MAX)")]
 		public string SubjectTreatment
 		{

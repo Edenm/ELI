@@ -31,7 +31,17 @@
     }
 }
 
-
+@{
+    string str;
+    if( @Model.Name!=null)
+    {
+        str = @Model.FinancingFactorNumber + "עריכת גורם מממן מספר";
+    }
+    else
+    {
+        str = "הוספת גורם מממן חדש";
+    }
+}
 
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -44,6 +54,7 @@
             <div class="modal-body">
                 @using (Html.BeginForm())
                 {
+                   <h4>@str</h4>
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
@@ -60,7 +71,20 @@
                                 @Html.ValidationMessageFor(model => model.Name)
                             </div>
 
+
+                            <label float:right class="description" for="element_1">
+                                כתובת גורם מממן
+                            </label>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.AddressFinancingFactor)
+                                @Html.ValidationMessageFor(model => model.AddressFinancingFactor)
+                            </div>
+
                             <fieldset>
+                                <label float:right class="description" for="element_1">
+                                    סוג גורם מממן
+                                </label>
+                                <br />
                                 <div style="text-align:right; float:right;">
                                     <select dir="rtl" class="element select" id="type" name="type">
 
