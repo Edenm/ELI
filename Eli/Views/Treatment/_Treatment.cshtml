@@ -3,18 +3,18 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@{string id;
-string submit;
-if (@Model.TreatmentNumber == 0)
-{
-    id = "new";
-    submit = "צור";
-}
-else
-{
-    id = @Model.TreatmentNumber.ToString();
-    submit = "שמור";
-}
+@{  string id;
+    string submit;
+    if (@Model.TreatmentNumber == 0)
+    {
+        id = "new";
+        submit = "צור";
+    }
+    else
+    {
+        id = @Model.TreatmentNumber.ToString();
+        submit = "שמור";
+    }
 }
 
 <!-- Modal -->
@@ -142,7 +142,7 @@ else
                         </div>
 
                         <p>
-                            <input type="submit" value="Save" />
+                            <input type="submit" name="submit" value="@submit" />
                         </p>
                     </fieldset>
                 }

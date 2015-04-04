@@ -146,7 +146,15 @@ namespace Eli.Models
             FinancingFactor.InsertOnSubmit(ff);
             db.SubmitChanges();
         }
-     
+
+        /* Add Treatment to data base **/
+        public void addTreatment(tblTreatment tr)
+        {
+            tr.TreatmentNumber = Treatment.Count() + 1;
+
+            Treatment.InsertOnSubmit(tr);
+            db.SubmitChanges();
+        }
 
         //-------------------------Edit methods----------------------------------------------------------
 
@@ -190,6 +198,28 @@ namespace Eli.Models
             patient.BirthDate = pat.BirthDate;
             patient.ContcatPhoneNumber = pat.ContcatPhoneNumber;
             patient.EducationalFramework = pat.EducationalFramework;
+
+            db.SubmitChanges();
+        }
+
+        /* The method is editing exist Treatment**/
+        public void EditTreatment(tblTreatment tr)
+        {
+            var treat = Treatment.First(t => t.TreatmentNumber == tr.TreatmentNumber);
+            treat.TreatmentGoal = tr.TreatmentGoal;
+            treat.TreatmentDescription = tr.TreatmentDescription;
+            treat.TreatmentDate = tr.TreatmentDate;
+            treat.SummaryTreatment = tr.SummaryTreatment;
+            treat.StartTime = tr.StartTime;
+            treat.StatusPatientTreatment = tr.StatusPatientTreatment;
+            treat.IsPaid = tr.IsPaid;
+            treat.NextTreat = tr.NextTreat;
+            treat.Place = tr.Place;
+            treat.SubjectTreatment = tr.SubjectTreatment;
+
+            treat.FinancingFactorNumber = tr.FinancingFactorNumber;
+            treat.TherapistID = tr.TherapistID;
+            treat.ReferenceNumber = tr.ReferenceNumber;
 
             db.SubmitChanges();
         }
