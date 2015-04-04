@@ -21,8 +21,8 @@ namespace Eli.ViewModel
             db = new EliManagerDB();
 
             PatientID = PID;
-            BrotherSister = db.getBrotherSisterByPatient(PID);
-            Parent = db.getParentsByPatient(PID);
+            BrotherSister = db.getAllBrotherSisterByPatient(PID);
+            Parent = db.getAllParentsByPatient(PID);
 
         }
     }

@@ -47,75 +47,71 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
-    <fieldset align="right">
-        <legend>tblFinancingFactor</legend>
+                        <fieldset align="right">
+                            <legend>tblFinancingFactor</legend>
 
-        @Html.HiddenFor(model => model.FinancingFactorNumber)
+                            @Html.HiddenFor(model => model.FinancingFactorNumber)
 
-        <label float:right class="description" for="element_1">
-            שם גורם מממן
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
+                            <label float:right class="description" for="element_1">
+                                שם גורם מממן
+                            </label>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.Name)
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
 
-        <fieldset>
-            <div style="text-align:right; float:right;">
-                <select dir="rtl" class="element select" id="type" name="type">
-
-
-
-                    <option selected="selected" value="@default_val">@default_val</option>
-                    <option value="פרטי">פרטי</option>
-                    <option value="עירייה">עירייה</option>
-                    <option value="קרן">קרן</option>
-                    <option value="מערכת חינוך">מערכת חינוך</option>
-                    <option value="פרויקט">פרויקט</option>
-                    <option value="פנימייה">פנימייה</option>
+                            <fieldset>
+                                <div style="text-align:right; float:right;">
+                                    <select dir="rtl" class="element select" id="type" name="type">
 
 
 
-                </select>
-                </div>
+                                        <option selected="selected" value="@default_val">@default_val</option>
+                                        <option value="פרטי">פרטי</option>
+                                        <option value="עירייה">עירייה</option>
+                                        <option value="קרן">קרן</option>
+                                        <option value="מערכת חינוך">מערכת חינוך</option>
+                                        <option value="פרויקט">פרויקט</option>
+                                        <option value="פנימייה">פנימייה</option>
 
 
-</fieldset>
+
+                                    </select>
+                                    </div>
+
+
+                    </fieldset>
         
 
-        <label float:right class="description" for="element_1">
-            שם איש קשר
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ContactName)
-            @Html.ValidationMessageFor(model => model.ContactName)
-        </div>
+                            <label float:right class="description" for="element_1">
+                                שם איש קשר
+                            </label>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.ContactName)
+                                @Html.ValidationMessageFor(model => model.ContactName)
+                            </div>
 
-        <label float:right class="description" for="element_1">
-            טלפון איש קשר
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ContcatPhoneNumber)
-            @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
-        </div>
+                            <label float:right class="description" for="element_1">
+                                טלפון איש קשר
+                            </label>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.ContcatPhoneNumber)
+                                @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
+                            </div>
 
-        <label float:right class="description" for="element_1">
-            מייל איש קשר
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ContactMail)
-            @Html.ValidationMessageFor(model => model.ContactMail)
-        </div>
+                            <label float:right class="description" for="element_1">
+                                מייל איש קשר
+                            </label>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.ContactMail)
+                                @Html.ValidationMessageFor(model => model.ContactMail)
+                            </div>
 
-        <p>
-            <input type="submit" name="submit" value="@submit" />
-        </p>
-    </fieldset>
+                            <p>
+                                <input type="submit" name="submit" value="@submit" />
+                            </p>
+                        </fieldset>
                 }
-
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>
             </div>
         </div>
     </div>

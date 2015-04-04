@@ -1,0 +1,153 @@
+﻿@model Eli.Models.tblTreatment
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@{string id;
+string submit;
+if (@Model.TreatmentNumber == 0)
+{
+    id = "new";
+    submit = "צור";
+}
+else
+{
+    id = @Model.TreatmentNumber.ToString();
+    submit = "שמור";
+}
+}
+
+<!-- Modal -->
+<div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <fieldset>
+                        <legend>tblTreatment</legend>
+
+                        @Html.HiddenFor(model => model.TreatmentNumber)
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TreatmentGoal)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.TreatmentGoal)
+                            @Html.ValidationMessageFor(model => model.TreatmentGoal)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SubjectTreatment)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.SubjectTreatment)
+                            @Html.ValidationMessageFor(model => model.SubjectTreatment)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.StatusPatientTreatment)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.StatusPatientTreatment)
+                            @Html.ValidationMessageFor(model => model.StatusPatientTreatment)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TreatmentDescription)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.TreatmentDescription)
+                            @Html.ValidationMessageFor(model => model.TreatmentDescription)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SummaryTreatment)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.SummaryTreatment)
+                            @Html.ValidationMessageFor(model => model.SummaryTreatment)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NextTreat)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.NextTreat)
+                            @Html.ValidationMessageFor(model => model.NextTreat)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TreatmentDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.TreatmentDate)
+                            @Html.ValidationMessageFor(model => model.TreatmentDate)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.StartTime)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.StartTime)
+                            @Html.ValidationMessageFor(model => model.StartTime)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Place)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Place)
+                            @Html.ValidationMessageFor(model => model.Place)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.IsPaid)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.IsPaid)
+                            @Html.ValidationMessageFor(model => model.IsPaid)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FinancingFactorNumber)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.FinancingFactorNumber)
+                            @Html.ValidationMessageFor(model => model.FinancingFactorNumber)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ReferenceNumber)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.ReferenceNumber)
+                            @Html.ValidationMessageFor(model => model.ReferenceNumber)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TherapistID)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.TherapistID)
+                            @Html.ValidationMessageFor(model => model.TherapistID)
+                        </div>
+
+                        <p>
+                            <input type="submit" value="Save" />
+                        </p>
+                    </fieldset>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

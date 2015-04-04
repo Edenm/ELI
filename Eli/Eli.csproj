@@ -189,7 +189,8 @@
     <Compile Include="Controllers\FinanceFactorController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\TherapistController.cs" />
-    <Compile Include="Controllers\TreatmentReferenceController.cs" />
+    <Compile Include="Controllers\ReferenceController.cs" />
+    <Compile Include="Controllers\TreatmentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,7 +206,8 @@
     <Compile Include="Models\TreatByRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Family.cs" />
-    <Compile Include="ViewModel\TeratmentReferencePatient.cs" />
+    <Compile Include="ViewModel\ReferenceTeratments.cs" />
+    <Compile Include="ViewModel\Treatment.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
@@ -216,6 +218,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\gsdk-base.css" />
+    <Content Include="Content\LinkStyle.css" />
     <Content Include="Content\ModalSize.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -306,6 +309,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\DataTable\Sorting icons.psd" />
     <Content Include="Images\minor.png" />
+    <Content Include="Images\treat.png" />
     <Content Include="Models\DataConnection.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataConnection.designer.cs</LastGenOutput>
@@ -363,17 +367,11 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Patient\Contact.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Patient\childs.cshtml" />
     <Content Include="Views\Patient\NewPatient.cshtml" />
-    <Content Include="Views\Patient\AddPatient.cshtml" />
-    <Content Include="Views\Patient\PatientDetails.cshtml" />
-    <Content Include="Views\Patient\Reference.cshtml" />
-    <Content Include="Views\Patient\TreatByReference.cshtml" />
     <Content Include="Views\FinanceFactor\FinancingFactorDetails.cshtml" />
     <Content Include="Views\FinanceFactor\NewFinanceFactor.cshtml" />
     <Content Include="Views\Patient\IndexPatients.cshtml" />
@@ -388,8 +386,11 @@
     <Content Include="Views\FinanceFactor\IndexFinancingFactor.cshtml" />
     <Content Include="Views\FinanceFactor\_FinancingFactor.cshtml" />
     <Content Include="Views\Shared\EditorTemplate\DateTime.cshtml" />
-    <Content Include="Views\TreatmentReference\IndexTreatmentReference.cshtml" />
-    <Content Include="Views\TreatmentReference\_Treatment.cshtml" />
+    <Content Include="Views\Reference\IndexReference.cshtml" />
+    <Content Include="Views\Treatment\_Treatments.cshtml" />
+    <Content Include="Views\Treatment\_Treatment.cshtml" />
+    <Content Include="Views\Treatment\IndexTreatment.cshtml" />
+    <Content Include="Views\Reference\_Reference.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Eli.Models.tblTreatment>
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+
+
+
+        <div align="right" dir="rtl">
+            <h4>טיפולים עבור הפניה @ViewBag.Ref</h4>
+            <h4 align="right">חיפוש:</h4>
+            <table id="myTable" class="display table">
+                <thead>
+                    <tr>
+                        <th>מספר</th>
+                        <th>תאריך</th>
+                        <th>שעה</th>
+                        <th>מקום</th>
+                        <th>מטרה </th>
+                        <th>נושא</th>
+                        <th>מצב המטופל</th>
+                        <th>תיאור</th>
+                        <th>גורם מממן</th>
+                        <th>מטפל</th>
+                        <th>עריכה</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td> @item.TreatmentNumber </td>
+                            <td> @item.Date </td>
+                            <td> @item.Time </td>
+                            <td> @item.Place </td>
+                            <td> @item.TreatmentGoal</td>
+                            <td> @item.SubjectTreatment </td>
+                            <td> @item.StatusPatientTreatment </td>
+                            <td> @item.TreatmentDescription </td>
+                            <td> @item.IsPaid </td>
+                            <td>
+                                <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.TreatmentNumber">
+                                    <img src="~/Images/info.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+<script>
+    var table = $('#myTable').DataTable();
+    new $.fn.dataTable.KeyTable(table);
+ </script>

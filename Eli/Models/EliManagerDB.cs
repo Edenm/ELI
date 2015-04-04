@@ -65,9 +65,9 @@ namespace Eli.Models
             get { return db.tblReferenceTherapists; }
         }
 
-        public Table<tblReferenceTherapistTreatment> ReferenceTherapistTreatment
+        public Table<tblRefererencePatient> ReferencePatient
         {
-            get { return db.tblReferenceTherapistTreatments; }
+            get { return db.tblRefererencePatients; }
         }
 
         public Table<tblParentPatient> ParentPatient
@@ -235,7 +235,52 @@ namespace Eli.Models
             return p;
         }
 
-        public List<tblBrotherSister> getBrotherSisterByPatient(String PID)
+        public tblTreatment getTreatmentByNumber(int tnum)
+        {
+            var tr = (Treatment.Where(t => t.TreatmentNumber == tnum)).First();
+
+            return tr;
+        }
+
+        public tblPatient getPatientByTreatmentNumber(int tnum)
+        {
+            var refNum = getTreatmentByNumber(tnum).ReferenceNumber;
+
+            var patId = RefererencePatients.Where(rp => rp.ReferenceNumber == refNum).Select(rp=> rp.PatientID).First();
+
+            var pat = Patients.Where(p => p.ID == patId).First();
+
+            return pat;
+        }
+
+        public tblReference getReferenceByTreatmentNumber(int tnum)
+        {
+            var refNum = getTreatmentByNumber(tnum).ReferenceNumber;
+
+            var refer = Reference.Where(r => r.ReferenceNumber == refNum).First() ;
+
+            return refer;
+        }
+
+        public tblTherapist getTherapistByTreatmentNumber(int tnum)
+        {
+            var therId = getTreatmentByNumber(tnum).TherapistID;
+
+            var ther = Therapist.Where(t => t.ID == therId).First();
+
+            return ther;
+        }
+
+        public tblFinancingFactor getFinancingFactorByTreatmentNumber(int tnum)
+        {
+            var financeNum = getTreatmentByNumber(tnum).FinancingFactorNumber;
+
+            var finfac = FinancingFactor.Where(f => f.FinancingFactorNumber == financeNum).First();
+
+            return finfac;
+        }
+
+        public List<tblBrotherSister> getAllBrotherSisterByPatient(String PID)
         {
             var BSP= (BrotherSisterPatient.Where(bs => bs.PatientID==PID).Select(bs=> bs.BrotherSisterID));
 
@@ -244,7 +289,7 @@ namespace Eli.Models
             return BS;
         }
 
-        public List<tblParent> getParentsByPatient(String PID)
+        public List<tblParent> getAllParentsByPatient(String PID)
         {
             var PP = (ParentPatient.Where(p => p.PatientID == PID).Select(p=> p.ParentID));
 
@@ -253,8 +298,21 @@ namespace Eli.Models
             return P;
         }
 
+        public List<tblTreatment> getAllTreatmentByReferenceNumber(int refNum)
+        {
+            var treat = Treatment.Where(t => t.ReferenceNumber==refNum).ToList();
 
+            return treat;
+        }
 
+        public List<tblReference> getAllReferencesByPatientId(string id)
+        {
+            var referencesList = ReferencePatient.Where(p => p.PatientID == id).Select(re => re.ReferenceNumber).ToList();
+
+            var refe = Reference.Where(r => referencesList.Contains(r.ReferenceNumber)).ToList();
+
+            return refe;
+        }
        
 
     }

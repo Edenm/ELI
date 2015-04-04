@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Eli.ViewModel
 {
-    public class TeratmentReferencePatient    
+    public class ReferenceTeratments    
     {
         public tblPatient Patient;
 
@@ -17,18 +17,16 @@ namespace Eli.ViewModel
 
         public List<tblReferenceTherapist> referenceTherapists;
 
-        public List<tblReferenceTherapistTreatment> referenceTherapistTreatments;
-
         public List<tblTreatment> treatments;
 
         EliManagerDB db;
 
-        public TeratmentReferencePatient(string id)
+        public ReferenceTeratments(string rid)
         {
 
             db= new EliManagerDB();
 
-            Patient = db.getPatientById(id);
+            Patient = db.getPatientById(rid);
 
             referencePatients = db.RefererencePatients.ToList();
 
@@ -36,13 +34,12 @@ namespace Eli.ViewModel
 
             referenceTherapists = db.ReferenceTherapist.ToList();
 
-            referenceTherapistTreatments = db.ReferenceTherapistTreatment.ToList();
 
             treatments = db.Treatment.ToList();
 
         }
 
-        public List<tblReference> getAllReferencesByPatients(string id)
+        public List<tblReference> getAllReferencesByPatientId(string id)
         {
             var referencesList = referencePatients.Where(p => p.PatientID == id).Select(re=> re.ReferenceNumber).ToList();
 
@@ -60,16 +57,16 @@ namespace Eli.ViewModel
 
         public List<tblTreatment> getAllTreatmentByReferenceNumberAndTherapistId(int refNum, string id)
         {
-            int tretNum=referenceTherapistTreatments.Where(rtt => rtt.ReferenceNumber == refNum && rtt.TherapistID == id).Select(rtt=>rtt.TreatmentNumber).First();
-            var treat = treatments.Where(t => t.TreatmentNumber==tretNum).ToList();
+
+            var treat = treatments.Where(t => t.ReferenceNumber == refNum && t.TherapistID==id).ToList();
 
             return treat;
         }
 
         public List<tblTreatment> getAllTreatmentByReferenceNumber(int refNum)
         {
-            var tretNum = referenceTherapistTreatments.Where(rtt => rtt.ReferenceNumber == refNum).Select(rtt => rtt.TreatmentNumber).ToList();
-            var treat = treatments.Where(t => tretNum.Contains(t.TreatmentNumber)).ToList();
+           
+            var treat = treatments.Where(t => t.ReferenceNumber==refNum).ToList();
 
             return treat;
         }

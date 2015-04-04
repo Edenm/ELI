@@ -1,0 +1,64 @@
+﻿@model Eli.Models.tblReference
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblReference</legend>
+
+        @Html.HiddenFor(model => model.ReferenceNumber)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReasonReference)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReasonReference)
+            @Html.ValidationMessageFor(model => model.ReasonReference)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StatusReference)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StatusReference)
+            @Html.ValidationMessageFor(model => model.StatusReference)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OtherStatus)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OtherStatus)
+            @Html.ValidationMessageFor(model => model.OtherStatus)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AbuseType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AbuseType)
+            @Html.ValidationMessageFor(model => model.AbuseType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReferenceSource)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReferenceSource)
+            @Html.ValidationMessageFor(model => model.ReferenceSource)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
