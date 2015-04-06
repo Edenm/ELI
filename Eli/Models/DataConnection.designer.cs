@@ -2481,7 +2481,8 @@ namespace Eli.Models
 
 
         [Required(ErrorMessage = "חובה למלא תאריך לידה")]
-        
+
+        [RegularExpression(@"^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$", ErrorMessage = "YYYY-MM-DD :פומרט תאריך")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BirthDate
 		{
@@ -2544,7 +2545,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "חובה למלא מספר טלפון")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "טלפון חייב להכיל רק ספרות")]
+
+        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10)")]
 		public string ContcatPhoneNumber
 		{
@@ -2911,7 +2916,7 @@ namespace Eli.Models
 
 
         [Required(ErrorMessage = "חובה למלא תאריך טיפול")]
-
+        [RegularExpression(@"^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$", ErrorMessage = "YYYY-MM-DD :פומרט תאריך")]
         
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDate", DbType="Date")]

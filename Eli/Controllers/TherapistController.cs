@@ -27,19 +27,34 @@ namespace Eli.Controllers
         public ActionResult IndexTherapist(tblTherapist tt, string submit)
         {
             EliManagerDB db = new EliManagerDB();
-            String gender = Request.Form["gender"];
-            tt.Gender = gender;
-            if (submit.Equals("צור"))
-                db.addTherapist(tt);
-
-            else
-                db.EditTherapist(tt);
-
             List<tblTherapist> therapist = db.Therapist.ToList();
+            try
+            {
+              
+                String gender = Request.Form["gender"];
+                tt.Gender = gender;
+                if (submit.Equals("צור"))
+                    db.addTherapist(tt);
 
-            therapist.Add(new tblTherapist());
+                else
+                    db.EditTherapist(tt);
 
-            return View(therapist);
+
+
+                therapist.Add(tt);
+                ViewBag.DataExists = false;
+                return View(therapist);
+            }
+            catch (Exception e)
+            {
+                ViewBag.DataExists = true;
+                ViewBag.msg1 = "ההוספה נכשלה";
+                ViewBag.msg2 = tt.ID;
+                ViewBag.msg3 = "נמצא כבר במערכת";
+                return View(therapist);
+            }
         }
+
+        public IView therapist { get; set; }
     }
 }

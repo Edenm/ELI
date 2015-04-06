@@ -2,7 +2,7 @@
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
+<link href="~/Content/ModalSize.css" rel="stylesheet" />
 @{  string id;
     string submit;
     if (@Model.TreatmentNumber == 0)
@@ -32,7 +32,7 @@
     string str;
     if (@Model.TreatmentNumber != null)
     {
-        str = @Model.TreatmentNumber + "עריכת טיפול  מספר";
+        str = "עריכת טיפול";
     }
     else
     {
