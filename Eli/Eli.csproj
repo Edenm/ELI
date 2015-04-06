@@ -388,6 +388,7 @@
     <Content Include="Views\Treatment\_Treatment.cshtml" />
     <Content Include="Views\Treatment\IndexTreatment.cshtml" />
     <Content Include="Views\Reference\_Reference.cshtml" />
+    <Content Include="Views\FinanceFactor\ExportToExcel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

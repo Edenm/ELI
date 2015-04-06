@@ -13,6 +13,8 @@ using System.Linq;
 using System.Text;
 
 using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 namespace Eli.Controllers
 {
     public class FinanceFactorController : Controller
@@ -31,6 +33,44 @@ namespace Eli.Controllers
             return View(finfac);
 
           
+        }
+
+        public ActionResult ExportToExcel()
+        {
+
+            EliManagerDB db = new EliManagerDB();
+            List<tblFinancingFactor> finfac = db.FinancingFactor.ToList();
+
+            var grid = new GridView();
+            grid.DataSource = from p in finfac
+                              select new
+                              {
+                                  Id = p.FinancingFactorNumber,
+                                  Name = p.Name
+                              };
+            grid.DataBind();
+
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=MyExcelFile.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.Default;
+           
+
+
+            Response.Charset = "";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            grid.RenderControl(htw);
+
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return View(); 
+
+
         }
 
 
