@@ -4,61 +4,86 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>tblReference</legend>
-
-        @Html.HiddenFor(model => model.ReferenceNumber)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ReasonReference)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ReasonReference)
-            @Html.ValidationMessageFor(model => model.ReasonReference)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.StatusReference)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.StatusReference)
-            @Html.ValidationMessageFor(model => model.StatusReference)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.OtherStatus)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.OtherStatus)
-            @Html.ValidationMessageFor(model => model.OtherStatus)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AbuseType)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AbuseType)
-            @Html.ValidationMessageFor(model => model.AbuseType)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ReferenceSource)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ReferenceSource)
-            @Html.ValidationMessageFor(model => model.ReferenceSource)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+@{  string id;
+  string submit;
+  if (@Model.ReferenceNumber == 0)
+  {
+      id = "new";
+      submit = "צור";
+  }
+  else
+  {
+      id = @Model.ReferenceNumber.ToString();
+      submit = "שמור";
+  }
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<!-- Modal -->
+<div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <fieldset>
+                        <legend>tblReference</legend>
+
+                        @Html.HiddenFor(model => model.ReferenceNumber)
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ReasonReference)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.ReasonReference)
+                            @Html.ValidationMessageFor(model => model.ReasonReference)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.StatusReference)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.StatusReference)
+                            @Html.ValidationMessageFor(model => model.StatusReference)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OtherStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.OtherStatus)
+                            @Html.ValidationMessageFor(model => model.OtherStatus)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AbuseType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.AbuseType)
+                            @Html.ValidationMessageFor(model => model.AbuseType)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ReferenceSource)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.ReferenceSource)
+                            @Html.ValidationMessageFor(model => model.ReferenceSource)
+                        </div>
+
+                        <p>
+                            <input type="submit" name="submit" value="@submit" />
+                        </p>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
 </div>

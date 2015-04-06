@@ -19,6 +19,8 @@ namespace Eli.Controllers
 
             var refe = db.getAllReferencesByPatientId(pid);
 
+            refe.Add(new tblReference());
+
             var pat = db.getPatientById(pid);
 
             ViewBag.Id = pat.ID;
@@ -27,6 +29,22 @@ namespace Eli.Controllers
             return View(refe);
         }
 
+
+        [HttpPost]
+        public ActionResult IndexReference(tblReference refe, string submit)
+        {
+            EliManagerDB db = new EliManagerDB();
+
+            var patId = db.getPatientByReferencNumber(refe.ReferenceNumber).ID;
+
+            if (submit.Equals("צור"))
+                db.addReference(refe, patId);
+
+            else
+                db.EditReference(refe);
+
+            return RedirectToAction("IndexReference", new { pid = patId });
+        }
 
 
     }
