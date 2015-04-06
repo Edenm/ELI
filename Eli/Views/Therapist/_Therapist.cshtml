@@ -28,7 +28,17 @@ else
         default_val = "זכר";
     }
 }
-
+@{
+    string str;
+    if (@Model.TherapistSurName != null)
+    {
+        str = @Model.ID + "עריכת מטפל  מספר";
+    }
+    else
+    {
+        str = "הוספת גורם מממן חדש";
+    }
+}
 
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -41,11 +51,13 @@ else
             <div class="modal-body">
                 @using (Html.BeginForm())
                 {
+
+                    <h4 align="right">@str</h4>
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
     <fieldset align="right">
-        <h2> מטפל חדש</h2>
+      
         <label float:right class="description" for="element_1">
             תעדות זהות מטפל
         </label>
@@ -84,12 +96,12 @@ else
             </label>
             <br />
             <div style="text-align:right; float:right;">
-                <select dir="rtl" class="element select" id="type" name="type">
+                <select dir="rtl" class="element select" id="gender" name="gender">
 
                     <option selected="selected" value="@default_val">@default_val</option>
                     <option value="זכר">זכר</option>
                     <option value="נקבה">נקבה</option>
-                  
+
 
                 </select>
             </div>
