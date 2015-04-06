@@ -27,7 +27,8 @@ namespace Eli.Controllers
         public ActionResult IndexTherapist(tblTherapist tt, string submit)
         {
             EliManagerDB db = new EliManagerDB();
-
+            String gender = Request.Form["gender"];
+            tt.Gender = gender;
             if (submit.Equals("צור"))
                 db.addTherapist(tt);
 

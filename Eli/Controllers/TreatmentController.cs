@@ -46,6 +46,8 @@ namespace Eli.Controllers
         {
             EliManagerDB db = new EliManagerDB();
 
+            String ispaid = Request.Form["ispaid"];
+            treat.IsPaid = ispaid;
             if (submit.Equals("צור"))
                 db.addTreatment(treat);
 
