@@ -154,6 +154,20 @@ namespace Eli.Models
         }
 
         /* Add Treatment to data base **/
+        public void addReference(tblReference re, string pid)
+        {
+            re.ReferenceNumber = Reference.Count() + 1;
+
+            tblRefererencePatient refPat= new tblRefererencePatient();
+            refPat.PatientID=pid;
+            refPat.ReferenceNumber=re.ReferenceNumber;
+            ReferencePatient.InsertOnSubmit(refPat);
+
+            Reference.InsertOnSubmit(re);
+            db.SubmitChanges();
+        }
+
+        /* Add Treatment to data base **/
         public void addTreatment(tblTreatment tr)
         {
             tr.TreatmentNumber = Treatment.Count() + 1;
@@ -204,6 +218,21 @@ namespace Eli.Models
             patient.BirthDate = pat.BirthDate;
             patient.ContcatPhoneNumber = pat.ContcatPhoneNumber;
             patient.EducationalFramework = pat.EducationalFramework;
+
+            db.SubmitChanges();
+        }
+
+        /* The method is editing exist Treatment**/
+        public void EditReference(tblReference re)
+        {
+            var refe = Reference.First(r => r.ReferenceNumber == re.ReferenceNumber);
+            refe.ReasonReference = re.ReasonReference;
+            refe.ReferenceSource = re.ReferenceSource;
+            refe.StartDate = re.StartDate;
+            refe.EndDate = re.EndDate;
+            refe.OtherStatus = re.OtherStatus;
+            refe.AbuseType = re.AbuseType;
+            refe.StatusReference = re.StatusReference;
 
             db.SubmitChanges();
         }
@@ -271,11 +300,13 @@ namespace Eli.Models
             return p;
         }
 
-        public tblTreatment getTreatmentByNumber(int tnum)
+        public tblPatient getPatientByReferencNumber(int rid)
         {
-            var tr = (Treatment.Where(t => t.TreatmentNumber == tnum)).First();
+            var patId = (ReferencePatient.Where(rp => rp.ReferenceNumber == rid)).Select(rp => rp.PatientID).First();
 
-            return tr;
+            var pat = Patients.Where(p => p.ID == patId).First();
+
+            return pat;
         }
 
         public tblPatient getPatientByTreatmentNumber(int tnum)
@@ -287,6 +318,13 @@ namespace Eli.Models
             var pat = Patients.Where(p => p.ID == patId).First();
 
             return pat;
+        }
+
+        public tblTreatment getTreatmentByNumber(int tnum)
+        {
+            var tr = (Treatment.Where(t => t.TreatmentNumber == tnum)).First();
+
+            return tr;
         }
 
         public tblReference getReferenceByTreatmentNumber(int tnum)
@@ -350,12 +388,6 @@ namespace Eli.Models
             return refe;
         }
        
-
     }
-
-    
-
-
-
 
 }

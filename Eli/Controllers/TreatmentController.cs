@@ -54,8 +54,8 @@ namespace Eli.Controllers
             else
                 db.EditTreatment(treat);
 
-            var refId=db.getReferenceByTreatmentNumber(treat.TreatmentNumber).ReferenceNumber;
-            var patId = db.getPatientByTreatmentNumber(treat.TreatmentNumber).ID;
+            var refId = treat.ReferenceNumber; 
+            var patId = db.getPatientByReferencNumber((int)treat.ReferenceNumber).ID;
 
             return RedirectToAction("IndexTreatment", new { rid = refId, pid = patId });
         }

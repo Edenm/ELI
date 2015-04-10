@@ -43,35 +43,62 @@
                         <th>סיבה</th>
                         <th>סוג</th>
                         <th>כיצד הגיע?</th>
+                        <th>עריכה</th>
                         <th>טיפולים</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @{ int count = 1;}
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td> @item.ReferenceNumber</td>
-                            <td> @item.OtherStatus </td>
-                            <td> @item.ReasonReference </td>
-                            <td> @item.AbuseType </td>
-                            <td> @item.ReferenceSource </td>
-                            <td>
-                                <a href="@Url.Action("IndexTreatment", "Treatment", new { rid = @item.ReferenceNumber, pid = @ViewBag.Id })">
-                                    <img src="~/Images/treat.png" />
-                                </a>
-                            </td>
-                        </tr>
+                        if (@item.ReferenceNumber!=0)
+                        {
+                            <tr>
+                                <td> @count</td>
+                                <td> @item.OtherStatus </td>
+                                <td> @item.ReasonReference </td>
+                                <td> @item.AbuseType </td>
+                                <td> @item.ReferenceSource </td>
+                                <td>
+                                    <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.ReferenceNumber">
+                                        <img src="~/Images/edit.png" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("IndexTreatment", "Treatment", new { rid = @item.ReferenceNumber, pid = @ViewBag.Id })">
+                                        <img src="~/Images/treat.png" />
+                                    </a>
+                                </td>
+                            </tr>
+                            count++;
+                       }
+                        else
+                        {
+                            item.ReferenceNumber = Model.Last().ReferenceNumber-1;
+                        }
                     }
                 </tbody>
             </table>
+            <br /><br />
+
         </div>
     </div>
 
+    @foreach (tblReference item in Model)
+    {
+        @Html.Partial("_Reference", item);
 
+    }
+
+    <!-- Button trigger modal -->
+    <br /> <br />
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+        הוסף הפנייה חדשה
+    </button> 
 
     <script>
-        var table1 = $('#reference').DataTable();
-        new $.fn.dataTable.KeyTable(table1);
+        var table = $('#reference').DataTable();
+        new $.fn.dataTable.KeyTable(table);
     </script>
 
 
