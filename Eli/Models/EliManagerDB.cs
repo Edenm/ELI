@@ -134,6 +134,12 @@ namespace Eli.Models
         /* Add Therapist to data base **/
         public void addTherapist(tblTherapist tt)
         {
+            var therapist = from d in Therapist
+                            where d.ID.Equals(tt.ID)
+                            select d;
+
+            if (therapist.Any() || therapist.Any())
+                throw new Exception("This therapist is already exsit");
             Therapist.InsertOnSubmit(tt);
             db.SubmitChanges();
         }

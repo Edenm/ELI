@@ -18,7 +18,15 @@
     @Styles.Render("~/Content/bootstrapcss")
     @Styles.Render("~/Content/themes/base/css")
 </head>
+
+   
+
 <body>
+    
+        
+    <h4 align="left">@ViewBag.msg1</h4>
+    <h4 align="left">@ViewBag.msg2</h4>
+    <h4 align="left">@ViewBag.msg3</h4>
     <h2 align="center" style="color:blue">מטפלים</h2>
     <h4 align="right">:חיפוש</h4>
     <div dir="rtl">
@@ -74,3 +82,11 @@
 
 </body>
 </html>
+
+<script language='javascript' type='text/javascript'>
+    var dataexists = @ViewBag.DataExists;
+
+    $(document).ready(function() {
+        alert("aaaa")
+    })
+</script>
