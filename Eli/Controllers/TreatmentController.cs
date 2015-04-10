@@ -42,7 +42,7 @@ namespace Eli.Controllers
 
 
         [HttpPost]
-        public ActionResult IndexTreatment(tblTreatment treat, string submit)
+        public ActionResult IndexTreatment(tblTreatment treat, string submit, string pid)
         {
             EliManagerDB db = new EliManagerDB();
 
@@ -54,8 +54,8 @@ namespace Eli.Controllers
             else
                 db.EditTreatment(treat);
 
-            var refId = treat.ReferenceNumber; 
-            var patId = db.getPatientByReferencNumber((int)treat.ReferenceNumber).ID;
+            var refId = treat.ReferenceNumber;
+            var patId = pid;
 
             return RedirectToAction("IndexTreatment", new { rid = refId, pid = patId });
         }

@@ -34,7 +34,6 @@ namespace Eli.ViewModel
 
             referenceTherapists = db.ReferenceTherapist.ToList();
 
-
             treatments = db.Treatment.ToList();
 
         }

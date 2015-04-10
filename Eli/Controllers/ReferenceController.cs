@@ -31,19 +31,17 @@ namespace Eli.Controllers
 
 
         [HttpPost]
-        public ActionResult IndexReference(tblReference refe, string submit)
+        public ActionResult IndexReference(tblReference refe, string submit, string pid)
         {
             EliManagerDB db = new EliManagerDB();
 
-            var patId = db.getPatientByReferencNumber(refe.ReferenceNumber).ID;
-
             if (submit.Equals("צור"))
-                db.addReference(refe, patId);
+                db.addReference(refe, pid);
 
             else
                 db.EditReference(refe);
 
-            return RedirectToAction("IndexReference", new { pid = patId });
+            return RedirectToAction("IndexReference", new { pid = pid });
         }
 
 

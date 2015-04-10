@@ -50,7 +50,7 @@
             </div>
             <div class="modal-body">
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("IndexTreatment", "Treatment", new { pid = @ViewBag.pid }, FormMethod.Post))
                 {
                     <h4 align="right">@str</h4>
                     @Html.AntiForgeryToken()
