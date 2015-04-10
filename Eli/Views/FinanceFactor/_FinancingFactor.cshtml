@@ -44,7 +44,7 @@
 }
 
 <!-- Modal -->
-<div id="myModal">
+<div  id="myModal">
     <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -52,7 +52,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 align="right " class="modal-title" id="myModalLabel"></h4>
                 </div>
-                <div class="modal-body">
+                <div style="background:#0094ff" class="modal-body">
                     @using (Html.BeginForm())
                     {
                         <h4 align="right">@str</h4>
@@ -61,9 +61,7 @@
 
                         <fieldset align="right">
                             <legend>tblFinancingFactor</legend>
-
                             @Html.HiddenFor(model => model.FinancingFactorNumber)
-
                             <label float:right class="description" for="element_1">
                                 שם גורם מממן
                             </label>
@@ -72,7 +70,6 @@
                                 @Html.ValidationMessageFor(model => model.Name)
                             </div>
 
-
                             <label float:right class="description" for="element_1">
                                 כתובת גורם מממן
                             </label>
@@ -80,7 +77,6 @@
                                 @Html.EditorFor(model => model.AddressFinancingFactor)
                                 @Html.ValidationMessageFor(model => model.AddressFinancingFactor)
                             </div>
-
                             <fieldset>
                                 <label float:right class="description" for="element_1">
                                     סוג גורם מממן
@@ -88,8 +84,6 @@
                                 <br />
                                 <div style="text-align:right; float:right;">
                                     <select dir="rtl" class="element select" id="type" name="type">
-
-
 
                                         <option selected="selected" value="@default_val">@default_val</option>
                                         <option value="פרטי">פרטי</option>
@@ -99,14 +93,10 @@
                                         <option value="פרויקט">פרויקט</option>
                                         <option value="פנימייה">פנימייה</option>
 
-
-
                                     </select>
                                 </div>
 
-
                             </fieldset>
-
 
                             <label float:right class="description" for="element_1">
                                 שם איש קשר
@@ -115,7 +105,6 @@
                                 @Html.EditorFor(model => model.ContactName)
                                 @Html.ValidationMessageFor(model => model.ContactName)
                             </div>
-
                             <label float:right class="description" for="element_1">
                                 טלפון איש קשר
                             </label>
@@ -123,7 +112,6 @@
                                 @Html.EditorFor(model => model.ContcatPhoneNumber)
                                 @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
                             </div>
-
                             <label float:right class="description" for="element_1">
                                 מייל איש קשר
                             </label>
@@ -131,7 +119,6 @@
                                 @Html.EditorFor(model => model.ContactMail)
                                 @Html.ValidationMessageFor(model => model.ContactMail)
                             </div>
-
                             <p>
                                 <input type="submit" name="submit" value="@submit" />
                             </p>
@@ -141,7 +128,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <script>
     $(document).ready(function () {
