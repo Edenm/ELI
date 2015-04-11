@@ -16,7 +16,7 @@ namespace Eli
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Patient", action = "IndexPatients", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "IndexLogin", id = UrlParameter.Optional }
             );
         }
     }

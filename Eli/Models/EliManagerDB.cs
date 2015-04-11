@@ -388,6 +388,14 @@ namespace Eli.Models
             return refe;
         }
        
+    //----------------------------LOGIN-------------------------------------------------------------------
+        
+        public tblTherapist isUserValid(User user)
+        {
+            var u = Therapist.Where(t => t.UserName == user.UserName && t.Passcode == user.Password).FirstOrDefault();
+
+            return u;
+        }
     }
 
 }

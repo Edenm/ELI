@@ -14,12 +14,11 @@ namespace Eli.Controllers
     {
         public ActionResult Index()
         {
-            EliManagerDB db = new EliManagerDB();
 
-            var pat = db.Patients.ToArray();
-
-            return View(pat);
+            return View();
         }
+
+        
 
         /* The Method displays all the patients in the system-this is the main form of patients  **/
         [HttpGet]

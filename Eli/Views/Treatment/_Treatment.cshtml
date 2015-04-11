@@ -2,7 +2,7 @@
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
+<link href="~/Content/ModalSize.css" rel="stylesheet" />
 @{  string id;
     string submit;
     if (@Model.TreatmentNumber == 0)
@@ -32,7 +32,7 @@
     string str;
     if (@Model.TreatmentNumber != null)
     {
-        str = @Model.TreatmentNumber + "עריכת טיפול  מספר";
+        str = "עריכת טיפול";
     }
     else
     {
@@ -56,122 +56,122 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
-    <fieldset align="right">
-                        <legend>tblTreatment</legend>
+                    <fieldset align="right">
+                                        <legend>tblTreatment</legend>
 
-                        @Html.HiddenFor(model => model.TreatmentNumber)
+                                        @Html.HiddenFor(model => model.TreatmentNumber)
 
-        <label float:right class="description" for="element_1">
-            מטרת טיפול
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-           @Html.TextAreaFor(model => model.TreatmentGoal)
-            @Html.ValidationMessageFor(model => model.TreatmentGoal)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            מטרת טיפול
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                           @Html.TextAreaFor(model => model.TreatmentGoal)
+                            @Html.ValidationMessageFor(model => model.TreatmentGoal)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            נושא טיפול
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.SubjectTreatment)
-            @Html.ValidationMessageFor(model => model.SubjectTreatment)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            נושא טיפול
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.SubjectTreatment)
+                            @Html.ValidationMessageFor(model => model.SubjectTreatment)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            סטטוס מטופל
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.StatusPatientTreatment)
-            @Html.ValidationMessageFor(model => model.StatusPatientTreatment)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            סטטוס מטופל
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.StatusPatientTreatment)
+                            @Html.ValidationMessageFor(model => model.StatusPatientTreatment)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            תיאור טיפול
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-           @Html.TextAreaFor(model => model.TreatmentDescription)
-            @Html.ValidationMessageFor(model => model.TreatmentDescription)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            תיאור טיפול
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                           @Html.TextAreaFor(model => model.TreatmentDescription)
+                            @Html.ValidationMessageFor(model => model.TreatmentDescription)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            סיכום טיפול
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.TextAreaFor(model => model.SummaryTreatment)
-            @Html.ValidationMessageFor(model => model.SummaryTreatment)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            סיכום טיפול
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.TextAreaFor(model => model.SummaryTreatment)
+                            @Html.ValidationMessageFor(model => model.SummaryTreatment)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            הערות לפגישה הבאה
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.TextAreaFor(model => model.NextTreat)
-            @Html.ValidationMessageFor(model => model.NextTreat)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            הערות לפגישה הבאה
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.TextAreaFor(model => model.NextTreat)
+                            @Html.ValidationMessageFor(model => model.NextTreat)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            תאריך טיפול
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TreatmentDate)
-            @Html.ValidationMessageFor(model => model.TreatmentDate)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            תאריך טיפול
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.TreatmentDate)
+                            @Html.ValidationMessageFor(model => model.TreatmentDate)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            שעת טיפול
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.StartTime)
-            @Html.ValidationMessageFor(model => model.StartTime)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            שעת טיפול
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.StartTime)
+                            @Html.ValidationMessageFor(model => model.StartTime)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            מקום טיפול
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.Place)
-            @Html.ValidationMessageFor(model => model.Place)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            מקום טיפול
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.Place)
+                            @Html.ValidationMessageFor(model => model.Place)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            האם שולם
-        </label>
-        <br />
-        <div style="text-align:right; float:right;">
-            <select dir="rtl" class="element select" id="ispaid" name="ispaid">
+                        <label float:right class="description" for="element_1">
+                            האם שולם
+                        </label>
+                        <br />
+                        <div style="text-align:right; float:right;">
+                            <select dir="rtl" class="element select" id="ispaid" name="ispaid">
 
-                <option selected="selected" value="@default_val">@default_val</option>
-                <option value="זכר">כן</option>
-                <option value="נקבה">לא</option>
+                                <option selected="selected" value="@default_val">@default_val</option>
+                                <option value="זכר">כן</option>
+                                <option value="נקבה">לא</option>
 
 
-            </select>
-        </div>
-        <br />
+                            </select>
+                        </div>
+                        <br />
 
-        <label float:right class="description" for="element_1">
-            גורם מממן
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.FinancingFactorNumber)
-            @Html.ValidationMessageFor(model => model.FinancingFactorNumber)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            גורם מממן
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.FinancingFactorNumber)
+                            @Html.ValidationMessageFor(model => model.FinancingFactorNumber)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            מספר הפנייה
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ReferenceNumber)
-            @Html.ValidationMessageFor(model => model.ReferenceNumber)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            מספר הפנייה
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.ReferenceNumber)
+                            @Html.ValidationMessageFor(model => model.ReferenceNumber)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            מספר מטפל
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TherapistID)
-            @Html.ValidationMessageFor(model => model.TherapistID)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            מספר מטפל
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.TherapistID)
+                            @Html.ValidationMessageFor(model => model.TherapistID)
+                        </div>
 
                         <p>
                             <input type="submit" name="submit" value="@submit" />
