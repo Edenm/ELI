@@ -1,0 +1,18 @@
+﻿
+
+<div>
+
+    @Html.DropDownList("MyList", (SelectList)ViewBag.value, string.Empty, new { @onchange = "CallChangefunc(this.value)" });
+    <input type="text" name="lastname" value="" id="ID" readonly>
+
+
+</div>
+<script>
+    function CallChangefunc(x) {
+
+        document.getElementById("ID").value = x;
+
+
+    }
+</script>
+
