@@ -32,13 +32,13 @@
             <h2 align="center" style="color:blue">מטפלים</h2>
             <h4 align="right">:חיפוש</h4>
             <div dir="rtl">
-                <table id="myTable" class="display nowrap">
+                <table id="myTable" class="display nowrap table-bordered">
                     <thead align="center">
                         <tr>
-                            <th style="text-align: right;">תעודת זהות</th>
-                            <th style="text-align: right;">שם</th>
-                            <th style="text-align: right;">טלפון</th>
-                            <th style="text-align: right;">פרטים נוספים</th>
+                            <th style="text-align: center;">תעודת זהות</th>
+                            <th style="text-align: center;">שם</th>
+                            <th style="text-align: center;">טלפון</th>
+                            <th style="text-align: center;">פרטים נוספים</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +49,7 @@
                                 <tr align="center">
                                     <td> @item.ID </td>
                                     @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
-                                    <td> @FullName</td>   
+                                    <td> @FullName</td>
                                     <td> @item.ContcatPhoneNumber </td>
                                     <td>
                                         <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">

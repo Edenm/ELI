@@ -23,23 +23,23 @@
     <h2 align="center" style="color:blue">גורמים מממנים</h2>
     <h4 align="right">:חיפוש</h4>
     <div dir="rtl">
-        <table id="myTable" class="display nowrap">
+        <table id="myTable" class="display nowrap table-bordered">
             <thead align="center">
                 <tr>
-                    <th style="text-align: right;"></th>
-                    <th style="text-align: right;">שם</th>
-                    <th style="text-align: right;">סוג</th>
-                    <th style="text-align: right;">שם איש קשר</th>
-                    <th style="text-align: right;">טלפון איש קשר</th>
-                    <th style="text-align: right;">מייל איש קשר</th>
-                    <th style="text-align: right;">פרטים נוספים</th>
-                 
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">שם</th>
+                    <th style="text-align: center;">סוג</th>
+                    <th style="text-align: center;">שם איש קשר</th>
+                    <th style="text-align: center;">טלפון איש קשר</th>
+                    <th style="text-align: center;">מייל איש קשר</th>
+                    <th style="text-align: center;">פרטים נוספים</th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    if (@item.FinancingFactorNumber!=0)
+                    if (@item.FinancingFactorNumber != 0)
                     {
                         <tr align="center">
                             <td> @item.FinancingFactorNumber </td>
@@ -53,10 +53,8 @@
                                     <img src="~/Images/info.png" />
                                 </a>
                             </td>
-                            
-                            
 
-                            
+
 
 
                         </tr>
