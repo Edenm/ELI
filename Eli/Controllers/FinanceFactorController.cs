@@ -15,6 +15,7 @@ using System.Text;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net.Mail;
 namespace Eli.Controllers
 {
     public class FinanceFactorController : Controller
@@ -149,6 +150,46 @@ namespace Eli.Controllers
 
         }
 
+
+
+
+        //
+        // GET: /SendMailer/  
+        public ActionResult Index()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ViewResult Index(Eli.Models.MailModel _objModelMail)
+        {
+            if (ModelState.IsValid)
+            {
+                _objModelMail.From = "margulis.shaharm@gmail.com";
+                MailMessage mail = new MailMessage();
+                mail.To.Add(_objModelMail.To);
+                mail.From = new MailAddress(_objModelMail.From);
+                mail.Subject = _objModelMail.Subject;
+                string Body = _objModelMail.Body;
+                mail.Body = Body;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential
+                ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+
+                return View("view", _objModelMail);
+
+
+            }
+            else
+            {
+                return View();
+            }
+        }
         /* The Method opens a new form of finance factors  **/
 
         public ActionResult NewFinanceFactor()

@@ -194,6 +194,7 @@
     <Compile Include="Controllers\FinanceFactorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\SendMailerController.cs" />
     <Compile Include="Controllers\TherapistController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
     <Compile Include="Controllers\TreatmentController.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Models\SQLConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Family.cs" />
+    <Compile Include="ViewModel\MailModel.cs" />
     <Compile Include="ViewModel\ReferenceTeratments.cs" />
     <Compile Include="ViewModel\Treatment.cs" />
     <Compile Include="ViewModel\User.cs" />
@@ -404,6 +406,8 @@
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Reference\Index.cshtml" />
+    <Content Include="Views\SendMailer\Index.cshtml" />
+    <Content Include="Views\SendMailer\success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
