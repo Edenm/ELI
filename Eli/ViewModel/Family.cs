@@ -8,22 +8,37 @@ namespace Eli.ViewModel
 {
     public partial class Family
     {
-        public String PatientID;
+        private tblPatient patient;
 
-        public List<tblParent> Parent;
+        private List<tblParent> parents;
 
-        public List<tblBrotherSister> BrotherSister;
+        private List<tblBrotherSister> brotherSisters;
 
-        EliManagerDB db;
+        private EliManagerDB db;
 
         public Family(String PID)
         {
             db = new EliManagerDB();
 
-            PatientID = PID;
-            BrotherSister = db.getAllBrotherSisterByPatient(PID);
-            Parent = db.getAllParentsByPatient(PID);
+            patient = db.getPatientById(PID);
+            brotherSisters = db.getAllBrotherSisterByPatient(PID);
+            parents = db.getAllParentsByPatient(PID);
 
+        }
+
+        public tblPatient Patient
+        {
+            get { return patient; }
+        }
+
+        public List<tblParent> Parents
+        {
+            get { return parents; }
+        }
+
+        public List<tblBrotherSister> BrotherSisters
+        {
+            get { return brotherSisters; }
         }
     }
 }

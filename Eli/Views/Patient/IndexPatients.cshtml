@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Eli.Models.tblPatient>
+﻿@model IEnumerable<Eli.ViewModel.Family>
 @using Eli.Models;
+@using Eli.ViewModel;
 @using System;
 @using System.Collections.Generic;
 
@@ -41,25 +42,25 @@
                 @foreach (var item in Model)
                 {
                     <tr align="center">
-                        <td> @item.ID </td>
-                        <td> @item.PatientFirstName </td>
-                        <td> @item.PatientSurName </td>
-                        <td> @item.ContcatPhoneNumber </td>
+                        <td> @item.Patient.ID </td>
+                        <td> @item.Patient.PatientFirstName </td>
+                        <td> @item.Patient.PatientSurName </td>
+                        <td> @item.Patient.ContcatPhoneNumber </td>
                         <td>
                             @{
-                                String id = "1" + @item.ID;
+                                String id = "1" + @item.Patient.ID;
                             }
                             <a data-toggle="modal" data-target="#id">
                                 <img src="~/Images/info.png" />
                             </a>
                         </td>
                         <td>
-                            <a data-toggle="modal" data-target="#@item.ID">
+                            <a data-toggle="modal" data-target="#@item.Patient.ID">
                                 <img src="~/Images/edit.png" />
                             </a>
                         </td>
                         <td>
-                            <a href="@Url.Action("IndexReference", "Reference", new { pid = @item.ID },null)">
+                            <a href="@Url.Action("IndexReference", "Reference", new { pid = @item.Patient.ID }, null)">
                                 <img src="~/Images/info.png" />
                             </a>
                         </td>
@@ -70,13 +71,14 @@
         </table>
     </div>
 
-    @foreach (tblPatient item in Model)
+    @foreach (Family item in Model)
     {
-                @Html.Partial("_Patient", item);
+                @Html.Partial("_Patient", item.Patient);
     }
-    @foreach (tblPatient item in Model)
+
+    @foreach (Family item in Model)
     {
-                @Html.Action("_EditFamily", "Patient", new { id = item.ID });
+                @Html.Partial("_EditFamily", item);
     }
 
     <script>
