@@ -11,5 +11,6 @@ namespace Eli.Models
         public string To { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
+        public int id { get; set; }
     }
 }

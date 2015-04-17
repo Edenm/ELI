@@ -18,6 +18,52 @@
   }
 }
 
+@{
+    string default_val1;
+    if (@Model.StatusReference != null)
+    {
+        default_val1 = @Model.StatusReference;
+    }
+    else
+    {
+        default_val1 = "אחר";
+    }
+}
+@{
+    string default_val2;
+    if (@Model.AbuseType != null)
+    {
+        default_val2 = @Model.AbuseType;
+    }
+    else
+    {
+        default_val2 = "לא רלונטי";
+    }
+}
+@{
+    string default_val3;
+    if (@Model.ReferenceSource != null)
+    {
+        default_val3 = @Model.ReferenceSource;
+    }
+    else
+    {
+        default_val3 = "הסברה";
+    }
+}
+
+@{
+    string str;
+    if (@Model.ReasonReference != null)
+    {
+        str =  "עריכת הפנייה   ";
+    }
+    else
+    {
+        str =    "הוספת הפנייה חדשה  ";
+    }
+}
+
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -31,58 +77,100 @@
 
                 @using (Html.BeginForm("IndexReference", "Reference", new { pid = @ViewBag.pid }, FormMethod.Post))
                 {
+                    <h4 align="right">@str</h4>
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
-                    <fieldset>
-                        <legend>tblReference</legend>
+    <fieldset align="right">
+        <legend>tblReference</legend>
 
-                        @Html.HiddenFor(model => model.ReferenceNumber)
+        @Html.HiddenFor(model => model.ReferenceNumber)
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ReasonReference)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ReasonReference)
-                            @Html.ValidationMessageFor(model => model.ReasonReference)
-                        </div>
+       
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.StatusReference)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.StatusReference)
-                            @Html.ValidationMessageFor(model => model.StatusReference)
-                        </div>
+        <label float:right class="description" for="element_1">
+            סיבה
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ReasonReference)
+            @Html.ValidationMessageFor(model => model.ReasonReference)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.OtherStatus)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.OtherStatus)
-                            @Html.ValidationMessageFor(model => model.OtherStatus)
-                        </div>
+        <label float:right class="description" for="element_1">
+           סטטוס
+        </label>
+        <br />
+        <div style="text-align:right; float:right;">
+            <select dir="rtl" class="element select" id="StatusReference" name="StatusReference">
+                <option selected="selected" value="@default_val1">@default_val1</option>
+                <option value="פוגע">פוגע</option>
+                <option value="נפגע">נפגע</option>
+                <option value="פוגע ונפגע">פוגע ונפגע</option>
+                <option value="אחר">אחר</option>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.AbuseType)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.AbuseType)
-                            @Html.ValidationMessageFor(model => model.AbuseType)
-                        </div>
+            </select>
+        </div>
+        <br />
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ReferenceSource)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ReferenceSource)
-                            @Html.ValidationMessageFor(model => model.ReferenceSource)
-                        </div>
+        <label float:right class="description" for="element_1">
+          סטטוס אחר
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.OtherStatus)
+            @Html.ValidationMessageFor(model => model.OtherStatus)
+        </div>
 
-                        <p>
-                            <input type="submit" name="submit" value="@submit" />
-                        </p>
-                    </fieldset>
+        <label float:right class="description" for="element_1">
+            סוג
+        </label>
+        <br />
+        <div style="text-align:right; float:right;">
+            <select dir="rtl" class="element select" id="AbuseType" name="AbuseType">
+                <option selected="selected" value="@default_val2">@default_val2</option>
+                <option value="פיזית">פיזית</option>
+                <option value="הזנחה">הזנחה</option>
+                <option value="רגשית">רגשית</option>
+                <option value="מינית">מינית</option>
+                <option value="לא רלונטי">לא רלונטי</option>
+
+            </select>
+        </div>
+        <br />
+        <label float:right class="description" for="element_1">
+            כיצד הגיע?
+        </label>
+        <br />
+        <div style="text-align:right; float:right;">
+            <select dir="rtl" class="element select" id="ReferenceSource" name="ReferenceSource">
+                <option selected="selected" value="@default_val3">@default_val3</option>
+                <option value="הסברה">הסברה</option>
+                <option value="איש מקצוע">איש מקצוע</option>
+                <option value="מדיה">מדיה</option>
+               
+
+            </select>
+        </div>
+        <br />
+        <label float:right class="description" for="element_1">
+            תאריך התחלה
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <label float:right class="description" for="element_1">
+           תאריך סיום
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.EndDate)
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+        <p>
+            <input type="submit" name="submit" value="@submit" />
+        </p>
+    </fieldset>
                 }
             </div>
         </div>

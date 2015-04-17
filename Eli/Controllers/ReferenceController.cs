@@ -34,6 +34,12 @@ namespace Eli.Controllers
         public ActionResult IndexReference(tblReference refe, string submit, string pid)
         {
             EliManagerDB db = new EliManagerDB();
+            String StatusReference = Request.Form["StatusReference"];
+            String AbuseType = Request.Form["AbuseType"];
+            String ReferenceSource = Request.Form["ReferenceSource"];
+            refe.StatusReference = StatusReference;
+            refe.AbuseType = AbuseType;
+            refe.ReferenceSource = ReferenceSource;
 
             if (submit.Equals("צור"))
                 db.addReference(refe, pid);

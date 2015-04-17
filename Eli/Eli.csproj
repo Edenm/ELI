@@ -408,6 +408,7 @@
     <Content Include="Views\Reference\Index.cshtml" />
     <Content Include="Views\SendMailer\Index.cshtml" />
     <Content Include="Views\SendMailer\success.cshtml" />
+    <Content Include="Views\FinanceFactor\_mail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
