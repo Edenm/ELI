@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Eli.ViewModel;
+using System.Web.Mvc;
 
 namespace Eli.Models
 {
@@ -260,31 +261,33 @@ namespace Eli.Models
         }
 
         /* The method is editing exist patient**/
-        public void EditFamily(Family fam)
+        public void EditFamily(FormCollection family, string pid)
         {
-            foreach (tblBrotherSister tbs in fam.BrotherSister){
-                var broSis = BrotherSister.First(bs => bs.ID == tbs.ID);
-                broSis.ID = tbs.ID;
-                broSis.FirstName = tbs.FirstName;
-                broSis.SurName = tbs.SurName;
-                broSis.StudyFramework = tbs.StudyFramework;
-                broSis.Gender = tbs.Gender;
-                broSis.BirthDate = tbs.BirthDate;
-            }
-
-            foreach (tblParent tp in fam.Parent)
+            Family fam = new Family(pid);
+            int count=0;
+            foreach (tblParent tp in fam.Parents)
             {
                 var parent = Parent.First(bs => bs.ID == tp.ID);
-                parent.ID = tp.ID;
-                parent.FirstName = tp.FirstName;
-                parent.SurName = tp.SurName;
-                parent.Address = tp.Address;
-                parent.ContactMail = tp.ContactMail;
-                parent.Explain = tp.Explain;
-                parent.IsWorking = tp.IsWorking;
-                parent.ContactMail = tp.ContactMail;
-                parent.Gender = tp.Gender;
-                parent.BirthDate = tp.BirthDate;
+                parent.FirstName = family.GetValues("FirstName")[count];
+                parent.SurName = family.GetValues("SurName")[count];
+                //parent.Address = family.GetValues("Address")[count];
+                parent.ContcatPhoneNumber = family.GetValues("ContcatPhoneNumber")[count];
+                //parent.Explain = family.GetValues("Explain")[count];
+                parent.IsWorking = family.GetValues("IsWorking")[count];
+                parent.ContactMail = family.GetValues("ContactMail")[count];
+                //parent.Gender = family.GetValues("Gender")[count]; 
+                //parent.BirthDate =Convert.ToDateTime(family.GetValues("BirthDate")[count]);
+                count++;
+            }
+            int countBS = 0;
+            foreach (tblBrotherSister tbs in fam.BrotherSisters){
+                var broSis = BrotherSister.First(bs => bs.ID == tbs.ID);
+                broSis.FirstName = family.GetValues("FirstName")[count];
+                broSis.SurName = family.GetValues("SurName")[count];
+                broSis.StudyFramework = family.GetValues("StudyFramework")[countBS];
+                //broSis.Gender = family.GetValues("Gender")[count];
+                broSis.BirthDate = Convert.ToDateTime(family.GetValues("BirthDate")[countBS]);
+                count++;
             }
             
             db.SubmitChanges();

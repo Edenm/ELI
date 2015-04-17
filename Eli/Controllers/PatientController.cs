@@ -18,41 +18,37 @@ namespace Eli.Controllers
             return View();
         }
 
-        
-
         /* The Method displays all the patients in the system-this is the main form of patients  **/
         [HttpGet]
         public ActionResult IndexPatients()
         {
             EliManagerDB db = new EliManagerDB();
 
-            var pat = db.Patients.ToArray();
+            var pat = db.Patients.ToList();
+            List<Family> fams= new List<Family>();
 
-            return View(pat);
+            foreach (tblPatient f in pat){
+                fams.Add(new Family(f.ID));
+            }
+
+            return View(fams);
         }
 
 
         /* The method get a patient details and update the patient **/
         [HttpPost]
-        public ActionResult IndexPatients(tblPatient obj)
+        public ActionResult IndexPatients(tblPatient pat)
         {
             EliManagerDB db = new EliManagerDB();
 
-            Type type = obj.GetType();
-            String str = type.Name;
+            db.EditPatient(pat);
 
-            if (obj.GetType() == typeof(tblPatient))
-                db.EditPatient((tblPatient)obj);
-
-            //if (obj is Family)
-            // db.EditFamily((Family)obj);
-
-            var pat = db.Patients.ToArray();
-
-            return View(pat);
+            return RedirectToAction("IndexPatients");
         }
 
 
+        /* The method return family obj to view of patient **/
+        [HttpGet]
         public ActionResult _EditFamily(String id)
         {
             EliManagerDB db = new EliManagerDB();
@@ -60,15 +56,25 @@ namespace Eli.Controllers
             Family objFam = new Family(id);
             return PartialView(objFam);
         }
+        
+        /* The method update family obj siblings and parents **/
+        [HttpPost]
+        public ActionResult _EditFamily(FormCollection family, string pid)
+        {
+            EliManagerDB db = new EliManagerDB();
+            var name = family.GetValues("IsWorking");
+
+            Family fam = new Family(pid);
+
+            db.EditFamily(family, pid);
+
+            return RedirectToAction("IndexPatients", new { id = pid });
+        }
 
         public ActionResult NewPatient()
         {
-            return View();
+            return View(new tblPatient());
         }
-
-
-
-
 
         /* The Method get parameters of patient and add him to system  **/
 

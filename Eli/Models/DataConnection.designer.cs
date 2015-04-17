@@ -1015,7 +1015,7 @@ namespace Eli.Models
 		}
 
         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+        //[RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
 
         [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
 		
