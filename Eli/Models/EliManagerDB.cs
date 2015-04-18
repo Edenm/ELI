@@ -132,6 +132,28 @@ namespace Eli.Models
 
         }
 
+
+        /* Add Therapist to reference **/
+        public void addTherapisttoRef(string tid, int refid)
+        {
+            var therapist = from r in ReferenceTherapist
+                            where r.ReferenceNumber.Equals(refid)
+                            select r;
+            foreach(var item in therapist)
+            {
+                if (item.TherapistID.Equals(tid))
+                    return;
+            }
+
+            tblReferenceTherapist tbRT = new tblReferenceTherapist()
+            {
+                ReferenceNumber = refid,
+                TherapistID = tid
+            };
+
+            ReferenceTherapist.InsertOnSubmit(tbRT);
+        }
+       
         /* Add Therapist to data base **/
         public void addTherapist(tblTherapist tt)
         {
@@ -399,6 +421,10 @@ namespace Eli.Models
 
             return u;
         }
+
+
+
+       
     }
 
 }

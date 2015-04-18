@@ -15,6 +15,29 @@ namespace Eli.Controllers
         public ActionResult IndexTreatment(int rid, string pid)
         {
             EliManagerDB db = new EliManagerDB();
+            /////////////////////////////////////////////for finance factor
+
+            List<SelectListItem> listItem1 = new List<SelectListItem>();
+            var a = db.FinancingFactor.ToList();
+            for (int i = 0; i < a.Count(); i++)
+            {
+                listItem1.Add(new SelectListItem() { Value = a.ElementAt(i).FinancingFactorNumber.ToString(), Text = a.ElementAt(i).Name.ToString() });
+            }
+
+            ViewBag.value1 = new SelectList(listItem1, "Value", "Text");
+            //////////////////////////////////////////////////////////////////////////////////////
+            
+            /////////////////////////////////////////////for finance factor
+
+            List<SelectListItem> listItem2 = new List<SelectListItem>();
+            var b = db.Therapist.ToList();
+            for (int i = 0; i < b.Count(); i++)
+            {
+                listItem2.Add(new SelectListItem() { Value = b.ElementAt(i).ID.ToString(), Text = b.ElementAt(i).TherapistFirstName+" "+b.ElementAt(i).TherapistSurName });
+            }
+
+            ViewBag.value2 = new SelectList(listItem2, "Value", "Text");
+            //////////////////////////////////////////////////////////////////////////////////////
 
             List<Treatment> treatments = new List<Treatment>();
 
@@ -48,6 +71,16 @@ namespace Eli.Controllers
 
             String ispaid = Request.Form["ispaid"];
             treat.IsPaid = ispaid;
+            String finance = Request.Form["finance"];
+            treat.FinancingFactorNumber = Convert.ToInt32(finance);
+            int reference = Convert.ToInt32(Request.Form["reference"]);
+            treat.ReferenceNumber = reference;
+           String therapist = Request.Form["therapist"];
+           treat.TherapistID = therapist;
+           String time = Request.Form["time"];
+           treat.StartTime = TimeSpan.Parse(time);
+
+           db.addTherapisttoRef(therapist, reference);
             if (submit.Equals("צור"))
                 db.addTreatment(treat);
 

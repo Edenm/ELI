@@ -21,6 +21,7 @@ namespace Eli.Models
 	using System.ComponentModel;
 	using System;
     using System.ComponentModel.DataAnnotations;
+    using Foolproof;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
@@ -295,7 +296,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BirthDate
 		{
@@ -952,7 +957,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BirthDate
 		{
@@ -1468,7 +1477,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+         [Required(ErrorMessage = "שדה חובה")]
+         [DataType(DataType.Date)]
+         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BirthDate
 		{
@@ -1488,7 +1501,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6)")]
 		public string Gender
 		{
@@ -1551,7 +1564,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+         [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+
+         [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="VarChar(10)")]
 		public string ContcatPhoneNumber
 		{
@@ -1571,7 +1587,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusPatient", DbType="VarChar(7)")]
 		public string StatusPatient
 		{
@@ -1869,10 +1885,12 @@ namespace Eli.Models
 				}
 			}
 		}
-		
 
 
-
+        [Required(ErrorMessage = "שדה חובה")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
 		public System.Nullable<System.DateTime> StartDate
 		{
@@ -1892,7 +1910,13 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+       // [GreaterThan("StartDate", ErrorMessage = "תאריך סיום חייב להיות אחרי תהליך התחלה")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+       // [GreaterThan("StartDate", ErrorMessage = "תאריך סיום חייב להיות אחרי תהליך התחלה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
 		public System.Nullable<System.DateTime> EndDate
 		{
@@ -2479,10 +2503,9 @@ namespace Eli.Models
 			}
 		}
 
-
-        [Required(ErrorMessage = "שדה חובה")]
-
-        [RegularExpression(@"^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$", ErrorMessage = "YYYY-MM-DD :פומרט תאריך")]
+         [Required(ErrorMessage = "שדה חובה")]
+         [DataType(DataType.Date)]
+         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BirthDate
 		{
@@ -2916,7 +2939,8 @@ namespace Eli.Models
 
 
        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$", ErrorMessage = "YYYY-MM-DD :פומרט תאריך")]
+       [DataType(DataType.Date)]
+       [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDate", DbType="Date")]
@@ -2942,7 +2966,7 @@ namespace Eli.Models
 
 
        [Required(ErrorMessage = "שדה חובה")]
-        
+       [RegularExpression(@"[0-9]{2}:[0-9]{2}", ErrorMessage = "##:##")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Time")]
 		public System.Nullable<System.TimeSpan> StartTime
 		{

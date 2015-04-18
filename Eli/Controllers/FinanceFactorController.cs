@@ -30,7 +30,7 @@ namespace Eli.Controllers
             List<tblFinancingFactor> finfac = db.FinancingFactor.ToList();
 
             finfac.Add(new tblFinancingFactor());
-            
+            ViewBag.a = "aaa";
             return View(finfac);
 
           
