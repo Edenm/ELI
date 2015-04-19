@@ -1,42 +1,42 @@
 ﻿@model Eli.Models.tblBrotherSister
 
 
-        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.BrotherSisterID)
      
    
     <tr>
         <td class="col-sm-1">
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.Gender, new { @class = "col-sm-12" })
-                @Html.ValidationMessageFor(model => model.Gender)
+                @Html.TextBoxFor(model => model.BrotherSisterGender, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterGender)
             </div>
         </td>
 
         <td class="col-sm-1">
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.FirstName, new { @class = "col-sm-12" })
-                @Html.ValidationMessageFor(model => model.FirstName)
+                @Html.TextBoxFor(model => model.BrotherSisterFirstName, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterFirstName)
             </div>
         </td>
 
         <td class="col-sm-2">
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.SurName, new { @class = "col-sm-12" })
-                @Html.ValidationMessageFor(model => model.SurName)
+                @Html.TextBoxFor(model => model.BrotherSisterSurName, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterSurName)
             </div>
         </td>
 
         <td class="col-sm-2">
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.BirthDate, new { @class = "col-sm-12" })
-                @Html.ValidationMessageFor(model => model.BirthDate)
+                @Html.TextBoxFor(model => model.BrotherSisterBirthDate, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterBirthDate)
             </div>
         </td>
 
         <td class="col-sm-2">
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.StudyFramework, new { @class = "col-sm-12" })
-                @Html.ValidationMessageFor(model => model.StudyFramework)
+                @Html.TextBoxFor(model => model.BrotherSisterStudyFramework, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterStudyFramework)
             </div>
         </td>
 </tr>

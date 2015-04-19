@@ -47,11 +47,11 @@
                     {
                         <tr align="center">
                             <td> @item.FinancingFactorNumber </td>
-                            <td> @item.Name </td>
+                            <td> @item.FinancingFactorName </td>
                             <td> @item.FinancingFactorType </td>
-                            <td> @item.ContactName</td>
-                            <td> @item.ContcatPhoneNumber</td>
-                            <td> @item.ContactMail </td>
+                            <td> @item.FinancingFactorContactName</td>
+                            <td> @item.FinancingFactorContcatPhoneNumber</td>
+                            <td> @item.FinancingFactorContactMail </td>
                             <td>
                                 <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.FinancingFactorNumber">
                                     <img src="~/Images/info.png" />
@@ -84,7 +84,7 @@
     @foreach (tblFinancingFactor item in Model)
     {
         MailModel m = new MailModel();
-        m.To = item.ContactMail;
+        m.To = item.FinancingFactorContactMail;
         m.id = count1;
         @Html.Partial("_mail", m);
           count1++;
@@ -106,17 +106,19 @@
 
     </script>
 
-</body>
-
-
-
-<script type="text/javascript">
+    <script type="text/javascript">
     function deleteConfirm(id) {
-       
+
 
 
     }
 
-</script>
+    </script>
+
+</body>
+
+
+
+
 
 </html>

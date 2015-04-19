@@ -1,24 +1,24 @@
 ﻿@model Eli.Models.tblParent
-                        @Html.HiddenFor(model => model.ID)
+                        @Html.HiddenFor(model => model.ParentID)
 
             
                         <tr>
                             <td class="col-sm-1">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.Gender, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.Gender)
+                                    @Html.TextBoxFor(model => model.ParentGender, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentGender)
                                 </div>
                             </td>
                             <td class="col-sm-2">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.FirstName, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.FirstName)
+                                    @Html.TextBoxFor(model => model.ParentFirstName, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentFirstName)
                                 </div>
                             </td>
                             <td class="col-sm-2">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.SurName, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.SurName)
+                                    @Html.TextBoxFor(model => model.ParentSurName, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentSurName)
                                 </div>
                             </td>
                             <td class="col-sm-1">
@@ -29,14 +29,14 @@
                             </td>
                             <td class="col-sm-2">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.ContcatPhoneNumber, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
+                                    @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
                                 </div>
                             </td>
                             <td class="col-sm-2">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.ContactMail, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
+                                    @Html.TextBoxFor(model => model.ParentMail, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
                                 </div>
                             </td>
                         </tr>

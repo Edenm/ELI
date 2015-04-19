@@ -44,15 +44,15 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            if (@item.ID != null)
+                            if (@item.TherapistID != null)
                             {
                                 <tr align="center">
-                                    <td> @item.ID </td>
+                                    <td> @item.TherapistID </td>
                                     @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
                                     <td> @FullName</td>
-                                    <td> @item.ContcatPhoneNumber </td>
+                                    <td> @item.TherapistPhoneNumber </td>
                                     <td>
-                                        <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.ID">
+                                        <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.TherapistID">
                                             <img src="~/Images/info.png" />
                                         </a>
                                     </td>

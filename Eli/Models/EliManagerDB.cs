@@ -286,30 +286,30 @@ namespace Eli.Models
         public void EditFamily(FormCollection family, string pid)
         {
             Family fam = new Family(pid);
-            int count=0;
+            int countP=0;
             foreach (tblParent tp in fam.Parents)
             {
                 var parent = Parent.First(bs => bs.ParentID == tp.ParentID);
-                parent.ParentFirstName = family.GetValues("ParentFirstName")[count];
-                parent.ParentSurName = family.GetValues("SurName")[count];
-                //parent.ParentAddress = family.GetValues("ParentAddress")[count];
-                parent.ParentPhoneNumber = family.GetValues("ContcatPhoneNumber")[count];
-                //parent.Explain = family.GetValues("Explain")[count];
-                parent.IsWorking = family.GetValues("IsWorking")[count];
-                parent.ParentMail = family.GetValues("ParentMail")[count];
-                //parent.ParentGender = family.GetValues("ParentGender")[count]; 
-                //parent.ParentBirthDate =Convert.ToDateTime(family.GetValues("ParentBirthDate")[count]);
-                count++;
+                parent.ParentFirstName = family.GetValues("ParentFirstName")[countP];
+                parent.ParentSurName = family.GetValues("ParentSurName")[countP];
+                //parent.ParentAddress = family.GetValues("ParentAddress")[countP];
+                parent.ParentPhoneNumber = family.GetValues("ParentPhoneNumber")[countP];
+                //parent.Explain = family.GetValues("Explain")[countP];
+                parent.IsWorking = family.GetValues("IsWorking")[countP];
+                parent.ParentMail = family.GetValues("ParentMail")[countP];
+                //parent.ParentGender = family.GetValues("ParentGender")[countP]; 
+                //parent.ParentBirthDate =Convert.ToDateTime(family.GetValues("ParentBirthDate")[countP]);
+                countP++;
             }
             int countBS = 0;
             foreach (tblBrotherSister tbs in fam.BrotherSisters){
                 var broSis = BrotherSister.First(bs => bs.BrotherSisterID == tbs.BrotherSisterID);
-                broSis.BrotherSisterFirstName = family.GetValues("BrotherSisterFirstName")[count];
-                broSis.BrotherSisterSurName = family.GetValues("BrotherSisterSurName")[count];
+                broSis.BrotherSisterFirstName = family.GetValues("BrotherSisterFirstName")[countBS];
+                broSis.BrotherSisterSurName = family.GetValues("BrotherSisterSurName")[countBS];
                 broSis.BrotherSisterStudyFramework = family.GetValues("BrotherSisterStudyFramework")[countBS];
-                //broSis.BrotherSistersGender = family.GetValues("BrotherSisterGender")[count];
+                //broSis.BrotherSistersGender = family.GetValues("BrotherSisterGender")[countBS];
                 broSis.BrotherSisterBirthDate = Convert.ToDateTime(family.GetValues("BrotherSisterBirthDate")[countBS]);
-                count++;
+                countBS++;
             }
             
             db.SubmitChanges();

@@ -388,11 +388,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Patient\NewPatient.cshtml" />
-    <Content Include="Views\FinanceFactor\FinancingFactorDetails.cshtml" />
-    <Content Include="Views\FinanceFactor\NewFinanceFactor.cshtml" />
     <Content Include="Views\Patient\IndexPatients.cshtml" />
-    <Content Include="Views\FinanceFactor\EditFinanceFactor.cshtml" />
-    <Content Include="Views\FinanceFactor\MainFinancingFactor.cshtml" />
     <Content Include="Views\Patient\_EditFamily.cshtml" />
     <Content Include="Views\Shared\_Parent.cshtml" />
     <Content Include="Views\Therapist\IndexTherapist.cshtml" />
@@ -420,7 +416,6 @@
     <Content Include="Views\WizardFormPatient\Step2.cshtml" />
     <Content Include="Views\WizardFormPatient\Step3.cshtml" />
     <Content Include="Views\WizardFormPatient\EndOfWizard.cshtml" />
-    <Content Include="Views\Patient\Famil.cshtml" />
     <Content Include="Views\Shared\_Patient.cshtml" />
   </ItemGroup>
   <ItemGroup>
