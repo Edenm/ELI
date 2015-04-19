@@ -13,14 +13,20 @@
                 <h4 align="right " class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Step3", "WizardFormPatient"))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
                     <fieldset>
 
-                        @Html.HiddenFor(model => model.ParentID)
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ParentID)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.ParentID)
+                            @Html.ValidationMessageFor(model => model.ParentID)
+                        </div>
 
                         <div class="editor-label">
                             @Html.LabelFor(model => model.ParentFirstName)
@@ -103,7 +109,7 @@
                         </div>
 
                         <p>
-                            <input type="submit" value="Save" />
+                            <input type="submit" name="add" value="AddParent" />
                         </p>
                     </fieldset>
                 }

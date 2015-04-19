@@ -56,14 +56,14 @@ namespace Eli.Controllers
             if (add != null && add == "AddParent")
             {
                 tblParent parent = new tblParent();
-                parent.ParentFirstName = famlyForm.GetValues("ParentFirstName")[countP];
-                parent.ParentSurName = famlyForm.GetValues("ParentSurName")[countP];
+                parent.ParentFirstName = famlyForm.GetValues("ParentFirstName")[0];
+                parent.ParentSurName = famlyForm.GetValues("ParentSurName")[0];
                 //parent.ParentAddress = famlyForm.GetValues("ParentAddress")[countP];
-                parent.ParentPhoneNumber = famlyForm.GetValues("ParentPhoneNumber")[countP];
+                parent.ParentPhoneNumber = famlyForm.GetValues("ParentPhoneNumber")[0];
                 //parent.Explain = famlyForm.GetValues("Explain")[countP];
-                parent.IsWorking = famlyForm.GetValues("IsWorking")[countP];
-                parent.ParentMail = famlyForm.GetValues("ParentMail")[countP];
-                parent.ParentGender = famlyForm.GetValues("ParentGender")[countP];
+                parent.IsWorking = famlyForm.GetValues("IsWorking")[0];
+                parent.ParentMail = famlyForm.GetValues("ParentMail")[0];
+                parent.ParentGender = famlyForm.GetValues("ParentGender")[0];
                 //parent.ParentBirthDate =Convert.ToDateTime(famlyForm.GetValues("ParentBirthDate")[countP]);
                 fam.Parents.Add(parent);
                 countP++;

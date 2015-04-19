@@ -54,35 +54,57 @@
                                     <table class="table table-bordered" dir="rtl" style="text-align:center">
                                         <thead>
                                             <tr>
+                                                <th style="text-align:center">ת"ז</th>
                                                 <th style="text-align:center">אב\ם</th>
                                                 <th style="text-align:center">שם פרטי </th>
                                                 <th style="text-align:center">שם משפחה</th>
                                                 <th style="text-align:center">כתובת</th>
                                                 <th style="text-align:center">עובד?</th>
-                                                <th style="text-align:center">פירוט</th>
                                                 <th style="text-align:center">טלפון</th>
                                                 <th style="text-align:center">מייל</th>
-                                                <th style="text-align:center">הערות</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (Model.Parents.Count() > 0)
-                                            {
-                                                foreach (var item in Model.Parents)
+                                                @foreach (var item in Model.Parents)
                                                 {
-                                                    @Html.Partial("_Parent", item);
+                                                    <tr>
+                                                        <td class="col-sm-1">
+                                                            @item.ParentID
+                                                        </td>
+                                                        <td class="col-sm-0">
+                                                            @item.ParentGender
+                                                        </td>
+                                                        <td class="col-sm-0">
+                                                            @item.ParentFirstName
+                                                        </td>
+                                                        <td class="col-sm-0">
+                                                            @item.ParentSurName
+                                                        </td>
+                                                        <td class="col-sm-0">
+                                                            @item.ParentAddress
+                                                        </td>
+                                                        <td class="col-sm-0">
+                                                            @item.IsWorking
+                                                        </td>
+                                                        <td class="col-sm-0">
+                                                            @item.ParentPhoneNumber
+                                                        </td>
+                                                        <td class="col-sm-0">
+                                                            @item.ParentMail
+                                                        </td>
+                                                    </tr>
                                                 }
-                                            }
-                                            @Html.Partial("_Parent", new tblParent());
+                                                   
                                             <tr style="text-align:center">
                                                 <td>
-                                                    <a data-toggle="modal" data-target="newParent">
-                                                        <img src="~/Images/add.png" />
-                                                    </a>
-                                                    <button type="submit" name="add" value="AddParent" class="btn btn-default">הוספת הורה נוסף</button>
+                                                    <button type="button" class="btn btn-default" data-toggle="modal" style="float:right" data-target="#newParent">
+                                                        הוסף הורה נוסף
+                                                    </button> 
                                                 </td>
                                                 @if (Model.Parents.Count() > 0)
                                                 {
+                                                    <td></td>   
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -151,7 +173,8 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
+"Step3", "WizardFormPatient")
+@Html.Partial("PopUpParent",new tblParent())
 
     
 
