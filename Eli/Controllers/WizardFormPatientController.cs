@@ -13,7 +13,6 @@ namespace Eli.Controllers
     {
         //
         // GET: /WizardFormPatient/
-        public static int countGlobal = 0;
         public static int countP = 0;
         public static int countBS= 0;
 
@@ -52,17 +51,6 @@ namespace Eli.Controllers
         public ActionResult Step3(FormCollection famlyForm, string prevBtn, string nextBtn, string add, string remove)
         {
             Family fam = GetFamily();
-            /*
-                tblPatient tp = new tblPatient();
-                //tp.ID = fam.Patient.ID;
-                tp.PatientFirstName = fam.Patient.PatientFirstName;
-                tp.PatientSurName = fam.Patient.PatientSurName;
-                tp.StatusPatient = fam.Patient.StatusPatient;
-                tp.Gender = fam.Patient.Gender;
-                tp.BirthDate = fam.Patient.BirthDate;
-                tp.Address = fam.Patient.Address;
-                tp.ContcatPhoneNumber = fam.Patient.ContcatPhoneNumber;
-                tp.EducationalFramework = fam.Patient.EducationalFramework;*/
 
 //--------------------------------Add/Remove Parent-------------------------------------------------------
             if (add != null && add == "AddParent")
@@ -79,7 +67,6 @@ namespace Eli.Controllers
                 //parent.ParentBirthDate =Convert.ToDateTime(famlyForm.GetValues("ParentBirthDate")[countP]);
                 fam.Parents.Add(parent);
                 countP++;
-                countGlobal++;
                 return View("Step2",fam);
             }
 
@@ -87,7 +74,6 @@ namespace Eli.Controllers
             {
                 fam.Parents.RemoveAt(fam.Parents.Count() - 1);
                 countP--;
-                countGlobal--;
                 return View("Step2", fam);
             }
 
@@ -96,13 +82,12 @@ namespace Eli.Controllers
             if (add != null && add == "AddBrotherSister")
             {
                 tblBrotherSister broSis = new tblBrotherSister();
-                broSis.BrotherSisterFirstName = famlyForm.GetValues("BrotherSisterFirstName")[countGlobal];
-                broSis.BrotherSisterSurName = famlyForm.GetValues("BrotherSisterSurName")[countP];
+                broSis.BrotherSisterFirstName = famlyForm.GetValues("BrotherSisterFirstName")[countBS];
+                broSis.BrotherSisterSurName = famlyForm.GetValues("BrotherSisterSurName")[countBS];
                 broSis.BrotherSisterStudyFramework = famlyForm.GetValues("BrotherSisterStudyFramework")[countBS];
-                //broSis.BrotherSisterGender = famlyForm.GetValues("BrotherSisterGender")[countP];
+                //broSis.BrotherSisterGender = famlyForm.GetValues("BrotherSisterGender")[countBS];
                 broSis.BrotherSisterBirthDate = Convert.ToDateTime(famlyForm.GetValues("BrotherSisterBirthDate")[countBS]);
                 fam.BrotherSisters.Add(broSis);
-                countGlobal++;
                 countBS++;
                 return View("Step2", fam);
             }
@@ -110,7 +95,6 @@ namespace Eli.Controllers
             if (remove != null && remove == "RemoveBrotherSister")
             {
                 fam.BrotherSisters.RemoveAt(fam.BrotherSisters.Count() - 1);
-                countGlobal--;
                 countBS--;
                 return View("Step2", fam);
             }
@@ -124,42 +108,16 @@ namespace Eli.Controllers
             {
                 //if (ModelState.IsValid)
                 {
-                    /*
-                    for (int i = 0; i <famlyForm.GetValue("IsWorking").AttemptedValue.Count() ; i++)
-                    {
-                        tblParent parent= new tblParent();
-                        parent.FirstName = famlyForm.GetValues("FirstName")[i];
-                        parent.SurName = famlyForm.GetValues("SurName")[i];
-                        //parent.Address = famlyForm.GetValues("Address")[i];
-                        parent.ContcatPhoneNumber = famlyForm.GetValues("ContcatPhoneNumber")[i];
-                        //parent.Explain = famlyForm.GetValues("Explain")[i];
-                        parent.IsWorking = famlyForm.GetValues("IsWorking")[i];
-                        parent.ContactMail = famlyForm.GetValues("ContactMail")[i];
-                        //parent.Gender = famlyForm.GetValues("Gender")[i]; 
-                        //parent.BirthDate =Convert.ToDateTime(famlyForm.GetValues("BirthDate")[i]);
-                        fam.Parents.Add(parent);
-                    }
-                    int countBSin=famlyForm.GetValue("IsWorking").AttemptedValue.Count();
-                    for (int j = 0; j <famlyForm.GetValue("StudyFramework").AttemptedValue.Count() ; j++)
-                    {
-                        countBSin += j;
-                        tblBrotherSister broSis = new tblBrotherSister();
-                        broSis.FirstName = famlyForm.GetValues("FirstName")[j];
-                        broSis.SurName = famlyForm.GetValues("SurName")[j];
-                        broSis.StudyFramework = famlyForm.GetValues("StudyFramework")[countBSin];
-                        //broSis.Gender = famlyForm.GetValues("Gender")[j];
-                        broSis.BirthDate = Convert.ToDateTime(famlyForm.GetValues("BirthDate")[j]);
-                        fam.BrotherSisters.Add(broSis);
-                    }*/
-
                     return View(new tblReference());
                 }
             }
             return View("Step2", fam);
         }
 
+
         public ActionResult EndOfWizard(tblReference refe, string finBtn, string prevBtn)
         {
+            EliManagerDB db = new EliManagerDB();
             Family fam = GetFamily();
 
             if (prevBtn != null)
@@ -171,8 +129,8 @@ namespace Eli.Controllers
             {
                 //if (ModelState.IsValid)
                 {
-                    Family obj = GetFamily();
-                    obj.Reference = refe;
+                    fam.Reference = refe;
+                    //db.addPatient(fam);
                     return View();
                 }
             }

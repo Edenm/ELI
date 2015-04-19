@@ -89,47 +89,47 @@ namespace Eli.Models
 //-------------------------Add methods----------------------------------------------------------
         
         /* The method add patient with all the details about him **/
-        public void addPatient(tblPatient patient, tblParent mother, tblParent father, tblReference reference, List<tblBrotherSister> BS)
+        public void addPatient(Family family)
         {
+            Patients.InsertOnSubmit(family.Patient);
 
-            Patients.InsertOnSubmit(patient);
-
-            Parent.InsertOnSubmit(mother);
-            Parent.InsertOnSubmit(father);
-
-            tblParentPatient tblFP= new tblParentPatient()
+            foreach (tblParent p in family.Parents)
             {
-                PatientID= patient.ID,
-                ParentID = father.ParentID
-            };
+                Parent.InsertOnSubmit(p);
 
-            tblParentPatient tblMP= new tblParentPatient()
-            {
-                PatientID= patient.ID,
-                ParentID = mother.ParentID
-            };
+                tblParentPatient tbPP = new tblParentPatient()
+                {
+                    ParentID = p.ParentID,
+                    PatientID = family.Patient.ID
+                };
 
-            ParentPatient.InsertOnSubmit(tblFP);
-            ParentPatient.InsertOnSubmit(tblMP);
+                ParentPatient.InsertOnSubmit(tbPP);
+            }
 
-            foreach (var bs in BS)
+            foreach (tblBrotherSister bs in family.BrotherSisters)
             {
                 BrotherSister.InsertOnSubmit(bs);
 
                 tblBrotherSisterPatient tbBSP = new tblBrotherSisterPatient()
                 {
                     BrotherSisterID = bs.BrotherSisterID,
-                    PatientID = patient.ID
+                    PatientID = family.Patient.ID
                 };
 
                 BrotherSisterPatient.InsertOnSubmit(tbBSP);
-
             }
 
-            Reference.InsertOnSubmit(reference);
+            Reference.InsertOnSubmit(family.Reference);
+
+            tblRefererencePatient tbRP = new tblRefererencePatient()
+            {
+                PatientID = family.Patient.ID,
+                ReferenceNumber = family.Reference.ReferenceNumber
+            };
+
+            ReferencePatient.InsertOnSubmit(tbRP);
 
             db.SubmitChanges();
-
         }
 
 
@@ -198,6 +198,7 @@ namespace Eli.Models
             Treatment.InsertOnSubmit(tr);
             db.SubmitChanges();
         }
+
 
         //-------------------------Edit methods----------------------------------------------------------
 

@@ -1,6 +1,8 @@
 ﻿@model Eli.ViewModel.Family
 
-@using Eli.Models
+@using Eli.Models;
+@using Eli.ViewModel
+
 
 
 <div class="row form-group">
@@ -29,113 +31,128 @@
 </div>
 
     <div class="col-xs-12">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:100%;">
             <div class="modal-content" dir="rtl">
-                    @using (Html.BeginForm("Step3", "WizardFormPatient"))
-                    {
-                            <div class="modal-header">
-                                <h4 class="modal-title" align="center">פרטים נוספים על מטופל</h4>
-                            </div>
-                            <div class="modal-body">
-                   
-                                @Html.AntiForgeryToken()
-                                @Html.ValidationSummary(true)
+                @using (Html.BeginForm("Step3", "WizardFormPatient"))
+                {
+                    <div class="modal-header">
+                        <h4 class="modal-title" align="center">פרטים נוספים על מטופל</h4>
+                    </div>
+                    <div class="modal-body">
 
-                    
-                                    <h2 align="right">משפחה</h2>
-                                    <h4 align="right">פרטי הורים</h4>
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
 
 
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <fieldset>
-                                                <table class="table table-bordered" dir="rtl" style="text-align:center">
-                                                    <thead>
-                                                        <tr>
-                                                            <th style="text-align:center">אב\ם</th>
-                                                            <th style="text-align:center">שם פרטי </th>
-                                                            <th style="text-align:center">שם משפחה</th>
-                                                            <th style="text-align:center">האם עובד</th>
-                                                            <th style="text-align:center">טלפון</th>
-                                                            <th style="text-align:center">מייל</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @if (Model.Parents.Count()>0){
-                                                            foreach (var item in Model.Parents)
-                                                            {
-                                                                @Html.Partial("_Parent", item);
-                                                            }
-                                                        }
-                                                        @Html.Partial("_Parent", new tblParent());
-                                                        <tr style="text-align:center">
-                                                            <td>
-                                                                <button type="submit" name="add" value="AddParent" class="btn btn-default">הוספת הורה נוסף</button> 
-                                                            </td>
-                                                            @if (Model.Parents.Count() > 0)
-                                                            {
-                                                                <td></td><td></td><td></td><td></td>
-                                                                <td>
-                                                                    <button type="submit" name="remove" value="RemoveParent" class="btn btn-default">מחיקה</button>
-                                                                </td>
-                                                            }
-                                                        </tr>
-                                                    </tbody>
+                        <h2 align="right">משפחה</h2>
+                        <h4 align="right">פרטי הורים</h4>
 
-                                                </table>
-                                            </fieldset>
 
-                                        </div>
-                                    </div>
-
-                                    <h4 align="right">פרטי אחים</h4>
-                                    <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered" dir="rtl" style="text-align:center">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align:center">אח\ות</th>
-                                                    <th style="text-align:center">שם פרטי</th>
-                                                    <th style="text-align:center">שם משפחה</th>
-                                                    <th style="text-align:center">תאריך לידה</th>
-                                                    <th style="text-align:center">מסגרת לימודית</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                 @if (Model.BrotherSisters.Count() > 0)
-                                                 {
-                                                     foreach (var item in Model.BrotherSisters)
-                                                     {
-                                                        @Html.Partial("_BrotherSister", item);
-                                                     }
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <fieldset>
+                                    <table class="table table-bordered" dir="rtl" style="text-align:center">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:center">אב\ם</th>
+                                                <th style="text-align:center">שם פרטי </th>
+                                                <th style="text-align:center">שם משפחה</th>
+                                                <th style="text-align:center">כתובת</th>
+                                                <th style="text-align:center">עובד?</th>
+                                                <th style="text-align:center">פירוט</th>
+                                                <th style="text-align:center">טלפון</th>
+                                                <th style="text-align:center">מייל</th>
+                                                <th style="text-align:center">הערות</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Parents.Count() > 0)
+                                            {
+                                                foreach (var item in Model.Parents)
+                                                {
+                                                    @Html.Partial("_Parent", item);
                                                 }
-                                                @Html.Partial("_BrotherSister", new tblBrotherSister());
-                                                <tr style="text-align:center">
+                                            }
+                                            @Html.Partial("_Parent", new tblParent());
+                                            <tr style="text-align:center">
+                                                <td>
+                                                    <a data-toggle="modal" data-target="newParent">
+                                                        <img src="~/Images/add.png" />
+                                                    </a>
+                                                    <button type="submit" name="add" value="AddParent" class="btn btn-default">הוספת הורה נוסף</button>
+                                                </td>
+                                                @if (Model.Parents.Count() > 0)
+                                                {
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                     <td>
-                                                        <button type="submit" name="add" value="AddBrotherSister" class="btn btn-default">הוספת אח\ות נוספ\ת</button>
+                                                        <button type="submit" name="remove" value="RemoveParent" class="btn btn-default">מחיקה</button>
                                                     </td>
-                                                    @if (Model.BrotherSisters != null && Model.BrotherSisters.Count() > 0)
-                                                    {
-                                                        <td></td><td></td><td></td>
-                                                        <td>
-                                                            <button type="submit" name="remove" value="RemoveBrotherSister" class="btn btn-default">מחיקה</button>
-                                                        </td>
-                                                    }
-                                                </tr>
+                                                }
+                                            </tr>
+                                        </tbody>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                    
+                                    </table>
+                                </fieldset>
+
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" name="prevBtn" value="Previous" class="btn btn-default">הקודם</button>
-                                <button type="submit" name="nextBtn" value="Next" class="btn btn-primary" style="float:left">הבא </button>
+                        </div>
+
+                        <h4 align="right">פרטי אחים</h4>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered" dir="rtl" style="text-align:center">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align:center">אח\ות</th>
+                                            <th style="text-align:center">שם פרטי</th>
+                                            <th style="text-align:center">שם משפחה</th>
+                                            <th style="text-align:center">תאריך לידה</th>
+                                            <th style="text-align:center">מסגרת לימודית</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.BrotherSisters.Count() > 0)
+                                        {
+                                            foreach (var item in Model.BrotherSisters)
+                                            {
+                                                @Html.Partial("_BrotherSister", item);
+                                            }
+                                        }
+                                        @Html.Partial("_BrotherSister", new tblBrotherSister());
+                                        <tr style="text-align:center">
+                                            <td>
+                                                <button type="submit" name="add" value="AddBrotherSister" class="btn btn-default">הוספת אח\ות נוספ\ת</button>
+                                            </td>
+                                            @if (Model.BrotherSisters != null && Model.BrotherSisters.Count() > 0)
+                                            {
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button type="submit" name="remove" value="RemoveBrotherSister" class="btn btn-default">מחיקה</button>
+                                                </td>
+                                            }
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                             </div>
-                    }
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="prevBtn" value="Previous" class="btn btn-default">הקודם</button>
+                        <button type="submit" name="nextBtn" value="Next" class="btn btn-primary" style="float:left">הבא </button>
+                    </div>
+                }
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+
+    
 
 
