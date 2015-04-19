@@ -28,9 +28,21 @@
         default_val = "לא";
     }
 }
+
+@{
+    string default_val1;
+    if (@Model.StartTime != null)
+    {
+        default_val1 = @Model.StartTime.ToString();
+    }
+    else
+    {
+        default_val1 = "08:00";
+    }
+}
 @{
     string str;
-    if (@Model.TreatmentNumber != null)
+    if (@Model.Place != null)
     {
         str = "עריכת טיפול";
     }
@@ -120,10 +132,24 @@
                         <label float:right class="description" for="element_1">
                             שעת טיפול
                         </label>
-                        <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.StartTime)
-                            @Html.ValidationMessageFor(model => model.StartTime)
+                        <br />
+                        <div style="text-align:right; float:right;">
+                            <select dir="rtl" class="element select" id="time" name="time">
+                                <option selected="selected" value="@default_val1">@default_val1</option>
+                                <option value="08:00">08:00</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+
+                            </select>
                         </div>
+                        <br />
 
                         <label float:right class="description" for="element_1">
                             מקום טיפול
@@ -141,37 +167,38 @@
                             <select dir="rtl" class="element select" id="ispaid" name="ispaid">
 
                                 <option selected="selected" value="@default_val">@default_val</option>
-                                <option value="זכר">כן</option>
-                                <option value="נקבה">לא</option>
+                                <option value="כן">כן</option>
+                                <option value="לא">לא</option>
 
 
                             </select>
                         </div>
                         <br />
+                        <br />
+                        
 
                         <label float:right class="description" for="element_1">
                             גורם מממן
                         </label>
-                        <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.FinancingFactorNumber)
-                            @Html.ValidationMessageFor(model => model.FinancingFactorNumber)
-                        </div>
+                        <br />
+                        @Html.DropDownList("MyList1", (SelectList)ViewBag.value1, string.Empty, new { @onchange = "CallChangefunc1(this.value)" })<br />
+                        <input type="text" name="finance" value="@Model.FinancingFactorNumber" id="finance" readonly align="right" dir="rtl"><br />
 
                         <label float:right class="description" for="element_1">
                             מספר הפנייה
                         </label>
-                        <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.ReferenceNumber)
-                            @Html.ValidationMessageFor(model => model.ReferenceNumber)
+                        <br />
+                        <div float:right; dir="rtl" class="editor-field" >
+                            <input type="text" name="reference" value="@Model.ReferenceNumber" id="reference" readonly align="right" dir="rtl"><br />
                         </div>
 
                         <label float:right class="description" for="element_1">
-                            מספר מטפל
+                             מטפל
                         </label>
-                        <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.TherapistID)
-                            @Html.ValidationMessageFor(model => model.TherapistID)
-                        </div>
+                        <br />
+                        @Html.DropDownList("MyList2", (SelectList)ViewBag.value2, string.Empty, new { @onchange = "CallChangefunc2(this.value)" })<br />
+                        <input type="text" name="therapist" value="@Model.TherapistID" id="therapist" readonly align="right" dir="rtl">
+
 
                         <p>
                             <input type="submit" name="submit" value="@submit" />
@@ -183,3 +210,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    function CallChangefunc1(x) {
+        alert(x);
+        document.getElementById("finance").value = x;
+
+
+    }
+</script>
+<script>
+    function CallChangefunc2(x) {
+        alert(x);
+        document.getElementById("therapist").value = x;
+
+
+    }
+</script>

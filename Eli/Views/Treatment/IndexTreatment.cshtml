@@ -96,7 +96,7 @@
 
     @foreach (Treatment item in Model)
     {
-            @Html.Partial("_Treatment", item.treatment,new ViewDataDictionary { {"pid", @ViewBag.Id} });  
+            @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", @ViewBag.Id }, { "MyList1", @ViewBag.value1 }, { "MyList2", @ViewBag.value2 } });  
        
     }
 

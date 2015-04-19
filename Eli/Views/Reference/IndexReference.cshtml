@@ -19,6 +19,7 @@
 
     @Styles.Render("~/Content/bootstrapcss")
     @Styles.Render("~/Content/themes/base/css")
+
 </head>
 <body>
     <h3 align="right">
@@ -39,26 +40,35 @@
                 <thead>
                     <tr>
                         <th style="text-align: center;">מספר</th>
-                        <th style="text-align: center;">סטטוס</th>
                         <th style="text-align: center;">סיבה</th>
+                        <th style="text-align: center;">סטטוס</th>
+                        <th style="text-align: center;">סטטוס אחר</th>
                         <th style="text-align: center;">סוג</th>
                         <th style="text-align: center;">כיצד הגיע?</th>
+                        <th style="text-align: center;">תאריך התחלה</th>
+                        <th style="text-align: center;">תאריך סיום</th>
+
                         <th style="text-align: center;">עריכה</th>
                         <th style="text-align: center;">טיפולים</th>
                     </tr>
                 </thead>
                 <tbody>
                     @{ int count = 1;}
+ 
+
                     @foreach (var item in Model)
                     {
                         if (@item.ReferenceNumber!=0)
                         {
                             <tr>
                                 <td> @count</td>
-                                <td> @item.OtherStatus </td>
                                 <td> @item.ReasonReference </td>
+                                <td> @item.StatusReference </td>
+                                <td> @item.OtherStatus </td>
                                 <td> @item.AbuseType </td>
                                 <td> @item.ReferenceSource </td>
+                                <td> @item.StartDate </td>
+                                <td> @item.EndDate </td>
                                 <td>
                                     <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.ReferenceNumber">
                                         <img src="~/Images/edit.png" />
@@ -82,7 +92,7 @@
 
     @foreach (tblReference item in Model)
     {
-        @Html.Partial("_PopUpReference", item, new ViewDataDictionary { {"pid", @ViewBag.Id} });
+        @Html.Partial("_Reference", item, new ViewDataDictionary { {"pid", @ViewBag.Id} });
 
     }
 

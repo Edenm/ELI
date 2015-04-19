@@ -20,6 +20,7 @@
         @Styles.Render("~/Content/themes/base/css")
 </head>
 <body>
+   
     <h2 align="center" style="color:blue">גורמים מממנים</h2>
     <h4 align="right">:חיפוש</h4>
     <div dir="rtl">
@@ -33,10 +34,13 @@
                     <th style="text-align: center;">טלפון איש קשר</th>
                     <th style="text-align: center;">מייל איש קשר</th>
                     <th style="text-align: center;">פרטים נוספים</th>
+                    <th style="text-align: center;">שליחה</th>
 
                 </tr>
             </thead>
             <tbody>
+                @{ int count = 500;}
+                @{ int count1 = 500;}
                 @foreach (var item in Model)
                 {
                     if (@item.FinancingFactorNumber != 0)
@@ -53,12 +57,19 @@
                                     <img src="~/Images/info.png" />
                                 </a>
                             </td>
+                            <td>
+                                
+                                <a src="~/Images/info.png" data-toggle="modal" data-target="#@count">
+                                    <img src="~/Images/info.png" />
+                                </a>
+                            </td>
 
 
 
 
                         </tr>
                     }
+                    count++;
 
                 }
             </tbody>
@@ -68,6 +79,15 @@
     @foreach (tblFinancingFactor item in Model)
     {
         @Html.Partial("_FinancingFactor", item);
+    }
+
+    @foreach (tblFinancingFactor item in Model)
+    {
+        MailModel m = new MailModel();
+        m.To = item.ContactMail;
+        m.id = count1;
+        @Html.Partial("_mail", m);
+          count1++;
     }
 
     

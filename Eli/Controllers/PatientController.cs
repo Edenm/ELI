@@ -45,7 +45,10 @@ namespace Eli.Controllers
         public ActionResult IndexPatients(tblPatient pat)
         {
             EliManagerDB db = new EliManagerDB();
-
+            String gender = Request.Form["gender"];
+            pat.Gender = gender;
+            String status = Request.Form["status"];
+            pat.StatusPatient = status;
             db.EditPatient(pat);
 
             return RedirectToAction("IndexPatients");
