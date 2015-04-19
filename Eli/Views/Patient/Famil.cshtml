@@ -3,7 +3,6 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-
 @using Eli.Models;
 
 @{
@@ -27,7 +26,7 @@
                     <h2 align="right">משפחה</h2>
                     <h4 align="right">פרטי הורים</h4>
 
-                    
+
                     <div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered" dir="rtl" style="text-align:center">
@@ -46,7 +45,7 @@
                                     @foreach (var item in Model.Parents)
                                     {
                                         @Html.Partial("_Parent", item);
-                                        count++; 
+                                                                      count++;
                                     }
                                 </tbody>
 

@@ -1,0 +1,57 @@
+﻿@model Eli.Models.tblReference
+
+@using Eli.Models
+
+
+<div class="row form-group">
+    <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified thumbnail setup-panel" dir="rtl">
+            <li class="disabled">
+                <a href="#step-1">
+                    <h4 class="list-group-item-heading">שלב 1</h4>
+                    <p class="list-group-item-text">פרטים אישיים של מטופל</p>
+                </a>
+            </li>
+            <li class="disabled">
+                <a href="#step-2">
+                    <h4 class="list-group-item-heading">שלב 2</h4>
+                    <p class="list-group-item-text">פרטים נוספים על מטופל</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#step-3">
+                    <h4 class="list-group-item-heading">שלב 3</h4>
+                    <p class="list-group-item-text">פרטי הפנייה</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+    <div class="col-xs-12">
+        <div class="modal-dialog">
+            <div class="modal-content" dir="rtl">
+                @using (Html.BeginForm("EndOfWizard", "WizardFormPatient"))
+                {
+                    <div class="modal-header">
+                        <h4 class="modal-title" align="center">פרטי הפנייה</h4>
+                    </div>
+                    <div class="modal-body">
+                
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <fieldset>
+                            @Html.Partial("_Reference", Model)
+                        </fieldset>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" name="prevBtn" value="Previous" class="btn btn-default">הקודם</button>
+                        <button type="submit" name="finBtn" value="Finish" class="btn btn-primary" style="float:left">הבא </button>
+                    </div>
+                }
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->

@@ -18,6 +18,11 @@ namespace Eli.Controllers
             return View();
         }
 
+        public ActionResult Test()
+        {
+            return View(new tblPatient());
+        }
+
         /* The Method displays all the patients in the system-this is the main form of patients  **/
         [HttpGet]
         public ActionResult IndexPatients()
@@ -46,16 +51,6 @@ namespace Eli.Controllers
             return RedirectToAction("IndexPatients");
         }
 
-
-        /* The method return family obj to view of patient **/
-        [HttpGet]
-        public ActionResult _EditFamily(String id)
-        {
-            EliManagerDB db = new EliManagerDB();
-
-            Family objFam = new Family(id);
-            return PartialView(objFam);
-        }
         
         /* The method update family obj siblings and parents **/
         [HttpPost]

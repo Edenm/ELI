@@ -4,14 +4,10 @@
             
                         <tr>
                             <td class="col-sm-1">
-                                @if (Model.Gender == "זכר")
-                                {
-                                    <div class ="col-sm-12">זכר</div>;
-                                }
-                                else
-                                {
-                                    <div class="col-sm-12">נקבה</div>;
-                                }
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Gender, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.Gender)
+                                </div>
                             </td>
                             <td class="col-sm-2">
                                 <div class="editor-field">

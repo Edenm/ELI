@@ -198,6 +198,7 @@
     <Compile Include="Controllers\TherapistController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
     <Compile Include="Controllers\TreatmentController.cs" />
+    <Compile Include="Controllers\WizardFormPatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -386,10 +387,9 @@
     <Content Include="Views\Patient\IndexPatients.cshtml" />
     <Content Include="Views\FinanceFactor\EditFinanceFactor.cshtml" />
     <Content Include="Views\FinanceFactor\MainFinancingFactor.cshtml" />
-    <Content Include="Views\Patient\_Patient.cshtml" />
-    <Content Include="Views\Patient\_Family.cshtml" />
+    <Content Include="Views\Shared\_Patient.cshtml" />
     <Content Include="Views\Patient\_EditFamily.cshtml" />
-    <Content Include="Views\Patient\_Parent.cshtml" />
+    <Content Include="Views\Shared\_Parent.cshtml" />
     <Content Include="Views\Therapist\IndexTherapist.cshtml" />
     <Content Include="Views\Therapist\_Therapist.cshtml" />
     <Content Include="Views\FinanceFactor\IndexFinancingFactor.cshtml" />
@@ -397,7 +397,7 @@
     <Content Include="Views\Reference\IndexReference.cshtml" />
     <Content Include="Views\Treatment\_Treatment.cshtml" />
     <Content Include="Views\Treatment\IndexTreatment.cshtml" />
-    <Content Include="Views\Reference\_Reference.cshtml" />
+    <Content Include="Views\Shared\_Reference.cshtml" />
     <Content Include="Views\FinanceFactor\ExportToExcel.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Login\IndexLogin.cshtml" />
@@ -407,7 +407,15 @@
     <Content Include="Views\Reference\Index.cshtml" />
     <Content Include="Views\SendMailer\Index.cshtml" />
     <Content Include="Views\SendMailer\success.cshtml" />
-    <Content Include="Views\Patient\_BrotherSister.cshtml" />
+    <Content Include="Views\Shared\_BrotherSister.cshtml" />
+    <Content Include="Views\Patient\Test.cshtml" />
+    <Content Include="Views\Patient\_PopUpPatient.cshtml" />
+    <Content Include="Views\Reference\_PopUpReference.cshtml" />
+    <Content Include="Views\WizardFormPatient\Step1.cshtml" />
+    <Content Include="Views\WizardFormPatient\Step2.cshtml" />
+    <Content Include="Views\WizardFormPatient\Step3.cshtml" />
+    <Content Include="Views\WizardFormPatient\EndOfWizard.cshtml" />
+    <Content Include="Views\Patient\Famil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,11 +10,21 @@ namespace Eli.ViewModel
     {
         private tblPatient patient;
 
+        private tblReference reference;
+
         private List<tblParent> parents;
 
         private List<tblBrotherSister> brotherSisters;
 
         private EliManagerDB db;
+
+        public Family()
+        {
+            patient = new tblPatient();
+            reference = new tblReference();
+            parents = new List<tblParent>();
+            brotherSisters = new List<tblBrotherSister>();
+        }
 
         public Family(String PID)
         {
@@ -23,12 +33,18 @@ namespace Eli.ViewModel
             patient = db.getPatientById(PID);
             brotherSisters = db.getAllBrotherSisterByPatient(PID);
             parents = db.getAllParentsByPatient(PID);
-
         }
 
         public tblPatient Patient
         {
             get { return patient; }
+            set { patient = value; }
+        }
+
+        public tblReference Reference
+        {
+            get { return reference; }
+            set { reference = value; }
         }
 
         public List<tblParent> Parents

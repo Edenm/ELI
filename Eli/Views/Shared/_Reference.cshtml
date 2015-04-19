@@ -1,41 +1,6 @@
 ﻿@model Eli.Models.tblReference
 
-<script src="~/Scripts/jquery-1.8.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@{  string id;
-  string submit;
-  if (@Model.ReferenceNumber == 0)
-  {
-      id = "new";
-      submit = "צור";
-  }
-  else
-  {
-      id = @Model.ReferenceNumber.ToString();
-      submit = "שמור";
-  }
-}
-
-<!-- Modal -->
-<div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
-            </div>
-            
-            <div class="modal-body">
-
-                @using (Html.BeginForm("IndexReference", "Reference", new { pid = @ViewBag.pid }, FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
-
-                    <fieldset>
-                        <legend>tblReference</legend>
 
                         @Html.HiddenFor(model => model.ReferenceNumber)
 
@@ -78,13 +43,4 @@
                             @Html.EditorFor(model => model.ReferenceSource)
                             @Html.ValidationMessageFor(model => model.ReferenceSource)
                         </div>
-
-                        <p>
-                            <input type="submit" name="submit" value="@submit" />
-                        </p>
-                    </fieldset>
-                }
-            </div>
-        </div>
-    </div>
-</div>
+                  
