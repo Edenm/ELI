@@ -1,4 +1,6 @@
 ﻿@model Eli.Models.tblPatient
+
+
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <!-- Modal -->
@@ -14,8 +16,9 @@
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
-                    <fieldset>
-                        @Html.Partial("_Patient", Model);
+                    <fieldset align="right">
+                        
+                        @Html.Partial("_Patient",Model)
                         <p>
                             <input type="submit" value="Save" />
                         </p>
@@ -25,3 +28,4 @@
         </div>
     </div>
 </div>
+

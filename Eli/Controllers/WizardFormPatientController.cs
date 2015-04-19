@@ -68,15 +68,15 @@ namespace Eli.Controllers
             if (add != null && add == "AddParent")
             {
                 tblParent parent = new tblParent();
-                parent.FirstName = famlyForm.GetValues("FirstName")[countP];
-                parent.SurName = famlyForm.GetValues("SurName")[countP];
-                //parent.Address = famlyForm.GetValues("Address")[countP];
-                parent.ContcatPhoneNumber = famlyForm.GetValues("ContcatPhoneNumber")[countP];
+                parent.ParentFirstName = famlyForm.GetValues("ParentFirstName")[countP];
+                parent.ParentSurName = famlyForm.GetValues("ParentSurName")[countP];
+                //parent.ParentAddress = famlyForm.GetValues("ParentAddress")[countP];
+                parent.ParentPhoneNumber = famlyForm.GetValues("ParentPhoneNumber")[countP];
                 //parent.Explain = famlyForm.GetValues("Explain")[countP];
                 parent.IsWorking = famlyForm.GetValues("IsWorking")[countP];
-                parent.ContactMail = famlyForm.GetValues("ContactMail")[countP];
-                parent.Gender = famlyForm.GetValues("Gender")[countP]; 
-                //parent.BirthDate =Convert.ToDateTime(famlyForm.GetValues("BirthDate")[countP]);
+                parent.ParentMail = famlyForm.GetValues("ParentMail")[countP];
+                parent.ParentGender = famlyForm.GetValues("ParentGender")[countP];
+                //parent.ParentBirthDate =Convert.ToDateTime(famlyForm.GetValues("ParentBirthDate")[countP]);
                 fam.Parents.Add(parent);
                 countP++;
                 countGlobal++;
@@ -96,11 +96,11 @@ namespace Eli.Controllers
             if (add != null && add == "AddBrotherSister")
             {
                 tblBrotherSister broSis = new tblBrotherSister();
-                broSis.FirstName = famlyForm.GetValues("FirstName")[countGlobal];
-                broSis.SurName = famlyForm.GetValues("SurName")[countP];
-                broSis.StudyFramework = famlyForm.GetValues("StudyFramework")[countBS];
-                //broSis.Gender = famlyForm.GetValues("Gender")[countP];
-                broSis.BirthDate = Convert.ToDateTime(famlyForm.GetValues("BirthDate")[countBS]);
+                broSis.BrotherSisterFirstName = famlyForm.GetValues("BrotherSisterFirstName")[countGlobal];
+                broSis.BrotherSisterSurName = famlyForm.GetValues("BrotherSisterSurName")[countP];
+                broSis.BrotherSisterStudyFramework = famlyForm.GetValues("BrotherSisterStudyFramework")[countBS];
+                //broSis.BrotherSisterGender = famlyForm.GetValues("BrotherSisterGender")[countP];
+                broSis.BrotherSisterBirthDate = Convert.ToDateTime(famlyForm.GetValues("BrotherSisterBirthDate")[countBS]);
                 fam.BrotherSisters.Add(broSis);
                 countGlobal++;
                 countBS++;

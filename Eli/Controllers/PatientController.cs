@@ -48,7 +48,7 @@ namespace Eli.Controllers
             String gender = Request.Form["gender"];
             pat.Gender = gender;
             String status = Request.Form["status"];
-            pat.StatusPatient = status;
+            pat.PatientStatus = status;
             db.EditPatient(pat);
 
             return RedirectToAction("IndexPatients");
@@ -87,12 +87,12 @@ namespace Eli.Controllers
             tblPatient tbP = new tblPatient()
             {
                 ID = Request.Form["id"],
-                PatientFirstName = Request.Form["fname"],
-                PatientSurName = Request.Form["lname"],
+                FirstName = Request.Form["fname"],
+                SurName = Request.Form["lname"],
                 Gender = Request.Form["gender"],
                 EducationalFramework = Request.Form["education"],
-                ContcatPhoneNumber = Request.Form["phone"],
-                Address = Request.Form["address"]
+                PhoneNumber = Request.Form["phone"],
+                PatientAddress = Request.Form["address"]
             };
 
 
@@ -100,26 +100,26 @@ namespace Eli.Controllers
 
             tblParent tbPF = new tblParent()
             {
-                ID = Request.Form["idf"],
-                FirstName = Request.Form["fnamef"],
-                SurName = Request.Form["lnamef"],
+                ParentID = Request.Form["idf"],
+                ParentFirstName = Request.Form["fnamef"],
+                ParentSurName = Request.Form["lnamef"],
                 //BirthDate = Convert.ToDateTime(birthdatef),
-                ContcatPhoneNumber = Request.Form["phonef"],
-                Address = Request.Form["adressf"],
-                ContactMail = Request.Form["mailf"],
+                ParentPhoneNumber = Request.Form["phonef"],
+                ParentAddress = Request.Form["adressf"],
+                ParentMail = Request.Form["mailf"],
                 IsWorking = Request.Form["isworkf"],
                 Explain=Request.Form["explainf"]
             };
 
             tblParent tbPM = new tblParent()
             {
-                 ID = Request.Form["idm"],
-                FirstName = Request.Form["fnamem"],
-                SurName = Request.Form["lnamem"],
+                ParentID = Request.Form["idm"],
+                ParentFirstName = Request.Form["fnamem"],
+                ParentSurName = Request.Form["lnamem"],
                 //BirthDate = Convert.ToDateTime(birthdatef),
-                ContcatPhoneNumber = Request.Form["phonem"],
-                Address = Request.Form["adressm"],
-                ContactMail = Request.Form["mailm"],
+                ParentPhoneNumber = Request.Form["phonem"],
+                ParentAddress = Request.Form["adressm"],
+                ParentMail = Request.Form["mailm"],
                 IsWorking = Request.Form["isworkm"],
                 Explain=Request.Form["explainm"]
             };
@@ -133,12 +133,12 @@ namespace Eli.Controllers
             {
                 tblBrotherSister tbBS = new tblBrotherSister()
                 {
-                    ID = Request.Form["id" + i],
-                    FirstName = Request.Form["fname" + i],
-                    SurName = Request.Form["lname" + i],
+                    BrotherSisterID = Request.Form["id" + i],
+                    BrotherSisterFirstName = Request.Form["fname" + i],
+                    BrotherSisterSurName = Request.Form["lname" + i],
                     // BirthDate=Request.Form["birthdate"],
-                    Gender = Request.Form["gender" + i],
-                    StudyFramework = Request.Form["education" + i]
+                    BrotherSisterGender = Request.Form["gender" + i],
+                    BrotherSisterStudyFramework = Request.Form["education" + i]
                 };
 
                 arrBS.Add(tbBS);

@@ -21,7 +21,7 @@ namespace Eli.Controllers
             var a = db.FinancingFactor.ToList();
             for (int i = 0; i < a.Count(); i++)
             {
-                listItem1.Add(new SelectListItem() { Value = a.ElementAt(i).FinancingFactorNumber.ToString(), Text = a.ElementAt(i).Name.ToString() });
+                listItem1.Add(new SelectListItem() { Value = a.ElementAt(i).FinancingFactorNumber.ToString(), Text = a.ElementAt(i).FinancingFactorContactName.ToString() });
             }
 
             ViewBag.value1 = new SelectList(listItem1, "Value", "Text");
@@ -33,7 +33,7 @@ namespace Eli.Controllers
             var b = db.Therapist.ToList();
             for (int i = 0; i < b.Count(); i++)
             {
-                listItem2.Add(new SelectListItem() { Value = b.ElementAt(i).ID.ToString(), Text = b.ElementAt(i).TherapistFirstName+" "+b.ElementAt(i).TherapistSurName });
+                listItem2.Add(new SelectListItem() { Value = b.ElementAt(i).TherapistID.ToString(), Text = b.ElementAt(i).TherapistFirstName+" "+b.ElementAt(i).TherapistSurName });
             }
 
             ViewBag.value2 = new SelectList(listItem2, "Value", "Text");
@@ -57,7 +57,7 @@ namespace Eli.Controllers
             var pat = db.getPatientById(pid);
 
             ViewBag.Id = pat.ID;
-            ViewBag.Name = pat.PatientFirstName + " " + pat.PatientSurName;
+            ViewBag.Name = pat.FirstName + " " + pat.SurName;
             ViewBag.Ref = rid;
 
             return View(treatments);
@@ -78,7 +78,7 @@ namespace Eli.Controllers
            String therapist = Request.Form["therapist"];
            treat.TherapistID = therapist;
            String time = Request.Form["time"];
-           treat.StartTime = TimeSpan.Parse(time);
+           treat.TreatmentStartTime = TimeSpan.Parse(time);
 
            db.addTherapisttoRef(therapist, reference);
             if (submit.Equals("צור"))
