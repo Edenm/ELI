@@ -1,0 +1,124 @@
+﻿@model Eli.Models.tblPatient
+
+@{
+    string default_val1;
+    if (@Model.Gender != null)
+    {
+        default_val1 = @Model.Gender;
+    }
+    else
+    {
+        default_val1 = "זכר";
+    }
+}
+
+@{
+    string default_val2;
+    if (@Model.StatusPatient != null)
+    {
+        default_val2 = @Model.StatusPatient;
+    }
+    else
+    {
+        default_val2 = "לא פעיל";
+    }
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="@Model.ID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                   // @Html.ValidationSummary(true)
+    <fieldset align="right">
+        <legend>tblPatient</legend>
+        @Html.HiddenFor(model => model.ID)
+        <label float:right class="description" for="element_1">
+            שם פרטי
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.PatientFirstName)
+            @Html.ValidationMessageFor(model => model.PatientFirstName)
+        </div>
+        <label float:right class="description" for="element_1">
+            שם משפחה
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.PatientSurName)
+            @Html.ValidationMessageFor(model => model.PatientSurName)
+        </div>
+        <label float:right class="description" for="element_1">
+            תאריך לידה
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.BirthDate)
+            @Html.ValidationMessageFor(model => model.BirthDate)
+        </div>
+        <fieldset>
+            <label float:right class="description" for="element_1">
+                מגדר
+            </label>
+            <br />
+            <div style="text-align:right; float:right;">
+                <select dir="rtl" class="element select" id="gender" name="gender">
+                    <option selected="selected" value="@default_val1">@default_val1</option>
+                    <option value="זכר">זכר</option>
+                    <option value="נקבה">נקבה</option>
+
+                </select>
+            </div>
+        </fieldset>
+        <label float:right class="description" for="element_1">
+            מסגרת לימודית
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.EducationalFramework)
+            @Html.ValidationMessageFor(model => model.EducationalFramework)
+        </div>
+        <label float:right class="description" for="element_1">
+            כתובת
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+        <label float:right class="description" for="element_1">
+            מספר טלפון
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ContcatPhoneNumber)
+            @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
+        </div>
+        <fieldset>
+            <label float:right class="description" for="element_1">
+                סטטוס
+            </label>
+            <br />
+            <div style="text-align:right; float:right;">
+                <select dir="rtl" class="element select" id="status" name="status">
+                    <option selected="selected" value="@default_val2">@default_val2</option>
+                    <option value="פעיל">פעיל</option>
+                    <option value="לא פעיל">לא פעיל</option>
+
+                </select>
+            </div>
+        </fieldset>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+                }
+
+                </div>
+            </div>
+        </div>
+    </div>

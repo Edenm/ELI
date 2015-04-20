@@ -79,13 +79,14 @@ namespace Eli.Controllers
         [HttpPost]
         public ActionResult IndexFinancingFactor(tblFinancingFactor ff, string submit)
         {
+            
             EliManagerDB db = new EliManagerDB();
             String type = Request.Form["type"];
             ff.FinancingFactorType = type;
             if (submit.Equals("צור"))
                 db.addFinanceFactor(ff);
 
-            else
+            else if (submit.Equals("שמור"))
                 db.EditFinanceFactor(ff);
 
             List<tblFinancingFactor> finfac = db.FinancingFactor.ToList();
