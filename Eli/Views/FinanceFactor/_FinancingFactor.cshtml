@@ -33,7 +33,7 @@
 
 @{
     string str;
-    if( @Model.Name!=null)
+    if( @Model.FinancingFactorName!=null)
     {
         str = @Model.FinancingFactorNumber + "עריכת גורם מממן מספר";
     }
@@ -66,16 +66,16 @@
                                 שם גורם מממן
                             </label>
                             <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.Name)
-                                @Html.ValidationMessageFor(model => model.Name)
+                                @Html.EditorFor(model => model.FinancingFactorName)
+                                @Html.ValidationMessageFor(model => model.FinancingFactorName)
                             </div>
 
                             <label float:right class="description" for="element_1">
                                 כתובת גורם מממן
                             </label>
                             <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.AddressFinancingFactor)
-                                @Html.ValidationMessageFor(model => model.AddressFinancingFactor)
+                                @Html.EditorFor(model => model.FinancingFactorAddress)
+                                @Html.ValidationMessageFor(model => model.FinancingFactorAddress)
                             </div>
                             <fieldset>
                                 <label float:right class="description" for="element_1">
@@ -102,22 +102,22 @@
                                 שם איש קשר
                             </label>
                             <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.ContactName)
-                                @Html.ValidationMessageFor(model => model.ContactName)
+                                @Html.EditorFor(model => model.FinancingFactorContactName)
+                                @Html.ValidationMessageFor(model => model.FinancingFactorContactName)
                             </div>
                             <label float:right class="description" for="element_1">
                                 טלפון איש קשר
                             </label>
                             <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.ContcatPhoneNumber)
-                                @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
+                                @Html.EditorFor(model => model.FinancingFactorContcatPhoneNumber)
+                                @Html.ValidationMessageFor(model => model.FinancingFactorContcatPhoneNumber)
                             </div>
                             <label float:right class="description" for="element_1">
                                 מייל איש קשר
                             </label>
                             <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.ContactMail)
-                                @Html.ValidationMessageFor(model => model.ContactMail)
+                                @Html.EditorFor(model => model.FinancingFactorContactMail)
+                                @Html.ValidationMessageFor(model => model.FinancingFactorContactMail)
                             </div>
                             <p>
                                 <input type="submit" name="submit" value="@submit" />

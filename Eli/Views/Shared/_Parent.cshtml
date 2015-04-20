@@ -1,0 +1,65 @@
+﻿@model Eli.Models.tblParent
+            
+                        <tr>
+                            <td class="col-sm-0">
+                                <div class="editor-field">
+                                    @Html.(model => model.ParentID, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentID)
+                                </div>
+                            </td>
+                            <td class="col-sm-0">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.ParentGender, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentGender)
+                                </div>
+                            </td>
+                            <td class="col-sm-1">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.ParentFirstName, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentFirstName)
+                                </div>
+                            </td>
+                            <td class="col-sm-1">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.ParentSurName, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentSurName)
+                                </div>
+                            </td>
+                            <td class="col-sm-2">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.ParentAddress, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentAddress)
+                                </div>
+                            </td>
+                            <td class="col-sm-1">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.IsWorking, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.IsWorking)
+                                </div>
+                            </td>
+                            <td class="col-sm-2">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Explain, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.Explain)
+                                </div>
+                            </td>
+                            <td class="col-sm-2">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
+                                </div>
+                            </td>
+                            <td class="col-sm-2">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.ParentMail, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
+                                </div>
+                            </td>
+                            <td class="col-sm-2">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Comment, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.Comment)
+                                </div>
+                            </td>
+                        </tr>
+                              

@@ -31,9 +31,9 @@
 
 @{
     string default_val1;
-    if (@Model.StartTime != null)
+    if (@Model.TreatmentStartTime != null)
     {
-        default_val1 = @Model.StartTime.ToString();
+        default_val1 = @Model.TreatmentStartTime.ToString();
     }
     else
     {
@@ -42,7 +42,7 @@
 }
 @{
     string str;
-    if (@Model.Place != null)
+    if (@Model.TreatmentPlace != null)
     {
         str = "עריכת טיפול";
     }
@@ -85,16 +85,16 @@
                             נושא טיפול
                         </label>
                         <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.SubjectTreatment)
-                            @Html.ValidationMessageFor(model => model.SubjectTreatment)
+                            @Html.EditorFor(model => model.TreatmentSubject)
+                            @Html.ValidationMessageFor(model => model.TreatmentSubject)
                         </div>
 
                         <label float:right class="description" for="element_1">
                             סטטוס מטופל
                         </label>
                         <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.StatusPatientTreatment)
-                            @Html.ValidationMessageFor(model => model.StatusPatientTreatment)
+                            @Html.EditorFor(model => model.TreatmentStatusPatient)
+                            @Html.ValidationMessageFor(model => model.TreatmentStatusPatient)
                         </div>
 
                         <label float:right class="description" for="element_1">
@@ -109,16 +109,16 @@
                             סיכום טיפול
                         </label>
                         <div float:right; dir="rtl" class="editor-field">
-                            @Html.TextAreaFor(model => model.SummaryTreatment)
-                            @Html.ValidationMessageFor(model => model.SummaryTreatment)
+                            @Html.TextAreaFor(model => model.TreatmentSummary)
+                            @Html.ValidationMessageFor(model => model.TreatmentSummary)
                         </div>
 
                         <label float:right class="description" for="element_1">
                             הערות לפגישה הבאה
                         </label>
                         <div float:right; dir="rtl" class="editor-field">
-                            @Html.TextAreaFor(model => model.NextTreat)
-                            @Html.ValidationMessageFor(model => model.NextTreat)
+                            @Html.TextAreaFor(model => model.NextTreatment)
+                            @Html.ValidationMessageFor(model => model.NextTreatment)
                         </div>
 
                         <label float:right class="description" for="element_1">
@@ -150,14 +150,13 @@
                             </select>
                         </div>
                         <br />
-                        <br />
 
                         <label float:right class="description" for="element_1">
                             מקום טיפול
                         </label>
                         <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.Place)
-                            @Html.ValidationMessageFor(model => model.Place)
+                            @Html.EditorFor(model => model.TreatmentPlace)
+                            @Html.ValidationMessageFor(model => model.TreatmentPlace)
                         </div>
 
                         <label float:right class="description" for="element_1">
@@ -184,8 +183,6 @@
                         <br />
                         @Html.DropDownList("MyList1", (SelectList)ViewBag.value1, string.Empty, new { @onchange = "CallChangefunc1(this.value)" })<br />
                         <input type="text" name="finance" value="@Model.FinancingFactorNumber" id="finance" readonly align="right" dir="rtl"><br />
-                        <p><span id="s2"></span></p>
-                        <br />
 
                         <label float:right class="description" for="element_1">
                             מספר הפנייה
@@ -200,8 +197,7 @@
                         </label>
                         <br />
                         @Html.DropDownList("MyList2", (SelectList)ViewBag.value2, string.Empty, new { @onchange = "CallChangefunc2(this.value)" })<br />
-                        <input type="text" name="therapist" value="@Model.TherapistID" id="therapist" readonly align="right" dir="rtl"><br />
-                        <p><span id="s2"></span></p>
+                        <input type="text" name="therapist" value="@Model.TherapistID" id="therapist" readonly align="right" dir="rtl">
 
 
                         <p>
@@ -230,35 +226,4 @@
 
 
     }
-</script>
-
-<script type="text/javascript">
-    function validateForm() {
-        var flag = 1;
-        var text1 = document.getElementById("therapist").value;
-        var text2 = document.getElementById("finance").value;
-       
-        
-        
-        
-        if (typeof text1 == 'undefined') {
-            alert("bla1");
-            document.getElementById("s1").innerHTML = "חובה לבחור מטפל";
-            flag = 0;
-        }
-        else {
-            alert("definrd");
-        }
-        
-        
-        if (text2 == null || text2 == "") {
-            document.getElementById("s2").innerHTML = "חובה לבחור גורם מממן";
-            flag = 0;
-        }
-        if(flag==0)
-        return false;
-
-
-    }
-
 </script>

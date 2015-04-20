@@ -24,7 +24,7 @@ namespace Eli.Controllers
             var pat = db.getPatientById(pid);
 
             ViewBag.Id = pat.ID;
-            ViewBag.Name = pat.PatientFirstName + " " + pat.PatientSurName;
+            ViewBag.Name = pat.FirstName + " " + pat.SurName;
 
             return View(refe);
         }
@@ -59,7 +59,7 @@ namespace Eli.Controllers
             var a = db.Patients.ToList();
             for (int i = 0; i < a.Count(); i++)
             {
-                listItem.Add(new SelectListItem() { Value = a.ElementAt(i).ID, Text = a.ElementAt(i).PatientFirstName.ToString() + " " + a.ElementAt(i).PatientSurName.ToString() });
+                listItem.Add(new SelectListItem() { Value = a.ElementAt(i).ID, Text = a.ElementAt(i).FirstName.ToString() + " " + a.ElementAt(i).SurName.ToString() });
             }
 
             ViewBag.value = new SelectList(listItem, "Value", "Text");

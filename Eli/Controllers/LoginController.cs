@@ -29,7 +29,7 @@ namespace Eli.Controllers
                 if (ther != null)
                 {
                     Session["therapistName"] = ther.TherapistFirstName +" " +ther.TherapistSurName;
-                    Session["therapistId"] = ther.ID;
+                    Session["therapistId"] = ther.TherapistID;
                     return RedirectToAction("IndexPatients", "Patient");
                 }
             }

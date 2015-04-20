@@ -1,0 +1,46 @@
+﻿@model Eli.Models.tblReference
+
+
+
+                        @Html.HiddenFor(model => model.ReferenceNumber)
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ReasonReference)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.ReasonReference)
+                            @Html.ValidationMessageFor(model => model.ReasonReference)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.StatusReference)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.StatusReference)
+                            @Html.ValidationMessageFor(model => model.StatusReference)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OtherStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.OtherStatus)
+                            @Html.ValidationMessageFor(model => model.OtherStatus)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AbuseType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.AbuseType)
+                            @Html.ValidationMessageFor(model => model.AbuseType)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ReferenceSource)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.ReferenceSource)
+                            @Html.ValidationMessageFor(model => model.ReferenceSource)
+                        </div>
+                  

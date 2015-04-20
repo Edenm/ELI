@@ -1,0 +1,95 @@
+﻿@model Eli.Models.tblReference
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@{  string id;
+  string submit;
+  if (@Model.ReferenceNumber == 0)
+  {
+      id = "new";
+      submit = "צור";
+  }
+  else
+  {
+      id = @Model.ReferenceNumber.ToString();
+      submit = "שמור";
+  }
+}
+
+@{
+    string default_val1;
+    if (@Model.StatusReference != null)
+    {
+        default_val1 = @Model.StatusReference;
+    }
+    else
+    {
+        default_val1 = "אחר";
+    }
+}
+@{
+    string default_val2;
+    if (@Model.AbuseType != null)
+    {
+        default_val2 = @Model.AbuseType;
+    }
+    else
+    {
+        default_val2 = "לא רלונטי";
+    }
+}
+@{
+    string default_val3;
+    if (@Model.ReferenceSource != null)
+    {
+        default_val3 = @Model.ReferenceSource;
+    }
+    else
+    {
+        default_val3 = "הסברה";
+    }
+}
+
+@{
+    string str;
+    if (@Model.ReasonReference != null)
+    {
+        str =  "עריכת הפנייה   ";
+    }
+    else
+    {
+        str =    "הוספת הפנייה חדשה  ";
+    }
+}
+
+<!-- Modal -->
+<div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+            </div>
+            
+            <div class="modal-body">
+
+                @using (Html.BeginForm("IndexReference", "Reference", new { pid = @ViewBag.pid }, FormMethod.Post))
+                {
+                    <h4 align="right">@str</h4>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <fieldset align="right">
+                        
+                        @Html.Partial("_Reference",Model)
+
+                        <p>
+                            <input type="submit" name="submit" value="@submit" />
+                        </p>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>

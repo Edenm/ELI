@@ -5,23 +5,23 @@
 
 @{string id;
   string submit;
-if (@Model.ID == null)
+if (@Model.TherapistID == null)
 {
     id = "new";
     submit = "צור";
 }
 else
 {
-    id = @Model.ID;
+    id = @Model.TherapistID;
     submit = "שמור";
 }
 }
 
 @{
     string default_val;
-    if (@Model.Gender != null)
+    if (@Model.TherapistGender != null)
     {
-        default_val = @Model.Gender;
+        default_val = @Model.TherapistGender;
     }
     else
     {
@@ -32,7 +32,7 @@ else
     string str;
     if (@Model.TherapistSurName != null)
     {
-        str = @Model.ID + "עריכת מטפל  מספר";
+        str = @Model.TherapistID + "עריכת מטפל  מספר";
     }
     else
     {
@@ -62,8 +62,8 @@ else
             תעדות זהות מטפל
         </label>
         <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ID)
-            @Html.ValidationMessageFor(model => model.ID)
+            @Html.EditorFor(model => model.TherapistID)
+            @Html.ValidationMessageFor(model => model.TherapistID)
         </div>
 
         <label float:right class="description" for="element_1">
@@ -88,8 +88,8 @@ else
         <div float:right; dir="rtl" class="editor-field">
             
             
-            @Html.EditorFor(model => model.BirthDate)
-            @Html.ValidationMessageFor(model => model.BirthDate)
+            @Html.EditorFor(model => model.TherapistBirthDate)
+            @Html.ValidationMessageFor(model => model.TherapistBirthDate)
         </div>
 
         <fieldset>
@@ -114,24 +114,24 @@ else
             כתובת
         </label>
         <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.Address)
-            @Html.ValidationMessageFor(model => model.Address)
+            @Html.EditorFor(model => model.TherapistAddress)
+            @Html.ValidationMessageFor(model => model.TherapistAddress)
         </div>
 
         <label float:right class="description" for="element_1">
             מספר טלפון
         </label>
         <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ContcatPhoneNumber)
-            @Html.ValidationMessageFor(model => model.ContcatPhoneNumber)
+            @Html.EditorFor(model => model.TherapistPhoneNumber)
+            @Html.ValidationMessageFor(model => model.TherapistPhoneNumber)
         </div>
 
         <label float:right class="description" for="element_1">
             דואר אלקטרוני
         </label>
         <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ContactMail)
-            @Html.ValidationMessageFor(model => model.ContactMail)
+            @Html.EditorFor(model => model.TherapistMail)
+            @Html.ValidationMessageFor(model => model.TherapistMail)
         </div>
 
         <label float:right class="description" for="element_1">

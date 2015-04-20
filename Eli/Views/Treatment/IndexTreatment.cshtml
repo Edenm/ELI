@@ -43,7 +43,7 @@
 
 
         <div class="table-responsive">
-            <table id="myTable" class="display table table-bordered" width="100%">
+            <table id="myTable" class="display table table-bordered" >
                 <thead>
                     <tr>
                         <th style="text-align: center;">#</th>
@@ -69,15 +69,15 @@
                             <tr>
                                 <td> @count </td>
                                 <td> @item.treatment.TreatmentDate </td>
-                                <td> @item.treatment.StartTime </td>
-                                <td> @item.treatment.Place </td>
+                                <td> @item.treatment.TreatmentStartTime </td>
+                                <td> @item.treatment.TreatmentPlace </td>
                                 <td> @item.treatment.TreatmentGoal</td>
-                                <td> @item.treatment.SubjectTreatment </td>
-                                <td> @item.treatment.StatusPatientTreatment </td>
+                                <td> @item.treatment.TreatmentSubject </td>
+                                <td> @item.treatment.TreatmentStatusPatient </td>
                                 <td> @item.treatment.TreatmentDescription </td>
                                 <td> @item.treatment.IsPaid </td>
                                 <td> @item.therapist.TherapistFirstName @item.therapist.TherapistSurName</td>
-                                <td> @item.financingFactor.Name</td>
+                                <td> @item.financingFactor.FinancingFactorName</td>
                                 <td>
                                     <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.treatment.TreatmentNumber">
                                         <img src="~/Images/info.png" />

@@ -1,19 +1,10 @@
-﻿@model Eli.ViewModel.Family
+﻿@model Eli.Models.tblPatient
 
-@using Eli.Models;
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-@{
-    ViewBag.Title = "_Family";
-}
-
-<h2>_Family</h2>
-
-
 <!-- Modal -->
-<div class="modal fade" id="@Model.PatientID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="@Model.ID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,22 +12,20 @@
                 <h4 align="right " class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
-                
-                    <fieldset>
-                        <legend>Family</legend>
-
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <fieldset align="right">
                         
-                        @Model.Parent;
-
+                        @Html.Partial("_Patient",Model)
                         <p>
                             <input type="submit" value="Save" />
                         </p>
                     </fieldset>
-
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>
+                }
             </div>
         </div>
     </div>
 </div>
+

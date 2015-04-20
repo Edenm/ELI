@@ -1,0 +1,43 @@
+﻿@model Eli.Models.tblBrotherSister
+
+
+        @Html.HiddenFor(model => model.BrotherSisterID)
+     
+   
+    <tr>
+        <td class="col-sm-1">
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.BrotherSisterGender, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterGender)
+            </div>
+        </td>
+
+        <td class="col-sm-1">
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.BrotherSisterFirstName, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterFirstName)
+            </div>
+        </td>
+
+        <td class="col-sm-2">
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.BrotherSisterSurName, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterSurName)
+            </div>
+        </td>
+
+        <td class="col-sm-2">
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.BrotherSisterBirthDate, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterBirthDate)
+            </div>
+        </td>
+
+        <td class="col-sm-2">
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.BrotherSisterStudyFramework, new { @class = "col-sm-12" })
+                @Html.ValidationMessageFor(model => model.BrotherSisterStudyFramework)
+            </div>
+        </td>
+</tr>
+

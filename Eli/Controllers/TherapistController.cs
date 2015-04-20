@@ -32,7 +32,7 @@ namespace Eli.Controllers
             {
               
                 String gender = Request.Form["gender"];
-                tt.Gender = gender;
+                tt.TherapistGender = gender;
                 if (submit.Equals("צור"))
                     db.addTherapist(tt);
 
@@ -49,7 +49,7 @@ namespace Eli.Controllers
             {
                 ViewBag.DataExists = true;
                 ViewBag.msg1 = "ההוספה נכשלה";
-                ViewBag.msg2 = tt.ID;
+                ViewBag.msg2 = tt.TherapistID;
                 ViewBag.msg3 = "נמצא כבר במערכת";
                 return View(therapist);
             }

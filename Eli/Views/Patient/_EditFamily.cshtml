@@ -3,7 +3,6 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-
 @using Eli.Models;
 
 @{
@@ -21,7 +20,7 @@
                 @using (Html.BeginForm("_EditFamily", "Patient", new { pid = @Model.Patient.ID }, FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
-                   // @Html.ValidationSummary(true)
+                    @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.Patient)
 
                     <h2 align="right">משפחה</h2>
@@ -34,11 +33,14 @@
                                 <thead>
                                     <tr>
                                         <th style="text-align:center">#</th>
-                                        <th style="text-align:center">שם פרטי </th>
-                                        <th style="text-align:center">שם משפחה</th>
-                                        <th style="text-align:center">האם עובד</th>
+                                        <th style="text-align:center">פרטי</th>
+                                        <th style="text-align:center">משפחה</th>
+                                        <th style="text-align:center">כתובת</th>
+                                        <th style="text-align:center">?עובד</th>
+                                        <th style="text-align:center">פירוט</th>
                                         <th style="text-align:center">טלפון</th>
                                         <th style="text-align:center">מייל</th>
+                                        <th style="text-align:center">הערות</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,7 +48,7 @@
                                     @foreach (var item in Model.Parents)
                                     {
                                         @Html.Partial("_Parent", item);
-                                                                      { count++; }
+                                        count++; 
                                     }
                                 </tbody>
 

@@ -47,7 +47,7 @@ namespace Eli.Controllers
                               select new
                               {
                                   Id = p.FinancingFactorNumber,
-                                  Name = p.Name
+                                  Name = p.FinancingFactorName
                               };
             grid.DataBind();
 
@@ -128,11 +128,11 @@ namespace Eli.Controllers
             tblFinancingFactor tp = new tblFinancingFactor()
             {
                 FinancingFactorNumber = lastNumber,
-                Name = name,
+                FinancingFactorName = name,
                 FinancingFactorType = type,
-                ContactName = contactname,
-                ContcatPhoneNumber = phone,
-                ContactMail = mail,
+                FinancingFactorContactName = contactname,
+                FinancingFactorContcatPhoneNumber = phone,
+                FinancingFactorContactMail = mail,
 
 
 

@@ -89,47 +89,47 @@ namespace Eli.Models
 //-------------------------Add methods----------------------------------------------------------
         
         /* The method add patient with all the details about him **/
-        public void addPatient(tblPatient patient, tblParent mother, tblParent father, tblReference reference, List<tblBrotherSister> BS)
+        public void addPatient(Family family)
         {
+            Patients.InsertOnSubmit(family.Patient);
 
-            Patients.InsertOnSubmit(patient);
-
-            Parent.InsertOnSubmit(mother);
-            Parent.InsertOnSubmit(father);
-
-            tblParentPatient tblFP= new tblParentPatient()
+            foreach (tblParent p in family.Parents)
             {
-                PatientID= patient.ID,
-                ParentID = father.ID
-            };
+                Parent.InsertOnSubmit(p);
 
-            tblParentPatient tblMP= new tblParentPatient()
-            {
-                PatientID= patient.ID,
-                ParentID = mother.ID
-            };
+                tblParentPatient tbPP = new tblParentPatient()
+                {
+                    ParentID = p.ParentID,
+                    PatientID = family.Patient.ID
+                };
 
-            ParentPatient.InsertOnSubmit(tblFP);
-            ParentPatient.InsertOnSubmit(tblMP);
+                ParentPatient.InsertOnSubmit(tbPP);
+            }
 
-            foreach (var bs in BS)
+            foreach (tblBrotherSister bs in family.BrotherSisters)
             {
                 BrotherSister.InsertOnSubmit(bs);
 
                 tblBrotherSisterPatient tbBSP = new tblBrotherSisterPatient()
                 {
-                    BrotherSisterID = bs.ID,
-                    PatientID = patient.ID
+                    BrotherSisterID = bs.BrotherSisterID,
+                    PatientID = family.Patient.ID
                 };
 
                 BrotherSisterPatient.InsertOnSubmit(tbBSP);
-
             }
 
-            Reference.InsertOnSubmit(reference);
+            Reference.InsertOnSubmit(family.Reference);
+
+            tblRefererencePatient tbRP = new tblRefererencePatient()
+            {
+                PatientID = family.Patient.ID,
+                ReferenceNumber = family.Reference.ReferenceNumber
+            };
+
+            ReferencePatient.InsertOnSubmit(tbRP);
 
             db.SubmitChanges();
-
         }
 
 
@@ -158,7 +158,7 @@ namespace Eli.Models
         public void addTherapist(tblTherapist tt)
         {
             var therapist = from d in Therapist
-                            where d.ID.Equals(tt.ID)
+                            where d.TherapistID.Equals(tt.TherapistID)
                             select d;
 
             if (therapist.Any() || therapist.Any())
@@ -199,34 +199,35 @@ namespace Eli.Models
             db.SubmitChanges();
         }
 
+
         //-------------------------Edit methods----------------------------------------------------------
 
         /* The method is editing exist Finance Factor **/
         public void EditFinanceFactor(tblFinancingFactor ff)
         {
             var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
-            d.Name = ff.Name;
+            d.FinancingFactorName = ff.FinancingFactorName;
             d.FinancingFactorType = ff.FinancingFactorType;
-            d.ContactName = ff.ContactName;
-            d.ContactMail = ff.ContactMail;
-            d.ContcatPhoneNumber = ff.ContcatPhoneNumber;
+            d.FinancingFactorContactName = ff.FinancingFactorContactName;
+            d.FinancingFactorContactMail = ff.FinancingFactorContactMail;
+            d.FinancingFactorContcatPhoneNumber = ff.FinancingFactorContcatPhoneNumber;
             db.SubmitChanges();
         }
 
         /* The method is editing exist Therapist**/
         public void EditTherapist(tblTherapist tt)
         {
-            var t = Therapist.First(x => x.ID == tt.ID);
-            t.ID = tt.ID;
+            var t = Therapist.First(x => x.TherapistID == tt.TherapistID);
+            t.TherapistID = tt.TherapistID;
             t.TherapistFirstName = tt.TherapistFirstName;
             t.TherapistSurName = tt.TherapistSurName;
-            t.BirthDate = tt.BirthDate;
-            t.Address = tt.Address;
-            t.Gender = tt.Gender;
+            t.TherapistBirthDate = tt.TherapistBirthDate;
+            t.TherapistAddress = tt.TherapistAddress;
+            t.TherapistGender = tt.TherapistGender;
             t.Passcode = tt.Passcode;
             t.UserName = tt.UserName;
-            t.ContactMail = tt.ContactMail;
-            t.ContcatPhoneNumber = tt.ContcatPhoneNumber;
+            t.TherapistMail = tt.TherapistMail;
+            t.TherapistPhoneNumber = tt.TherapistPhoneNumber;
             db.SubmitChanges();
         }
 
@@ -235,11 +236,11 @@ namespace Eli.Models
         {
             var patient = Patients.First(p => p.ID == pat.ID);
             patient.ID = pat.ID;
-            patient.PatientFirstName = pat.PatientFirstName;
-            patient.PatientSurName = pat.PatientSurName;
-            patient.Address = pat.Address;
+            patient.FirstName = pat.FirstName;
+            patient.SurName = pat.SurName;
+            patient.PatientAddress = pat.PatientAddress;
             patient.BirthDate = pat.BirthDate;
-            patient.ContcatPhoneNumber = pat.ContcatPhoneNumber;
+            patient.PhoneNumber = pat.PhoneNumber;
             patient.EducationalFramework = pat.EducationalFramework;
             patient.Gender = pat.Gender;
             patient.StatusPatient = pat.StatusPatient;
@@ -253,8 +254,8 @@ namespace Eli.Models
             var refe = Reference.First(r => r.ReferenceNumber == re.ReferenceNumber);
             refe.ReasonReference = re.ReasonReference;
             refe.ReferenceSource = re.ReferenceSource;
-            refe.StartDate = re.StartDate;
-            refe.EndDate = re.EndDate;
+            refe.StartDateReference = re.StartDateReference;
+            refe.EndDateReference = re.EndDateReference;
             refe.OtherStatus = re.OtherStatus;
             refe.AbuseType = re.AbuseType;
             refe.StatusReference = re.StatusReference;
@@ -269,13 +270,13 @@ namespace Eli.Models
             treat.TreatmentGoal = tr.TreatmentGoal;
             treat.TreatmentDescription = tr.TreatmentDescription;
             treat.TreatmentDate = tr.TreatmentDate;
-            treat.SummaryTreatment = tr.SummaryTreatment;
-            treat.StartTime = tr.StartTime;
-            treat.StatusPatientTreatment = tr.StatusPatientTreatment;
+            treat.TreatmentSummary = tr.TreatmentSummary;
+            treat.TreatmentStartTime = tr.TreatmentStartTime;
+            treat.TreatmentStatusPatient = tr.TreatmentStatusPatient;
             treat.IsPaid = tr.IsPaid;
-            treat.NextTreat = tr.NextTreat;
-            treat.Place = tr.Place;
-            treat.SubjectTreatment = tr.SubjectTreatment;
+            treat.NextTreatment = tr.NextTreatment;
+            treat.TreatmentPlace = tr.TreatmentPlace;
+            treat.TreatmentSubject = tr.TreatmentSubject;
 
             treat.FinancingFactorNumber = tr.FinancingFactorNumber;
             treat.TherapistID = tr.TherapistID;
@@ -288,30 +289,30 @@ namespace Eli.Models
         public void EditFamily(FormCollection family, string pid)
         {
             Family fam = new Family(pid);
-            int count=0;
+            int countP=0;
             foreach (tblParent tp in fam.Parents)
             {
-                var parent = Parent.First(bs => bs.ID == tp.ID);
-                parent.FirstName = family.GetValues("FirstName")[count];
-                parent.SurName = family.GetValues("SurName")[count];
-                //parent.Address = family.GetValues("Address")[count];
-                parent.ContcatPhoneNumber = family.GetValues("ContcatPhoneNumber")[count];
-                //parent.Explain = family.GetValues("Explain")[count];
-                parent.IsWorking = family.GetValues("IsWorking")[count];
-                parent.ContactMail = family.GetValues("ContactMail")[count];
-                //parent.Gender = family.GetValues("Gender")[count]; 
-                //parent.BirthDate =Convert.ToDateTime(family.GetValues("BirthDate")[count]);
-                count++;
+                var parent = Parent.First(bs => bs.ParentID == tp.ParentID);
+                parent.ParentFirstName = family.GetValues("ParentFirstName")[countP];
+                parent.ParentSurName = family.GetValues("ParentSurName")[countP];
+                //parent.ParentAddress = family.GetValues("ParentAddress")[countP];
+                parent.ParentPhoneNumber = family.GetValues("ParentPhoneNumber")[countP];
+                //parent.Explain = family.GetValues("Explain")[countP];
+                parent.IsWorking = family.GetValues("IsWorking")[countP];
+                parent.ParentMail = family.GetValues("ParentMail")[countP];
+                //parent.ParentGender = family.GetValues("ParentGender")[countP]; 
+                //parent.ParentBirthDate =Convert.ToDateTime(family.GetValues("ParentBirthDate")[countP]);
+                countP++;
             }
             int countBS = 0;
             foreach (tblBrotherSister tbs in fam.BrotherSisters){
-                var broSis = BrotherSister.First(bs => bs.ID == tbs.ID);
-                broSis.FirstName = family.GetValues("FirstName")[count];
-                broSis.SurName = family.GetValues("SurName")[count];
-                broSis.StudyFramework = family.GetValues("StudyFramework")[countBS];
-                //broSis.Gender = family.GetValues("Gender")[count];
-                broSis.BirthDate = Convert.ToDateTime(family.GetValues("BirthDate")[countBS]);
-                count++;
+                var broSis = BrotherSister.First(bs => bs.BrotherSisterID == tbs.BrotherSisterID);
+                broSis.BrotherSisterFirstName = family.GetValues("BrotherSisterFirstName")[countBS];
+                broSis.BrotherSisterSurName = family.GetValues("BrotherSisterSurName")[countBS];
+                broSis.BrotherSisterStudyFramework = family.GetValues("BrotherSisterStudyFramework")[countBS];
+                //broSis.BrotherSistersGender = family.GetValues("BrotherSisterGender")[countBS];
+                broSis.BrotherSisterBirthDate = Convert.ToDateTime(family.GetValues("BrotherSisterBirthDate")[countBS]);
+                countBS++;
             }
             
             db.SubmitChanges();
@@ -367,7 +368,7 @@ namespace Eli.Models
         {
             var therId = getTreatmentByNumber(tnum).TherapistID;
 
-            var ther = Therapist.Where(t => t.ID == therId).First();
+            var ther = Therapist.Where(t => t.TherapistID == therId).First();
 
             return ther;
         }
@@ -385,7 +386,7 @@ namespace Eli.Models
         {
             var BSP= (BrotherSisterPatient.Where(bs => bs.PatientID==PID).Select(bs=> bs.BrotherSisterID));
 
-            var BS= (BrotherSister.Where(bs=> BSP.Contains(bs.ID))).ToList();
+            var BS= (BrotherSister.Where(bs=> BSP.Contains(bs.BrotherSisterID))).ToList();
          
             return BS;
         }
@@ -394,7 +395,7 @@ namespace Eli.Models
         {
             var PP = (ParentPatient.Where(p => p.PatientID == PID).Select(p=> p.ParentID));
 
-            var P = (Parent.Where(bs => PP.Contains(bs.ID))).ToList();
+            var P = (Parent.Where(bs => PP.Contains(bs.ParentID))).ToList();
 
             return P;
         }
