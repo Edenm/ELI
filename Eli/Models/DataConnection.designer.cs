@@ -20,8 +20,6 @@ namespace Eli.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-    using System.ComponentModel.DataAnnotations;
-    using Foolproof;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
@@ -192,17 +190,17 @@ namespace Eli.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ID;
+		private string _BrotherSisterID;
 		
-		private string _FirstName;
+		private string _BrotherSisterFirstName;
 		
-		private string _SurName;
+		private string _BrotherSisterSurName;
 		
-		private System.Nullable<System.DateTime> _BirthDate;
+		private System.Nullable<System.DateTime> _BrotherSisterBirthDate;
 		
-		private string _Gender;
+		private string _BrotherSisterGender;
 		
-		private string _StudyFramework;
+		private string _BrotherSisterStudyFramework;
 		
 		private EntitySet<tblBrotherSisterPatient> _tblBrotherSisterPatients;
 		
@@ -210,18 +208,18 @@ namespace Eli.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(string value);
-    partial void OnIDChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnSurNameChanging(string value);
-    partial void OnSurNameChanged();
-    partial void OnBirthDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnBirthDateChanged();
-    partial void OnGenderChanging(string value);
-    partial void OnGenderChanged();
-    partial void OnStudyFrameworkChanging(string value);
-    partial void OnStudyFrameworkChanged();
+    partial void OnBrotherSisterIDChanging(string value);
+    partial void OnBrotherSisterIDChanged();
+    partial void OnBrotherSisterFirstNameChanging(string value);
+    partial void OnBrotherSisterFirstNameChanged();
+    partial void OnBrotherSisterSurNameChanging(string value);
+    partial void OnBrotherSisterSurNameChanged();
+    partial void OnBrotherSisterBirthDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnBrotherSisterBirthDateChanged();
+    partial void OnBrotherSisterGenderChanging(string value);
+    partial void OnBrotherSisterGenderChanged();
+    partial void OnBrotherSisterStudyFrameworkChanging(string value);
+    partial void OnBrotherSisterStudyFrameworkChanged();
     #endregion
 		
 		public tblBrotherSister()
@@ -229,141 +227,128 @@ namespace Eli.Models
 			this._tblBrotherSisterPatients = new EntitySet<tblBrotherSisterPatient>(new Action<tblBrotherSisterPatient>(this.attach_tblBrotherSisterPatients), new Action<tblBrotherSisterPatient>(this.detach_tblBrotherSisterPatients));
 			OnCreated();
 		}
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
-
-        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ID
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string BrotherSisterID
 		{
 			get
 			{
-				return this._ID;
+				return this._BrotherSisterID;
 			}
 			set
 			{
-				if ((this._ID != value))
+				if ((this._BrotherSisterID != value))
 				{
-					this.OnIDChanging(value);
+					this.OnBrotherSisterIDChanging(value);
 					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(20)")]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם משפחה אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="VarChar(20)")]
-		public string SurName
-		{
-			get
-			{
-				return this._SurName;
-			}
-			set
-			{
-				if ((this._SurName != value))
-				{
-					this.OnSurNameChanging(value);
-					this.SendPropertyChanging();
-					this._SurName = value;
-					this.SendPropertyChanged("SurName");
-					this.OnSurNameChanged();
-				}
-			}
-		}
-
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
-		public System.Nullable<System.DateTime> BirthDate
-		{
-			get
-			{
-				return this._BirthDate;
-			}
-			set
-			{
-				if ((this._BirthDate != value))
-				{
-					this.OnBirthDateChanging(value);
-					this.SendPropertyChanging();
-					this._BirthDate = value;
-					this.SendPropertyChanged("BirthDate");
-					this.OnBirthDateChanged();
+					this._BrotherSisterID = value;
+					this.SendPropertyChanged("BrotherSisterID");
+					this.OnBrotherSisterIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6)")]
-		public string Gender
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterFirstName", DbType="VarChar(20)")]
+		public string BrotherSisterFirstName
 		{
 			get
 			{
-				return this._Gender;
+				return this._BrotherSisterFirstName;
 			}
 			set
 			{
-				if ((this._Gender != value))
+				if ((this._BrotherSisterFirstName != value))
 				{
-					this.OnGenderChanging(value);
+					this.OnBrotherSisterFirstNameChanging(value);
 					this.SendPropertyChanging();
-					this._Gender = value;
-					this.SendPropertyChanged("Gender");
-					this.OnGenderChanged();
-				}
-			}
-		}
-
-         [Required(ErrorMessage = "שדה חובה")]
-        
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudyFramework", DbType="VarChar(MAX)")]
-		public string StudyFramework
-		{
-			get
-			{
-				return this._StudyFramework;
-			}
-			set
-			{
-				if ((this._StudyFramework != value))
-				{
-					this.OnStudyFrameworkChanging(value);
-					this.SendPropertyChanging();
-					this._StudyFramework = value;
-					this.SendPropertyChanged("StudyFramework");
-					this.OnStudyFrameworkChanged();
+					this._BrotherSisterFirstName = value;
+					this.SendPropertyChanged("BrotherSisterFirstName");
+					this.OnBrotherSisterFirstNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblBrotherSister_tblBrotherSisterPatient", Storage="_tblBrotherSisterPatients", ThisKey="ID", OtherKey="BrotherSisterID")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterSurName", DbType="VarChar(20)")]
+		public string BrotherSisterSurName
+		{
+			get
+			{
+				return this._BrotherSisterSurName;
+			}
+			set
+			{
+				if ((this._BrotherSisterSurName != value))
+				{
+					this.OnBrotherSisterSurNameChanging(value);
+					this.SendPropertyChanging();
+					this._BrotherSisterSurName = value;
+					this.SendPropertyChanged("BrotherSisterSurName");
+					this.OnBrotherSisterSurNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterBirthDate", DbType="Date")]
+		public System.Nullable<System.DateTime> BrotherSisterBirthDate
+		{
+			get
+			{
+				return this._BrotherSisterBirthDate;
+			}
+			set
+			{
+				if ((this._BrotherSisterBirthDate != value))
+				{
+					this.OnBrotherSisterBirthDateChanging(value);
+					this.SendPropertyChanging();
+					this._BrotherSisterBirthDate = value;
+					this.SendPropertyChanged("BrotherSisterBirthDate");
+					this.OnBrotherSisterBirthDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterGender", DbType="VarChar(6)")]
+		public string BrotherSisterGender
+		{
+			get
+			{
+				return this._BrotherSisterGender;
+			}
+			set
+			{
+				if ((this._BrotherSisterGender != value))
+				{
+					this.OnBrotherSisterGenderChanging(value);
+					this.SendPropertyChanging();
+					this._BrotherSisterGender = value;
+					this.SendPropertyChanged("BrotherSisterGender");
+					this.OnBrotherSisterGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterStudyFramework", DbType="VarChar(MAX)")]
+		public string BrotherSisterStudyFramework
+		{
+			get
+			{
+				return this._BrotherSisterStudyFramework;
+			}
+			set
+			{
+				if ((this._BrotherSisterStudyFramework != value))
+				{
+					this.OnBrotherSisterStudyFrameworkChanging(value);
+					this.SendPropertyChanging();
+					this._BrotherSisterStudyFramework = value;
+					this.SendPropertyChanged("BrotherSisterStudyFramework");
+					this.OnBrotherSisterStudyFrameworkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblBrotherSister_tblBrotherSisterPatient", Storage="_tblBrotherSisterPatients", ThisKey="BrotherSisterID", OtherKey="BrotherSisterID")]
 		public EntitySet<tblBrotherSisterPatient> tblBrotherSisterPatients
 		{
 			get
@@ -488,7 +473,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblBrotherSister_tblBrotherSisterPatient", Storage="_tblBrotherSister", ThisKey="BrotherSisterID", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblBrotherSister_tblBrotherSisterPatient", Storage="_tblBrotherSister", ThisKey="BrotherSisterID", OtherKey="BrotherSisterID", IsForeignKey=true)]
 		public tblBrotherSister tblBrotherSister
 		{
 			get
@@ -511,7 +496,7 @@ namespace Eli.Models
 					if ((value != null))
 					{
 						value.tblBrotherSisterPatients.Add(this);
-						this._BrotherSisterID = value.ID;
+						this._BrotherSisterID = value.BrotherSisterID;
 					}
 					else
 					{
@@ -585,17 +570,17 @@ namespace Eli.Models
 		
 		private int _FinancingFactorNumber;
 		
-		private string _Name;
+		private string _FinancingFactorName;
 		
 		private string _FinancingFactorType;
 		
-		private string _AddressFinancingFactor;
+		private string _FinancingFactorAddress;
 		
-		private string _ContactName;
+		private string _FinancingFactorContactName;
 		
-		private string _ContcatPhoneNumber;
+		private string _FinancingFactorContcatPhoneNumber;
 		
-		private string _ContactMail;
+		private string _FinancingFactorContactMail;
 		
 		private EntitySet<tblTreatment> _tblTreatments;
 		
@@ -605,18 +590,18 @@ namespace Eli.Models
     partial void OnCreated();
     partial void OnFinancingFactorNumberChanging(int value);
     partial void OnFinancingFactorNumberChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnFinancingFactorNameChanging(string value);
+    partial void OnFinancingFactorNameChanged();
     partial void OnFinancingFactorTypeChanging(string value);
     partial void OnFinancingFactorTypeChanged();
-    partial void OnAddressFinancingFactorChanging(string value);
-    partial void OnAddressFinancingFactorChanged();
-    partial void OnContactNameChanging(string value);
-    partial void OnContactNameChanged();
-    partial void OnContcatPhoneNumberChanging(string value);
-    partial void OnContcatPhoneNumberChanged();
-    partial void OnContactMailChanging(string value);
-    partial void OnContactMailChanged();
+    partial void OnFinancingFactorAddressChanging(string value);
+    partial void OnFinancingFactorAddressChanged();
+    partial void OnFinancingFactorContactNameChanging(string value);
+    partial void OnFinancingFactorContactNameChanged();
+    partial void OnFinancingFactorContcatPhoneNumberChanging(string value);
+    partial void OnFinancingFactorContcatPhoneNumberChanged();
+    partial void OnFinancingFactorContactMailChanging(string value);
+    partial void OnFinancingFactorContactMailChanged();
     #endregion
 		
 		public tblFinancingFactor()
@@ -644,31 +629,27 @@ namespace Eli.Models
 				}
 			}
 		}
-
-
-         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם גורם מממן אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(20)")]
-		public string Name
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorName", DbType="VarChar(20)")]
+		public string FinancingFactorName
 		{
 			get
 			{
-				return this._Name;
+				return this._FinancingFactorName;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._FinancingFactorName != value))
 				{
-					this.OnNameChanging(value);
+					this.OnFinancingFactorNameChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._FinancingFactorName = value;
+					this.SendPropertyChanged("FinancingFactorName");
+					this.OnFinancingFactorNameChanged();
 				}
 			}
 		}
-
-         [Required(ErrorMessage = "שדה חובה")]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorType", DbType="VarChar(15)")]
 		public string FinancingFactorType
 		{
@@ -688,93 +669,83 @@ namespace Eli.Models
 				}
 			}
 		}
-       [Required(ErrorMessage = "שדה חובה")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddressFinancingFactor", DbType="VarChar(MAX)")]
-		public string AddressFinancingFactor
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorAddress", DbType="VarChar(MAX)")]
+		public string FinancingFactorAddress
 		{
 			get
 			{
-				return this._AddressFinancingFactor;
+				return this._FinancingFactorAddress;
 			}
 			set
 			{
-				if ((this._AddressFinancingFactor != value))
+				if ((this._FinancingFactorAddress != value))
 				{
-					this.OnAddressFinancingFactorChanging(value);
+					this.OnFinancingFactorAddressChanging(value);
 					this.SendPropertyChanging();
-					this._AddressFinancingFactor = value;
-					this.SendPropertyChanged("AddressFinancingFactor");
-					this.OnAddressFinancingFactorChanged();
+					this._FinancingFactorAddress = value;
+					this.SendPropertyChanged("FinancingFactorAddress");
+					this.OnFinancingFactorAddressChanged();
 				}
 			}
 		}
-
-
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  איש קשר אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactName", DbType="VarChar(20)")]
-		public string ContactName
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorContactName", DbType="VarChar(20)")]
+		public string FinancingFactorContactName
 		{
 			get
 			{
-				return this._ContactName;
+				return this._FinancingFactorContactName;
 			}
 			set
 			{
-				if ((this._ContactName != value))
+				if ((this._FinancingFactorContactName != value))
 				{
-					this.OnContactNameChanging(value);
+					this.OnFinancingFactorContactNameChanging(value);
 					this.SendPropertyChanging();
-					this._ContactName = value;
-					this.SendPropertyChanged("ContactName");
-					this.OnContactNameChanged();
+					this._FinancingFactorContactName = value;
+					this.SendPropertyChanged("FinancingFactorContactName");
+					this.OnFinancingFactorContactNameChanged();
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
-
-        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10)")]
-		public string ContcatPhoneNumber
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorContcatPhoneNumber", DbType="Char(10)")]
+		public string FinancingFactorContcatPhoneNumber
 		{
 			get
 			{
-				return this._ContcatPhoneNumber;
+				return this._FinancingFactorContcatPhoneNumber;
 			}
 			set
 			{
-				if ((this._ContcatPhoneNumber != value))
+				if ((this._FinancingFactorContcatPhoneNumber != value))
 				{
-					this.OnContcatPhoneNumberChanging(value);
+					this.OnFinancingFactorContcatPhoneNumberChanging(value);
 					this.SendPropertyChanging();
-					this._ContcatPhoneNumber = value;
-					this.SendPropertyChanged("ContcatPhoneNumber");
-					this.OnContcatPhoneNumberChanged();
+					this._FinancingFactorContcatPhoneNumber = value;
+					this.SendPropertyChanged("FinancingFactorContcatPhoneNumber");
+					this.OnFinancingFactorContcatPhoneNumberChanged();
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30)")]
-		public string ContactMail
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorContactMail", DbType="VarChar(30)")]
+		public string FinancingFactorContactMail
 		{
 			get
 			{
-				return this._ContactMail;
+				return this._FinancingFactorContactMail;
 			}
 			set
 			{
-				if ((this._ContactMail != value))
+				if ((this._FinancingFactorContactMail != value))
 				{
-					this.OnContactMailChanging(value);
+					this.OnFinancingFactorContactMailChanging(value);
 					this.SendPropertyChanging();
-					this._ContactMail = value;
-					this.SendPropertyChanged("ContactMail");
-					this.OnContactMailChanged();
+					this._FinancingFactorContactMail = value;
+					this.SendPropertyChanged("FinancingFactorContactMail");
+					this.OnFinancingFactorContactMailChanged();
 				}
 			}
 		}
@@ -831,21 +802,21 @@ namespace Eli.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ID;
+		private string _ParentID;
 		
-		private string _FirstName;
+		private string _ParentFirstName;
 		
-		private string _SurName;
+		private string _ParentSurName;
 		
-		private System.Nullable<System.DateTime> _BirthDate;
+		private System.Nullable<System.DateTime> _ParentBirthDate;
 		
-		private string _Gender;
+		private string _ParentGender;
 		
-		private string _Address;
+		private string _ParentAddress;
 		
-		private string _ContcatPhoneNumber;
+		private string _ParentPhoneNumber;
 		
-		private string _ContactMail;
+		private string _ParentMail;
 		
 		private string _IsWorking;
 		
@@ -859,22 +830,22 @@ namespace Eli.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(string value);
-    partial void OnIDChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnSurNameChanging(string value);
-    partial void OnSurNameChanged();
-    partial void OnBirthDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnBirthDateChanged();
-    partial void OnGenderChanging(string value);
-    partial void OnGenderChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnContcatPhoneNumberChanging(string value);
-    partial void OnContcatPhoneNumberChanged();
-    partial void OnContactMailChanging(string value);
-    partial void OnContactMailChanged();
+    partial void OnParentIDChanging(string value);
+    partial void OnParentIDChanged();
+    partial void OnParentFirstNameChanging(string value);
+    partial void OnParentFirstNameChanged();
+    partial void OnParentSurNameChanging(string value);
+    partial void OnParentSurNameChanged();
+    partial void OnParentBirthDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnParentBirthDateChanged();
+    partial void OnParentGenderChanging(string value);
+    partial void OnParentGenderChanged();
+    partial void OnParentAddressChanging(string value);
+    partial void OnParentAddressChanged();
+    partial void OnParentPhoneNumberChanging(string value);
+    partial void OnParentPhoneNumberChanged();
+    partial void OnParentMailChanging(string value);
+    partial void OnParentMailChanged();
     partial void OnIsWorkingChanging(string value);
     partial void OnIsWorkingChanged();
     partial void OnExplainChanging(string value);
@@ -888,185 +859,163 @@ namespace Eli.Models
 			this._tblParentPatients = new EntitySet<tblParentPatient>(new Action<tblParentPatient>(this.attach_tblParentPatients), new Action<tblParentPatient>(this.detach_tblParentPatients));
 			OnCreated();
 		}
-
-
-         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
-
-        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ID
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ParentID
 		{
 			get
 			{
-				return this._ID;
+				return this._ParentID;
 			}
 			set
 			{
-				if ((this._ID != value))
+				if ((this._ParentID != value))
 				{
-					this.OnIDChanging(value);
+					this.OnParentIDChanging(value);
 					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-
-         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(20)")]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="VarChar(20)")]
-		public string SurName
-		{
-			get
-			{
-				return this._SurName;
-			}
-			set
-			{
-				if ((this._SurName != value))
-				{
-					this.OnSurNameChanging(value);
-					this.SendPropertyChanging();
-					this._SurName = value;
-					this.SendPropertyChanged("SurName");
-					this.OnSurNameChanged();
-				}
-			}
-		}
-
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
-		public System.Nullable<System.DateTime> BirthDate
-		{
-			get
-			{
-				return this._BirthDate;
-			}
-			set
-			{
-				if ((this._BirthDate != value))
-				{
-					this.OnBirthDateChanging(value);
-					this.SendPropertyChanging();
-					this._BirthDate = value;
-					this.SendPropertyChanged("BirthDate");
-					this.OnBirthDateChanged();
+					this._ParentID = value;
+					this.SendPropertyChanged("ParentID");
+					this.OnParentIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6)")]
-		public string Gender
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentFirstName", DbType="VarChar(20)")]
+		public string ParentFirstName
 		{
 			get
 			{
-				return this._Gender;
+				return this._ParentFirstName;
 			}
 			set
 			{
-				if ((this._Gender != value))
+				if ((this._ParentFirstName != value))
 				{
-					this.OnGenderChanging(value);
+					this.OnParentFirstNameChanging(value);
 					this.SendPropertyChanging();
-					this._Gender = value;
-					this.SendPropertyChanged("Gender");
-					this.OnGenderChanged();
+					this._ParentFirstName = value;
+					this.SendPropertyChanged("ParentFirstName");
+					this.OnParentFirstNameChanged();
 				}
 			}
 		}
-         [Required(ErrorMessage = "שדה חובה")]
-       
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        //[RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
-
-        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10)")]
-		public string ContcatPhoneNumber
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentSurName", DbType="VarChar(20)")]
+		public string ParentSurName
 		{
 			get
 			{
-				return this._ContcatPhoneNumber;
+				return this._ParentSurName;
 			}
 			set
 			{
-				if ((this._ContcatPhoneNumber != value))
+				if ((this._ParentSurName != value))
 				{
-					this.OnContcatPhoneNumberChanging(value);
+					this.OnParentSurNameChanging(value);
 					this.SendPropertyChanging();
-					this._ContcatPhoneNumber = value;
-					this.SendPropertyChanged("ContcatPhoneNumber");
-					this.OnContcatPhoneNumberChanged();
+					this._ParentSurName = value;
+					this.SendPropertyChanged("ParentSurName");
+					this.OnParentSurNameChanged();
 				}
 			}
 		}
-
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30)")]
-		public string ContactMail
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentBirthDate", DbType="Date")]
+		public System.Nullable<System.DateTime> ParentBirthDate
 		{
 			get
 			{
-				return this._ContactMail;
+				return this._ParentBirthDate;
 			}
 			set
 			{
-				if ((this._ContactMail != value))
+				if ((this._ParentBirthDate != value))
 				{
-					this.OnContactMailChanging(value);
+					this.OnParentBirthDateChanging(value);
 					this.SendPropertyChanging();
-					this._ContactMail = value;
-					this.SendPropertyChanged("ContactMail");
-					this.OnContactMailChanged();
+					this._ParentBirthDate = value;
+					this.SendPropertyChanged("ParentBirthDate");
+					this.OnParentBirthDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentGender", DbType="VarChar(6)")]
+		public string ParentGender
+		{
+			get
+			{
+				return this._ParentGender;
+			}
+			set
+			{
+				if ((this._ParentGender != value))
+				{
+					this.OnParentGenderChanging(value);
+					this.SendPropertyChanging();
+					this._ParentGender = value;
+					this.SendPropertyChanged("ParentGender");
+					this.OnParentGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentAddress", DbType="VarChar(MAX)")]
+		public string ParentAddress
+		{
+			get
+			{
+				return this._ParentAddress;
+			}
+			set
+			{
+				if ((this._ParentAddress != value))
+				{
+					this.OnParentAddressChanging(value);
+					this.SendPropertyChanging();
+					this._ParentAddress = value;
+					this.SendPropertyChanged("ParentAddress");
+					this.OnParentAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentPhoneNumber", DbType="Char(10)")]
+		public string ParentPhoneNumber
+		{
+			get
+			{
+				return this._ParentPhoneNumber;
+			}
+			set
+			{
+				if ((this._ParentPhoneNumber != value))
+				{
+					this.OnParentPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ParentPhoneNumber = value;
+					this.SendPropertyChanged("ParentPhoneNumber");
+					this.OnParentPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentMail", DbType="VarChar(30)")]
+		public string ParentMail
+		{
+			get
+			{
+				return this._ParentMail;
+			}
+			set
+			{
+				if ((this._ParentMail != value))
+				{
+					this.OnParentMailChanging(value);
+					this.SendPropertyChanging();
+					this._ParentMail = value;
+					this.SendPropertyChanged("ParentMail");
+					this.OnParentMailChanged();
 				}
 			}
 		}
@@ -1090,7 +1039,7 @@ namespace Eli.Models
 				}
 			}
 		}
-         [Required(ErrorMessage = "שדה חובה")]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Explain", DbType="VarChar(MAX)")]
 		public string Explain
 		{
@@ -1110,9 +1059,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-       
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(MAX)")]
 		public string Comment
 		{
@@ -1133,7 +1080,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblParent_tblParentPatient", Storage="_tblParentPatients", ThisKey="ID", OtherKey="ParentID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblParent_tblParentPatient", Storage="_tblParentPatients", ThisKey="ParentID", OtherKey="ParentID")]
 		public EntitySet<tblParentPatient> tblParentPatients
 		{
 			get
@@ -1258,7 +1205,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblParent_tblParentPatient", Storage="_tblParent", ThisKey="ParentID", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblParent_tblParentPatient", Storage="_tblParent", ThisKey="ParentID", OtherKey="ParentID", IsForeignKey=true)]
 		public tblParent tblParent
 		{
 			get
@@ -1281,7 +1228,7 @@ namespace Eli.Models
 					if ((value != null))
 					{
 						value.tblParentPatients.Add(this);
-						this._ParentID = value.ID;
+						this._ParentID = value.ParentID;
 					}
 					else
 					{
@@ -1355,9 +1302,9 @@ namespace Eli.Models
 		
 		private string _ID;
 		
-		private string _PatientFirstName;
+		private string _FirstName;
 		
-		private string _PatientSurName;
+		private string _SurName;
 		
 		private System.Nullable<System.DateTime> _BirthDate;
 		
@@ -1365,11 +1312,11 @@ namespace Eli.Models
 		
 		private string _EducationalFramework;
 		
-		private string _Address;
+		private string _PatientAddress;
 		
-		private string _ContcatPhoneNumber;
+		private string _PhoneNumber;
 		
-		private string _StatusPatient;
+		private string _PatientStatus;
 		
 		private EntitySet<tblBrotherSisterPatient> _tblBrotherSisterPatients;
 		
@@ -1383,22 +1330,22 @@ namespace Eli.Models
     partial void OnCreated();
     partial void OnIDChanging(string value);
     partial void OnIDChanged();
-    partial void OnPatientFirstNameChanging(string value);
-    partial void OnPatientFirstNameChanged();
-    partial void OnPatientSurNameChanging(string value);
-    partial void OnPatientSurNameChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnSurNameChanging(string value);
+    partial void OnSurNameChanged();
     partial void OnBirthDateChanging(System.Nullable<System.DateTime> value);
     partial void OnBirthDateChanged();
     partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
     partial void OnEducationalFrameworkChanging(string value);
     partial void OnEducationalFrameworkChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnContcatPhoneNumberChanging(string value);
-    partial void OnContcatPhoneNumberChanged();
-    partial void OnStatusPatientChanging(string value);
-    partial void OnStatusPatientChanged();
+    partial void OnPatientAddressChanging(string value);
+    partial void OnPatientAddressChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnPatientStatusChanging(string value);
+    partial void OnPatientStatusChanged();
     #endregion
 		
 		public tblPatient()
@@ -1408,11 +1355,7 @@ namespace Eli.Models
 			this._tblRefererencePatients = new EntitySet<tblRefererencePatient>(new Action<tblRefererencePatient>(this.attach_tblRefererencePatients), new Action<tblRefererencePatient>(this.detach_tblRefererencePatients));
 			OnCreated();
 		}
-
-         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
-
-        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string ID
 		{
@@ -1432,56 +1375,47 @@ namespace Eli.Models
 				}
 			}
 		}
-
-         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientFirstName", DbType="VarChar(20)")]
-		public string PatientFirstName
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(20)")]
+		public string FirstName
 		{
 			get
 			{
-				return this._PatientFirstName;
+				return this._FirstName;
 			}
 			set
 			{
-				if ((this._PatientFirstName != value))
+				if ((this._FirstName != value))
 				{
-					this.OnPatientFirstNameChanging(value);
+					this.OnFirstNameChanging(value);
 					this.SendPropertyChanging();
-					this._PatientFirstName = value;
-					this.SendPropertyChanged("PatientFirstName");
-					this.OnPatientFirstNameChanged();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
 				}
 			}
 		}
-
-
-         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientSurName", DbType="VarChar(20)")]
-		public string PatientSurName
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="VarChar(20)")]
+		public string SurName
 		{
 			get
 			{
-				return this._PatientSurName;
+				return this._SurName;
 			}
 			set
 			{
-				if ((this._PatientSurName != value))
+				if ((this._SurName != value))
 				{
-					this.OnPatientSurNameChanging(value);
+					this.OnSurNameChanging(value);
 					this.SendPropertyChanging();
-					this._PatientSurName = value;
-					this.SendPropertyChanged("PatientSurName");
-					this.OnPatientSurNameChanged();
+					this._SurName = value;
+					this.SendPropertyChanged("SurName");
+					this.OnSurNameChanged();
 				}
 			}
 		}
-
-
-         [Required(ErrorMessage = "שדה חובה")]
-         [DataType(DataType.Date)]
-         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BirthDate
 		{
@@ -1501,7 +1435,7 @@ namespace Eli.Models
 				}
 			}
 		}
-        [Required(ErrorMessage = "שדה חובה")]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6)")]
 		public string Gender
 		{
@@ -1521,9 +1455,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-       
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EducationalFramework", DbType="VarChar(MAX)")]
 		public string EducationalFramework
 		{
@@ -1543,67 +1475,63 @@ namespace Eli.Models
 				}
 			}
 		}
-         [Required(ErrorMessage = "שדה חובה")]
-      
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
-		public string Address
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientAddress", DbType="VarChar(MAX)")]
+		public string PatientAddress
 		{
 			get
 			{
-				return this._Address;
+				return this._PatientAddress;
 			}
 			set
 			{
-				if ((this._Address != value))
+				if ((this._PatientAddress != value))
 				{
-					this.OnAddressChanging(value);
+					this.OnPatientAddressChanging(value);
 					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
+					this._PatientAddress = value;
+					this.SendPropertyChanged("PatientAddress");
+					this.OnPatientAddressChanged();
 				}
 			}
 		}
-        [Required(ErrorMessage = "שדה חובה")]
-         [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
-
-         [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="VarChar(10)")]
-		public string ContcatPhoneNumber
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="VarChar(10)")]
+		public string PhoneNumber
 		{
 			get
 			{
-				return this._ContcatPhoneNumber;
+				return this._PhoneNumber;
 			}
 			set
 			{
-				if ((this._ContcatPhoneNumber != value))
+				if ((this._PhoneNumber != value))
 				{
-					this.OnContcatPhoneNumberChanging(value);
+					this.OnPhoneNumberChanging(value);
 					this.SendPropertyChanging();
-					this._ContcatPhoneNumber = value;
-					this.SendPropertyChanged("ContcatPhoneNumber");
-					this.OnContcatPhoneNumberChanged();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
 				}
 			}
 		}
-        [Required(ErrorMessage = "שדה חובה")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusPatient", DbType="VarChar(7)")]
-		public string StatusPatient
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientStatus", DbType="VarChar(7)")]
+		public string PatientStatus
 		{
 			get
 			{
-				return this._StatusPatient;
+				return this._PatientStatus;
 			}
 			set
 			{
-				if ((this._StatusPatient != value))
+				if ((this._PatientStatus != value))
 				{
-					this.OnStatusPatientChanging(value);
+					this.OnPatientStatusChanging(value);
 					this.SendPropertyChanging();
-					this._StatusPatient = value;
-					this.SendPropertyChanged("StatusPatient");
-					this.OnStatusPatientChanged();
+					this._PatientStatus = value;
+					this.SendPropertyChanged("PatientStatus");
+					this.OnPatientStatusChanged();
 				}
 			}
 		}
@@ -1722,9 +1650,9 @@ namespace Eli.Models
 		
 		private string _ReferenceSource;
 		
-		private System.Nullable<System.DateTime> _StartDate;
+		private System.Nullable<System.DateTime> _StartDateReference;
 		
-		private System.Nullable<System.DateTime> _EndDate;
+		private System.Nullable<System.DateTime> _EndDateReference;
 		
 		private EntitySet<tblReferenceTherapist> _tblReferenceTherapists;
 		
@@ -1746,10 +1674,10 @@ namespace Eli.Models
     partial void OnAbuseTypeChanged();
     partial void OnReferenceSourceChanging(string value);
     partial void OnReferenceSourceChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
+    partial void OnStartDateReferenceChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateReferenceChanged();
+    partial void OnEndDateReferenceChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateReferenceChanged();
     #endregion
 		
 		public tblReference()
@@ -1778,9 +1706,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-       [Required(ErrorMessage = "שדה חובה")]
-       
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonReference", DbType="VarChar(MAX)")]
 		public string ReasonReference
 		{
@@ -1800,9 +1726,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusReference", DbType="VarChar(20)")]
 		public string StatusReference
 		{
@@ -1862,10 +1786,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-
-        [Required(ErrorMessage = "שדה חובה")]
-        
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceSource", DbType="VarChar(20)")]
 		public string ReferenceSource
 		{
@@ -1885,54 +1806,43 @@ namespace Eli.Models
 				}
 			}
 		}
-
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
-		public System.Nullable<System.DateTime> StartDate
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDateReference", DbType="Date")]
+		public System.Nullable<System.DateTime> StartDateReference
 		{
 			get
 			{
-				return this._StartDate;
+				return this._StartDateReference;
 			}
 			set
 			{
-				if ((this._StartDate != value))
+				if ((this._StartDateReference != value))
 				{
-					this.OnStartDateChanging(value);
+					this.OnStartDateReferenceChanging(value);
 					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
+					this._StartDateReference = value;
+					this.SendPropertyChanged("StartDateReference");
+					this.OnStartDateReferenceChanged();
 				}
 			}
 		}
-
-
-        [Required(ErrorMessage = "שדה חובה")]
-       
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-       
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
-		public System.Nullable<System.DateTime> EndDate
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDateReference", DbType="Date")]
+		public System.Nullable<System.DateTime> EndDateReference
 		{
 			get
 			{
-				return this._EndDate;
+				return this._EndDateReference;
 			}
 			set
 			{
-				if ((this._EndDate != value))
+				if ((this._EndDateReference != value))
 				{
-					this.OnEndDateChanging(value);
+					this.OnEndDateReferenceChanging(value);
 					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
+					this._EndDateReference = value;
+					this.SendPropertyChanged("EndDateReference");
+					this.OnEndDateReferenceChanged();
 				}
 			}
 		}
@@ -2137,7 +2047,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTherapist_tblReferenceTherapist", Storage="_tblTherapist", ThisKey="TherapistID", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTherapist_tblReferenceTherapist", Storage="_tblTherapist", ThisKey="TherapistID", OtherKey="TherapistID", IsForeignKey=true)]
 		public tblTherapist tblTherapist
 		{
 			get
@@ -2160,7 +2070,7 @@ namespace Eli.Models
 					if ((value != null))
 					{
 						value.tblReferenceTherapists.Add(this);
-						this._TherapistID = value.ID;
+						this._TherapistID = value.TherapistID;
 					}
 					else
 					{
@@ -2258,9 +2168,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-         [Required(ErrorMessage = "שדה חובה")]
-        
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int ReferenceNumber
 		{
@@ -2380,21 +2288,21 @@ namespace Eli.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ID;
+		private string _TherapistID;
 		
 		private string _TherapistFirstName;
 		
 		private string _TherapistSurName;
 		
-		private System.Nullable<System.DateTime> _BirthDate;
+		private System.Nullable<System.DateTime> _TherapistBirthDate;
 		
-		private string _Gender;
+		private string _TherapistGender;
 		
-		private string _Address;
+		private string _TherapistAddress;
 		
-		private string _ContcatPhoneNumber;
+		private string _TherapistPhoneNumber;
 		
-		private string _ContactMail;
+		private string _TherapistMail;
 		
 		private string _UserName;
 		
@@ -2406,22 +2314,22 @@ namespace Eli.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(string value);
-    partial void OnIDChanged();
+    partial void OnTherapistIDChanging(string value);
+    partial void OnTherapistIDChanged();
     partial void OnTherapistFirstNameChanging(string value);
     partial void OnTherapistFirstNameChanged();
     partial void OnTherapistSurNameChanging(string value);
     partial void OnTherapistSurNameChanged();
-    partial void OnBirthDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnBirthDateChanged();
-    partial void OnGenderChanging(string value);
-    partial void OnGenderChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnContcatPhoneNumberChanging(string value);
-    partial void OnContcatPhoneNumberChanged();
-    partial void OnContactMailChanging(string value);
-    partial void OnContactMailChanged();
+    partial void OnTherapistBirthDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnTherapistBirthDateChanged();
+    partial void OnTherapistGenderChanging(string value);
+    partial void OnTherapistGenderChanged();
+    partial void OnTherapistAddressChanging(string value);
+    partial void OnTherapistAddressChanged();
+    partial void OnTherapistPhoneNumberChanging(string value);
+    partial void OnTherapistPhoneNumberChanged();
+    partial void OnTherapistMailChanging(string value);
+    partial void OnTherapistMailChanged();
     partial void OnUserNameChanging(string value);
     partial void OnUserNameChanged();
     partial void OnPasscodeChanging(string value);
@@ -2433,33 +2341,27 @@ namespace Eli.Models
 			this._tblReferenceTherapists = new EntitySet<tblReferenceTherapist>(new Action<tblReferenceTherapist>(this.attach_tblReferenceTherapists), new Action<tblReferenceTherapist>(this.detach_tblReferenceTherapists));
 			OnCreated();
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
-
-        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ID
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string TherapistID
 		{
 			get
 			{
-				return this._ID;
+				return this._TherapistID;
 			}
 			set
 			{
-				if ((this._ID != value))
+				if ((this._TherapistID != value))
 				{
-					this.OnIDChanging(value);
+					this.OnTherapistIDChanging(value);
 					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
+					this._TherapistID = value;
+					this.SendPropertyChanged("TherapistID");
+					this.OnTherapistIDChanged();
 				}
 			}
 		}
-
-         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistFirstName", DbType="VarChar(20)")]
 		public string TherapistFirstName
 		{
@@ -2479,10 +2381,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-
-         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistSurName", DbType="VarChar(20)")]
 		public string TherapistSurName
 		{
@@ -2502,121 +2401,107 @@ namespace Eli.Models
 				}
 			}
 		}
-
-         [Required(ErrorMessage = "שדה חובה")]
-         [DataType(DataType.Date)]
-         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
-		public System.Nullable<System.DateTime> BirthDate
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistBirthDate", DbType="Date")]
+		public System.Nullable<System.DateTime> TherapistBirthDate
 		{
 			get
 			{
-				return this._BirthDate;
+				return this._TherapistBirthDate;
 			}
 			set
 			{
-				if ((this._BirthDate != value))
+				if ((this._TherapistBirthDate != value))
 				{
-					this.OnBirthDateChanging(value);
+					this.OnTherapistBirthDateChanging(value);
 					this.SendPropertyChanging();
-					this._BirthDate = value;
-					this.SendPropertyChanged("BirthDate");
-					this.OnBirthDateChanged();
+					this._TherapistBirthDate = value;
+					this.SendPropertyChanged("TherapistBirthDate");
+					this.OnTherapistBirthDateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6)")]
-		public string Gender
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistGender", DbType="VarChar(6)")]
+		public string TherapistGender
 		{
 			get
 			{
-				return this._Gender;
+				return this._TherapistGender;
 			}
 			set
 			{
-				if ((this._Gender != value))
+				if ((this._TherapistGender != value))
 				{
-					this.OnGenderChanging(value);
+					this.OnTherapistGenderChanging(value);
 					this.SendPropertyChanging();
-					this._Gender = value;
-					this.SendPropertyChanged("Gender");
-					this.OnGenderChanged();
+					this._TherapistGender = value;
+					this.SendPropertyChanged("TherapistGender");
+					this.OnTherapistGenderChanged();
 				}
 			}
 		}
-
-
-        [Required(ErrorMessage = "שדה חובה")]
-       
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(MAX)")]
-		public string Address
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistAddress", DbType="VarChar(MAX)")]
+		public string TherapistAddress
 		{
 			get
 			{
-				return this._Address;
+				return this._TherapistAddress;
 			}
 			set
 			{
-				if ((this._Address != value))
+				if ((this._TherapistAddress != value))
 				{
-					this.OnAddressChanging(value);
+					this.OnTherapistAddressChanging(value);
 					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
+					this._TherapistAddress = value;
+					this.SendPropertyChanged("TherapistAddress");
+					this.OnTherapistAddressChanged();
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
-
-        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContcatPhoneNumber", DbType="Char(10)")]
-		public string ContcatPhoneNumber
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistPhoneNumber", DbType="Char(10)")]
+		public string TherapistPhoneNumber
 		{
 			get
 			{
-				return this._ContcatPhoneNumber;
+				return this._TherapistPhoneNumber;
 			}
 			set
 			{
-				if ((this._ContcatPhoneNumber != value))
+				if ((this._TherapistPhoneNumber != value))
 				{
-					this.OnContcatPhoneNumberChanging(value);
+					this.OnTherapistPhoneNumberChanging(value);
 					this.SendPropertyChanging();
-					this._ContcatPhoneNumber = value;
-					this.SendPropertyChanged("ContcatPhoneNumber");
-					this.OnContcatPhoneNumberChanged();
+					this._TherapistPhoneNumber = value;
+					this.SendPropertyChanged("TherapistPhoneNumber");
+					this.OnTherapistPhoneNumberChanged();
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail", DbType="VarChar(30)")]
-		public string ContactMail
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistMail", DbType="VarChar(30)")]
+		public string TherapistMail
 		{
 			get
 			{
-				return this._ContactMail;
+				return this._TherapistMail;
 			}
 			set
 			{
-				if ((this._ContactMail != value))
+				if ((this._TherapistMail != value))
 				{
-					this.OnContactMailChanging(value);
+					this.OnTherapistMailChanging(value);
 					this.SendPropertyChanging();
-					this._ContactMail = value;
-					this.SendPropertyChanged("ContactMail");
-					this.OnContactMailChanged();
+					this._TherapistMail = value;
+					this.SendPropertyChanged("TherapistMail");
+					this.OnTherapistMailChanged();
 				}
 			}
 		}
-
-
-        [Required(ErrorMessage = "שדה חובה")]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="VarChar(20)")]
 		public string UserName
 		{
@@ -2636,8 +2521,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Passcode", DbType="VarChar(20)")]
 		public string Passcode
 		{
@@ -2658,7 +2542,7 @@ namespace Eli.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTherapist_tblReferenceTherapist", Storage="_tblReferenceTherapists", ThisKey="ID", OtherKey="TherapistID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTherapist_tblReferenceTherapist", Storage="_tblReferenceTherapists", ThisKey="TherapistID", OtherKey="TherapistID")]
 		public EntitySet<tblReferenceTherapist> tblReferenceTherapists
 		{
 			get
@@ -2714,21 +2598,21 @@ namespace Eli.Models
 		
 		private string _TreatmentGoal;
 		
-		private string _SubjectTreatment;
+		private string _TreatmentSubject;
 		
-		private string _StatusPatientTreatment;
+		private string _TreatmentStatusPatient;
 		
 		private string _TreatmentDescription;
 		
-		private string _SummaryTreatment;
+		private string _TreatmentSummary;
 		
-		private string _NextTreat;
+		private string _NextTreatment;
 		
 		private System.Nullable<System.DateTime> _TreatmentDate;
 		
-		private System.Nullable<System.TimeSpan> _StartTime;
+		private System.Nullable<System.TimeSpan> _TreatmentStartTime;
 		
-		private string _Place;
+		private string _TreatmentPlace;
 		
 		private string _IsPaid;
 		
@@ -2750,22 +2634,22 @@ namespace Eli.Models
     partial void OnTreatmentNumberChanged();
     partial void OnTreatmentGoalChanging(string value);
     partial void OnTreatmentGoalChanged();
-    partial void OnSubjectTreatmentChanging(string value);
-    partial void OnSubjectTreatmentChanged();
-    partial void OnStatusPatientTreatmentChanging(string value);
-    partial void OnStatusPatientTreatmentChanged();
+    partial void OnTreatmentSubjectChanging(string value);
+    partial void OnTreatmentSubjectChanged();
+    partial void OnTreatmentStatusPatientChanging(string value);
+    partial void OnTreatmentStatusPatientChanged();
     partial void OnTreatmentDescriptionChanging(string value);
     partial void OnTreatmentDescriptionChanged();
-    partial void OnSummaryTreatmentChanging(string value);
-    partial void OnSummaryTreatmentChanged();
-    partial void OnNextTreatChanging(string value);
-    partial void OnNextTreatChanged();
+    partial void OnTreatmentSummaryChanging(string value);
+    partial void OnTreatmentSummaryChanged();
+    partial void OnNextTreatmentChanging(string value);
+    partial void OnNextTreatmentChanged();
     partial void OnTreatmentDateChanging(System.Nullable<System.DateTime> value);
     partial void OnTreatmentDateChanged();
-    partial void OnStartTimeChanging(System.Nullable<System.TimeSpan> value);
-    partial void OnStartTimeChanged();
-    partial void OnPlaceChanging(string value);
-    partial void OnPlaceChanged();
+    partial void OnTreatmentStartTimeChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnTreatmentStartTimeChanged();
+    partial void OnTreatmentPlaceChanging(string value);
+    partial void OnTreatmentPlaceChanged();
     partial void OnIsPaidChanging(string value);
     partial void OnIsPaidChanged();
     partial void OnFinancingFactorNumberChanging(System.Nullable<int> value);
@@ -2802,9 +2686,7 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(MAX)")]
 		public string TreatmentGoal
 		{
@@ -2824,54 +2706,47 @@ namespace Eli.Models
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-        
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubjectTreatment", DbType="VarChar(MAX)")]
-		public string SubjectTreatment
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentSubject", DbType="VarChar(MAX)")]
+		public string TreatmentSubject
 		{
 			get
 			{
-				return this._SubjectTreatment;
+				return this._TreatmentSubject;
 			}
 			set
 			{
-				if ((this._SubjectTreatment != value))
+				if ((this._TreatmentSubject != value))
 				{
-					this.OnSubjectTreatmentChanging(value);
+					this.OnTreatmentSubjectChanging(value);
 					this.SendPropertyChanging();
-					this._SubjectTreatment = value;
-					this.SendPropertyChanged("SubjectTreatment");
-					this.OnSubjectTreatmentChanged();
+					this._TreatmentSubject = value;
+					this.SendPropertyChanged("TreatmentSubject");
+					this.OnTreatmentSubjectChanged();
 				}
 			}
 		}
-
-
-         [Required(ErrorMessage = "שדה חובה")]
-       
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusPatientTreatment", DbType="VarChar(MAX)")]
-		public string StatusPatientTreatment
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentStatusPatient", DbType="VarChar(MAX)")]
+		public string TreatmentStatusPatient
 		{
 			get
 			{
-				return this._StatusPatientTreatment;
+				return this._TreatmentStatusPatient;
 			}
 			set
 			{
-				if ((this._StatusPatientTreatment != value))
+				if ((this._TreatmentStatusPatient != value))
 				{
-					this.OnStatusPatientTreatmentChanging(value);
+					this.OnTreatmentStatusPatientChanging(value);
 					this.SendPropertyChanging();
-					this._StatusPatientTreatment = value;
-					this.SendPropertyChanged("StatusPatientTreatment");
-					this.OnStatusPatientTreatmentChanged();
+					this._TreatmentStatusPatient = value;
+					this.SendPropertyChanged("TreatmentStatusPatient");
+					this.OnTreatmentStatusPatientChanged();
 				}
 			}
 		}
-
-        [Required(ErrorMessage = "שדה חובה")]
-
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDescription", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentDescription
 		{
@@ -2891,57 +2766,46 @@ namespace Eli.Models
 				}
 			}
 		}
-
-     [Required(ErrorMessage = "שדה חובה")]
-        
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SummaryTreatment", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string SummaryTreatment
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentSummary", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string TreatmentSummary
 		{
 			get
 			{
-				return this._SummaryTreatment;
+				return this._TreatmentSummary;
 			}
 			set
 			{
-				if ((this._SummaryTreatment != value))
+				if ((this._TreatmentSummary != value))
 				{
-					this.OnSummaryTreatmentChanging(value);
+					this.OnTreatmentSummaryChanging(value);
 					this.SendPropertyChanging();
-					this._SummaryTreatment = value;
-					this.SendPropertyChanged("SummaryTreatment");
-					this.OnSummaryTreatmentChanged();
+					this._TreatmentSummary = value;
+					this.SendPropertyChanged("TreatmentSummary");
+					this.OnTreatmentSummaryChanged();
 				}
 			}
 		}
-
-       [Required(ErrorMessage = "שדה חובה")]
-        
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextTreat", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string NextTreat
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextTreatment", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string NextTreatment
 		{
 			get
 			{
-				return this._NextTreat;
+				return this._NextTreatment;
 			}
 			set
 			{
-				if ((this._NextTreat != value))
+				if ((this._NextTreatment != value))
 				{
-					this.OnNextTreatChanging(value);
+					this.OnNextTreatmentChanging(value);
 					this.SendPropertyChanging();
-					this._NextTreat = value;
-					this.SendPropertyChanged("NextTreat");
-					this.OnNextTreatChanged();
+					this._NextTreatment = value;
+					this.SendPropertyChanged("NextTreatment");
+					this.OnNextTreatmentChanged();
 				}
 			}
 		}
-
-
-       [Required(ErrorMessage = "שדה חובה")]
-       [DataType(DataType.Date)]
-       [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDate", DbType="Date")]
 		public System.Nullable<System.DateTime> TreatmentDate
@@ -2962,50 +2826,43 @@ namespace Eli.Models
 				}
 			}
 		}
-
-
-
-       [Required(ErrorMessage = "שדה חובה")]
-       [RegularExpression(@"[0-9]{2}:[0-9]{2}", ErrorMessage = "##:##")]
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="Time")]
-		public System.Nullable<System.TimeSpan> StartTime
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentStartTime", DbType="Time")]
+		public System.Nullable<System.TimeSpan> TreatmentStartTime
 		{
 			get
 			{
-				return this._StartTime;
+				return this._TreatmentStartTime;
 			}
 			set
 			{
-				if ((this._StartTime != value))
+				if ((this._TreatmentStartTime != value))
 				{
-					this.OnStartTimeChanging(value);
+					this.OnTreatmentStartTimeChanging(value);
 					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
+					this._TreatmentStartTime = value;
+					this.SendPropertyChanged("TreatmentStartTime");
+					this.OnTreatmentStartTimeChanged();
 				}
 			}
 		}
-
-
-       [Required(ErrorMessage = "שדה חובה")]
-        
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Place", DbType="VarChar(MAX)")]
-		public string Place
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentPlace", DbType="VarChar(MAX)")]
+		public string TreatmentPlace
 		{
 			get
 			{
-				return this._Place;
+				return this._TreatmentPlace;
 			}
 			set
 			{
-				if ((this._Place != value))
+				if ((this._TreatmentPlace != value))
 				{
-					this.OnPlaceChanging(value);
+					this.OnTreatmentPlaceChanging(value);
 					this.SendPropertyChanging();
-					this._Place = value;
-					this.SendPropertyChanged("Place");
-					this.OnPlaceChanged();
+					this._TreatmentPlace = value;
+					this.SendPropertyChanged("TreatmentPlace");
+					this.OnTreatmentPlaceChanged();
 				}
 			}
 		}
