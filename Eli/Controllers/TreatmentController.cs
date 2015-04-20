@@ -72,6 +72,7 @@ namespace Eli.Controllers
             String ispaid = Request.Form["ispaid"];
             treat.IsPaid = ispaid;
             String finance = Request.Form["finance"];
+            if (finance != null && finance!="")
             treat.FinancingFactorNumber = Convert.ToInt32(finance);
             int reference = Convert.ToInt32(Request.Form["reference"]);
             treat.ReferenceNumber = reference;

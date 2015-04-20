@@ -241,6 +241,8 @@ namespace Eli.Models
             patient.BirthDate = pat.BirthDate;
             patient.ContcatPhoneNumber = pat.ContcatPhoneNumber;
             patient.EducationalFramework = pat.EducationalFramework;
+            patient.Gender = pat.Gender;
+            patient.StatusPatient = pat.StatusPatient;
 
             db.SubmitChanges();
         }

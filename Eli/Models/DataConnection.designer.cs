@@ -1913,10 +1913,10 @@ namespace Eli.Models
 
 
         [Required(ErrorMessage = "שדה חובה")]
-       // [GreaterThan("StartDate", ErrorMessage = "תאריך סיום חייב להיות אחרי תהליך התחלה")]
+       
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-       // [GreaterThan("StartDate", ErrorMessage = "תאריך סיום חייב להיות אחרי תהליך התחלה")]
+       
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
 		public System.Nullable<System.DateTime> EndDate
 		{

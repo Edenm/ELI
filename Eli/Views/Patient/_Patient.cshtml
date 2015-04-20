@@ -14,13 +14,13 @@
 
 @{
     string default_val2;
-    if (@Model.Gender != null)
+    if (@Model.StatusPatient != null)
     {
         default_val2 = @Model.StatusPatient;
     }
     else
     {
-        default_val2 = "לא";
+        default_val2 = "לא פעיל";
     }
 }
 <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -38,7 +38,7 @@
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
+                   // @Html.ValidationSummary(true)
     <fieldset align="right">
         <legend>tblPatient</legend>
         @Html.HiddenFor(model => model.ID)
@@ -106,8 +106,8 @@
             <div style="text-align:right; float:right;">
                 <select dir="rtl" class="element select" id="status" name="status">
                     <option selected="selected" value="@default_val2">@default_val2</option>
-                    <option value="כן">כן</option>
-                    <option value="לא">לא</option>
+                    <option value="פעיל">פעיל</option>
+                    <option value="לא פעיל">לא פעיל</option>
 
                 </select>
             </div>

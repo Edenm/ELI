@@ -21,7 +21,7 @@
                 @using (Html.BeginForm("_EditFamily", "Patient", new { pid = @Model.Patient.ID }, FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
+                   // @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.Patient)
 
                     <h2 align="right">משפחה</h2>
