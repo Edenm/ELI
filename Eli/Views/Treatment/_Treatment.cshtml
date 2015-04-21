@@ -182,7 +182,7 @@
                         </label>
                         <br />
                         @Html.DropDownList("MyList1", (SelectList)ViewBag.value1, string.Empty, new { @onchange = "CallChangefunc1(this.value)" })<br />
-                        <input type="text" name="finance" value="@Model.FinancingFactorNumber" id="finance" readonly align="right" dir="rtl"><br />
+                        <input type="hidden" name="finance" value="@Model.FinancingFactorNumber" id="finance" readonly align="right" dir="rtl"><br />
 
                         <label float:right class="description" for="element_1">
                             מספר הפנייה
@@ -197,11 +197,11 @@
                         </label>
                         <br />
                         @Html.DropDownList("MyList2", (SelectList)ViewBag.value2, string.Empty, new { @onchange = "CallChangefunc2(this.value)" })<br />
-                        <input type="text" name="therapist" value="@Model.TherapistID" id="therapist" readonly align="right" dir="rtl">
-
+                        <input type="hidden" name="therapist" value="@Model.TherapistID" id="therapist" readonly align="right" dir="rtl">
+                        <br />
 
                         <p>
-                            <input type="submit" name="submit" value="@submit" />
+                            <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
                         </p>
                     </fieldset>
                 }
@@ -221,7 +221,7 @@
 </script>
 <script>
     function CallChangefunc2(x) {
-        alert(x);
+        
         document.getElementById("therapist").value = x;
 
 
