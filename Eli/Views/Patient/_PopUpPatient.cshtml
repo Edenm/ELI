@@ -16,10 +16,10 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
                     <fieldset align="right">
-                        
+                        <br />
                         @Html.Partial("_Patient",Model)
                         <p>
-                            <input type="submit" value="Save" />
+                            <input type="submit" class="btn btn-primary btn-lg" value="Save" />
                         </p>
                     </fieldset>
                 }

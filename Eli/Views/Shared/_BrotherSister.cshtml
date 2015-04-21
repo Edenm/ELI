@@ -1,14 +1,29 @@
 ﻿@model Eli.Models.tblBrotherSister
 
-
+@{
+    string default_val1;
+    if (@Model.BrotherSisterGender != null)
+    {
+        default_val1 = @Model.BrotherSisterGender;
+    }
+    else
+    {
+        default_val1 = "זכר";
+    }
+}
         @Html.HiddenFor(model => model.BrotherSisterID)
      
    
     <tr>
         <td class="col-sm-1">
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.BrotherSisterGender, new { @class = "col-sm-12" })
-                @Html.ValidationMessageFor(model => model.BrotherSisterGender)
+                <div style="text-align:right; float:right;">
+                    <select dir="rtl" class="element select" id="gender" name="gender">
+                        <option selected="selected" value="@default_val1">@default_val1</option>
+                        <option value="זכר">זכר</option>
+                        <option value="נקבה">נקבה</option>
+                    </select>
+                </div>
             </div>
         </td>
 

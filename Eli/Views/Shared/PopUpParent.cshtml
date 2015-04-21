@@ -18,100 +18,100 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
-                    <fieldset>
+    <fieldset align="right">
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ParentID)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ParentID)
-                            @Html.ValidationMessageFor(model => model.ParentID)
-                        </div>
+        <label float:right class="description" for="element_1">
+            תעודת זהות
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ParentID)
+            @Html.ValidationMessageFor(model => model.ParentID)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ParentFirstName)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ParentFirstName)
-                            @Html.ValidationMessageFor(model => model.ParentFirstName)
-                        </div>
+        <label float:right class="description" for="element_1">
+            שם פרטי
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ParentFirstName)
+            @Html.ValidationMessageFor(model => model.ParentFirstName)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ParentSurName)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ParentSurName)
-                            @Html.ValidationMessageFor(model => model.ParentSurName)
-                        </div>
+        <label float:right class="description" for="element_1">
+            שם משפחה
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ParentSurName)
+            @Html.ValidationMessageFor(model => model.ParentSurName)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ParentBirthDate)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ParentBirthDate)
-                            @Html.ValidationMessageFor(model => model.ParentBirthDate)
-                        </div>
+        <label float:right class="description" for="element_1">
+            תאריך לידה
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ParentBirthDate)
+            @Html.ValidationMessageFor(model => model.ParentBirthDate)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ParentGender)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ParentGender)
-                            @Html.ValidationMessageFor(model => model.ParentGender)
-                        </div>
+        <label float:right class="description" for="element_1">
+           מגדר
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ParentGender)
+            @Html.ValidationMessageFor(model => model.ParentGender)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ParentAddress)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ParentAddress)
-                            @Html.ValidationMessageFor(model => model.ParentAddress)
-                        </div>
+        <label float:right class="description" for="element_1">
+            כתובת
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ParentAddress)
+            @Html.ValidationMessageFor(model => model.ParentAddress)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ParentPhoneNumber)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ParentPhoneNumber)
-                            @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
-                        </div>
+        <label float:right class="description" for="element_1">
+            טלפון
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ParentPhoneNumber)
+            @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.ParentMail)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.ParentMail)
-                            @Html.ValidationMessageFor(model => model.ParentMail)
-                        </div>
+        <label float:right class="description" for="element_1">
+           דואר אלקטרוני
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.ParentMail)
+            @Html.ValidationMessageFor(model => model.ParentMail)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.IsWorking)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.IsWorking)
-                            @Html.ValidationMessageFor(model => model.IsWorking)
-                        </div>
+        <label float:right class="description" for="element_1">
+           האם עובד
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.IsWorking)
+            @Html.ValidationMessageFor(model => model.IsWorking)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.Explain)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.Explain)
-                            @Html.ValidationMessageFor(model => model.Explain)
-                        </div>
+        <label float:right class="description" for="element_1">
+            הסבר-האם עובד
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.Explain)
+            @Html.ValidationMessageFor(model => model.Explain)
+        </div>
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.Comment)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.Comment)
-                            @Html.ValidationMessageFor(model => model.Comment)
-                        </div>
-
-                        <p>
-                            <input type="submit" name="add" value="AddParent" />
-                        </p>
-                    </fieldset>
+        <label float:right class="description" for="element_1">
+           הערה
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.EditorFor(model => model.Comment)
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+        <br />
+        <p>
+            <input type="submit" class="btn btn-primary btn-lg" name="add" value="הוספת הורה" />
+        </p>
+    </fieldset>
                 }
             </div>
         </div>

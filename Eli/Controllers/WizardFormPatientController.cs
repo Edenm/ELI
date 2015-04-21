@@ -29,6 +29,8 @@ namespace Eli.Controllers
                 //if (ModelState.IsValid)
                 {
                     Family obj = GetFamily();
+                    String gender = Request.Form["gender"];
+                    pat.Gender = gender;
                     obj.Patient = pat;
 
                     return View(obj);
