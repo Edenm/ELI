@@ -30,17 +30,6 @@ namespace Eli.Controllers
                 {
                     Family obj = GetFamily();
                     obj.Patient = pat;
-                    //obj.Patient.ID = pat.ID;
-                    /*
-                    obj.Patient.PatientFirstName = pat.PatientFirstName;
-                    obj.Patient.PatientSurName = pat.PatientSurName;
-                    obj.Patient.StatusPatient = pat.StatusPatient;
-                    obj.Patient.Gender = pat.Gender;
-                    obj.Patient.BirthDate = pat.BirthDate;
-                    obj.Patient.Address = pat.Address;
-                    obj.Patient.ContcatPhoneNumber = pat.ContcatPhoneNumber;
-                    obj.Patient.EducationalFramework = pat.EducationalFramework;
-                     */
 
                     return View(obj);
                 }

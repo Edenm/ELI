@@ -1,5 +1,7 @@
 ﻿@model Eli.Models.tblPatient
 
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 @{
     string default_val1;
     if (@Model.Gender != null)
@@ -23,25 +25,10 @@
         default_val2 = "לא פעיל";
     }
 }
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-    <!-- Modal -->
-    <div class="modal fade" id="@Model.ID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 align="right " class="modal-title" id="myModalLabel"></h4>
-                </div>
-                <div class="modal-body">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                   // @Html.ValidationSummary(true)
-                    <fieldset align="right">
-                        <legend>tblPatient</legend>
+                       
                         @Html.HiddenFor(model => model.ID)
+
                         <label float:right class="description" for="element_1">
                             שם פרטי
                         </label>
@@ -108,17 +95,6 @@
                                     <option selected="selected" value="@default_val2">@default_val2</option>
                                     <option value="פעיל">פעיל</option>
                                     <option value="לא פעיל">לא פעיל</option>
-
                                 </select>
                             </div>
                         </fieldset>
-                        <p>
-                            <input type="submit" value="Save" />
-                        </p>
-                    </fieldset>
-                }
-
-                </div>
-            </div>
-        </div>
-    </div>
