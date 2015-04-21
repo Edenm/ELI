@@ -22,8 +22,7 @@
 
         <body>
     
-   @if (Session["therapistID"] != null)
-   {
+  
 
 
             <h4 align="left">@ViewBag.msg1</h4>
@@ -63,7 +62,7 @@
                 </table>
             </div>
 
-            foreach (tblTherapist item in Model)
+            @foreach (tblTherapist item in Model)
             {
                 @Html.Partial("_Therapist", item);
             }
@@ -81,12 +80,17 @@
                 new $.fn.dataTable.KeyTable(table);
 
             </script>
-            }  
+             
+        @if (Session["therapistID"] != null)
+        {
+            
+        }
+
             else
                {
-                    Layout = "";
-                    Html.RenderAction("NotFound", "Error");
-               }  
+                    //Layout = "";
+                    //Html.RenderAction("NotFound", "Error");
+               }
         </body>
         </html>
 
