@@ -44,11 +44,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{ int count = 0;}
                                     @foreach (var item in Model.Parents)
                                     {
                                         @Html.Partial("_Parent", item);
-                                        count++; 
                                     }
                                 </tbody>
 

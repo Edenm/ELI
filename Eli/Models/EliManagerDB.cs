@@ -243,7 +243,7 @@ namespace Eli.Models
             patient.PhoneNumber = pat.PhoneNumber;
             patient.EducationalFramework = pat.EducationalFramework;
             patient.Gender = pat.Gender;
-            patient.StatusPatient = pat.StatusPatient;
+            patient.PatientStatus = pat.PatientStatus;
 
             db.SubmitChanges();
         }

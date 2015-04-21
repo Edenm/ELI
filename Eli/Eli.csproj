@@ -416,8 +416,8 @@
     <Content Include="Views\WizardFormPatient\Step2.cshtml" />
     <Content Include="Views\WizardFormPatient\Step3.cshtml" />
     <Content Include="Views\WizardFormPatient\EndOfWizard.cshtml" />
-    <Content Include="Views\Shared\_Patient.cshtml" />
     <Content Include="Views\Shared\PopUpParent.cshtml" />
+    <Content Include="Views\Shared\_Patient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
