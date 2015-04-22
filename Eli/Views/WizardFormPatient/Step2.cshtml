@@ -66,7 +66,7 @@
                                         <tbody>
                                                 @foreach (var item in Model.Parents)
                                                 {
-                                                    @{ String FullName = @item.ParentFirstName + " " + @item.ParentSurName;}
+                                                    string FullName = @item.ParentFirstName + " " + @item.ParentSurName;
                                                     <tr>
                                                         <td class="col-sm-1">
                                                             @item.ParentID
@@ -99,8 +99,7 @@
                                                     </button> 
                                                 </td>
                                                 @if (Model.Parents.Count() > 0)
-                                                {
-                                                    <td></td>   
+                                                { 
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -125,7 +124,7 @@
                                 <table class="table table-bordered" dir="rtl" style="text-align:center">
                                     <thead>
                                         <tr>
-                                            <th style="text-align:center">ת"ז"</th>
+                                            <th style="text-align:center">ת"ז</th>
                                             <th style="text-align:center">מגדר</th>
                                             <th style="text-align:center">שם</th>
                                             <th style="text-align:center">תאריך לידה</th>
@@ -136,7 +135,7 @@
                                         
                                             @foreach (var item in Model.BrotherSisters)
                                             {
-                                                @{ String FullName = @item.BrotherSisterFirstName + " " + @item.BrotherSisterSurName;}
+                                                string FullName = @item.BrotherSisterFirstName + " " + @item.BrotherSisterSurName;
                                                 <tr>
                                                     <td class="col-sm-1">
                                                         @item.BrotherSisterID
@@ -163,7 +162,6 @@
                                             </td>
                                             @if (Model.BrotherSisters != null && Model.BrotherSisters.Count() > 0)
                                             {
-                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
