@@ -319,6 +319,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\DataTable\Sorting icons.psd" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\minor.png" />
     <Content Include="Images\treat.png" />
     <Content Include="Images\User.png" />
@@ -390,7 +391,7 @@
     <Content Include="Views\Patient\NewPatient.cshtml" />
     <Content Include="Views\Patient\IndexPatients.cshtml" />
     <Content Include="Views\Patient\_EditFamily.cshtml" />
-    <Content Include="Views\Shared\_Parent.cshtml" />
+    <Content Include="Views\Patient\_Parent.cshtml" />
     <Content Include="Views\Therapist\IndexTherapist.cshtml" />
     <Content Include="Views\Therapist\_Therapist.cshtml" />
     <Content Include="Views\FinanceFactor\IndexFinancingFactor.cshtml" />
@@ -408,7 +409,7 @@
     <Content Include="Views\Reference\Index.cshtml" />
     <Content Include="Views\SendMailer\Index.cshtml" />
     <Content Include="Views\SendMailer\success.cshtml" />
-    <Content Include="Views\Shared\_BrotherSister.cshtml" />
+    <Content Include="Views\Patient\_BrotherSister.cshtml" />
     <Content Include="Views\Patient\Test.cshtml" />
     <Content Include="Views\Patient\_PopUpPatient.cshtml" />
     <Content Include="Views\Reference\_PopUpReference.cshtml" />
@@ -418,6 +419,8 @@
     <Content Include="Views\WizardFormPatient\EndOfWizard.cshtml" />
     <Content Include="Views\Shared\PopUpParent.cshtml" />
     <Content Include="Views\Shared\_Patient.cshtml" />
+    <Content Include="Views\Shared\PopUpBrotherSister.cshtml" />
+    <Content Include="Views\Shared\GoogleAddressApi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

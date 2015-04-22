@@ -34,7 +34,7 @@
                     <th style="text-align: center;">שם משפחה</th>
                     <th style="text-align: center;">טלפון</th>
                     <th style="text-align: center;">פרטים נוספים</th>
-                    <th style="text-align: center;">עריכה</th>
+                    <th style="text-align: center;">משפחה</th>
                     <th style="text-align: center;">הפניות</th>
                 </tr>
             </thead>
@@ -47,18 +47,19 @@
                         <td> @item.Patient.SurName </td>
                         <td> @item.Patient.PhoneNumber </td>
                         <td>
+                            <a data-toggle="modal" data-target="#@item.Patient.ID">
+                                <img src="~/Images/info.png" />
+                            </a>
+                        </td>
+                        <td>
                             @{
-                                String id = "1" + @item.Patient.ID;
+                                 String id = "1" + @item.Patient.ID;
                             }
                             <a data-toggle="modal" data-target="#id">
                                 <img src="~/Images/info.png" />
                             </a>
                         </td>
-                        <td>
-                            <a data-toggle="modal" data-target="#@item.Patient.ID">
-                                <img src="~/Images/edit.png" />
-                            </a>
-                        </td>
+
                         <td>
                             <a href="@Url.Action("IndexReference", "Reference", new { pid = @item.Patient.ID }, null)">
                                 <img src="~/Images/info.png" />

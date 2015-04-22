@@ -34,8 +34,10 @@
                 <table id="myTable" class="display nowrap table-bordered">
                     <thead align="center">
                         <tr>
+                            <th style="text-align: center;">#</th>
                             <th style="text-align: center;">תעודת זהות</th>
                             <th style="text-align: center;">שם</th>
+                            <th style="text-align: center;">כתובת</th>
                             <th style="text-align: center;">טלפון</th>
                             <th style="text-align: center;">פרטים נוספים</th>
                         </tr>
@@ -46,9 +48,19 @@
                             if (@item.TherapistID != null)
                             {
                                 <tr align="center">
+                                    <td> @{if (item.TherapistGender=="זכר"){
+                                               <div>מטפל</div>
+                                           }
+                                           else
+                                           {
+                                            <div>מטפלת</div>
+                                           }
+                                        }
+                                     </td>
                                     <td> @item.TherapistID </td>
                                     @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
                                     <td> @FullName</td>
+                                    <td> @item.TherapistAddress</td>
                                     <td> @item.TherapistPhoneNumber </td>
                                     <td>
                                         <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.TherapistID">

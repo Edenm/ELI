@@ -24,9 +24,10 @@ namespace Eli.Controllers
 
         public ActionResult Step2(tblPatient pat, string nextBtn)
         {
+            EliManagerDB db= new EliManagerDB();
             if (nextBtn != null)
             {
-                //if (ModelState.IsValid)
+                if  (db.getPatientById(pat.ID)==null) // (ModelState.IsValid)
                 {
                     Family obj = GetFamily();
                     String gender = Request.Form["gender"];
@@ -36,7 +37,8 @@ namespace Eli.Controllers
                     return View(obj);
                 }
             }
-            return View("Step1");
+            pat.ID = null;
+            return View("Step1", pat);
         }
 
         public ActionResult Step3(FormCollection famlyForm, string prevBtn, string nextBtn, string add, string remove)
@@ -44,18 +46,19 @@ namespace Eli.Controllers
             Family fam = GetFamily();
 
 //--------------------------------Add/Remove Parent-------------------------------------------------------
-            if (add != null && add == "AddParent")
+            if (add != null && add == "הוספת הורה")
             {
                 tblParent parent = new tblParent();
+                parent.ParentID = famlyForm.GetValues("ParentID")[0];
                 parent.ParentFirstName = famlyForm.GetValues("ParentFirstName")[0];
                 parent.ParentSurName = famlyForm.GetValues("ParentSurName")[0];
-                //parent.ParentAddress = famlyForm.GetValues("ParentAddress")[countP];
+                parent.ParentAddress = famlyForm.GetValues("ParentAddress")[0];
                 parent.ParentPhoneNumber = famlyForm.GetValues("ParentPhoneNumber")[0];
-                //parent.Explain = famlyForm.GetValues("Explain")[countP];
+                parent.Explain = famlyForm.GetValues("Explain")[countP];
                 parent.IsWorking = famlyForm.GetValues("IsWorking")[0];
                 parent.ParentMail = famlyForm.GetValues("ParentMail")[0];
                 parent.ParentGender = famlyForm.GetValues("ParentGender")[0];
-                //parent.ParentBirthDate =Convert.ToDateTime(famlyForm.GetValues("ParentBirthDate")[countP]);
+                parent.ParentBirthDate =Convert.ToDateTime(famlyForm.GetValues("ParentBirthDate")[countP]);
                 fam.Parents.Add(parent);
                 countP++;
                 return View("Step2",fam);
@@ -70,13 +73,14 @@ namespace Eli.Controllers
 
 //--------------------------------Add/Remove BrotherSister----------------------------------------------
 
-            if (add != null && add == "AddBrotherSister")
+            if (add != null && add == "הוספת אח/ות")
             {
                 tblBrotherSister broSis = new tblBrotherSister();
+                broSis.BrotherSisterID = famlyForm.GetValues("BrotherSisterID")[countBS];
                 broSis.BrotherSisterFirstName = famlyForm.GetValues("BrotherSisterFirstName")[countBS];
                 broSis.BrotherSisterSurName = famlyForm.GetValues("BrotherSisterSurName")[countBS];
                 broSis.BrotherSisterStudyFramework = famlyForm.GetValues("BrotherSisterStudyFramework")[countBS];
-                //broSis.BrotherSisterGender = famlyForm.GetValues("BrotherSisterGender")[countBS];
+                broSis.BrotherSisterGender = famlyForm.GetValues("BrotherSisterGender")[countBS];
                 broSis.BrotherSisterBirthDate = Convert.ToDateTime(famlyForm.GetValues("BrotherSisterBirthDate")[countBS]);
                 fam.BrotherSisters.Add(broSis);
                 countBS++;

@@ -1,0 +1,79 @@
+﻿@model Eli.Models.tblBrotherSister
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="newBrotherSister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm("Step3", "WizardFormPatient"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+    <fieldset align="right" dir="rtl">
+
+
+        <div class="editor-label">
+            תעודת זהות
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BrotherSisterID)
+            @Html.ValidationMessageFor(model => model.BrotherSisterID)
+        </div>
+
+        <div class="editor-label">
+            שם פרטי
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BrotherSisterFirstName)
+            @Html.ValidationMessageFor(model => model.BrotherSisterFirstName)
+        </div>
+
+        <div class="editor-label">
+            שם משפחה
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BrotherSisterSurName)
+            @Html.ValidationMessageFor(model => model.BrotherSisterSurName)
+        </div>
+
+        <div class="editor-label">
+            תאריך לידה
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BrotherSisterBirthDate)
+            @Html.ValidationMessageFor(model => model.BrotherSisterBirthDate)
+        </div>
+
+        <div class="editor-label">
+            מגדר
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BrotherSisterGender)
+            @Html.ValidationMessageFor(model => model.BrotherSisterGender)
+        </div>
+
+        <div class="editor-label">
+            מסגרת חינוכית
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BrotherSisterStudyFramework)
+            @Html.ValidationMessageFor(model => model.BrotherSisterStudyFramework)
+        </div>
+
+        <p>
+            <input type="submit" name="add" value="הוספת אח/ות" class="btn btn-primary btn-lg" />
+        </p>
+    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>
