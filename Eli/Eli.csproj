@@ -421,6 +421,8 @@
     <Content Include="Views\Shared\_Patient.cshtml" />
     <Content Include="Views\Shared\PopUpBrotherSister.cshtml" />
     <Content Include="Views\Shared\GoogleAddressApi.cshtml" />
+    <Content Include="Views\FinanceFactor\_mail.cshtml" />
+    <Content Include="Views\FinanceFactor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
