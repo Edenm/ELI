@@ -17,7 +17,8 @@ namespace Eli.Controllers
         {
             EliManagerDB db= new EliManagerDB();
 
-            var refe = db.getAllReferencesByPatientId(pid);
+            tblTherapist ther = (tblTherapist)Session["Therapist"];
+            var refe = db.getAllReferencesByPatientAndTherapist(pid, ther.TherapistID);
 
             refe.Add(new tblReference());
 
@@ -41,8 +42,10 @@ namespace Eli.Controllers
             refe.AbuseType = AbuseType;
             refe.ReferenceSource = ReferenceSource;
 
-            if (submit.Equals("צור"))
-                db.addReference(refe, pid);
+            if (submit.Equals("צור")){
+                tblTherapist ther=(tblTherapist)Session["Therapist"];
+                db.addReference(refe, pid, ther.TherapistID);
+            }
 
             else
                 db.EditReference(refe);

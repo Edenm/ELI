@@ -39,9 +39,13 @@ namespace Eli.Controllers
             ViewBag.value2 = new SelectList(listItem2, "Value", "Text");
             //////////////////////////////////////////////////////////////////////////////////////
 
+
+
             List<Treatment> treatments = new List<Treatment>();
 
-            var treat = db.getAllTreatmentByReferenceNumber(rid);
+            tblTherapist ther = (tblTherapist)Session["Therapist"];
+
+            var treat = db.getAllTreatmentByReferenceAndTherapist(rid, ther.TherapistID);
 
             foreach (tblTreatment t in treat)
             {
@@ -50,7 +54,7 @@ namespace Eli.Controllers
 
             Treatment tr= new Treatment();
             tr.treatment.ReferenceNumber=rid;
-            //tr.treatment.TherapistID=;
+            tr.treatment.TherapistID = ther.TherapistID;
 
             treatments.Add(tr);
 
@@ -58,7 +62,7 @@ namespace Eli.Controllers
 
             ViewBag.Id = pat.ID;
             ViewBag.Name = pat.FirstName + " " + pat.SurName;
-            ViewBag.Ref = rid;
+            ViewBag.Ref = db.getReferenceByReferenceNumber(rid).ReasonReference;
 
             return View(treatments);
         }

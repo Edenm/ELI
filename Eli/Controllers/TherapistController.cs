@@ -6,10 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Eli.Controllers
-{
+{   
+    [Authorize]
     public class TherapistController : Controller
     {
-
         [HttpGet]
         public ActionResult IndexTherapist()
         {

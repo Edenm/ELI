@@ -388,7 +388,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Patient\NewPatient.cshtml" />
     <Content Include="Views\Patient\IndexPatients.cshtml" />
     <Content Include="Views\Patient\_EditFamily.cshtml" />
     <Content Include="Views\Patient\_Parent.cshtml" />

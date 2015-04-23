@@ -1882,7 +1882,6 @@ namespace Eli.Models
 		}
 
 
-        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherStatus", DbType="VarChar(MAX)")]
 		public string OtherStatus
 		{
@@ -1948,8 +1947,6 @@ namespace Eli.Models
 
 
         [Required(ErrorMessage = "שדה חובה")]
-        
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
@@ -1972,10 +1969,6 @@ namespace Eli.Models
 				}
 			}
 		}
-
-
-
-        [Required(ErrorMessage = "שדה חובה")]
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

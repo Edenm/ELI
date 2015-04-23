@@ -44,11 +44,11 @@
     string str;
     if (@Model.TreatmentPlace != null)
     {
-        str = "עריכת טיפול";
+        str = "עריכת טיפול מספר: "+Model.TreatmentNumber;
     }
     else
     {
-        str = "הוספת טיפול חדש";
+        str = "הוספת טיפול נוסף להפנייה";
     }
 }
 
@@ -187,18 +187,6 @@
                         <label float:right class="description" for="element_1">
                             מספר הפנייה
                         </label>
-                        <br />
-                        <div float:right; dir="rtl" class="editor-field" >
-                            <input type="text" name="reference" value="@Model.ReferenceNumber" id="reference" readonly align="right" dir="rtl"><br />
-                        </div>
-
-                        <label float:right class="description" for="element_1">
-                             מטפל
-                        </label>
-                        <br />
-                        @Html.DropDownList("MyList2", (SelectList)ViewBag.value2, string.Empty, new { @onchange = "CallChangefunc2(this.value)" })<br />
-                        <input type="hidden" name="therapist" value="@Model.TherapistID" id="therapist" readonly align="right" dir="rtl">
-                        <br />
 
                         <p>
                             <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />

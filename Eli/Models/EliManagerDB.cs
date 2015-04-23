@@ -179,16 +179,25 @@ namespace Eli.Models
         }
 
         /* Add Treatment to data base **/
-        public void addReference(tblReference re, string pid)
+        public void addReference(tblReference re, string pid , string tid)
         {
             re.ReferenceNumber = Reference.Count() + 1;
 
             tblRefererencePatient refPat= new tblRefererencePatient();
+
             refPat.PatientID=pid;
             refPat.ReferenceNumber=re.ReferenceNumber;
             ReferencePatient.InsertOnSubmit(refPat);
 
             Reference.InsertOnSubmit(re);
+
+            tblReferenceTherapist refTher = new tblReferenceTherapist();
+
+            refTher.ReferenceNumber = re.ReferenceNumber;
+            refTher.TherapistID = tid;
+
+            ReferenceTherapist.InsertOnSubmit(refTher);
+
             db.SubmitChanges();
         }
 
@@ -356,6 +365,12 @@ namespace Eli.Models
             return tr;
         }
 
+        public tblReference getReferenceByReferenceNumber(int rnum)
+        {
+            return Reference.Where(r => r.ReferenceNumber == rnum).First();
+
+        }
+
         public tblReference getReferenceByTreatmentNumber(int tnum)
         {
             var refNum = getTreatmentByNumber(tnum).ReferenceNumber;
@@ -383,6 +398,17 @@ namespace Eli.Models
             return finfac;
         }
 
+        public List<tblPatient> getAllPatientsByTherapist(String tid)
+        {
+            var therRrfe = (ReferenceTherapist.Where(rt => rt.TherapistID == tid).Select(rt => rt.ReferenceNumber)).ToList();
+
+            var refePat = (RefererencePatients.Where(rp => therRrfe.Contains(rp.ReferenceNumber))).Select(rp => rp.PatientID).ToList();
+
+            var pats = (Patients.Where(p => refePat.Contains(p.ID))).ToList();
+
+            return  pats;
+        }
+
         public List<tblBrotherSister> getAllBrotherSisterByPatient(String PID)
         {
             var BSP= (BrotherSisterPatient.Where(bs => bs.PatientID==PID).Select(bs=> bs.BrotherSisterID));
@@ -401,18 +427,19 @@ namespace Eli.Models
             return P;
         }
 
-        public List<tblTreatment> getAllTreatmentByReferenceNumber(int refNum)
+        public List<tblTreatment> getAllTreatmentByReferenceAndTherapist(int refNum , string tid)
         {
-            var treat = Treatment.Where(t => t.ReferenceNumber==refNum).ToList();
+            var treat = Treatment.Where(t => t.ReferenceNumber==refNum && t.TherapistID==tid).ToList();
 
             return treat;
         }
 
-        public List<tblReference> getAllReferencesByPatientId(string id)
+        public List<tblReference> getAllReferencesByPatientAndTherapist(string pid, string tid)
         {
-            var referencesList = ReferencePatient.Where(p => p.PatientID == id).Select(re => re.ReferenceNumber).ToList();
+            var referencesListByPatient = ReferencePatient.Where(p => p.PatientID == pid).Select(re => re.ReferenceNumber).ToList();
+            var referencesListByTherapist = ReferenceTherapist.Where(t => t.TherapistID == tid).Select(re => re.ReferenceNumber).ToList();
 
-            var refe = Reference.Where(r => referencesList.Contains(r.ReferenceNumber)).ToList();
+            var refe = Reference.Where(r => referencesListByPatient.Contains(r.ReferenceNumber) && referencesListByTherapist.Contains(r.ReferenceNumber)).ToList();
 
             return refe;
         }

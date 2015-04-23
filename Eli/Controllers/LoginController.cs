@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Eli.ViewModel;
 using Eli.Models;
+using System.Web.Security;
+using WebMatrix.WebData;
 
 
 namespace Eli.Controllers
@@ -28,8 +30,9 @@ namespace Eli.Controllers
 
                 if (ther != null)
                 {
-                    Session["therapistName"] = ther.TherapistFirstName +" " +ther.TherapistSurName;
-                    Session["therapistId"] = ther.TherapistID;
+                    Session["Therapist"] = ther;
+                    //WebSecurity.Login(user.UserName, user.Password);
+                    FormsAuthentication.SetAuthCookie(user.UserName, true);
                     return RedirectToAction("IndexPatients", "Patient");
                 }
             }

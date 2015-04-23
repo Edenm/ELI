@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebMatrix.WebData;
 
 namespace Eli
 {
@@ -16,6 +17,7 @@ namespace Eli
     {
         protected void Application_Start()
         {
+            //WebSecurity.InitializeDatabaseConnection("ELIConnectionString", "tblTherapist", "UserName", "Passcode", true);
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
