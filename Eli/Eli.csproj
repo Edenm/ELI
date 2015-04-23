@@ -195,6 +195,7 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FinanceFactorController.cs" />
+    <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\SendMailerController.cs" />
@@ -422,6 +423,7 @@
     <Content Include="Views\Shared\GoogleAddressApi.cshtml" />
     <Content Include="Views\FinanceFactor\_mail.cshtml" />
     <Content Include="Views\FinanceFactor\Index.cshtml" />
+    <Content Include="Views\Therapist\_mail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

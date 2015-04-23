@@ -222,6 +222,7 @@ namespace Eli.Models
             d.FinancingFactorContactName = ff.FinancingFactorContactName;
             d.FinancingFactorContactMail = ff.FinancingFactorContactMail;
             d.FinancingFactorContcatPhoneNumber = ff.FinancingFactorContcatPhoneNumber;
+            d.FinancingFactorAddress = ff.FinancingFactorAddress;
             db.SubmitChanges();
         }
 
@@ -229,7 +230,7 @@ namespace Eli.Models
         public void EditTherapist(tblTherapist tt)
         {
             var t = Therapist.First(x => x.TherapistID == tt.TherapistID);
-            t.TherapistID = tt.TherapistID;
+            
             t.TherapistFirstName = tt.TherapistFirstName;
             t.TherapistSurName = tt.TherapistSurName;
             t.TherapistBirthDate = tt.TherapistBirthDate;

@@ -2,7 +2,6 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <link href="~/Content/ModalSize.css" rel="stylesheet" />
-
 <div id="myModal">
     <div class="modal fade" id="@Model.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -16,7 +15,7 @@
                         <legend>
                             Send Email
                         </legend>
-                        @using (Html.BeginForm("Index","General"))
+                        @using (Html.BeginForm("Index", "General"))
                         {
 
                             <label float:right class="description" for="element_1">

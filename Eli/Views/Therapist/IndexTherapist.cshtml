@@ -40,9 +40,12 @@
                             <th style="text-align: center;">כתובת</th>
                             <th style="text-align: center;">טלפון</th>
                             <th style="text-align: center;">פרטים נוספים</th>
+                            <th style="text-align: center;">שליחה</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @{ int count = 500;}
+                        @{ int count1 = 500;}
                         @foreach (var item in Model)
                         {
                             if (@item.TherapistID != null)
@@ -67,8 +70,15 @@
                                             <img src="~/Images/info.png" />
                                         </a>
                                     </td>
+                                    <td>
+
+                                        <a src="~/Images/info.png" data-toggle="modal" data-target="#@count">
+                                            <img src="~/Images/info.png" />
+                                        </a>
+                                    </td>
                                 </tr>
                             }
+                            count++;
                         }
                     </tbody>
                 </table>
@@ -77,6 +87,15 @@
             @foreach (tblTherapist item in Model)
             {
                 @Html.Partial("_Therapist", item);
+            }
+
+            @foreach (tblTherapist item in Model)
+            {
+                MailModel m = new MailModel();
+                m.To = item.TherapistMail;
+                m.id = count1;
+                @Html.Partial("_mail", m);
+                                 count1++;
             }
 
             <!-- Button trigger modal -->
