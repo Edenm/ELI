@@ -48,7 +48,7 @@
                         <td> @item.Patient.PhoneNumber </td>
                         <td>
                             <a data-toggle="modal" data-target="#@item.Patient.ID">
-                                <img src="~/Images/info.png" />
+                                <img src="~/Images/Information_32x32.png" />
                             </a>
                         </td>
                         <td>
@@ -56,13 +56,13 @@
                                  String id = "1" + @item.Patient.ID;
                             }
                             <a data-toggle="modal" data-target="#@id">
-                                <img src="~/Images/info.png" />
+                                <img src="~/Images/Family-32.png" />
                             </a>
                         </td>
 
                         <td>
                             <a href="@Url.Action("IndexReference", "Reference", new { pid = @item.Patient.ID }, null)">
-                                <img src="~/Images/info.png" />
+                                <img src="~/Images/References-32.png" />
                             </a>
                         </td>
                     </tr>

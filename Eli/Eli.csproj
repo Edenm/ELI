@@ -222,6 +222,7 @@
     <Compile Include="ViewModel\User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootbox.min.js" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
@@ -316,12 +317,16 @@
     <Content Include="Images\delete.png" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\Eli-Log.jpg" />
+    <Content Include="Images\Family-32.png" />
     <Content Include="Images\info.png" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\DataTable\Sorting icons.psd" />
+    <Content Include="Images\Information_32x32.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\Mail-32.png" />
     <Content Include="Images\minor.png" />
+    <Content Include="Images\References-32.png" />
     <Content Include="Images\treat.png" />
     <Content Include="Images\User.png" />
     <Content Include="Models\DataConnection.dbml">
