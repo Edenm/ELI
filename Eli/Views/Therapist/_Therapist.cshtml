@@ -58,13 +58,21 @@ else
 
     <fieldset align="right">
       
-        <label float:right class="description" for="element_1">
-            תעדות זהות מטפל
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TherapistID)
-            @Html.ValidationMessageFor(model => model.TherapistID)
-        </div>
+       @{ if (Model.TherapistID == null)
+        {
+            <label float:right class="description" for="element_1">
+                תעודת זהות
+            </label>
+            <div float:right; dir="rtl" class="editor-field">
+                @Html.EditorFor(model => model.TherapistID)
+                @Html.ValidationMessageFor(model => model.TherapistID)
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.TherapistID)
+        }
+    }
 
         <label float:right class="description" for="element_1">
             שם פרטי
@@ -98,12 +106,10 @@ else
             </label>
             <br />
             <div style="text-align:right; float:right;">
-                <select dir="rtl" class="element select" id="gender" name="gender">
-
+                <select dir="rtl" class="element select" id="gender" name="TherapistGender">
                     <option selected="selected" value="@default_val">@default_val</option>
                     <option value="זכר">זכר</option>
                     <option value="נקבה">נקבה</option>
-
 
                 </select>
             </div>

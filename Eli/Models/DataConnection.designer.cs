@@ -2856,7 +2856,7 @@ namespace Eli.Models
 			this._tblReferenceTherapist = default(EntityRef<tblReferenceTherapist>);
 			OnCreated();
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentNumber", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int TreatmentNumber
 		{
@@ -2877,6 +2877,7 @@ namespace Eli.Models
 			}
 		}
 		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(MAX)")]
 		public string TreatmentGoal
 		{
@@ -2897,6 +2898,7 @@ namespace Eli.Models
 			}
 		}
 		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentSubject", DbType="VarChar(MAX)")]
 		public string TreatmentSubject
 		{
@@ -2917,6 +2919,7 @@ namespace Eli.Models
 			}
 		}
 		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentStatusPatient", DbType="VarChar(MAX)")]
 		public string TreatmentStatusPatient
 		{
@@ -2937,6 +2940,7 @@ namespace Eli.Models
 			}
 		}
 		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDescription", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentDescription
 		{
@@ -2957,6 +2961,7 @@ namespace Eli.Models
 			}
 		}
 		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentSummary", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentSummary
 		{
@@ -2977,6 +2982,7 @@ namespace Eli.Models
 			}
 		}
 		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextTreatment", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string NextTreatment
 		{
@@ -2997,6 +3003,11 @@ namespace Eli.Models
 			}
 		}
 		
+
+         [Required(ErrorMessage = "שדה חובה")]
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDate", DbType="Date")]
 		public System.Nullable<System.DateTime> TreatmentDate
 		{
@@ -3017,6 +3028,7 @@ namespace Eli.Models
 			}
 		}
 		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentStartTime", DbType="Time")]
 		public System.Nullable<System.TimeSpan> TreatmentStartTime
 		{
@@ -3037,6 +3049,7 @@ namespace Eli.Models
 			}
 		}
 		
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentPlace", DbType="VarChar(MAX)")]
 		public string TreatmentPlace
 		{
@@ -3056,7 +3069,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+		[Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPaid", DbType="VarChar(2)")]
 		public string IsPaid
 		{

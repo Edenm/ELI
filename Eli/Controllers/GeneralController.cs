@@ -16,14 +16,14 @@ namespace Eli.Controllers
         [HttpPost]
         public ActionResult Index(MailModel _objModelMail)
         {
-            _objModelMail.From = "margulis.shaharm@gmail.com";
+            _objModelMail.From = _objModelMail.From;
             MailMessage mail = new MailMessage();
             mail.To.Add(_objModelMail.To);
-            mail.From = new MailAddress(_objModelMail.From);
-            mail.Subject = _objModelMail.Subject;
+           // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
+            mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
             string Body = _objModelMail.Body;
             mail.Body = Body;
-            mail.IsBodyHtml = true;
+            mail.IsBodyHtml = false;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;

@@ -39,8 +39,9 @@ namespace Eli.Controllers
         public ActionResult IndexFinancingFactor(tblFinancingFactor ff, string submit)
         {
             EliManagerDB db = new EliManagerDB();
-            String type = Request.Form["type"];
-            ff.FinancingFactorType = type;
+
+
+           
             if (submit.Equals("צור"))
                 db.addFinanceFactor(ff);
 

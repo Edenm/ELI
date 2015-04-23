@@ -109,17 +109,25 @@
 <br />
                                 
                         <label float:right class="description" for="element_1">
-    תאריך התחלה
-</label>
-                        <div float:right; dir="rtl" class="editor-field">
-    @Html.EditorFor(model => model.StartDateReference)
-    @Html.ValidationMessageFor(model => model.StartDateReference)
-</div>
-                           <label float:right class="description" for="element_1">
-    תאריך סיום
-</label>
+                                    תאריך התחלה
+                                </label>
+                                  <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.StartDateReference)
+                                    @Html.ValidationMessageFor(model => model.StartDateReference)
+                                </div>
+                          @{ if (Model.StartDateReference != null)
+                           {
+                            <label float:right class="description" for="element_1">
+                               תאריך סיום
+                            </label>
                             <div float:right; dir="rtl" class="editor-field">
-    @Html.EditorFor(model => model.EndDateReference)
-    @Html.ValidationMessageFor(model => model.EndDateReference)
-</div>
+                                @Html.EditorFor(model => model.EndDateReference)
+                                @Html.ValidationMessageFor(model => model.EndDateReference)
+                            </div>
+                           }
+                           else
+                           {
+                            @Html.HiddenFor(model => model.EndDateReference)
+                           }
+                        }
                   

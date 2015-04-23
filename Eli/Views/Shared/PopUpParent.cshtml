@@ -20,13 +20,21 @@
 
                     <fieldset align="right">
 
-                        <label float:right class="description" for="element_1">
-                            תעודת זהות
-                        </label>
-                        <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.ParentID)
-                            @Html.ValidationMessageFor(model => model.ParentID)
-                        </div>
+                       @{ if (Model.ParentID == null)
+                        {
+                            <label float:right class="description" for="element_1">
+                                תעודת זהות
+                            </label>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.ParentID)
+                                @Html.ValidationMessageFor(model => model.ParentID)
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.HiddenFor(model => model.ParentID)
+                        }
+                    }
 
                         <label float:right class="description" for="element_1">
                             שם פרטי

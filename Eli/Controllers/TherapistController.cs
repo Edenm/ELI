@@ -31,17 +31,20 @@ namespace Eli.Controllers
             try
             {
               
-                String gender = Request.Form["gender"];
-                tt.TherapistGender = gender;
+                
                 if (submit.Equals("צור"))
+                {
                     db.addTherapist(tt);
+                    therapist.Add(tt);
+
+                }
 
                 else
                     db.EditTherapist(tt);
 
 
 
-                therapist.Add(tt);
+                
                 ViewBag.DataExists = false;
                 return View(therapist);
             }

@@ -230,7 +230,7 @@ namespace Eli.Models
         public void EditTherapist(tblTherapist tt)
         {
             var t = Therapist.First(x => x.TherapistID == tt.TherapistID);
-            
+           
             t.TherapistFirstName = tt.TherapistFirstName;
             t.TherapistSurName = tt.TherapistSurName;
             t.TherapistBirthDate = tt.TherapistBirthDate;
