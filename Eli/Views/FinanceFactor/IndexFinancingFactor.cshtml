@@ -89,12 +89,17 @@
         @Html.Partial("_mail", m);
           count1++;
     }
-
+   
+    @Html.Partial("_MailAllFinance", new MailModel());
     
     <!-- Button trigger modal -->
     <br /> <br />
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
         הוסף גורם מממן למערכת
+    </button>
+
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#sendtoall">
+        שליחת הודעת שרשרת
     </button>
 
    
