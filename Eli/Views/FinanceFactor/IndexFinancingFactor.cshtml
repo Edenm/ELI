@@ -21,105 +21,104 @@
 </head>
 <body>
    
-    <h2 align="center" style="color:blue">גורמים מממנים</h2>
-    <h4 align="right">:חיפוש</h4>
-    <div dir="rtl">
-        <table id="myTable" class="display nowrap table-bordered">
-            <thead align="center">
-                <tr>
-                    <th style="text-align: center;"></th>
-                    <th style="text-align: center;">שם</th>
-                    <th style="text-align: center;">סוג</th>
-                    <th style="text-align: center;">שם איש קשר</th>
-                    <th style="text-align: center;">טלפון איש קשר</th>
-                    <th style="text-align: center;">מייל איש קשר</th>
-                    <th style="text-align: center;">פרטים נוספים</th>
-                    <th style="text-align: center;">שליחה</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @{ int count = 500;}
-                @{ int count1 = 500;}
-                @foreach (var item in Model)
-                {
-                    if (@item.FinancingFactorNumber != 0)
-                    {
-                        <tr align="center">
-                            <td> @item.FinancingFactorNumber </td>
-                            <td> @item.FinancingFactorName </td>
-                            <td> @item.FinancingFactorType </td>
-                            <td> @item.FinancingFactorContactName</td>
-                            <td> @item.FinancingFactorContcatPhoneNumber</td>
-                            <td> @item.FinancingFactorContactMail </td>
-                            <td>
-                                <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.FinancingFactorNumber">
-                                    <img src="~/Images/info.png" />
-                                </a>
-                            </td>
-                            <td>
-                                
-                                <a src="~/Images/info.png" data-toggle="modal" data-target="#@count">
-                                    <img src="~/Images/info.png" />
-                                </a>
-                            </td>
-
-
-
-
-                        </tr>
-                    }
-                    count++;
-
-                }
-            </tbody>
-        </table>
-    </div>
-
-    @foreach (tblFinancingFactor item in Model)
-    {
-        @Html.Partial("_FinancingFactor", item);
-    }
-
-    @foreach (tblFinancingFactor item in Model)
-    {
-        MailModel m = new MailModel();
-        m.To = item.FinancingFactorContactMail;
-        m.id = count1;
-        @Html.Partial("_mail", m);
-          count1++;
-    }
-   
-    @Html.Partial("_MailAllFinance", new MailModel());
-    
-    <!-- Button trigger modal -->
-    <br /> <br />
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
-        הוסף גורם מממן למערכת
-    </button>
-
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#sendtoall">
+    <button type="button" style="float: left;" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#sendtoall">
         שליחת הודעת שרשרת
     </button>
-
+    <br />
+    <h2 align="center" style="color:blue">גורמים מממנים</h2>
+    <h4 align="right">:חיפוש</h4>
    
-
-    <script>
-
-        var table = $('#myTable').DataTable();
-        new $.fn.dataTable.KeyTable(table);
-
-    </script>
-
-    <script type="text/javascript">
-    function deleteConfirm(id) {
+   
+        
+        <div dir="rtl">
 
 
+            <table id="myTable" class="display nowrap table-bordered">
+                
+                <thead align="center">
 
-    }
+                    <tr>
+                        <th style="text-align: center;"></th>
+                        <th style="text-align: center;">שם</th>
+                        <th style="text-align: center;">סוג</th>
+                        <th style="text-align: center;">שם איש קשר</th>
+                        <th style="text-align: center;">טלפון איש קשר</th>
+                        <th style="text-align: center;">מייל איש קשר</th>
+                        <th style="text-align: center;">פרטים נוספים</th>
+                        <th style="text-align: center;">שליחה</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int count = 500;}
+                    @{ int count1 = 500;}
+                    @foreach (var item in Model)
+                    {
+                        if (@item.FinancingFactorNumber != 0)
+                        {
+                            <tr align="center">
+                                <td> @item.FinancingFactorNumber </td>
+                                <td> @item.FinancingFactorName </td>
+                                <td> @item.FinancingFactorType </td>
+                                <td> @item.FinancingFactorContactName</td>
+                                <td> @item.FinancingFactorContcatPhoneNumber</td>
+                                <td> @item.FinancingFactorContactMail </td>
+                                <td>
+                                    <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.FinancingFactorNumber">
+                                        <img src="~/Images/info.png" />
+                                    </a>
+                                </td>
+                                <td>
 
-    </script>
+                                    <a src="~/Images/info.png" data-toggle="modal" data-target="#@count">
+                                        <img src="~/Images/info.png" />
+                                    </a>
+                                </td>
 
+
+                            </tr>
+                        }
+                        count++;
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        @foreach (tblFinancingFactor item in Model)
+        {
+            @Html.Partial("_FinancingFactor", item);
+        }
+        @foreach (tblFinancingFactor item in Model)
+        {
+            MailModel m = new MailModel();
+            m.To = item.FinancingFactorContactMail;
+            m.id = count1;
+            @Html.Partial("_mail", m);
+                                 count1++;
+        }
+
+        @Html.Partial("_MailAllFinance", new MailModel());
+
+        <!-- Button trigger modal -->
+        <br /> <br />
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+            הוסף גורם מממן למערכת
+        </button>
+
+
+        <script>
+
+            var table = $('#myTable').DataTable();
+            new $.fn.dataTable.KeyTable(table);
+
+        </script>
+        <script type="text/javascript">
+            function deleteConfirm(id) {
+
+
+
+            }
+
+        </script>
 </body>
 
 
