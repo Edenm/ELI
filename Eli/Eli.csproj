@@ -192,12 +192,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FinanceFactorController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SendMailerController.cs" />
     <Compile Include="Controllers\TherapistController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
@@ -302,6 +302,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\add.png" />
     <Content Include="Images\blueDelete.PNG" />
+    <Content Include="Images\broadCastMail.PNG" />
     <Content Include="Images\DataTable\back_disabled.png" />
     <Content Include="Images\DataTable\back_enabled.png" />
     <Content Include="Images\DataTable\back_enabled_hover.png" />
@@ -406,7 +407,6 @@
     <Content Include="Views\Treatment\IndexTreatment.cshtml" />
     <Content Include="Views\Shared\_Reference.cshtml" />
     <Content Include="Views\FinanceFactor\ExportToExcel.cshtml" />
-    <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Login\IndexLogin.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
@@ -429,6 +429,7 @@
     <Content Include="Views\FinanceFactor\Index.cshtml" />
     <Content Include="Views\Shared\_mail.cshtml" />
     <Content Include="Views\Shared\_MailAllFinance.cshtml" />
+    <Content Include="Views\Schedule\IndexSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

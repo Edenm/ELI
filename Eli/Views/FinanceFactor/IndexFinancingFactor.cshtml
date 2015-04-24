@@ -20,9 +20,8 @@
         @Styles.Render("~/Content/themes/base/css")
 </head>
 <body>
-   
-    <button type="button" style="float: left;" class="btn btn-default" data-toggle="modal" style="float:right" data-target="#sendtoall">
-        שליחת הודעת תפוצה
+    <button type="button" style="float: left;" title="שליחת הודעת תפוצה לגורמים מממנים" class="btn btn-default" data-toggle="modal" data-target="#sendtoall">
+        <img src="~/Images/broadCastMail.PNG" />
     </button>
     <br />
     <h2 align="center" style="color:blue">גורמים מממנים</h2>
@@ -63,13 +62,13 @@
                                 <td> @item.FinancingFactorContcatPhoneNumber</td>
                                 <td> @item.FinancingFactorContactMail </td>
                                 <td>
-                                    <a src="~/Images/info.png" data-toggle="modal" data-target="#@item.FinancingFactorNumber">
+                                    <a  data-toggle="modal" data-target="#@item.FinancingFactorNumber">
                                         <img src="~/Images/Information_32x32.png" />
                                     </a>
                                 </td>
                                 <td>
 
-                                    <a src="~/Images/info.png" data-toggle="modal" data-target="#@count">
+                                    <a  data-toggle="modal" data-target="#@count">
                                         <img src="~/Images/Mail-32.png" />
                                     </a>
                                 </td>

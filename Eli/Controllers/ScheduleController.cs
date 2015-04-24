@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace Eli.Controllers
 {
-    public class CalendarController : Controller
+    public class ScheduleController : Controller
     {
         //
-        // GET: /Calendar/
+        // GET: /Schedule/
 
-        public ActionResult Index()
+        public ActionResult IndexSchedule()
         {
             return View();
         }

@@ -26,7 +26,7 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("מטופלים", "IndexPatients", "Patient")</li>
-                            <li>@Html.ActionLink("יומן פגישות", "", "Patient")</li>
+                            <li>@Html.ActionLink("יומן פגישות", "IndexSchedule", "Schedule")</li>
                             <li>@Html.ActionLink("מטפלים", "IndexTherapist", "Therapist")</li>
                             <li>@Html.ActionLink("גורמים מממנים", "IndexFinancingFactor", "FinanceFactor")</li>
                             <li>@Html.ActionLink("מטופל חדש", "Step1", "WizardFormPatient")</li>
@@ -75,6 +75,8 @@
             @RenderBody()
             </div>
         </div>
+    <br />
+    <br />
     <footer>
         <div class="content-wrapper">
             <div class="float-left">
