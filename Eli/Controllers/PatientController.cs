@@ -29,8 +29,6 @@ namespace Eli.Controllers
         {
             EliManagerDB db = new EliManagerDB();
 
-            //var pat = db.Patients.ToList();
-
             tblTherapist ther = (tblTherapist)Session["Therapist"];
             var pat = db.getAllPatientsByTherapist(ther.TherapistID);
 

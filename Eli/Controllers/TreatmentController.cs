@@ -66,7 +66,8 @@ namespace Eli.Controllers
 
             String finance = Request.Form["FinancingFactorNumber"];
             if (finance != null && finance!="")
-            treat.FinancingFactorNumber = Convert.ToInt32(finance);
+                    treat.FinancingFactorNumber = Convert.ToInt32(finance);
+
             tblTherapist ther = (tblTherapist)Session["Therapist"];
             treat.TherapistID = ther.TherapistID;
 

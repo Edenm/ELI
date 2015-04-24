@@ -118,13 +118,10 @@ namespace Eli.Controllers
             }
 
             if (finBtn != null)
-            {
-                //if (ModelState.IsValid)
-                {
+            {   
                     fam.Reference = refe;
-                    //db.addPatient(fam);
+                    db.addPatient(fam);
                     return View();
-                }
             }
             return View("Step3",fam.Reference);
         }

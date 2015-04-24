@@ -27,26 +27,18 @@ namespace Eli.Controllers
         public ActionResult IndexTherapist(tblTherapist tt, string submit)
         {
             EliManagerDB db = new EliManagerDB();
-            List<tblTherapist> therapist = db.Therapist.ToList();
+            
             try
             {
               
                 
                 if (submit.Equals("צור"))
-                {
                     db.addTherapist(tt);
-                    therapist.Add(tt);
-
-                }
-
                 else
                     db.EditTherapist(tt);
 
 
-
-                
-                ViewBag.DataExists = false;
-                return View(therapist);
+                return RedirectToAction("IndexTherapist");
             }
             catch (Exception e)
             {

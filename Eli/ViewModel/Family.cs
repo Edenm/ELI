@@ -12,6 +12,8 @@ namespace Eli.ViewModel
 
         private tblReference reference;
 
+        private tblTherapist therapist;
+
         private List<tblParent> parents;
 
         private List<tblBrotherSister> brotherSisters;
