@@ -10,6 +10,7 @@
             <meta charset="utf-8" />
             <title></title>
             <meta name="viewport" content="width=device-width" />
+            
             <script src="~/Scripts/DataTable/dataTables.keyTable.js"></script>
             <script src="~/Scripts/DataTable/jquery.js"></script>
             <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
@@ -18,16 +19,15 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             @Styles.Render("~/Content/bootstrapcss")
             @Styles.Render("~/Content/themes/base/css")
+
         </head>
 
         <body>
-    
-  
+            <script src="~/Scripts/notify.js"></script>
+            <script>
+                notify('@ViewBag.operate','@ViewBag.type');
+            </script>
 
-
-            <h4 align="left">@ViewBag.msg1</h4>
-            <h4 align="left">@ViewBag.msg2</h4>
-            <h4 align="left">@ViewBag.msg3</h4>
             <h2 align="center" style="color:blue">מטפלים</h2>
             <h4 align="right">:חיפוש</h4>
             <div dir="rtl">
@@ -51,15 +51,17 @@
                             if (@item.TherapistID != null)
                             {
                                 <tr align="center">
-                                    <td> @{if (item.TherapistGender=="זכר"){
-                                               <div>מטפל</div>
-                                           }
-                                           else
-                                           {
-                                            <div>מטפלת</div>
-                                           }
+                                    <td>
+                                        @{if (item.TherapistGender == "זכר")
+                                        {
+                                            <div>מטפל</div>
                                         }
-                                     </td>
+                                        else
+                                        {
+                                            <div>מטפלת</div>
+                                        }
+                                        }
+                                    </td>
                                     <td> @item.TherapistID </td>
                                     @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
                                     <td> @FullName</td>
@@ -71,7 +73,6 @@
                                         </a>
                                     </td>
                                     <td>
-
                                         <a src="~/Images/info.png" data-toggle="modal" data-target="#@count">
                                             <img src="~/Images/Mail-32.png" />
                                         </a>
@@ -83,12 +84,10 @@
                     </tbody>
                 </table>
             </div>
-
             @foreach (tblTherapist item in Model)
             {
                 @Html.Partial("_Therapist", item);
             }
-
             @foreach (tblTherapist item in Model)
             {
                 MailModel m = new MailModel();
@@ -96,15 +95,13 @@
                 m.id = count1;
                 m.redirect = "therapist";
                 @Html.Partial("_mail", m);
-                                 count1++;
+                                         count1++;
             }
-
             <!-- Button trigger modal -->
             <br /> <br />
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new" >
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
                 הוסף מטפל למערכת
-            </button>   
-
+            </button>
 
             <script>
 
@@ -112,24 +109,19 @@
                 new $.fn.dataTable.KeyTable(table);
 
             </script>
-             
-        @if (Session["therapistID"] != null)
-        {
-            
-        }
+
+            @if (Session["therapistID"] != null)
+            {
+
+            }
 
             else
-               {
-                    //Layout = "";
-                    //Html.RenderAction("NotFound", "Error");
-               }
+            {
+                //Layout = "";
+                //Html.RenderAction("NotFound", "Error");
+            }
+            
         </body>
         </html>
 
-        <script language='javascript' type='text/javascript'>
-            var dataexists = @ViewBag.DataExists;
-
-            $(document).ready(function() {
-                alert("aaaa")
-            })
-        </script>
+        

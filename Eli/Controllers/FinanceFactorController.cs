@@ -40,8 +40,6 @@ namespace Eli.Controllers
         {
             EliManagerDB db = new EliManagerDB();
 
-
-           
             if (submit.Equals("צור"))
                 db.addFinanceFactor(ff);
 

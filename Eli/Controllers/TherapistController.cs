@@ -26,28 +26,35 @@ namespace Eli.Controllers
         [HttpPost]
         public ActionResult IndexTherapist(tblTherapist tt, string submit)
         {
-            EliManagerDB db = new EliManagerDB();
-            
-            try
-            {
-              
+                EliManagerDB db = new EliManagerDB();
+
+                List<tblTherapist> therapist = db.Therapist.ToList();
+
+                therapist.Add(new tblTherapist());
+
+                ViewBag.type = "success";
+                if (submit.Equals("צור")){
+                    try
+                    {
+                            db.addTherapist(tt);
+                            ViewBag.operate = "מטפל התווסף בהצלחה";
+                            
+                    }
+                    catch (Exception e)
+                    {
+                        ViewBag.operate = e.Message;
+                        ViewBag.type = "danger";
+                    }
+                }
                 
-                if (submit.Equals("צור"))
-                    db.addTherapist(tt);
-                else
+                else{
                     db.EditTherapist(tt);
+                    ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
+                }
+                
 
-
-                return RedirectToAction("IndexTherapist");
-            }
-            catch (Exception e)
-            {
-                ViewBag.DataExists = true;
-                ViewBag.msg1 = "ההוספה נכשלה";
-                ViewBag.msg2 = tt.TherapistID;
-                ViewBag.msg3 = "נמצא כבר במערכת";
                 return View(therapist);
-            }
+            
         }
 
         public IView therapist { get; set; }

@@ -15,10 +15,6 @@ namespace Eli.Models
     {
         DataConnectionDataContext db;
 
-        private static SqlCommand queryCommand;
-        private static SqlDataReader queryCommandReader;
-        private static DataTable dataTable;
-
         public EliManagerDB(){
             db = SQLConnection.GetDataContextInstance();
         }
@@ -162,8 +158,16 @@ namespace Eli.Models
                             where d.TherapistID.Equals(tt.TherapistID)
                             select d;
 
-            if (therapist.Any() || therapist.Any())
-                throw new Exception("This therapist is already exsit");
+            if (therapist.Any())
+                throw new Exception("המטפל שהזנת כבר קיים במערכת");
+
+
+           therapist = from t in Therapist
+                       where t.UserName.Equals(tt.UserName)
+                       select t;
+
+           if (therapist.Any())
+               throw new Exception("כבר קיים במערכת " + tt.UserName + " :לא ניתן להוסיף את המטפל כיוון ששם המשתמש");
 
             Therapist.InsertOnSubmit(tt);
             db.SubmitChanges();
