@@ -67,7 +67,7 @@ namespace Eli.Models
     #endregion
 		
 		public DataConnectionDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ELIConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ELIConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

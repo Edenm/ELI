@@ -23,5 +23,8 @@ namespace Eli.Models
 
          [Required(ErrorMessage = "שדה חובה")]
         public int id { get; set; }
+
+         
+         public string redirect { get; set; }
     }
 }

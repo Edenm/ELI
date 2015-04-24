@@ -32,8 +32,20 @@ namespace Eli.Controllers
             ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
             smtp.EnableSsl = true;
             smtp.Send(mail);
-
+            
+          if (_objModelMail.redirect=="therapist")
+          {
+            
+              return RedirectToAction("IndexTherapist", "Therapist");
+          }
+           
+            if (_objModelMail.redirect == "finance")
+            {
+                return RedirectToAction("IndexFinancingFactor", "FinanceFactor");
+            }
             return RedirectToAction("IndexFinancingFactor", "FinanceFactor");
+
+           
 
         }
 

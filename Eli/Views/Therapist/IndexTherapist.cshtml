@@ -94,6 +94,7 @@
                 MailModel m = new MailModel();
                 m.To = item.TherapistMail;
                 m.id = count1;
+                m.redirect = "therapist";
                 @Html.Partial("_mail", m);
                                  count1++;
             }

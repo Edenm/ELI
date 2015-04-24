@@ -21,8 +21,8 @@
 </head>
 <body>
    
-    <button type="button" style="float: left;" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#sendtoall">
-        שליחת הודעת שרשרת
+    <button type="button" style="float: left;" class="btn btn-default" data-toggle="modal" style="float:right" data-target="#sendtoall">
+        שליחת הודעת תפוצה
     </button>
     <br />
     <h2 align="center" style="color:blue">גורמים מממנים</h2>
@@ -93,11 +93,15 @@
             MailModel m = new MailModel();
             m.To = item.FinancingFactorContactMail;
             m.id = count1;
+            m.redirect = "finance";
             @Html.Partial("_mail", m);
                                  count1++;
         }
-
-        @Html.Partial("_MailAllFinance", new MailModel());
+        @{MailModel mail=new MailModel();
+          
+          mail.redirect="finance";
+          }
+        @Html.Partial("_MailAllFinance", mail);
 
         <!-- Button trigger modal -->
         <br /> <br />

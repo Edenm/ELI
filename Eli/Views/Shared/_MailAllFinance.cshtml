@@ -43,6 +43,11 @@
                                 @Html.TextAreaFor(model => model.Body)
                                 @Html.ValidationMessageFor(model => model.Body)
                             </div>
+
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.HiddenFor(model => model.redirect)
+                                    @Html.ValidationMessageFor(model => model.redirect)
+                                </div>
                             <input type="submit" class="btn btn-primary btn-lg" value="שלח" />
                         }
                     </fieldset>
