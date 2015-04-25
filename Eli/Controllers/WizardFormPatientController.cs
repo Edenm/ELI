@@ -125,8 +125,10 @@ namespace Eli.Controllers
             }
 
             if (finBtn != null)
-            {   
+            {
+                    tblTherapist ther = (tblTherapist)Session["Therapist"];
                     fam.Reference = refe;
+                    fam.Therapist = ther;
                     db.addPatient(fam);
                     return View();
             }

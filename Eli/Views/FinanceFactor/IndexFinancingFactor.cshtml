@@ -45,15 +45,13 @@
                         <th style="text-align: center;"></th>
                         <th style="text-align: center;">שם</th>
                         <th style="text-align: center;">סוג</th>
-                        <th style="text-align: center;">שם איש קשר</th>
-                        <th style="text-align: center;">טלפון איש קשר</th>
-                        <th style="text-align: center;">מייל איש קשר</th>
-                        <th style="text-align: center;">פרטים נוספים</th>
-                        <th style="text-align: center;">שליחה</th>
+                        <th style="text-align: center;">איש קשר</th>
+                        <th style="text-align: center;">טלפון</th>
+                        <th style="text-align: center;">עריכת פרטים</th>
+                        <th style="text-align: center;">שליחה מייל</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
                     @foreach (var item in Model)
                     {
                         if (@item.FinancingFactorNumber != 0)
@@ -64,17 +62,16 @@
                                 <td> @item.FinancingFactorType </td>
                                 <td> @item.FinancingFactorContactName</td>
                                 <td> @item.FinancingFactorContcatPhoneNumber</td>
-                                <td> @item.FinancingFactorContactMail </td>
                                 <td>
                                     <a  data-toggle="modal" data-target="#@item.FinancingFactorNumber">
-                                        <img src="~/Images/Information_32x32.png" />
+                                        <img src="~/Images/edit.png" />
                                     </a>
                                 </td>
                                 <td>
                                     @{
-                            string id = "1" + @item.FinancingFactorNumber.ToString();
+                                        string id = "1" + @item.FinancingFactorNumber;
                                     }
-                                    <a data-toggle="modal" data-target="#@id">
+                                    <a  data-toggle="modal" data-target="#@id">
                                         <img src="~/Images/Mail-32.png" />
                                     </a>
                                 </td>
@@ -82,7 +79,6 @@
 
                             </tr>
                         }
-                        
 
                     }
                 </tbody>
@@ -97,10 +93,9 @@
         {
             MailModel m = new MailModel();
             m.To = item.FinancingFactorContactMail;
-            m.id = item.FinancingFactorNumber.ToString();
+            m.id = ""+item.FinancingFactorNumber;
             m.redirect = "finance";
-            @Html.Partial("_Mail", m);
-                                
+            @Html.Partial("_mail", m);
         }
         @{MailModel mail=new MailModel();
           
