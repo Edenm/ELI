@@ -176,6 +176,13 @@ namespace Eli.Models
         /* Add FinancingFactor to data base **/
         public void addFinanceFactor(tblFinancingFactor ff)
         {
+            var financeFactor = from f in FinancingFactor
+                                where f.FinancingFactorName.Equals(ff.FinancingFactorName)
+                                select f;
+
+            if (financeFactor.Any())
+                throw new Exception("למערכת, קיים גורם מממן עם שם זהה" +ff.FinancingFactorName+ " לא ניתן להוסיף את");
+
             ff.FinancingFactorNumber = FinancingFactor.Count()+1;
 
             FinancingFactor.InsertOnSubmit(ff);
@@ -449,6 +456,10 @@ namespace Eli.Models
             return refe;
         }
 
+        public List<tblFinancingFactor> getAllFinanceFactor()
+        {
+            return FinancingFactor.ToList();
+        }
     //----------------------------LOGIN-------------------------------------------------------------------
         
         public tblTherapist isUserValid(User user)

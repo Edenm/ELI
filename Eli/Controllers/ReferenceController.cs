@@ -13,7 +13,7 @@ namespace Eli.Controllers
         // GET: /Treatment/
 
         [HttpGet]
-        public ActionResult IndexReference(string pid)
+        public ActionResult IndexReference(string pid, string operate, string type)
         {
             EliManagerDB db= new EliManagerDB();
 
@@ -26,6 +26,8 @@ namespace Eli.Controllers
 
             ViewBag.Id = pat.ID;
             ViewBag.Name = pat.FirstName + " " + pat.SurName;
+            ViewBag.operate = operate;
+            ViewBag.type=type;
 
             return View(refe);
         }
@@ -35,22 +37,22 @@ namespace Eli.Controllers
         public ActionResult IndexReference(tblReference refe, string submit, string pid)
         {
             EliManagerDB db = new EliManagerDB();
-            String StatusReference = Request.Form["StatusReference"];
-            String AbuseType = Request.Form["AbuseType"];
-            String ReferenceSource = Request.Form["ReferenceSource"];
-            refe.StatusReference = StatusReference;
-            refe.AbuseType = AbuseType;
-            refe.ReferenceSource = ReferenceSource;
 
-            if (submit.Equals("צור")){
-                tblTherapist ther=(tblTherapist)Session["Therapist"];
+            ViewBag.type = "success";
+            if (submit.Equals("צור"))
+            {
+                tblTherapist ther = (tblTherapist)Session["Therapist"];
                 db.addReference(refe, pid, ther.TherapistID);
+                ViewBag.operate = "ההפנייה התווספה בהצלחה";
             }
 
             else
+            {
                 db.EditReference(refe);
+                ViewBag.operate = "פרטי ההפנייה התעדכנו בהצלחה";
+            }
 
-            return RedirectToAction("IndexReference", new { pid = pid });
+            return RedirectToAction("IndexReference", new { pid = pid, operate = ViewBag.operate, type = ViewBag.type });
         }
 
 

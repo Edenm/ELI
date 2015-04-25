@@ -142,7 +142,7 @@
 });
 
 function notify(mesg, type) {
-    $.notify(mesg, type);
+    $.notify(mesg, type,{ pos: 'top-right', });
 }
 
 (function () {

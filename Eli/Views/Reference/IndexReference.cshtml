@@ -22,6 +22,11 @@
 
 </head>
 <body>
+    <script src="~/Scripts/notify.js"></script>
+    <script>
+        notify('@ViewBag.operate', '@ViewBag.type');
+    </script>
+
     <h3 align="right">
         @Html.ActionLink("מטופלים", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
         ->
@@ -69,11 +74,11 @@
                                 <td> @item.StartDateReference </td>
                                 <td> @item.EndDateReference </td>
                                 <td>
-                                    <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.ReferenceNumber">
+                                    <a class="btn " data-toggle="modal" data-target="#@item.ReferenceNumber">
                                         <img src="~/Images/edit.png" />
                                     </a>
                                 </td>
-                                <td>
+                                <td style="text-align: center;">
                                     <a href="@Url.Action("IndexTreatment", "Treatment", new { rid = @item.ReferenceNumber, pid = @ViewBag.Id })">
                                         <img src="~/Images/treat.png" />
                                     </a>

@@ -12,7 +12,7 @@ namespace Eli.Controllers
     {
 
         [HttpGet]
-        public ActionResult IndexTreatment(int rid, string pid)
+        public ActionResult IndexTreatment(int rid, string pid, string operate, string type)
         {
             EliManagerDB db = new EliManagerDB();
             /////////////////////////////////////////////for finance factor
@@ -28,9 +28,6 @@ namespace Eli.Controllers
             //////////////////////////////////////////////////////////////////////////////////////
             
            
-
-
-
             List<Treatment> treatments = new List<Treatment>();
 
             tblTherapist ther = (tblTherapist)Session["Therapist"];
@@ -53,6 +50,8 @@ namespace Eli.Controllers
             ViewBag.Id = pat.ID;
             ViewBag.Name = pat.FirstName + " " + pat.SurName;
             ViewBag.Ref = db.getReferenceByReferenceNumber(rid).ReasonReference;
+            ViewBag.operate = operate;
+            ViewBag.type = type;
 
             return View(treatments);
         }
@@ -63,25 +62,26 @@ namespace Eli.Controllers
         {
             EliManagerDB db = new EliManagerDB();
 
-
-            String finance = Request.Form["FinancingFactorNumber"];
-            if (finance != null && finance!="")
-                    treat.FinancingFactorNumber = Convert.ToInt32(finance);
-
             tblTherapist ther = (tblTherapist)Session["Therapist"];
             treat.TherapistID = ther.TherapistID;
 
-           
+            ViewBag.type = "success";
             if (submit.Equals("צור"))
+            {
                 db.addTreatment(treat);
+                ViewBag.operate = "הטיפול התווספף בהצלחה";
+            }
 
             else
+            {
                 db.EditTreatment(treat);
+                ViewBag.operate = "פרטי הטיפול התעדכנו בהצלחה";
+            }
 
             var refId = treat.ReferenceNumber;
             var patId = pid;
 
-            return RedirectToAction("IndexTreatment", new { rid = refId, pid = patId });
+            return RedirectToAction("IndexTreatment", new { rid = refId, pid = patId, operate = ViewBag.operate, type = ViewBag.type });
         }
 
     }

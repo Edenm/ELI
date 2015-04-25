@@ -11,7 +11,7 @@ namespace Eli.Controllers
     public class TherapistController : Controller
     {
         [HttpGet]
-        public ActionResult IndexTherapist()
+        public ActionResult IndexTherapist(string operate, string type)
         {
             EliManagerDB db = new EliManagerDB();
 
@@ -19,6 +19,8 @@ namespace Eli.Controllers
 
             therapist.Add(new tblTherapist());
 
+            ViewBag.operate = operate;
+            ViewBag.type = type;
             return View(therapist);
         }
 
@@ -28,35 +30,26 @@ namespace Eli.Controllers
         {
                 EliManagerDB db = new EliManagerDB();
 
-                List<tblTherapist> therapist = db.Therapist.ToList();
-
-                therapist.Add(new tblTherapist());
-
                 ViewBag.type = "success";
-                if (submit.Equals("צור")){
-                    try
-                    {
+                try{
+                    if (submit.Equals("צור")){
+                   
                             db.addTherapist(tt);
                             ViewBag.operate = "מטפל התווסף בהצלחה";
-                            
                     }
-                    catch (Exception e)
-                    {
+                    else{
+                            db.EditTherapist(tt);
+                            ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
+                    }
+                 }catch (Exception e){
                         ViewBag.operate = e.Message;
                         ViewBag.type = "danger";
-                    }
-                }
-                
-                else{
-                    db.EditTherapist(tt);
-                    ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
-                }
-                
+                 }
 
-                return View(therapist);
-            
+                return RedirectToAction("IndexReference", new { operate = ViewBag.operate, type = ViewBag.type });
         }
 
         public IView therapist { get; set; }
     }
+
 }

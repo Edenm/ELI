@@ -20,7 +20,7 @@ namespace Eli.Controllers
     public class FinanceFactorController : Controller
     {
         [HttpGet]
-        public ActionResult IndexFinancingFactor()
+        public ActionResult IndexFinancingFactor(string operate, string type)
         {
             EliManagerDB db = new EliManagerDB();
 
@@ -30,7 +30,6 @@ namespace Eli.Controllers
 
             return View(finfac);
 
-          
         }
 
 
@@ -40,35 +39,26 @@ namespace Eli.Controllers
         {
             EliManagerDB db = new EliManagerDB();
 
-            if (submit.Equals("צור"))
-                db.addFinanceFactor(ff);
+            ViewBag.type = "success";
+            try{
+                if (submit.Equals("צור"))
+                {
+                    db.addFinanceFactor(ff);
+                    ViewBag.operate = "מטפל התווסף בהצלחה";
+                }
+                else
+                {
+                    db.EditFinanceFactor(ff);
+                    ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
+                }
+            }catch(Exception e){
+                ViewBag.operate = e.Message;
+                ViewBag.type = "danger";
+            }
 
-            else if (submit.Equals("שמור"))
-                db.EditFinanceFactor(ff);
-
-            List<tblFinancingFactor> finfac = db.FinancingFactor.ToList();
-
-            finfac.Add(new tblFinancingFactor());
-
-            return View(finfac);
+            return RedirectToAction("IndexFinancingFactor", new { operate = ViewBag.operate, type = ViewBag.type });
         }
 
-        /* The Methods updates finance factor details  **/
-        [HttpPost]
-        public ActionResult EditFinanceFactor(tblFinancingFactor t)
-        {
-            var manager = new EliManagerDB();
-            manager.EditFinanceFactor(t);
-            return RedirectToAction("MainFinancingFactor");
-        }
-
-        [HttpGet]
-        public ActionResult EditFinanceFactor(int id)
-        {
-            EliManagerDB db = new EliManagerDB();
-            tblFinancingFactor ff = db.FinancingFactor.ToArray().Single(p => p.FinancingFactorNumber == (id));
-            return View(ff);
-        }
 
 //-------------------------------------------------------------------------------------------------------------------------------//
 
