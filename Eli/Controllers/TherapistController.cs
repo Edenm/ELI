@@ -49,7 +49,6 @@ namespace Eli.Controllers
                 return RedirectToAction("IndexTherapist", new { operate = ViewBag.operate, type = ViewBag.type });
         }
 
-        public IView therapist { get; set; }
     }
 
 }

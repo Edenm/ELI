@@ -56,21 +56,5 @@ namespace Eli.Controllers
         }
 
 
-        public ActionResult Index()
-        {
-            EliManagerDB db = new EliManagerDB();
-
-            List<SelectListItem> listItem = new List<SelectListItem>();
-            var a = db.Patients.ToList();
-            for (int i = 0; i < a.Count(); i++)
-            {
-                listItem.Add(new SelectListItem() { Value = a.ElementAt(i).ID, Text = a.ElementAt(i).FirstName.ToString() + " " + a.ElementAt(i).SurName.ToString() });
-            }
-
-            ViewBag.value = new SelectList(listItem, "Value", "Text");
-            return View();
-
-        }
-
     }
 }

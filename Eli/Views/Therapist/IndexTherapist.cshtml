@@ -44,8 +44,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @{ int count = 500;}
-                        @{ int count1 = 500;}
                         @foreach (var item in Model)
                         {
                             if (@item.TherapistID != null)
@@ -73,13 +71,15 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a src="~/Images/info.png" data-toggle="modal" data-target="#@count">
+                                        @{
+                                            string id = "1" + @item.TherapistID;
+                                        }
+                                        <a src="~/Images/info.png" data-toggle="modal" data-target="#@id">
                                             <img src="~/Images/Mail-32.png" />
                                         </a>
                                     </td>
                                 </tr>
                             }
-                            count++;
                         }
                     </tbody>
                 </table>
@@ -88,14 +88,16 @@
             {
                 @Html.Partial("_Therapist", item);
             }
+
             @foreach (tblTherapist item in Model)
             {
+                
                 MailModel m = new MailModel();
                 m.To = item.TherapistMail;
-                m.id = count1;
+                m.id = item.TherapistID;
                 m.redirect = "therapist";
                 @Html.Partial("_mail", m);
-                                         count1++;
+                
             }
             <!-- Button trigger modal -->
             <br /> <br />

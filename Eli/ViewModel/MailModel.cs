@@ -22,7 +22,7 @@ namespace Eli.Models
         public string Body { get; set; }
 
          [Required(ErrorMessage = "שדה חובה")]
-        public int id { get; set; }
+        public string id { get; set; }
 
          
          public string redirect { get; set; }

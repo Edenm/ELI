@@ -15,18 +15,6 @@ namespace Eli.Controllers
         public ActionResult IndexTreatment(int rid, string pid, string operate, string type)
         {
             EliManagerDB db = new EliManagerDB();
-            /////////////////////////////////////////////for finance factor
-
-            List<SelectListItem> listItem1 = new List<SelectListItem>();
-            var a = db.FinancingFactor.ToList();
-            for (int i = 0; i < a.Count(); i++)
-            {
-                listItem1.Add(new SelectListItem() { Value = a.ElementAt(i).FinancingFactorNumber.ToString(), Text = a.ElementAt(i).FinancingFactorName.ToString() });
-            }
-
-            ViewBag.value1 = new SelectList(listItem1, "Value", "Text");
-            //////////////////////////////////////////////////////////////////////////////////////
-            
            
             List<Treatment> treatments = new List<Treatment>();
 
