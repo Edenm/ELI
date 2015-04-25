@@ -21,17 +21,7 @@
     }
 }
 
-@{
-    string default_val;
-    if (@Model.IsPaid != null)
-    {
-        default_val = @Model.IsPaid;
-    }
-    else
-    {
-        default_val = "לא";
-    }
-}
+
 
 
 <!-- Modal -->
@@ -153,14 +143,26 @@
                         </label>
                         <br />
                         <div style="text-align:right; float:right;">
-                            <select dir="rtl" class="element select" id="ispaid" name="IsPaid">
-                                <option selected="selected" value="@default_val">@default_val</option>
-                                <option value="כן">כן</option>
-                                <option value="לא">לא</option>
+                            <select dir="rtl" class="element select" id="IsPaid" name="IsPaid">
+                               
+                                    @if (@Model.IsPaid =="כן")
+                                    {
+                                         <option selected="selected" value="כן">כן</option>
+                                         <option value="לא">לא</option>
+                                    }
+                                    else
+                                    {
+                                         <option selected="selected" value="לא">לא</option>
+                                         <option value="כן">כן</option>
+                                    }
+                               
+                                
+                                
                             </select>
                         </div>
+
                         <br />
-                        <br />
+                        
                         
 
                         <label float:right class="description" for="element_1">

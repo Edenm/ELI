@@ -3,29 +3,7 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@{
-    string default_val1;
-    if (@Model.Gender != null)
-    {
-        default_val1 = @Model.Gender;
-    }
-    else
-    {
-        default_val1 = "זכר";
-    }
-}
 
-@{
-    string default_val2;
-    if (@Model.PatientStatus != null)
-    {
-        default_val2 = @Model.PatientStatus;
-    }
-    else
-    {
-        default_val2 = "פעיל";
-    }
-}
                         @{ if (Model.ID == null)
                          {
                             <label float:right class="description" for="element_1">
@@ -68,14 +46,27 @@
                                 מגדר
                             </label>
                             <br />
+                            
                             <div style="text-align:right; float:right;">
-                                <select dir="rtl" class="element select" id="gender" name="Gender">
-                                    <option selected="selected" value="@default_val1">@default_val1</option>
-                                    <option value="זכר">זכר</option>
-                                    <option value="נקבה">נקבה</option>
+                                <select dir="rtl" class="element select" id="Gender" name="Gender">
+
+                                    @if (@Model.Gender == "נקבה")
+                                    {
+                                        <option selected="selected" value="נקבה">נקבה</option>
+                                        <option value="זכר">זכר</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected="selected" value="זכר">זכר</option>
+                                        <option value="נקבה">נקבה</option>
+                                    }
+
+
 
                                 </select>
                             </div>
+
+                            <br />
                         </fieldset>
                         <label float:right class="description" for="element_1">
                             מסגרת לימודית
@@ -103,11 +94,25 @@
                                 סטטוס
                             </label>
                             <br />
+                          
                             <div style="text-align:right; float:right;">
                                 <select dir="rtl" class="element select" id="PatientStatus" name="PatientStatus">
-                                    <option selected="selected" value="@default_val2">@default_val2</option>
-                                    <option value="פעיל">פעיל</option>
-                                    <option value="לא פעיל">לא פעיל</option>
+
+                                    @if (@Model.PatientStatus == "לא פעיל")
+                                    {
+                                        <option selected="selected" value="לא פעיל">לא פעיל</option>
+                                        <option value="פעיל">פעיל</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected="selected" value="פעיל">פעיל</option>
+                                         <option value="לא פעיל">לא פעיל</option>
+                                    }
+
+
+
                                 </select>
                             </div>
+
+                            <br />
                         </fieldset>

@@ -1,47 +1,31 @@
 ﻿@model Eli.Models.tblFinancingFactor
+@using Eli.Models
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <link href="~/Content/ModalSize.css" rel="stylesheet" />
 @{  
+    EliManagerDB db = new EliManagerDB();
     string id;
     string submit;
+    string str;
     if (@Model.FinancingFactorNumber == 0)
     {
+        
         id = "new";
         submit = "צור";
+        str = "הוספת גורם מממן חדש";
     }
     else
     {
         id = @Model.FinancingFactorNumber.ToString();
         submit = "שמור";
-    }
-}
-
-@{
-    string default_val;
-    if (@Model.FinancingFactorType != null)
-    {
-        default_val = @Model.FinancingFactorType;
-    }
-    else
-    {
-        default_val = "פרטי";
-    }
-}
-
-@{
-    string str;
-    if( @Model.FinancingFactorName!=null)
-    {
         str = @Model.FinancingFactorNumber + "עריכת גורם מממן מספר";
     }
-    else
-    {
-        str = "הוספת גורם מממן חדש";
-    }
 }
+
+
 
 <!-- Modal -->
 <div  id="myModal">
@@ -83,16 +67,22 @@
                                 </label>
                                 <br />
                                 <div style="text-align:right; float:right;">
-                                    <select dir="rtl" class="element select" id="type" name="FinancingFactorType">
-                                        <option selected="selected" value="@default_val">@default_val</option>
-                                        <option value="פרטי">פרטי</option>
-                                        <option value="עירייה">עירייה</option>
-                                        <option value="קרן">קרן</option>
-                                        <option value="מערכת חינוך">מערכת חינוך</option>
-                                        <option value="פרויקט">פרויקט</option>
-                                        <option value="פנימייה">פנימייה</option>
+                                    <select dir="rtl" class="element select" id="FinancingFactorType" name="FinancingFactorType">
+                                        @{foreach (string s in db.getAllFinancingFactorType())
+                                        {
+                                            if (s == Model.FinancingFactorType)
+                                            {
+                                                <option selected="selected" value="@s">@s</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@s">@s</option>
+                                            }
+                                        }
+                                        }
                                     </select>
                                 </div>
+
 
                             </fieldset>
 

@@ -3,8 +3,22 @@
                         <tr>
                             <td class="col-sm-1">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.ParentGender, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.ParentGender)
+                                    <div style="text-align:right; float:right;">
+                                        <select dir="rtl" class="element select col-sm-12" id="ParentGender" name="ParentGender">
+                                            @if (@Model.ParentGender == "נקבה")
+                                            {
+                                                <option selected="selected" value="נקבה">נקבה</option>
+                                                <option value="זכר">זכר</option>
+                                            }
+                                            else
+                                            {
+                                                <option selected="selected" value="זכר">זכר</option>
+                                                <option value="נקבה">נקבה</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
                                 </div>
                             </td>
                             <td class="col-sm-1">
@@ -30,8 +44,22 @@
                             </td>
                             <td class="col-sm-1">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.IsWorking, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.IsWorking)
+                                    <div style="text-align:right; float:right;">
+                                        <select dir="rtl" class="element select col-sm-12" id="IsWorking" name="IsWorking">
+                                            @if (@Model.IsWorking == "לא")
+                                            {
+                                                <option selected="selected" value="לא">לא</option>
+                                                <option value="כן">כן</option>
+                                            }
+                                            else
+                                            {
+                                                <option selected="selected" value="כן">כן</option>
+                                                <option value="לא">לא</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
                                 </div>
                             </td>
                             <td class="col-sm-2">

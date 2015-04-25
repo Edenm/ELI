@@ -52,9 +52,9 @@ namespace Eli.Controllers
 
 
         [HttpPost]
-        public ActionResult IndexAll(MailModel _objModelMail)
+        public ActionResult IndexAllFinance(MailModel _objModelMail)
         {
-
+            
             EliManagerDB db = new EliManagerDB();
             List<tblFinancingFactor> finance = db.FinancingFactor.ToList();
             for (int i = 0; i < finance.Count();i++ )
@@ -78,6 +78,36 @@ namespace Eli.Controllers
                 }
 
             return RedirectToAction("IndexFinancingFactor", "FinanceFactor");
+
+        }
+
+
+        public ActionResult IndexAllTherapist(MailModel _objModelMail)
+        {
+
+            EliManagerDB db = new EliManagerDB();
+            List<tblTherapist> therapist = db.Therapist.ToList();
+            for (int i = 0; i < therapist.Count(); i++)
+            {
+                _objModelMail.From = _objModelMail.From;
+                MailMessage mail = new MailMessage();
+                mail.To.Add(therapist.ElementAt(i).TherapistMail);
+                // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
+                mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
+                string Body = _objModelMail.Body;
+                mail.Body = Body;
+                mail.IsBodyHtml = false;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential
+                ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+            }
+
+            return RedirectToAction("IndexTherapist", "Therapist");
 
         }
      

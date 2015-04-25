@@ -1,4 +1,12 @@
 ﻿@model Eli.Models.MailModel
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+
+
+
+
+
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <link href="~/Content/ModalSize.css" rel="stylesheet" />
@@ -15,7 +23,8 @@
                         <legend>
                             Send Email
                         </legend>
-                        @using (Html.BeginForm("IndexAll", "General"))
+                        
+                        @using (Html.BeginForm("IndexAllFinance", "General"))
                         {
 
                             <label float:right class="description" for="element_1">

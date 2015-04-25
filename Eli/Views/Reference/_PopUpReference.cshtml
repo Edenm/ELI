@@ -1,67 +1,28 @@
 ﻿@model Eli.Models.tblReference
-
+@using Eli.Models
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 @{  string id;
   string submit;
+  string str;
+  EliManagerDB db = new EliManagerDB();
   if (@Model.ReferenceNumber == 0)
   {
       id = "new";
       submit = "צור";
+      str = ViewBag.Name + "הוספת הפנייה ל";
   }
   else
   {
       id = @Model.ReferenceNumber.ToString();
       submit = "שמור";
+      str = ViewBag.Name + "עריכת הפנייה ל";
   }
 }
 
-@{
-    string default_val1;
-    if (@Model.StatusReference != null)
-    {
-        default_val1 = @Model.StatusReference;
-    }
-    else
-    {
-        default_val1 = "אחר";
-    }
-}
-@{
-    string default_val2;
-    if (@Model.AbuseType != null)
-    {
-        default_val2 = @Model.AbuseType;
-    }
-    else
-    {
-        default_val2 = "לא רלונטי";
-    }
-}
-@{
-    string default_val3;
-    if (@Model.ReferenceSource != null)
-    {
-        default_val3 = @Model.ReferenceSource;
-    }
-    else
-    {
-        default_val3 = "הסברה";
-    }
-}
 
-@{
-    string str;
-    if (@Model.ReasonReference != null)
-    {
-        str = "עריכת הפנייה: "+Model.ReasonReference;
-    }
-    else
-    {
-        str = ViewBag.Name + "הוספת הפנייה ל";
-    }
-}
+
 
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

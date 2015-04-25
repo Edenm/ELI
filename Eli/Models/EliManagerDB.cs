@@ -447,6 +447,58 @@ namespace Eli.Models
             return FinancingFactor.ToList();
         }
 
+
+
+        public List<String> getAllStatusReference()
+        {
+            List<String> list = new List<String>();
+            list.Add("פוגע");
+            list.Add("נפגע");
+            list.Add("פוגע ונפגע");
+            list.Add("אחר");
+
+            return list;
+        }
+        public List<String> getAllAbuseType()
+        {
+            List<String> list = new List<String>();
+            list.Add("פיזית");
+            list.Add("הזנחה");
+            list.Add("רגשית");
+            list.Add("מינית");
+            list.Add("לא רלונטי");
+
+            return list;
+        }
+         public List<String> getAllReferenceSource()
+        {
+            List<String> list = new List<String>();
+            list.Add("הסברה");
+            list.Add("איש מקצוע");
+            list.Add("מדיה");
+           
+
+            return list;
+        }
+
+                public List<String> getAllFinancingFactorType()
+                {
+                    List<String> list = new List<String>();
+                    list.Add("פרטי");
+                    list.Add("עירייה");
+                    list.Add("קרן");
+                    list.Add("מערכת חינוך");
+                    list.Add("פרויקט");
+                    list.Add("פנימייה");
+
+
+                    return list;
+                }
+
+        
+       
+         
+
     //----------------------------LOGIN-------------------------------------------------------------------
         
         public tblTherapist isUserValid(User user)

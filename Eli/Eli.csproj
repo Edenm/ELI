@@ -436,9 +436,10 @@
     <Content Include="Views\Shared\PopUpBrotherSister.cshtml" />
     <Content Include="Views\Shared\GoogleAddressApi.cshtml" />
     <Content Include="Views\FinanceFactor\Index.cshtml" />
-    <Content Include="Views\Shared\_mail.cshtml" />
-    <Content Include="Views\Shared\_MailAllFinance.cshtml" />
+    <Content Include="Views\Shared\_Mail.cshtml" />
+    <Content Include="Views\Shared\_MailToAllFinance.cshtml" />
     <Content Include="Views\Schedule\IndexSchedule.cshtml" />
+    <Content Include="Views\Shared\_MailToAllTherapist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
