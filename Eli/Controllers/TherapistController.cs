@@ -46,7 +46,7 @@ namespace Eli.Controllers
                         ViewBag.type = "danger";
                  }
 
-                return RedirectToAction("IndexReference", new { operate = ViewBag.operate, type = ViewBag.type });
+                return RedirectToAction("IndexTherapist", new { operate = ViewBag.operate, type = ViewBag.type });
         }
 
         public IView therapist { get; set; }
