@@ -128,29 +128,15 @@ namespace Eli.Models
             db.SubmitChanges();
         }
 
-
-        /* Add Therapist to reference **/
-        public void addTherapisttoRef(string tid, int refid)
+        public void checkPatient(tblPatient pat)
         {
-            var therapist = from r in ReferenceTherapist
-                            where r.ReferenceNumber.Equals(refid)
-                            select r;
-
-            foreach(var item in therapist)
-            {
-                if (item.TherapistID.Equals(tid))
-                    return;
-            }
-
-            tblReferenceTherapist tbRT = new tblReferenceTherapist()
-            {
-                ReferenceNumber = refid,
-                TherapistID = tid
-            };
-
-            ReferenceTherapist.InsertOnSubmit(tbRT);
+            var patient = from p in Patients
+                          where p.ID.Equals(pat.ID)
+                          select p;
+            if (patient.Any())
+                throw new Exception("המטופל שהזנת כבר קיים במערכת");
         }
-       
+
         /* Add Therapist to data base **/
         public void addTherapist(tblTherapist tt)
         {
@@ -460,6 +446,7 @@ namespace Eli.Models
         {
             return FinancingFactor.ToList();
         }
+
     //----------------------------LOGIN-------------------------------------------------------------------
         
         public tblTherapist isUserValid(User user)
@@ -469,7 +456,7 @@ namespace Eli.Models
             return u;
         }
 
-
+    
 
        
     }

@@ -27,12 +27,19 @@ namespace Eli.Controllers
             EliManagerDB db= new EliManagerDB();
             if (nextBtn != null)
             {
-                if  (db.getPatientById(pat.ID)==null) // (ModelState.IsValid)
-                {
+                try{
+                    db.checkPatient(pat);
                     Family obj = GetFamily();
                     obj.Patient = pat;
 
                     return View(obj);
+                }
+                catch (Exception e)
+                {
+                    ViewBag.operate = e.Message;
+                    ViewBag.type = "danger";
+                    pat.ID = null;
+                    return View("Step1", pat);
                 }
             }
             pat.ID = null;
