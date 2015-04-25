@@ -26,7 +26,7 @@ namespace Eli.ViewModel
         [Required(ErrorMessage = "שדה חובה")]
         public string Password
         {
-            
+
             get { return password; }
             set { password = value; }
         }

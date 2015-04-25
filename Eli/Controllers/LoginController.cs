@@ -40,5 +40,18 @@ namespace Eli.Controllers
             return View(new User());
         }
 
+        [HttpGet]
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgetPassword(FormCollection mail)
+        {
+            string mailToSend=mail.GetValues("mail")[0];
+
+            return View();
+        }
     }
 }

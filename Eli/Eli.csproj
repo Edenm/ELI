@@ -440,6 +440,7 @@
     <Content Include="Views\Shared\_MailToAllFinance.cshtml" />
     <Content Include="Views\Schedule\IndexSchedule.cshtml" />
     <Content Include="Views\Shared\_MailToAllTherapist.cshtml" />
+    <Content Include="Views\Login\ForgetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

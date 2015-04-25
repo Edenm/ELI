@@ -139,6 +139,7 @@ namespace Eli.Models
             db.SubmitChanges();
         }
 
+        /* Check if patient is exist**/
         public void checkPatient(tblPatient pat)
         {
             var patient = from p in Patients
@@ -158,12 +159,18 @@ namespace Eli.Models
             if (therapist.Any())
                 throw new Exception("המטפל שהזנת כבר קיים במערכת");
 
+            therapist = from t in Therapist
+                        where t.TherapistMail.Equals(tt.TherapistMail)
+                        select t;
 
-           therapist = from t in Therapist
+            if (therapist.Any())
+                throw new Exception("כבר קיים במערכת " + tt.UserName + " :לא ניתן להוסיף את המטפל כיוון שהמייל");
+
+            therapist = from t in Therapist
                        where t.UserName.Equals(tt.UserName)
                        select t;
 
-           if (therapist.Any())
+            if (therapist.Any())
                throw new Exception("כבר קיים במערכת " + tt.UserName + " :לא ניתן להוסיף את המטפל כיוון ששם המשתמש");
 
             Therapist.InsertOnSubmit(tt);
@@ -458,6 +465,7 @@ namespace Eli.Models
             return FinancingFactor.ToList();
         }
 
+//-------------------------------Help Method-----------------------------------------
 
         /*the function return all StatusReference strings*/
         public List<String> getAllStatusReference()
@@ -484,7 +492,6 @@ namespace Eli.Models
             return list;
         }
 
-
         /*the function return all ReferenceSource strings*/
          public List<String> getAllReferenceSource()
         {
@@ -497,26 +504,20 @@ namespace Eli.Models
             return list;
         }
 
-
-
          /*the function return all FinancingFactorType strings*/
-                public List<String> getAllFinancingFactorType()
-                {
-                    List<String> list = new List<String>();
-                    list.Add("פרטי");
-                    list.Add("עירייה");
-                    list.Add("קרן");
-                    list.Add("מערכת חינוך");
-                    list.Add("פרויקט");
-                    list.Add("פנימייה");
+           public List<String> getAllFinancingFactorType()
+           {
+              List<String> list = new List<String>();
+              list.Add("פרטי");
+              list.Add("עירייה");
+              list.Add("קרן");
+              list.Add("מערכת חינוך");
+              list.Add("פרויקט");
+              list.Add("פנימייה");
 
+              return list;
+           }
 
-                    return list;
-                }
-
-        
-       
-         
 
     //----------------------------LOGIN-------------------------------------------------------------------
         
