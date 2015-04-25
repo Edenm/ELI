@@ -89,6 +89,8 @@ namespace Eli.Models
         {
             Patients.InsertOnSubmit(family.Patient);
 
+            family.Reference.ReferenceNumber = Reference.Count() + 1;
+
             foreach (tblParent p in family.Parents)
             {
                 Parent.InsertOnSubmit(p);
@@ -114,7 +116,7 @@ namespace Eli.Models
 
                 BrotherSisterPatient.InsertOnSubmit(tbBSP);
             }
-
+            
             Reference.InsertOnSubmit(family.Reference);
 
             tblRefererencePatient tbRP = new tblRefererencePatient()
@@ -124,6 +126,15 @@ namespace Eli.Models
             };
 
             ReferencePatient.InsertOnSubmit(tbRP);
+            
+            tblReferenceTherapist tbRT = new tblReferenceTherapist()
+            {
+                ReferenceNumber = family.Reference.ReferenceNumber,
+                TherapistID=family.Therapist.TherapistID
+                
+            };
+
+            ReferenceTherapist.InsertOnSubmit(tbRT);
 
             db.SubmitChanges();
         }

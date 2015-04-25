@@ -49,6 +49,12 @@ namespace Eli.ViewModel
             set { reference = value; }
         }
 
+        public tblTherapist Therapist
+        {
+            get { return therapist; }
+            set { therapist = value; }
+        }
+
         public List<tblParent> Parents
         {
             get { return parents; }

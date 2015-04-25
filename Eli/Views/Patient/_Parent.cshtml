@@ -1,7 +1,7 @@
 ﻿@model Eli.Models.tblParent
             @Html.HiddenFor(model => model.ParentID)
                         <tr>
-                            <td class="col-sm-1">
+                            <td class="col-sm-0">
                                 <div class="editor-field">
                                     @Html.TextBoxFor(model => model.ParentGender, new { @class = "col-sm-12" })
                                     @Html.ValidationMessageFor(model => model.ParentGender)
@@ -19,7 +19,7 @@
                                     @Html.ValidationMessageFor(model => model.ParentSurName)
                                 </div>
                             </td>
-                            <td class="col-sm-2">
+                            <td class="col-sm-1">
                                 <div class="editor-field">
                                     @Html.TextBoxFor(model => model.ParentBirthDate, new { @class = "col-sm-12" })
                                     @Html.ValidationMessageFor(model => model.ParentBirthDate)
@@ -34,19 +34,19 @@
                                     @Html.ValidationMessageFor(model => model.IsWorking)
                                 </div>
                             </td>
-                            <td class="col-sm-2">
+                            <td class="col-sm-1">
                                 <div class="editor-field">
                                     @Html.TextBoxFor(model => model.Explain, new { @class = "col-sm-12" })
                                     @Html.ValidationMessageFor(model => model.Explain)
                                 </div>
                             </td>
-                            <td class="col-sm-2">
+                            <td class="col-sm-1">
                                 <div class="editor-field">
                                     @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-12" })
                                     @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
                                 </div>
                             </td>
-                            <td class="col-sm-2">
+                            <td class="col-sm-1">
                                 <div class="editor-field">
                                     @Html.TextBoxFor(model => model.ParentMail, new { @class = "col-sm-12" })
                                     @Html.ValidationMessageFor(model => model.ParentMail)

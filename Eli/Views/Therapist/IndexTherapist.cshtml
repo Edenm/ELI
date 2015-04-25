@@ -39,11 +39,12 @@
                             <th style="text-align: center;">שם</th>
                             <th style="text-align: center;">כתובת</th>
                             <th style="text-align: center;">טלפון</th>
-                            <th style="text-align: center;">פרטים נוספים</th>
+                            <th style="text-align: center;">עריכת פרטים</th>
                             <th style="text-align: center;">שליחה</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @{ tblTherapist ther = (tblTherapist)Session["Therapist"];}
                         @foreach (var item in Model)
                         {
                             if (@item.TherapistID != null)
@@ -66,15 +67,17 @@
                                     <td> @item.TherapistAddress</td>
                                     <td> @item.TherapistPhoneNumber </td>
                                     <td>
-                                        <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.TherapistID">
-                                            <img src="~/Images/Information_32x32.png" />
-                                        </a>
+                                        @if (ther.TherapistID == item.TherapistID) { 
+                                            <a class="btn"  data-toggle="modal" data-target="#@item.TherapistID">
+                                                <img src="~/Images/edit.png" />
+                                            </a>
+                                        }
                                     </td>
                                     <td>
                                         @{
                                             string id = "1" + @item.TherapistID;
                                         }
-                                        <a src="~/Images/info.png" data-toggle="modal" data-target="#@id">
+                                        <a data-toggle="modal" data-target="#@id">
                                             <img src="~/Images/Mail-32.png" />
                                         </a>
                                     </td>
@@ -91,7 +94,6 @@
 
             @foreach (tblTherapist item in Model)
             {
-                
                 MailModel m = new MailModel();
                 m.To = item.TherapistMail;
                 m.id = item.TherapistID;
@@ -100,7 +102,6 @@
                 
             }
             <!-- Button trigger modal -->
-            <br /> <br />
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
                 הוסף מטפל למערכת
             </button>

@@ -56,115 +56,111 @@ else
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
-    <fieldset align="right">
+                    <fieldset align="right">
       
-       @{ if (Model.TherapistID == null)
-        {
-            <label float:right class="description" for="element_1">
-                תעודת זהות
-            </label>
-            <div float:right; dir="rtl" class="editor-field">
-                @Html.EditorFor(model => model.TherapistID)
-                @Html.ValidationMessageFor(model => model.TherapistID)
-            </div>
-        }
-        else
-        {
-            @Html.HiddenFor(model => model.TherapistID)
-        }
-    }
+                       @{ if (Model.TherapistID == null)
+                        {
+                            <label float:right class="description" for="element_1">
+                                תעודת זהות
+                            </label>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.TherapistID)
+                                @Html.ValidationMessageFor(model => model.TherapistID)
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.HiddenFor(model => model.TherapistID)
+                        }
+                        }
 
-        <label float:right class="description" for="element_1">
-            שם פרטי
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TherapistFirstName)
-            @Html.ValidationMessageFor(model => model.TherapistFirstName)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            שם פרטי
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.TherapistFirstName)
+                            @Html.ValidationMessageFor(model => model.TherapistFirstName)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            שם משפחה
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TherapistSurName)
-            @Html.ValidationMessageFor(model => model.TherapistSurName)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            שם משפחה
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.TherapistSurName)
+                            @Html.ValidationMessageFor(model => model.TherapistSurName)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            תאריך לידה
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
+                        <label float:right class="description" for="element_1">
+                            תאריך לידה
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
             
             
-            @Html.EditorFor(model => model.TherapistBirthDate)
-            @Html.ValidationMessageFor(model => model.TherapistBirthDate)
-        </div>
+                            @Html.EditorFor(model => model.TherapistBirthDate)
+                            @Html.ValidationMessageFor(model => model.TherapistBirthDate)
+                        </div>
 
-        <fieldset>
-            <label float:right class="description" for="element_1">
-                מגדר
-            </label>
-            <br />
-            <div style="text-align:right; float:right;">
-                <select dir="rtl" class="element select" id="gender" name="TherapistGender">
-                    <option selected="selected" value="@default_val">@default_val</option>
-                    <option value="זכר">זכר</option>
-                    <option value="נקבה">נקבה</option>
+                        <fieldset>
+                            <label float:right class="description" for="element_1">
+                                מגדר
+                            </label>
+                            <br />
+                            <div style="text-align:right; float:right;">
+                                <select dir="rtl" class="element select" id="gender" name="TherapistGender">
+                                    <option selected="selected" value="@default_val">@default_val</option>
+                                    <option value="זכר">זכר</option>
+                                    <option value="נקבה">נקבה</option>
 
-                </select>
-            </div>
+                                </select>
+                            </div>
 
-        </fieldset>
+                        </fieldset>
 
-        <label float:right class="description" for="element_1">
-            כתובת
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TherapistAddress)
-            @Html.ValidationMessageFor(model => model.TherapistAddress)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            כתובת
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.TherapistAddress)
+                            @Html.ValidationMessageFor(model => model.TherapistAddress)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            מספר טלפון
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TherapistPhoneNumber)
-            @Html.ValidationMessageFor(model => model.TherapistPhoneNumber)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            מספר טלפון
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.TherapistPhoneNumber)
+                            @Html.ValidationMessageFor(model => model.TherapistPhoneNumber)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            דואר אלקטרוני
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TherapistMail)
-            @Html.ValidationMessageFor(model => model.TherapistMail)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            דואר אלקטרוני
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.TherapistMail)
+                            @Html.ValidationMessageFor(model => model.TherapistMail)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            שם משתמש
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.UserName)
-            @Html.ValidationMessageFor(model => model.UserName)
-        </div>
+                        <label float:right class="description" for="element_1">
+                            שם משתמש
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.UserName)
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
 
-        <label float:right class="description" for="element_1">
-            סיסמא
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.Passcode)
-            @Html.ValidationMessageFor(model => model.Passcode)
-        </div>
-        <br />
-        <p>
-            <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
-        </p>
-    </fieldset>
+                        <label float:right class="description" for="element_1">
+                            סיסמא
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.Passcode)
+                            @Html.ValidationMessageFor(model => model.Passcode)
+                        </div>
+                        <br />
+                        <p>
+                            <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
+                        </p>
+                    </fieldset>
                 }
-
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>
             </div>
         </div>
     </div>

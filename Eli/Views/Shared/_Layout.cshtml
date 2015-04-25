@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -21,59 +22,59 @@
             <div class="float-right">
                 <p class="site-title">@Html.ActionLink(" ", "IndexPatients", "Patient", null, new { style = "background: url('" + Url.Content("~/Images/logo.png") + "') no-repeat center right; display:block; height:84px; width:264px;" })
             </div>
-            
-                   
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("מטופלים", "IndexPatients", "Patient")</li>
-                            <li>@Html.ActionLink("יומן פגישות", "IndexSchedule", "Schedule")</li>
-                            <li>@Html.ActionLink("מטפלים", "IndexTherapist", "Therapist")</li>
-                            <li>@Html.ActionLink("גורמים מממנים", "IndexFinancingFactor", "FinanceFactor")</li>
-                            <li>@Html.ActionLink("מטופל חדש", "Step1", "WizardFormPatient")</li>
-                        </ul>
-                    </nav>
-                         <!--
-            <div role="tabpanel" class="float-right" >
 
-                
+
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("מטופלים", "IndexPatients", "Patient")</li>
+                    <li>@Html.ActionLink("יומן פגישות", "IndexSchedule", "Schedule")</li>
+                    <li>@Html.ActionLink("מטפלים", "IndexTherapist", "Therapist")</li>
+                    <li>@Html.ActionLink("גורמים מממנים", "IndexFinancingFactor", "FinanceFactor")</li>
+                    <li>@Html.ActionLink("מטופל חדש", "Step1", "WizardFormPatient")</li>
+                </ul>
+            </nav>
+            <!--
+        <div role="tabpanel" class="float-right" >
+
+
+            <ul class="nav nav-tabs" role="tablist" dir="rtl">
+                <li role="presentation" class="active"><a href="@Url.Action("IndexPatients", "Patient")" role="tab" data-toggle="tab">מטופלים</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" data-toggle="tab">יומן פגישות</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" data-toggle="tab">מטפלים</a></li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" data-toggle="tab">גורמים מממנים</a></li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                        Dropdown <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a href="#settings" aria-controls="settings" data-toggle="tab">Settings</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+                <!-- Nav tabs
                 <ul class="nav nav-tabs" role="tablist" dir="rtl">
-                    <li role="presentation" class="active"><a href="@Url.Action("IndexPatients", "Patient")" role="tab" data-toggle="tab">מטופלים</a></li>
-                    <li role="presentation"><a href="#profile" aria-controls="profile" data-toggle="tab">יומן פגישות</a></li>
-                    <li role="presentation"><a href="#messages" aria-controls="messages" data-toggle="tab">מטפלים</a></li>
-                    <li role="presentation"><a href="#settings" aria-controls="settings" data-toggle="tab">גורמים מממנים</a></li>
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             Dropdown <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="#settings" aria-controls="settings" data-toggle="tab">Settings</a></li>
+                            <li role="presentation"><a href="@Url.Action("Step1", "WizardFormPatient")" aria-controls="settings" role="tab" data-toggle="tab">מטופל חדש</a></li>
                         </ul>
                     </li>
-                </ul>
-            </div>  
-                    <!-- Nav tabs 
-                    <ul class="nav nav-tabs" role="tablist" dir="rtl">
-                        <li role="presentation" class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                                Dropdown <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a href="@Url.Action("Step1", "WizardFormPatient")" aria-controls="settings" role="tab" data-toggle="tab">מטופל חדש</a></li>
-                            </ul>
-                        </li>
-                        <li role="presentation" class="active"><a href="@Url.Action("IndexPatients", "Patient")" aria-controls="home" role="tab" data-toggle="tab">מטופלים</a></li>
-                        <li role="presentation"><a href="@Url.Action("IndexPatients", "Patient") aria-controls=" profile" role="tab" data-toggle="tab">יומן פגישות</a></li>
-                        <li role="presentation"><a href="@Url.Action("IndexTherapist", "Therapist")" role="tab" data-toggle="tab">מטפלים</a></li>
-                        <li role="presentation"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" aria-controls="settings" role="tab" data-toggle="tab">גורמים מממנים</a></li>
+                    <li role="presentation" class="active"><a href="@Url.Action("IndexPatients", "Patient")" aria-controls="home" role="tab" data-toggle="tab">מטופלים</a></li>
+                    <li role="presentation"><a href="@Url.Action("IndexPatients", "Patient") aria-controls=" profile" role="tab" data-toggle="tab">יומן פגישות</a></li>
+                    <li role="presentation"><a href="@Url.Action("IndexTherapist", "Therapist")" role="tab" data-toggle="tab">מטפלים</a></li>
+                    <li role="presentation"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" aria-controls="settings" role="tab" data-toggle="tab">גורמים מממנים</a></li>
 
-                    </ul>-->
+                </ul>-->
         </div>
     </header>
 
     <div id="body">
         <div class="content-wrapper">
             @RenderBody()
-            </div>
+        </div>
         </div>
     <br />
     <br />
@@ -84,8 +85,6 @@
             </div>
         </div>
     </footer>
-
-    @RenderSection("scripts", required: false)
 
 
 </body>
