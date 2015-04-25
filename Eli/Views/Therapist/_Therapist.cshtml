@@ -4,41 +4,23 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 @{string id;
-  string submit;
+string submit;
+string str;
 if (@Model.TherapistID == null)
 {
     id = "new";
     submit = "צור";
+    str = "הוספת מטפל חדש";
 }
 else
 {
     id = @Model.TherapistID;
     submit = "שמור";
+    str = @Model.TherapistID + "עריכת מטפל  מספר";
 }
 }
 
-@{
-    string default_val;
-    if (@Model.TherapistGender != null)
-    {
-        default_val = @Model.TherapistGender;
-    }
-    else
-    {
-        default_val = "זכר";
-    }
-}
-@{
-    string str;
-    if (@Model.TherapistSurName != null)
-    {
-        str = @Model.TherapistID + "עריכת מטפל  מספר";
-    }
-    else
-    {
-        str = "הוספת מטפל חדש";
-    }
-}
+
 
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -57,9 +39,9 @@ else
                     @Html.ValidationSummary(true)
 
                     <fieldset align="right">
-      
-                       @{ if (Model.TherapistID == null)
-                        {
+
+                        @{ if (Model.TherapistID == null)
+                         {
                             <label float:right class="description" for="element_1">
                                 תעודת זהות
                             </label>
@@ -67,11 +49,11 @@ else
                                 @Html.EditorFor(model => model.TherapistID)
                                 @Html.ValidationMessageFor(model => model.TherapistID)
                             </div>
-                        }
-                        else
-                        {
+                         }
+                         else
+                         {
                             @Html.HiddenFor(model => model.TherapistID)
-                        }
+                         }
                         }
 
                         <label float:right class="description" for="element_1">
@@ -94,8 +76,8 @@ else
                             תאריך לידה
                         </label>
                         <div float:right; dir="rtl" class="editor-field">
-            
-            
+
+
                             @Html.EditorFor(model => model.TherapistBirthDate)
                             @Html.ValidationMessageFor(model => model.TherapistBirthDate)
                         </div>
@@ -105,14 +87,27 @@ else
                                 מגדר
                             </label>
                             <br />
+                            <br />
                             <div style="text-align:right; float:right;">
-                                <select dir="rtl" class="element select" id="gender" name="TherapistGender">
-                                    <option selected="selected" value="@default_val">@default_val</option>
-                                    <option value="זכר">זכר</option>
-                                    <option value="נקבה">נקבה</option>
+                                <select dir="rtl" class="element select" id="TherapistGender" name="TherapistGender">
+
+                                    @if (@Model.TherapistGender == "נקבה")
+                                    {
+                                        <option selected="selected" value="נקבה">נקבה</option>
+                                        <option value="זכר">זכר</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected="selected" value="זכר">זכר</option>
+                                        <option value="נקבה">נקבה</option>
+                                    }
+
+
 
                                 </select>
                             </div>
+
+                            <br />
 
                         </fieldset>
 
@@ -161,6 +156,10 @@ else
                         </p>
                     </fieldset>
                 }
+
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
             </div>
         </div>
     </div>

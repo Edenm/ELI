@@ -459,7 +459,7 @@ namespace Eli.Models
         }
 
 
-
+        /*the function return all StatusReference strings*/
         public List<String> getAllStatusReference()
         {
             List<String> list = new List<String>();
@@ -470,6 +470,8 @@ namespace Eli.Models
 
             return list;
         }
+
+        /*the function return all AbuseType strings*/
         public List<String> getAllAbuseType()
         {
             List<String> list = new List<String>();
@@ -481,6 +483,9 @@ namespace Eli.Models
 
             return list;
         }
+
+
+        /*the function return all ReferenceSource strings*/
          public List<String> getAllReferenceSource()
         {
             List<String> list = new List<String>();
@@ -492,6 +497,9 @@ namespace Eli.Models
             return list;
         }
 
+
+
+         /*the function return all FinancingFactorType strings*/
                 public List<String> getAllFinancingFactorType()
                 {
                     List<String> list = new List<String>();
