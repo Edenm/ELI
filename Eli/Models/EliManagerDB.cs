@@ -405,6 +405,11 @@ namespace Eli.Models
             return ther;
         }
 
+        public tblTherapist getTherapistByMail(string tmail)
+        {
+            return Therapist.Where(t => t.TherapistMail == tmail).FirstOrDefault();
+        }
+
         public tblFinancingFactor getFinancingFactorByTreatmentNumber(int tnum)
         {
             var financeNum = getTreatmentByNumber(tnum).FinancingFactorNumber;
