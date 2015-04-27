@@ -32,6 +32,7 @@ namespace Eli.Controllers
 
         }
 
+        
 
         /* This post Method add/edit finance factor  **/
         [HttpPost]
