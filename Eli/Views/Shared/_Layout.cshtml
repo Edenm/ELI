@@ -17,86 +17,86 @@
 </head>
 
     
-    <body onload="changeActiveTab()">
+<body onload="changeActiveTab()" >
 
-        <header>
-            <div class="content-wrapper">
-                <div class="float-right">
-                    <p class="site-title">@Html.ActionLink(" ", "IndexPatients", "Patient", null, new { style = "background: url('" + Url.Content("~/Images/logo.png") + "') no-repeat center right; display:block; height:84px; width:264px;" })
-                </div>
-
-
-                <nav dir="rtl" style="float:right;">
-                    <ul id="menu" class="nav nav-tabs">
-                        <li role="presentation" class="btn " id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black; font-weight:bold;" id="FinanceFactorC">גורמים מממנים</a></li>
-                        <li role="presentation" class="btn " id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" style="color:black; font-weight:bold;" id="TherapistC">מטפלים</a></li>
-                        <li role="presentation" class="btn " id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" style="color:black; font-weight:bold;" id="ScheduleC">יומן פגישות</a></li>
-                        <li role="presentation" class="dropdown btn " id="Patient">
-                            <a href="#" id="PatientC" data-toggle="dropdown" role="button" aria-expanded="false" style="color:black; font-weight:bold;">מטופלים <span class=" caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="btn" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" style="color:black; font-weight:bold;">כללי</a></li>
-                                <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" style="color:black; font-weight:bold;">מטופל חדש</a></li>
-                            </ul>
-                        </li>
-                        
-                        
-                        
-                    </ul>
-                </nav>
-                <script>
-
-                    function changeActiveTab()
-                        {
-                            var url = document.URL;
-                            var ind = url.lastIndexOf("/");
-                            url = url.substring(0, ind);
-                            ind = url.lastIndexOf("/");
-                            url = url.substring(ind + 1, url.length);
-
-                            switch (url) {
-                                case "WizardFormPatient":
-                                    document.getElementById("Patient").className = "btn btn-primary";
-                                    document.getElementById("PatientC").style.color = "white";
-                                    break;
-                                case "Patient":
-                                    document.getElementById("Patient").className = "btn btn-primary";
-                                    document.getElementById("PatientC").style.color = "white";
-                                    break;
-                                case "Schedule":
-                                    document.getElementById("Schedule").className = "btn btn-primary";
-                                    document.getElementById("ScheduleC").style.color = "white";
-                                    break;
-                                case "Therapist":
-                                    document.getElementById("Therapist").className = "btn btn-primary";
-                                    document.getElementById("TherapistC").style.color = "white";
-                                    break;
-                                case "FinanceFactor":
-                                    document.getElementById("FinanceFactor").className = "btn btn-primary";
-                                    document.getElementById("FinanceFactorC").style.color = "white";
-                                    break;
-                                default:
-                            }
-                        }
-
-                </script>
-
-                
+    <header>
+        <div class="content-wrapper">
+            <div class="float-right">
+                <p class="site-title">@Html.ActionLink(" ", "IndexPatients", "Patient", null, new { style = "background: url('" + Url.Content("~/Images/logo.png") + "') no-repeat center right; display:block; height:84px; width:264px;" })
             </div>
-        </header>
 
-        <div id="body">
-            <div class="content-wrapper">
-                @RenderBody()
+
+            <nav dir="rtl" style="float:right;">
+                <ul id="menu" class="nav nav-tabs">
+                    <li role="presentation" class="btn " id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black; font-weight:bold;" id="FinanceFactorC">גורמים מממנים</a></li>
+                    <li role="presentation" class="btn " id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" style="color:black; font-weight:bold;" id="TherapistC">מטפלים</a></li>
+                    <li role="presentation" class="btn " id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" style="color:black; font-weight:bold;" id="ScheduleC">יומן פגישות</a></li>
+                    <li role="presentation" class="dropdown btn " id="Patient">
+                        <a href="#" id="PatientC" data-toggle="dropdown" role="button" aria-expanded="false" style="color:black; font-weight:bold;">מטופלים <span class=" caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="btn" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" style="color:black; font-weight:bold;">כללי</a></li>
+                            <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" style="color:black; font-weight:bold;">מטופל חדש</a></li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </nav>
+
+
+            <script>
+                function changeActiveTab() {
+                    var url = document.URL;
+                    var ind = url.lastIndexOf("/");
+                    url = url.substring(0, ind);
+                    ind = url.lastIndexOf("/");
+                    url = url.substring(ind + 1, url.length);
+
+                    switch (url) {
+                        case "WizardFormPatient":
+                            document.getElementById("Patient").className = "btn btn-primary";
+                            document.getElementById("PatientC").style.color = "white";
+                            break;
+                        case "Patient":
+                            document.getElementById("Patient").className = "btn btn-primary";
+                            document.getElementById("PatientC").style.color = "white";
+                            break;
+                        case "Schedule":
+                            document.getElementById("Schedule").className = "btn btn-primary";
+                            document.getElementById("ScheduleC").style.color = "white";
+                            break;
+                        case "Therapist":
+                            document.getElementById("Therapist").className = "btn btn-primary";
+                            document.getElementById("TherapistC").style.color = "white";
+                            break;
+                        case "FinanceFactor":
+                            document.getElementById("FinanceFactor").className = "btn btn-primary";
+                            document.getElementById("FinanceFactorC").style.color = "white";
+                            break;
+                        default:
+                    }
+                }
+            </script>
+
+
+        </div>
+    </header>
+    <div id="body" >
+        <div class=" content-wrapper" style="background-image:Url(../../Images/);">
+            @RenderBody()
+        </div>
+    </div>
+    <br />
+    <footer style="background-color:white;">
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Eden & Shahar</p>
             </div>
         </div>
-        <br />
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - Eden & Shahar</p>
-                </div>
-            </div>
-        </footer>
-    </body>
+    </footer>
+</body>
+
+
 
 </html>

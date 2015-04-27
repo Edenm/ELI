@@ -14,26 +14,42 @@
                                 @Html.ValidationMessageFor(model => model.ID)
                             </div>
                          }
-                         else
-                         {
+                           else
+                           {
+                             string strTitle = Model.FirstName + " " + Model.SurName;
+                            <h4 align="right"><u><b> עריכת פרטי המטופל: @strTitle </b></u></h4>
                             @Html.HiddenFor(model => model.ID)
                          }
                         }
+                        
+                        <table>
+                            <tr>
+                                <td >
+                                    <label float:right class="description" for="element_1">
+                                        שם פרטי
+                                    </label>
+                                </td>
+                                <td style ="padding-right:2%;">
+                                    <label float:right class="description" for="element_1">
+                                        שם משפחה
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div float:right; dir="rtl" class="editor-field">
+                                        @Html.EditorFor(model => model.FirstName)
+                                        @Html.ValidationMessageFor(model => model.FirstName)
+                                    </div>
+                                </td>
 
-                        <label float:right class="description" for="element_1">
-                            שם פרטי
-                        </label>
-                        <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.FirstName)
-                            @Html.ValidationMessageFor(model => model.FirstName)
-                        </div>
-                        <label float:right class="description" for="element_1">
-                            שם משפחה
-                        </label>
-                        <div float:right; dir="rtl" class="editor-field">
-                            @Html.EditorFor(model => model.SurName)
-                            @Html.ValidationMessageFor(model => model.SurName)
-                        </div>
+                                <td style="padding-right:2%;">
+                                    <div float:right; dir="rtl" class="editor-field">
+                                        @Html.EditorFor(model => model.SurName)
+                                        @Html.ValidationMessageFor(model => model.SurName)
+                                    </div>
+                            </tr>
+                        </table>
                         <label float:right class="description" for="element_1">
                             תאריך לידה
                         </label>

@@ -10,6 +10,7 @@ using System.Collections;
 
 namespace Eli.Controllers
 {
+    [Authorize]
     public class PatientController : Controller
     {
         public ActionResult Index()

@@ -33,7 +33,8 @@ namespace Eli.Controllers
                 {
                     Session["Therapist"] = ther;
                     //WebSecurity.Login(user.UserName, user.Password);
-                    //FormsAuthentication.SetAuthCookie(user.UserName, true);
+                    FormsAuthentication.SetAuthCookie(user.UserName, false);
+                    //FormsAuthentication.SetAuthCookie(user.userId.ToString(), false);
                     return RedirectToAction("IndexPatients", "Patient");
                 }
             }

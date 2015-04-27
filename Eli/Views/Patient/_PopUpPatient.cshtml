@@ -1,31 +1,31 @@
 ﻿@model Eli.Models.tblPatient
 
 
-
 <!-- Modal -->
 <div class="modal fade" id="@Model.ID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 align="right " class="modal-title" id="myModalLabel"></h4>
-            </div>
-            <div class="modal-body" >
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
-                    <fieldset align="right" dir="rtl">
-                        <br />
-                        @Html.Partial("_Patient", Model)
-                        <br />
-                        <p>
-                            <input type="submit" class="btn btn-primary btn-lg" value="שמירה" />
-                        </p>
-                    </fieldset>
-                }
-            </div>
+    <div class="modal-dialog" style="width:55%;" >
+        <div class=" modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 align="right " class="modal-title" id="myModalLabel"></h4>
         </div>
+        <div class="modal-body">
+            
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset align="right" dir="rtl">
+                    @Html.Partial("_Patient", Model)
+                    <br />
+                    <p>
+                        <input type="submit" class="btn btn-primary btn-lg" value="שמירה" />
+                    </p>
+                </fieldset>
+            }
+        </div>
+    </div>
+
     </div>
 </div>
 
