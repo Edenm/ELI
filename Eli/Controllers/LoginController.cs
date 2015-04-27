@@ -75,10 +75,13 @@ namespace Eli.Controllers
                     smtp.EnableSsl = true;
                     smtp.Send(Mail);
 
-                    return RedirectToAction("IndexLogin", "Login");
+                    ViewBag.operate = "הודעת אישור עם פרטי ההזדהות נשלחה למייל שלך";
+                    ViewBag.type = "success";
+                    return View();
             }
-
-            return RedirectToAction("ForgetPassword", "Login");
+            ViewBag.type = "danger";
+            ViewBag.operate = "מצטערים אבל המייל אינו קיים במערכת";
+            return View();
         }
     }
 }
