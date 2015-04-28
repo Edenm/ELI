@@ -42,7 +42,7 @@
                                             </label>
                                                  <br />
                                             <div style="text-align:right; float:right;">
-                                                <select dir="rtl" class="element select" id="StatusReference" name="StatusReference">
+                                                <select dir="rtl" class="element select" id="StatusReference" name="StatusReference" style="width: 300px; height: 30px">
                                                     @{foreach (string s in db.getAllStatusReference())
                                                     {
                                                         if (s == Model.StatusReference)
@@ -74,7 +74,7 @@
                                                                       </label>
                                                                                   <br />
                                                             <div style="text-align:right; float:right;">
-                                                                <select dir="rtl" class="element select" id="AbuseType" name="AbuseType">
+                                                                <select dir="rtl" class="element select" id="AbuseType" name="AbuseType" style="width: 300px; height: 30px">
                                                                     @{foreach (string s in db.getAllAbuseType())
                                                                     {
                                                                         if (s == Model.AbuseType)
@@ -99,7 +99,7 @@
                                             </label>
                                              <br />
                                         <div style="text-align:right; float:right;">
-                                            <select dir="rtl" class="element select" id="ReferenceSource" name="ReferenceSource">
+                                            <select dir="rtl" class="element select" id="ReferenceSource" name="ReferenceSource" style="width: 300px; height: 30px">
                                                 @{foreach (string s in db.getAllReferenceSource())
                                                 {
                                                     if (s == Model.ReferenceSource)

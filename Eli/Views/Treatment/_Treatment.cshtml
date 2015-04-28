@@ -106,8 +106,9 @@
                         </label>
                         <br />
                         <div style="text-align:right; float:right;">
-                            <select dir="rtl" class="element select" id="time" name="TreatmentStartTime">
-                                @if (@Model.TreatmentNumber != 0){
+                            <select dir="rtl" class="element select" id="time" name="TreatmentStartTime" style="width: 300px; height: 30px">
+                                @if (@Model.TreatmentNumber != 0)
+                                {
                                     <option selected="selected" value="@Model.TreatmentStartTime">@Model.TreatmentStartTime.ToString()</option>
                                 }
                                 @{ int time = 8;
@@ -122,7 +123,7 @@
                                      {
                                          display = "0" + time + ":00";
                                      }
-                                     <option value="@display">@display</option>
+                                    <option value="@display">@display</option>
                                  }
                                 }
                             </select>
@@ -143,26 +144,27 @@
                         </label>
                         <br />
                         <div style="text-align:right; float:right;">
-                            <select dir="rtl" class="element select" id="IsPaid" name="IsPaid">
-                               
-                                    @if (@Model.IsPaid =="כן")
-                                    {
-                                         <option selected="selected" value="כן">כן</option>
-                                         <option value="לא">לא</option>
-                                    }
-                                    else
-                                    {
-                                         <option selected="selected" value="לא">לא</option>
-                                         <option value="כן">כן</option>
-                                    }
-                               
-                                
-                                
+                            <select dir="rtl" class="element select" id="IsPaid" name="IsPaid" style="width: 300px; height: 30px">
+
+                                @if (@Model.IsPaid == "כן")
+                                {
+                                    <option selected="selected" value="כן">כן</option>
+                                    <option value="לא">לא</option>
+                                }
+                                else
+                                {
+                                    <option selected="selected" value="לא">לא</option>
+                                    <option value="כן">כן</option>
+                                }
+
+
+
                             </select>
+
                         </div>
 
                         <br />
-                        
+                        <br />
                         
 
                         <label float:right class="description" for="element_1">
@@ -170,23 +172,25 @@
                         </label>
                         <br />
                         <div style="text-align:right; float:right;">
-                            <select dir="rtl" class="element select" id="FinancingFactorNumber" name="FinancingFactorNumber">
+                            <select dir="rtl" class="element select" id="FinancingFactorNumber" name="FinancingFactorNumber" style="width: 300px; height: 30px">
                                 @{foreach (tblFinancingFactor ff in db.getAllFinanceFactor())
                                 {
                                     if (ff.FinancingFactorNumber == Model.FinancingFactorNumber)
                                     {
                                         <option selected="selected" value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
                                     }
-                                    else { 
+                                    else
+                                    {
                                         <option value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
                                     }
                                 }
                                 }
-                              </select>
+                            </select>
                         </div>
                         
                         <br />
                         <input type="text" name="ReferenceNumber" dir="rtl" value="@Model.ReferenceNumber" hidden>
+                        <br />
 
                         <p>
                             <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />

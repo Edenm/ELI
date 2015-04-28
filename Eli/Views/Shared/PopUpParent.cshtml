@@ -51,12 +51,14 @@
                 <td>
                     <div float:right; dir="rtl" class="editor-field" >
                         @Html.EditorFor(model => model.ParentFirstName)
+                        <br />
                         @Html.ValidationMessageFor(model => model.ParentFirstName)
                     </div>
                 </td>
                 <td style="padding-right:2%;">
                     <div float:right; dir="rtl" class="editor-field">
                         @Html.EditorFor(model => model.ParentSurName)
+                         <br />
                         @Html.ValidationMessageFor(model => model.ParentSurName)
                     </div>
             </tr>
@@ -72,8 +74,20 @@
             מגדר
         </label>
         <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ParentGender)
-            @Html.ValidationMessageFor(model => model.ParentGender)
+            <select dir="rtl" class="element select" id="ParentGender" name="ParentGender">
+                @if (@Model.ParentGender == "נקבה")
+                {
+                    <option selected="selected" value="נקבה">נקבה</option>
+                    <option value="זכר">זכר</option>
+                }
+                else
+                {
+                    <option selected="selected" value="זכר">זכר</option>
+                    <option value="נקבה">נקבה</option>
+                }
+
+            </select>
+
         </div>
         <label float:right class="description" for="element_1">
             כתובת
@@ -82,39 +96,80 @@
         @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress } })
         <br />
         <br />
-        <label float:right class="description" for="element_1">
-            טלפון
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ParentPhoneNumber)
-            @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
-        </div>
-        <label float:right class="description" for="element_1">
-            דואר אלקטרוני
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ParentMail)
-            @Html.ValidationMessageFor(model => model.ParentMail)
-        </div>
-        <label float:right class="description" for="element_1">
-            האם עובד
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.IsWorking)
-            @Html.ValidationMessageFor(model => model.IsWorking)
-        </div>
-        <label float:right class="description" for="element_1">
-            פירוט
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.Explain)
-            @Html.ValidationMessageFor(model => model.Explain)
-        </div>
+        <table>
+            <tr>
+                <td>
+                    <label float:right class="description" for="element_1">
+                        טלפון
+                    </label>
+                </td>
+                <td style="padding-right:2%;">
+                    <label float:right class="description" for="element_1">
+                       דואר אלקטרוני
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div float:right; dir="rtl" class="editor-field">
+                        @Html.EditorFor(model => model.ParentPhoneNumber)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
+                    </div>
+                </td>
+                <td style="padding-right:2%;">
+                    <div float:right; dir="rtl" class="editor-field">
+                        @Html.EditorFor(model => model.ParentMail)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.ParentMail)
+                    </div>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <label float:right class="description" for="element_1">
+                        האם עובד
+                    </label>
+                </td>
+                <td style="padding-right:2%;">
+                    <label float:right class="description" for="element_1">
+                       פירוט
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div float:right; dir="rtl" class="editor-field">
+                        <select dir="rtl" class="element select" id="IsWorking" name="IsWorking">
+                            @if (@Model.IsWorking == "לא")
+                            {
+                                <option selected="selected" value="לא">לא</option>
+                                <option value="כן">כן</option>
+                            }
+                            else
+                            {
+                                <option selected="selected" value="כן">כן</option>
+                                <option value="לא">לא</option>
+                            }
+
+                        </select>
+                    </div>
+                </td>
+                <td style="padding-right:2%;">
+                    <div float:right; dir="rtl" class="editor-field">
+                        @Html.EditorFor(model => model.Explain)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Explain)
+                    </div>
+            </tr>
+        </table>
+        
         <label float:right class="description" for="element_1">
             הערות נוספות
         </label>
         <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.Comment)
+            @Html.TextAreaFor(model => model.Comment)
             @Html.ValidationMessageFor(model => model.Comment)
         </div>
         <br />

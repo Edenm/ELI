@@ -87,10 +87,9 @@ else
                                 מגדר
                             </label>
                             <br />
-                            <br />
+                           
                             <div style="text-align:right; float:right;">
-                                <select dir="rtl" class="element select" id="TherapistGender" name="TherapistGender">
-
+                                <select dir="rtl" class="element select" id="TherapistGender" name="TherapistGender" style="width: 300px; height: 30px">
                                     @if (@Model.TherapistGender == "נקבה")
                                     {
                                         <option selected="selected" value="נקבה">נקבה</option>
@@ -101,8 +100,6 @@ else
                                         <option selected="selected" value="זכר">זכר</option>
                                         <option value="נקבה">נקבה</option>
                                     }
-
-
 
                                 </select>
                             </div>
