@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Eli.Controllers
 {
+    [Authorize]
     public class GeneralController : Controller
     {
         

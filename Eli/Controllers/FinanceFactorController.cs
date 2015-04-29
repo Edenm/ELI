@@ -17,6 +17,7 @@ using System.Net.Mail;
 
 namespace Eli.Controllers
 {
+    [Authorize]
     public class FinanceFactorController : Controller
     {
         [HttpGet]

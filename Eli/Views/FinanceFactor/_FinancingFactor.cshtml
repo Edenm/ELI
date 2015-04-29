@@ -21,7 +21,7 @@
     {
         id = @Model.FinancingFactorNumber.ToString();
         submit = "שמור";
-        str = @Model.FinancingFactorNumber + "עריכת גורם מממן מספר";
+        str = "עריכת גורם מממן: "+@Model.FinancingFactorName ;
     }
 }
 
@@ -30,7 +30,7 @@
 <!-- Modal -->
 <div  id="myModal">
     <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:83%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -39,20 +39,52 @@
                 <div class="modal-body">
                     @using (Html.BeginForm())
                     {
-                        <h4 align="right">@str</h4>
+                        <h4 align="right"><u><b>@str </b></u></h4>
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
 
-                        <fieldset align="right">
-                            <legend>tblFinancingFactor</legend>
+                        <fieldset align="right" dir="rtl">
                             @Html.HiddenFor(model => model.FinancingFactorNumber)
-                            <label float:right class="description" for="element_1">
-                                שם גורם מממן
-                            </label>
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.FinancingFactorName)
-                                @Html.ValidationMessageFor(model => model.FinancingFactorName)
-                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label float:right class="description" for="element_1">
+                                            שם גורם מממן
+                                        </label>
+                                    </td>
+                                    <td style="padding-right:2%;">
+                                        <label float:right class="description" for="element_1">
+                                            סוג גורם מממן
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div float:right; dir="rtl" class="editor-field">
+                                            @Html.EditorFor(model => model.FinancingFactorName)
+                                            @Html.ValidationMessageFor(model => model.FinancingFactorName)
+                                        </div>
+                                    </td>
+                                    <td style="padding-right:2%;">
+                                        <div style="text-align:right; float:right;">
+                                            <select dir="rtl" class="element select" id="FinancingFactorType" name="FinancingFactorType" style="width: 300px; height: 30px">
+                                                @{foreach (string s in db.getAllFinancingFactorType())
+                                                {
+                                                    if (s == Model.FinancingFactorType)
+                                                    {
+                                                        <option selected="selected" value="@s">@s</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@s">@s</option>
+                                                    }
+                                                }
+                                                }
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
 
                             <label float:right class="description" for="element_1">
                                 כתובת גורם מממן
@@ -61,52 +93,55 @@
                                 @Html.EditorFor(model => model.FinancingFactorAddress)
                                 @Html.ValidationMessageFor(model => model.FinancingFactorAddress)
                             </div>
-                            <fieldset>
-                                <label float:right class="description" for="element_1">
-                                    סוג גורם מממן
-                                </label>
-                                <br />
-                                <div style="text-align:right; float:right;">
-                                    <select dir="rtl" class="element select" id="FinancingFactorType" name="FinancingFactorType" style="width: 300px; height: 30px">
-                                        @{foreach (string s in db.getAllFinancingFactorType())
-                                        {
-                                            if (s == Model.FinancingFactorType)
-                                            {
-                                                <option selected="selected" value="@s">@s</option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@s">@s</option>
-                                            }
-                                        }
-                                        }
-                                    </select>
-                                </div>
 
-
-                            </fieldset>
-
-                            <label float:right class="description" for="element_1">
-                                שם איש קשר
-                            </label>
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.FinancingFactorContactName)
-                                @Html.ValidationMessageFor(model => model.FinancingFactorContactName)
-                            </div>
-                            <label float:right class="description" for="element_1">
-                                טלפון איש קשר
-                            </label>
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.FinancingFactorContcatPhoneNumber)
-                                @Html.ValidationMessageFor(model => model.FinancingFactorContcatPhoneNumber)
-                            </div>
-                            <label float:right class="description" for="element_1">
-                                מייל איש קשר
-                            </label>
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.FinancingFactorContactMail)
-                                @Html.ValidationMessageFor(model => model.FinancingFactorContactMail)
-                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <label float:right class="description" for="element_1">
+                                                <u>איש קשר:</u>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        <label class="description" for="element_1">
+                                            שם
+                                        </label>
+                                    </td>
+                                    <td style="padding-right:2%;">
+                                        <label class="description" for="element_1">
+                                            טלפון
+                                        </label>
+                                    </td>
+                                    <td style="padding-right:2%;">
+                                        <label class="description" for="element_1">
+                                            מייל
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div dir="rtl" class="editor-field">
+                                            @Html.EditorFor(model => model.FinancingFactorContactName)
+                                            @Html.ValidationMessageFor(model => model.FinancingFactorContactName)
+                                        </div>
+                                    </td>
+                                    <td style="padding-right:2%;">
+                                        <div dir="rtl" class="editor-field">
+                                            @Html.EditorFor(model => model.FinancingFactorContcatPhoneNumber)
+                                            @Html.ValidationMessageFor(model => model.FinancingFactorContcatPhoneNumber)
+                                        </div>
+                                    </td>
+                                    <td style="padding-right:2%;">
+                                        <div dir="rtl" class="editor-field">
+                                            @Html.EditorFor(model => model.FinancingFactorContactMail)
+                                            @Html.ValidationMessageFor(model => model.FinancingFactorContactMail)
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                             <br />
                             <p>
                                 <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />

@@ -94,7 +94,7 @@
 
     @foreach (tblReference item in Model)
     {
-        @Html.Partial("_PopUpReference", item, new ViewDataDictionary { {"pid", @ViewBag.Id} });
+        @Html.Partial("_PopUpReference", item, new ViewDataDictionary { { "pid", @ViewBag.Id},{ "name", @ViewBag.Name } });
 
     }
 

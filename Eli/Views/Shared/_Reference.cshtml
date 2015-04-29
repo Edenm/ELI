@@ -1,22 +1,9 @@
 ﻿@model Eli.Models.tblReference
 @using Eli.Models
 
-@{  string id;
-  string submit;
-  string str;
+@{  
   EliManagerDB db = new EliManagerDB();
-  if (@Model.ReferenceNumber == 0)
-  {
-      id = "new";
-      submit = "צור";
-      str = ViewBag.Name + "הוספת הפנייה ל";
-  }
-  else
-  {
-      id = @Model.ReferenceNumber.ToString();
-      submit = "שמור";
-      str = ViewBag.Name + "עריכת הפנייה ל";
-  }
+
 }
 
 
@@ -25,119 +12,141 @@
 
 
 
+    @Html.HiddenFor(model => model.ReferenceNumber)
+    <label float:right class="description" for="element_1">
+        סיבת הפנייה
+    </label>
+    <div float:right; dir="rtl" class="editor-field">
+        @Html.EditorFor(model => model.ReasonReference)
+        @Html.ValidationMessageFor(model => model.ReasonReference)
+    </div>
+    <table>
+        <tr>
+            <td>
+                <label float:right class="description" for="element_1">
+                    סטטוס הפנייה
+                </label>
+            </td>
+            <td style="padding-right:2%;">
+                <label float:right class="description" for="element_1">
+                   פירוט אחר
+                </label>
 
-
-                                              @Html.HiddenFor(model => model.ReferenceNumber)
-
-                                         <label float:right class="description" for="element_1">
-                                                סיבת הפנייה
-                                            </label>
-                                                                   <div float:right; dir="rtl" class="editor-field">
-                                                @Html.EditorFor(model => model.ReasonReference)
-                                                @Html.ValidationMessageFor(model => model.ReasonReference)
-                                            </div>
-
-                                               <label float:right class="description" for="element_1">
-                                                סטטוס הפנייה
-                                            </label>
-                                                 <br />
-                                            <div style="text-align:right; float:right;">
-                                                <select dir="rtl" class="element select" id="StatusReference" name="StatusReference" style="width: 300px; height: 30px">
-                                                    @{foreach (string s in db.getAllStatusReference())
-                                                    {
-                                                        if (s == Model.StatusReference)
-                                                        {
-                                                            <option selected="selected" value="@s">@s</option>
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="@s">@s</option>
-                                                        }
-                                                    }
-                                                    }
-                                                </select>
-                                            </div>
-
-                                            <br />
-                                            <br />
-                                                                    <label float:right class="description" for="element_1">
-                                                סטטוס אחר
-                                            </label>
-                                                                    <div float:right; dir="rtl" class="editor-field">
-                                                @Html.EditorFor(model => model.OtherStatus)
-                                                @Html.ValidationMessageFor(model => model.OtherStatus)
-                                            </div>
-                                                                    <br />
-                       
-                                                                    <label float:right class="description" for="element_1">
-                                                                    סוג פגיעה
-                                                                      </label>
-                                                                                  <br />
-                                                            <div style="text-align:right; float:right;">
-                                                                <select dir="rtl" class="element select" id="AbuseType" name="AbuseType" style="width: 300px; height: 30px">
-                                                                    @{foreach (string s in db.getAllAbuseType())
-                                                                    {
-                                                                        if (s == Model.AbuseType)
-                                                                        {
-                                                                            <option selected="selected" value="@s">@s</option>
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            <option value="@s">@s</option>
-                                                                        }
-                                                                    }
-                                                                    }
-                                                                </select>
-                                                            </div>
-
-                                                            <br />
-                                                                                <br /> 
-                                                                           
-                        
-                                           <label float:right class="description" for="element_1">
-                                              כיצד הגיע
-                                            </label>
-                                             <br />
-                                        <div style="text-align:right; float:right;">
-                                            <select dir="rtl" class="element select" id="ReferenceSource" name="ReferenceSource" style="width: 300px; height: 30px">
-                                                @{foreach (string s in db.getAllReferenceSource())
-                                                {
-                                                    if (s == Model.ReferenceSource)
-                                                    {
-                                                        <option selected="selected" value="@s">@s</option>
-                                                    }
-                                                    else
-                                                    {
-                                                        <option value="@s">@s</option>
-                                                    }
-                                                }
-                                                }
-                                            </select>
-                                        </div>
-
-                                            <br />
-                                        <br />
-                                
-                        <label float:right class="description" for="element_1">
-                                    תאריך התחלה
-                                </label>
-                                  <div float:right; dir="rtl" class="editor-field">
-                                    @Html.EditorFor(model => model.StartDateReference)
-                                    @Html.ValidationMessageFor(model => model.StartDateReference)
-                                </div>
-                          @{ if (Model.StartDateReference != null)
-                           {
-                            <label float:right class="description" for="element_1">
-                               תאריך סיום
-                            </label>
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.EndDateReference)
-                                @Html.ValidationMessageFor(model => model.EndDateReference)
-                            </div>
-                           }
-                           else
-                           {
-                            @Html.HiddenFor(model => model.EndDateReference)
-                           }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="text-align:right; float:right;">
+                    <select dir="rtl" class="element select" id="StatusReference" name="StatusReference" style="width: 300px; height: 30px">
+                        @{foreach (string s in db.getAllStatusReference())
+                        {
+                            if (s == Model.StatusReference)
+                            {
+                                <option selected="selected" value="@s">@s</option>
+                            }
+                            else
+                            {
+                                <option value="@s">@s</option>
+                            }
                         }
-                  
+                        }
+                    </select>
+                </div>
+            </td>
+            <td style="padding-right:2%;">
+                <div float:right; dir="rtl" class="editor-field">
+                    @Html.EditorFor(model => model.OtherStatus)
+                    @Html.ValidationMessageFor(model => model.OtherStatus)
+                </div>
+             </td>
+        </tr>
+        <tr>
+            <td>
+                <label float:right class="description" for="element_1">
+                    סוג פגיעה
+                </label>
+            </td>
+            <td style="padding-right:2%;">
+                <label float:right class="description" for="element_1">
+                    כיצד הגיע?
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="text-align:right; float:right;">
+                    <select dir="rtl" class="element select" id="AbuseType" name="AbuseType" style="width: 300px; height: 30px">
+                        @{foreach (string s in db.getAllAbuseType())
+                        {
+                            if (s == Model.AbuseType)
+                            {
+                                <option selected="selected" value="@s">@s</option>
+                            }
+                            else
+                            {
+                                <option value="@s">@s</option>
+                            }
+                        }
+                        }
+                    </select>
+                </div>
+            </td>
+            <td style="padding-right:2%;">
+                <div style="text-align:right; float:right;">
+                    <select dir="rtl" class="element select" id="ReferenceSource" name="ReferenceSource" style="width: 300px; height: 30px">
+                        @{foreach (string s in db.getAllReferenceSource())
+                        {
+                            if (s == Model.ReferenceSource)
+                            {
+                                <option selected="selected" value="@s">@s</option>
+                            }
+                            else
+                            {
+                                <option value="@s">@s</option>
+                            }
+                        }
+                        }
+                    </select>
+                </div>
+             </td>
+        </tr>
+        <tr>
+            <td>
+                <label float:right class="description" for="element_1">
+                    תאריך התחלה
+                </label>
+            </td>
+            <td style="padding-right:2%;">
+                @{ if (Model.StartDateReference != null)
+                 {
+                    <label float:right class="description" for="element_1">
+                        תאריך סיום
+                    </label>
+                }
+                }
+            </td>
+       </tr>
+       <tr>
+           <td>
+               <div float:right; dir="rtl" class="editor-field">
+                   @Html.EditorFor(model => model.StartDateReference)
+                   @Html.ValidationMessageFor(model => model.StartDateReference)
+               </div>
+           </td>
+           <td style="padding-right:2%;">
+               @{ if (Model.StartDateReference != null)
+                {
+                   <div float:right; dir="rtl" class="editor-field">
+                       @Html.EditorFor(model => model.EndDateReference)
+                       @Html.ValidationMessageFor(model => model.EndDateReference)
+                   </div>
+                }
+                else
+                {
+                   @Html.HiddenFor(model => model.EndDateReference)
+                }
+               }
+           </td>
+       </tr>
+
+    </table>
