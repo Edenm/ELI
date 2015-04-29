@@ -1035,7 +1035,8 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentAddress", DbType="VarChar(MAX)")]
 		public string ParentAddress
 		{
