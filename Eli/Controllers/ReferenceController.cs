@@ -7,6 +7,7 @@ using Eli.Models;
 
 namespace Eli.Controllers
 {
+    [Authorize]
     public class ReferenceController : Controller
     {
         //

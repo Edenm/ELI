@@ -9,6 +9,7 @@ using Eli.ViewModel;
 
 namespace Eli.Controllers
 {
+    [Authorize]
     public class WizardFormPatientController : Controller
     {
         //
