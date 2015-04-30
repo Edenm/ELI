@@ -70,7 +70,7 @@
                             </td>
                             <td class="col-sm-1">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-12" })
+                                    @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-12", StringLength = 10 })
                                     @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
                                 </div>
                             </td>
@@ -87,4 +87,9 @@
                                 </div>
                             </td>
                         </tr>
-                              
+    <script>
+$("input[data-val-length-max]").each(function (index, element) {
+var length = parseInt($(this).attr("data-val-length-max"));
+$(this).prop("maxlength", length);
+});
+</script>

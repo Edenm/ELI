@@ -45,7 +45,7 @@ else
                 תעודת זהות
             </label>
             <div float:right; dir="rtl" class="editor-field">
-                @Html.EditorFor(model => model.TherapistID)
+                @Html.EditorFor(model => model.TherapistID, new { StringLength = 9 })
                 @Html.ValidationMessageFor(model => model.TherapistID)
             </div>
          }
@@ -138,7 +138,7 @@ else
                 </td>
                 <td style="padding-right:2%;">
                     <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TherapistPhoneNumber)
+                        @Html.EditorFor(model => model.TherapistPhoneNumber, new { StringLength = 10 })
                         @Html.ValidationMessageFor(model => model.TherapistPhoneNumber)
                     </div>
                 </td>
@@ -182,3 +182,10 @@ else
 
     </div>
 </div>
+
+<script>
+$("input[data-val-length-max]").each(function (index, element) {
+var length = parseInt($(this).attr("data-val-length-max"));
+$(this).prop("maxlength", length);
+});
+    </script>

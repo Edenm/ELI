@@ -130,7 +130,7 @@
                                     </td>
                                     <td style="padding-right:2%;">
                                         <div dir="rtl" class="editor-field">
-                                            @Html.EditorFor(model => model.FinancingFactorContcatPhoneNumber)
+                                            @Html.EditorFor(model => model.FinancingFactorContcatPhoneNumber, new { StringLength = 10 })
                                             @Html.ValidationMessageFor(model => model.FinancingFactorContcatPhoneNumber)
                                         </div>
                                     </td>
@@ -156,5 +156,11 @@
 <script>
     $(document).ready(function () {
         $('#type1').val('Holiday');
+    });
+</script>
+<script>
+    $("input[data-val-length-max]").each(function (index, element) {
+        var length = parseInt($(this).attr("data-val-length-max"));
+        $(this).prop("maxlength", length);
     });
 </script>

@@ -10,7 +10,7 @@
                                 תעודת זהות
                             </label>
                             <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.ID)
+                                @Html.EditorFor(model => model.ID, new { StringLength = 9 })
                                 @Html.ValidationMessageFor(model => model.ID)
                             </div>
                          }
@@ -111,7 +111,7 @@
                                 </td>
                                 <td style="padding-right:2%;">
                                     <div float:right; dir="rtl" class="editor-field">
-                                        @Html.EditorFor(model => model.PhoneNumber)
+                                        @Html.EditorFor(model => model.PhoneNumber, new { StringLength = 10 })
                                         @Html.ValidationMessageFor(model => model.PhoneNumber)
                                     </div>
                                 </td>
@@ -139,3 +139,10 @@
                                     </div>
                                     <br />
                                 </fieldset>
+
+<script>
+    $("input[data-val-length-max]").each(function (index, element) {
+        var length = parseInt($(this).attr("data-val-length-max"));
+        $(this).prop("maxlength", length);
+    });
+</script>
