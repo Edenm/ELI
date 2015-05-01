@@ -129,18 +129,21 @@
                                     <td>
                                         <div dir="rtl" class="editor-field">
                                             @Html.EditorFor(model => model.FinancingFactorContactName)
+                                            <br />
                                             @Html.ValidationMessageFor(model => model.FinancingFactorContactName)
                                         </div>
                                     </td>
                                     <td style="padding-right:2%;">
                                         <div dir="rtl" class="editor-field">
                                             @Html.EditorFor(model => model.FinancingFactorContcatPhoneNumber, new { StringLength = 10 })
+                                            <br />
                                             @Html.ValidationMessageFor(model => model.FinancingFactorContcatPhoneNumber)
                                         </div>
                                     </td>
                                     <td style="padding-right:2%;">
                                         <div dir="rtl" class="editor-field">
                                             @Html.EditorFor(model => model.FinancingFactorContactMail)
+                                            <br />
                                             @Html.ValidationMessageFor(model => model.FinancingFactorContactMail)
                                         </div>
                                     </td>

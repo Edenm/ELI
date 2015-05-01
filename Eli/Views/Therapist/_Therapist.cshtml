@@ -81,6 +81,7 @@ else
                 <td style="padding-right:2%;">
                     <div float:right; dir="rtl" class="editor-field">
                         @Html.EditorFor(model => model.TherapistSurName)
+                        <br />
                         @Html.ValidationMessageFor(model => model.TherapistSurName)
                     </div>
                 </td>
@@ -143,6 +144,7 @@ else
                 <td style="padding-right:2%;">
                     <div float:right; dir="rtl" class="editor-field">
                         @Html.EditorFor(model => model.TherapistPhoneNumber, new { StringLength = 10 })
+                        <br />
                         @Html.ValidationMessageFor(model => model.TherapistPhoneNumber)
                     </div>
                 </td>

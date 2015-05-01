@@ -42,7 +42,7 @@
    
 
     <div align="right" dir="rtl">
-        <h5 align="center" style="color:blue">טיפולים</h5>
+        <h2 align="center" style="color:blue">טיפולים</h2>
 
         @{String name = ViewBag.Name; }
         <h4>
@@ -75,8 +75,8 @@
                         {
                             <tr>
                                 <td> @count </td>
-                                <td> @item.treatment.TreatmentDate.ToString() </td>
-                                <td> @item.treatment.TreatmentStartTime.ToString() </td>
+                                <td> @item.treatment.TreatmentDate.Value.ToShortDateString() </td>
+                                <td> @item.treatment.TreatmentStartTime.Value</td>
                                 <td> @item.treatment.TreatmentPlace </td>
                                 <td> @item.treatment.TreatmentGoal</td>
                                 <td> @item.treatment.TreatmentSubject </td>
