@@ -112,8 +112,9 @@
     }
 
     @{MailModel mail = new MailModel();
+      @Html.Partial("_MailToAllParents", mail)
     }
-    @Html.Partial("_MailToAllParents", mail);
+    
     <script>
 
         var table = $('#myTable').DataTable();

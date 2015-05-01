@@ -105,8 +105,9 @@
         @{MailModel mail=new MailModel();
           
           mail.redirect="finance";
+          @Html.Partial("_MailToAllFinance", mail)
           }
-        @Html.Partial("_MailToAllFinance", mail);
+       
 
         <!-- Button trigger modal -->
         <br /> 

@@ -107,11 +107,13 @@
                             <tr>
                                 <td>
                                     @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "PatientAddress" }, { "value", Model.PatientAddress } })
-
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.PatientAddress, "שדה חובה")
                                 </td>
                                 <td style="padding-right:2%;">
                                     <div float:right; dir="rtl" class="editor-field">
                                         @Html.EditorFor(model => model.PhoneNumber, new { StringLength = 10 })
+                                        <br />
                                         @Html.ValidationMessageFor(model => model.PhoneNumber)
                                     </div>
                                 </td>

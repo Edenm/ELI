@@ -74,7 +74,7 @@
             מגדר
         </label>
         <div float:right; dir="rtl" class="editor-field">
-            <select dir="rtl" class="element select" id="ParentGender" name="ParentGender">
+            <select dir="rtl" class="element select" id="ParentGender" name="ParentGender" style="width: 300px; height: 30px">
                 @if (@Model.ParentGender == "נקבה")
                 {
                     <option selected="selected" value="נקבה">נקבה</option>
@@ -85,7 +85,6 @@
                     <option selected="selected" value="זכר">זכר</option>
                     <option value="נקבה">נקבה</option>
                 }
-
             </select>
 
         </div>
@@ -141,7 +140,7 @@
             <tr>
                 <td>
                     <div float:right; dir="rtl" class="editor-field">
-                        <select dir="rtl" class="element select" id="IsWorking" name="IsWorking">
+                        <select dir="rtl" class="element select" id="IsWorking" name="IsWorking" style="width: 300px; height: 30px">
                             @if (@Model.IsWorking == "לא")
                             {
                                 <option selected="selected" value="לא">לא</option>
@@ -152,7 +151,6 @@
                                 <option selected="selected" value="כן">כן</option>
                                 <option value="לא">לא</option>
                             }
-
                         </select>
                     </div>
                 </td>
