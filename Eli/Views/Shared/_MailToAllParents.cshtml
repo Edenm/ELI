@@ -1,0 +1,67 @@
+﻿@model Eli.Models.MailModel
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+
+
+
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/ModalSize.css" rel="stylesheet" />
+<div id="myModal">
+    <div class="modal fade" id="sendtoall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset align="right">
+                        <legend>
+                            Send Email
+                        </legend>
+
+                        @using (Html.BeginForm("IndexAllParents", "General"))
+                        {
+
+                            <label float:right class="description" for="element_1">
+                                שם מוען
+                            </label>
+
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.From)
+                                @Html.ValidationMessageFor(model => model.From)
+                            </div>
+
+                            <label float:right class="description" for="element_1">
+                                נושא הודעה
+                            </label>
+
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.Subject)
+                                @Html.ValidationMessageFor(model => model.Subject)
+                            </div>
+                            <label float:right class="description" for="element_1">
+                                תוכן הודעה
+                            </label>
+
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.TextAreaFor(model => model.Body)
+                                @Html.ValidationMessageFor(model => model.Body)
+                            </div>
+
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.HiddenFor(model => model.redirect)
+                                @Html.ValidationMessageFor(model => model.redirect)
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-lg" value="שלח" />
+                        }
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

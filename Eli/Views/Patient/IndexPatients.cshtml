@@ -25,7 +25,12 @@
     @Styles.Render("~/Content/themes/base/css")
 
 </head>
+
 <body >
+    <button type="button" style="float: left;" title="שליחת הודעת תפוצה למטפלים" class="btn btn-default" data-toggle="modal" data-target="#sendtoall">
+        <img src="~/Images/broadCastMail.PNG" />
+    </button>
+    <br />
     <h5 align="center" style="color:blue">מטופלים</h5>
     <h4 align="right">:חיפוש</h4>
     <div dir="rtl">
@@ -39,6 +44,7 @@
                     <th style="text-align: center;">פרטים נוספים</th>
                     <th style="text-align: center;">משפחה</th>
                     <th style="text-align: center;">הפניות</th>
+                    <th style="text-align: center;">שליחה</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +74,15 @@
                                 <img src="~/Images/References-32.png" />
                             </a>
                         </td>
+                        <td>
+                            @{
+                    string id1 = "2" + @item.Patient.ID;
+                            }
+                            <a src="~/Images/info.png" data-toggle="modal" data-target="#@id1">
+                                <img src="~/Images/Mail-32.png" />
+                            </a>
+                        </td>
+
                     </tr>
                     
                 }
@@ -84,7 +99,21 @@
     {
                 @Html.Partial("_EditFamily", item);
     }
+    @foreach (Family item in Model)
+    {
 
+        MailModel m = new MailModel();
+       
+        m.id = item.Patient.ID;
+        m.redirect = "therapist";
+        m.patientId = item.Patient.ID;
+        @Html.Partial("_MailToPatient", m);
+
+    }
+
+    @{MailModel mail = new MailModel();
+    }
+    @Html.Partial("_MailToAllParents", mail);
     <script>
 
         var table = $('#myTable').DataTable();

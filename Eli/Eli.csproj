@@ -443,6 +443,8 @@
     <Content Include="Views\Schedule\IndexSchedule.cshtml" />
     <Content Include="Views\Shared\_MailToAllTherapist.cshtml" />
     <Content Include="Views\Login\ForgetPassword.cshtml" />
+    <Content Include="Views\Shared\_MailToPatient.cshtml" />
+    <Content Include="Views\Shared\_MailToAllParents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
