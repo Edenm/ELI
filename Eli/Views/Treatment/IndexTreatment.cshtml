@@ -18,6 +18,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/Content/LinkStyle.css" rel="stylesheet" />
     <link href="~/Content/ModalSize.css" rel="stylesheet" />
+    <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <link href='http://serve.fontsproject.com/css?family=Nehama:400'
+          rel='stylesheet' type='text/css'>
     @Styles.Render("~/Content/bootstrapcss")
     @Styles.Render("~/Content/themes/base/css")
 
@@ -35,9 +39,10 @@
         ->
         טיפולים
 </h3>
+   
 
     <div align="right" dir="rtl">
-        <h2 align="center" style="color:blue">טיפולים</h2>
+        <h5 align="center" style="color:blue">טיפולים</h5>
 
         @{String name = ViewBag.Name; }
         <h4>

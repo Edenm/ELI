@@ -5,6 +5,10 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <link href="~/Content/ModalSize.css" rel="stylesheet" />
+<link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+<meta charset="utf-8">
+<link href='http://serve.fontsproject.com/css?family=Nehama:400'
+      rel='stylesheet' type='text/css'>
 @{  
     EliManagerDB db = new EliManagerDB();
     string id;
@@ -39,7 +43,7 @@
                 <div class="modal-body">
                     @using (Html.BeginForm())
                     {
-                        <h4 align="right"><u><b>@str </b></u></h4>
+                        <h5 align="right"><u><b>@str </b></u></h5>
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
 

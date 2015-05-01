@@ -357,6 +357,7 @@
     <Content Include="Scripts\DataTable\jquery.dataTables.min.js" />
     <Content Include="Scripts\DataTable\jquery.dataTables_themeroller.css" />
     <Content Include="Scripts\DataTable\jquery.js" />
+    <Content Include="Scripts\FontHebrew.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />

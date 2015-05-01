@@ -20,6 +20,15 @@
     @Styles.Render("~/Content/bootstrapcss")
     @Styles.Render("~/Content/themes/base/css")
 
+    <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+        <meta charset="utf-8">
+        <link href='http://serve.fontsproject.com/css?family=Nehama:400'
+              rel='stylesheet' type='text/css'>
+        
+   
+
+    
+
 </head>
 
 <body>
@@ -31,7 +40,7 @@
         <img src="~/Images/broadCastMail.PNG" />
     </button>
     <br />
-    <h2 align="center" style="color:blue">מטפלים</h2>
+    <h5 align="center" style="color:blue">מטפלים</h5>
     <h4 align="right">:חיפוש</h4>
     <div dir="rtl">
         <table id="myTable" class="display nowrap table-bordered">
@@ -109,7 +118,7 @@
     }
     @Html.Partial("_MailToAllTherapist", mail);
     <!-- Button trigger modal -->
-    <br /> <br />
+    <br /> 
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
         הוסף מטפל למערכת
     </button>

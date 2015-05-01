@@ -2,6 +2,10 @@
 @using Eli.Models
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+<meta charset="utf-8">
+<link href='http://serve.fontsproject.com/css?family=Nehama:400'
+      rel='stylesheet' type='text/css'>
 
 @{  string id;
   string submit;
@@ -36,7 +40,7 @@
             <div class="modal-body">
                 @using (Html.BeginForm("IndexReference", "Reference", new { pid = @ViewBag.pid }, FormMethod.Post))
                 {
-                    <h4 align="right"><u><b>@str </b></u></h4>
+                    <h5 align="right"><u><b>@str </b></u></h5>
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
