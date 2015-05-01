@@ -19,13 +19,18 @@
     <link href="~/Content/LinkStyle.css" rel="stylesheet" />
     <link href="~/Content/ModalSize.css" rel="stylesheet" />
     <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+   
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/themes/base/css")
+   
     <meta charset="utf-8">
     <link href='http://serve.fontsproject.com/css?family=Nehama:400'
           rel='stylesheet' type='text/css'>
-    @Styles.Render("~/Content/bootstrapcss")
-    @Styles.Render("~/Content/themes/base/css")
-
+    <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
 </head>
+
+
+
 <body>
     <script src="~/Scripts/notify.js"></script>
     <script>
@@ -42,13 +47,13 @@
    
 
     <div align="right" dir="rtl">
-        <h2 align="center" style="color:blue">טיפולים</h2>
+        <h5 align="center" style="color:blue">טיפולים</h5>
 
         @{String name = ViewBag.Name; }
-        <h4>
+        <h5>
             <b>טיפולים עבור: @name</b>
             <br />עבור הפניית @ViewBag.Ref 
-        </h4>
+        </h5>
 
 
         <div class="table-responsive">
