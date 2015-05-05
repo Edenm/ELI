@@ -7,7 +7,7 @@ namespace Eli.Models
 {
     public class SQLConnection
     {
-        private static string connectionString = "Data Source=Shahar-PC\\SQLEXPRESS;Initial Catalog=Eli;Integrated Security=True";
+        private static string connectionString = "Data Source=Eden-PC\\SQLEXPRESS1;Initial Catalog=Eli;Integrated Security=True";
 
         public static DataConnectionDataContext GetDataContextInstance()
         {

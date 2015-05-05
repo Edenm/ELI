@@ -15,13 +15,13 @@
   {
       id = "new";
       submit = "צור";
-      str = "הוספת הפנייה ל"+ ViewBag.Name  ;
+      str = "הוספת הפנייה ל" + ViewBag.Name;
   }
   else
   {
       id = @Model.ReferenceNumber.ToString();
       submit = "שמור";
-      str = "עריכת הפנייה: "+Model.ReasonReference +" עבור המטופל " +ViewBag.Name ;
+      str = "עריכת הפנייה: " + Model.ReasonReference +" עבור המטופל " + ViewBag.Name;
   }
 }
 

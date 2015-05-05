@@ -130,7 +130,14 @@ namespace Eli.Controllers
                     tblTherapist ther = (tblTherapist)Session["Therapist"];
                     fam.Reference = refe;
                     fam.Therapist = ther;
-                    db.addPatient(fam);
+                    try
+                    {
+                        db.addPatient(fam);
+                    }
+                    catch(Exception ex)
+                    {
+                        ViewBag.msg = ex.Message;
+                    }
                     return View();
             }
             return View("Step3",fam.Reference);

@@ -87,6 +87,14 @@ namespace Eli.Models
         /* The method add patient with all the details about him **/
         public void addPatient(Family family)
         {
+
+            var patient = from p in Patients
+                          where p.ID.Equals(family.Patient.ID)
+                          select p;
+
+            if (patient.Any())
+                throw new Exception("המטופל כבר קיים במערכת");
+
             Patients.InsertOnSubmit(family.Patient);
 
             family.Reference.ReferenceNumber = Reference.Count() + 1;

@@ -1,5 +1,7 @@
 ﻿@model Eli.Models.tblTherapist
 
+@using Eli.Models;
+
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
@@ -58,7 +60,7 @@ else
             @Html.HiddenFor(model => model.TherapistID)
          }
         }
-        <table>
+        <table >
             <tr>
                 <td>
                     <label float:right class="description" for="element_1">
@@ -177,9 +179,15 @@ else
             @Html.ValidationMessageFor(model => model.Passcode)
         </div>
         <br />
-        <p>
-            <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
-        </p>
+        @{tblTherapist ther = (tblTherapist)Session["Therapist"];
+        if (ther.TherapistID.Equals(Model.TherapistID))
+        {
+            <p>
+                <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
+            </p>
+        }
+
+        }
     </fieldset>
             }
 

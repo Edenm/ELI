@@ -1,7 +1,7 @@
 ﻿@model Eli.Models.tblParent
             @Html.HiddenFor(model => model.ParentID)
                         <tr>
-                            <td class="col-sm-0">
+                            <td class="col-sm-1">
                                 <div class="editor-field">
                                     <div style="text-align:right; float:right;">
                                         <select dir="rtl" class="element select col-sm-12" id="ParentGender" name="ParentGender" >
@@ -39,34 +39,8 @@
                                     @Html.ValidationMessageFor(model => model.ParentBirthDate)
                                 </div>
                             </td>
-                            <td class="col-sm-2">
+                            <td class="col-sm-1">
                                     @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress } })
-                            </td>
-                            <td class="col-sm-1">
-                                <div class="editor-field">
-                                    <div style="text-align:right; float:right;">
-                                        <select dir="rtl" class="element select col-sm-12" id="IsWorking" name="IsWorking" >
-                                            @if (@Model.IsWorking == "לא")
-                                            {
-                                                <option selected="selected" value="לא">לא</option>
-                                                <option value="כן">כן</option>
-                                            }
-                                            else
-                                            {
-                                                <option selected="selected" value="כן">כן</option>
-                                                <option value="לא">לא</option>
-                                            }
-
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="col-sm-1">
-                                <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.Explain, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.Explain)
-                                </div>
                             </td>
                             <td class="col-sm-1">
                                 <div class="editor-field">
@@ -80,13 +54,50 @@
                                     @Html.ValidationMessageFor(model => model.ParentMail)
                                 </div>
                             </td>
+                            @{string collapseId = Model.ParentID + "collapse";}
+                            <td class="col-sm-1">
+                                <button type="button" data-toggle="collapse" data-target="#@collapseId" aria-expanded="false" aria-controls="collapseExample">
+                                    <img src="~/Images/add.png" />
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="collapse" id="@collapseId" >
+                            <th style="text-align:center">עובד?</th>
+                            <td class="col-sm-1">
+                                <div class="editor-field">
+                                    <div style="text-align:right; float:right;">
+                                        <select dir="rtl" class="element select col-sm-12" id="IsWorking" name="IsWorking">
+                                            @if (@Model.IsWorking == "לא")
+                                            {
+                                                <option selected="selected" value="לא">לא</option>
+                                                <option value="כן">כן</option>
+                                            }
+                                            else
+                                            {
+                                                <option selected="selected" value="כן">כן</option>
+                                                <option value="לא">לא</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                            <th style="text-align:center">פירוט</th>
+                            <td class="col-sm-2">
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Explain, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.Explain)
+                                </div>
+                            </td>
+                            <th style="text-align:center">הערות</th>
                             <td class="col-sm-2">
                                 <div class="editor-field">
                                     @Html.TextBoxFor(model => model.Comment, new { @class = "col-sm-12" })
                                     @Html.ValidationMessageFor(model => model.Comment)
                                 </div>
                             </td>
-                        </tr>
+                        <tr>
+                </tr>
     <script>
 $("input[data-val-length-max]").each(function (index, element) {
 var length = parseInt($(this).attr("data-val-length-max"));

@@ -4,5 +4,12 @@
     <title>EndOfWizard</title>
 
     <div>
-        The End
+        <h3 align="right">
+            <br />
+           המטופל נוסף בהצלחה, כדי לחזור למסך המטופלים לחץ
+            @Html.ActionLink("כאן", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
+            <br /><br />
+            במידה וברצונך להוסיף מטופל נוסף לחץ
+            @Html.ActionLink("כאן", "Step1", "WizardFormPatient", new { n = "" }, new { @class = "link" })
+        </h3>
     </div>

@@ -38,12 +38,12 @@
     </h3>
 
     <div align="right" dir="rtl">
-        <h5 align="center" style="color:blue">הפניות וטיפולים</h5>
+        <h5 align="center" style="color:blue">הפניות </h5>
 
         @{String name =ViewBag.Name; }
         <h5><b>  הפניות עבור: @name</b></h5>
 
-        <h4 align="right">:חיפוש</h4>
+        <h4 align="right">חיפוש:</h4>
         <div class="table-responsive">
             <table id="reference" class="display table table-bordered" width="100%">
                 <thead>
@@ -75,7 +75,7 @@
                                 <td> @item.AbuseType </td>
                                 <td> @item.ReferenceSource </td>
                                 <td> @item.StartDateReference.Value.ToShortDateString() </td>
-                                <td>
+                                <td style="text-align: center;">
                                     <a class="btn " data-toggle="modal" data-target="#@item.ReferenceNumber">
                                         <img src="~/Images/edit.png" />
                                     </a>
