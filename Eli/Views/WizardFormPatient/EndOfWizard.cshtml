@@ -1,15 +1,19 @@
-﻿
+﻿<meta charset="utf-8">
+<link href='http://serve.fontsproject.com/css?family=Nehama:400'
+      rel='stylesheet' type='text/css'>
+<link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+<meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width" />
     <title>EndOfWizard</title>
 
     <div>
-        <h3 align="right">
+        <h5 align="right" style="color:blue">
             <br />
-           המטופל נוסף בהצלחה, כדי לחזור למסך המטופלים לחץ
+            המטופל נוסף בהצלחה, כדי לחזור למסך המטופלים לחץ
             @Html.ActionLink("כאן", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
             <br /><br />
             במידה וברצונך להוסיף מטופל נוסף לחץ
             @Html.ActionLink("כאן", "Step1", "WizardFormPatient", new { n = "" }, new { @class = "link" })
-        </h3>
+        </h5>
     </div>
