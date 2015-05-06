@@ -78,10 +78,12 @@
                     {
                         if (@item.treatment.TreatmentNumber!=0)
                         {
+                            var hour = @item.treatment.TreatmentStartTime.Value.ToString();
+                            var date = @item.treatment.TreatmentDate.Value.ToString();
                             <tr>
                                 <td> @count </td>
-                                <td> @item.treatment.TreatmentDate.Value.ToShortDateString() </td>
-                                <td> @item.treatment.TreatmentStartTime.Value</td>
+                                <td> @date.Substring(0,10) </td>
+                                <td> @hour.Substring(0,5)</td>
                                 <td> @item.treatment.TreatmentPlace </td>
                                 <td> @item.treatment.TreatmentGoal</td>
                                 <td> @item.treatment.TreatmentSubject </td>

@@ -67,6 +67,7 @@
                     {
                         if (@item.ReferenceNumber!=0)
                         {
+                            var date = @item.StartDateReference.Value.ToString();
                             <tr>
                                 <td> @count</td>
                                 <td> @item.ReasonReference </td>
@@ -74,7 +75,7 @@
                                 <td> @item.OtherStatus </td>
                                 <td> @item.AbuseType </td>
                                 <td> @item.ReferenceSource </td>
-                                <td> @item.StartDateReference.Value.ToShortDateString() </td>
+                                <td> @date.Substring(0,10) </td>
                                 <td style="text-align: center;">
                                     <a class="btn " data-toggle="modal" data-target="#@item.ReferenceNumber">
                                         <img src="~/Images/edit.png" />
