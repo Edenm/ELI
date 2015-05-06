@@ -330,6 +330,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\Mail-32.png" />
     <Content Include="Images\Mail-icon.png" />
+    <Content Include="Images\Mail_48x48.png" />
     <Content Include="Images\minor.png" />
     <Content Include="Images\References-32.png" />
     <Content Include="Images\treat.png" />
