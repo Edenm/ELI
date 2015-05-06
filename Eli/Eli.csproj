@@ -326,6 +326,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\DataTable\Sorting icons.psd" />
     <Content Include="Images\Information_32x32.png" />
+    <Content Include="Images\logo-big.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Mail-32.png" />
     <Content Include="Images\Mail-icon.png" />

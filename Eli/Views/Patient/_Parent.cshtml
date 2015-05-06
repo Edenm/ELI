@@ -35,36 +35,6 @@
                             </td>
                             <td class="col-sm-1">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.ParentBirthDate, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.ParentBirthDate)
-                                </div>
-                            </td>
-                            <td class="col-sm-1">
-                                    @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress } })
-                            </td>
-                            <td class="col-sm-1">
-                                <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-12", StringLength = 10 })
-                                    @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
-                                </div>
-                            </td>
-                            <td class="col-sm-1">
-                                <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.ParentMail, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.ParentMail)
-                                </div>
-                            </td>
-                            @{string collapseId = Model.ParentID + "collapse";}
-                            <td class="col-sm-1">
-                                <button type="button" data-toggle="collapse" data-target="#@collapseId" aria-expanded="false" aria-controls="collapseExample">
-                                    <img src="~/Images/add.png" />
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="collapse" id="@collapseId" >
-                            <th style="text-align:center">עובד?</th>
-                            <td class="col-sm-1">
-                                <div class="editor-field">
                                     <div style="text-align:right; float:right;">
                                         <select dir="rtl" class="element select col-sm-12" id="IsWorking" name="IsWorking">
                                             @if (@Model.IsWorking == "לא")
@@ -82,25 +52,56 @@
                                     </div>
                                 </div>
                             </td>
-                            <th style="text-align:center">פירוט</th>
-                            <td class="col-sm-2">
+                            <td class="col-sm-1">
                                 <div class="editor-field">
                                     @Html.TextBoxFor(model => model.Explain, new { @class = "col-sm-12" })
                                     @Html.ValidationMessageFor(model => model.Explain)
                                 </div>
                             </td>
-                            <th style="text-align:center">הערות</th>
-                            <td class="col-sm-2">
+
+                            <td class="col-sm-1">
                                 <div class="editor-field">
                                     @Html.TextBoxFor(model => model.Comment, new { @class = "col-sm-12" })
                                     @Html.ValidationMessageFor(model => model.Comment)
                                 </div>
                             </td>
-                        <tr>
-                </tr>
-    <script>
-$("input[data-val-length-max]").each(function (index, element) {
-var length = parseInt($(this).attr("data-val-length-max"));
-$(this).prop("maxlength", length);
-});
-</script>
+                            
+                            @{string collapseId = Model.ParentID + "collapse";}
+                            <td class="col-sm-1">
+                                <button type="button" data-toggle="collapse" data-target="#@collapseId" aria-expanded="false" aria-controls="collapseExample">
+                                    <img src="~/Images/add.png" />
+                                </button>
+                            </td>
+                        </tr>
+                        <tbody class="collapse" id="@collapseId" >
+                            <tr>
+                                <th style="text-align:center">תאריך לידה</th>
+                                <th style="text-align:center">כתובת</th>
+                                <th style="text-align:center">טלפון</th>
+                                <th style="text-align:center">מייל</th>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1">
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ParentBirthDate, new { @class = "col-sm-12" })
+                                        @Html.ValidationMessageFor(model => model.ParentBirthDate)
+                                    </div>
+                                </td>
+                                <td class="col-sm-1">
+                                    @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress }, { "clas", "col-sm-12" } })
+                                </td>
+                                <td class="col-sm-1">
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-12", StringLength = 10 })
+                                        @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
+                                    </div>
+                                </td>
+                                <td class="col-sm-1">
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ParentMail, new { @class = "col-sm-12" })
+                                        @Html.ValidationMessageFor(model => model.ParentMail)
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                        </tbody>

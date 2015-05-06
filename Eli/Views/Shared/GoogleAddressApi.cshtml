@@ -76,12 +76,12 @@ function geolocate() {
   }
 }
 // [END region_geolocation]
-
-    </script>
+//col-sm-offset-12
+</script>
 
     <div id=" locationfield"  class="float-right">
         <input id="autocomplete" name="@ViewBag.fieldName" dir="rtl" placeholder=" הכנס כתובת מלאה"
-               onfocus="geolocate()" class="col-sm-offset-12" type="text" required value="@ViewBag.value" />
+               onfocus="geolocate()" class="@ViewBag.clas" type="text" required value="@ViewBag.value" />
     </div>
 
 <script>initialize()</script>

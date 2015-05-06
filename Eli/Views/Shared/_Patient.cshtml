@@ -106,7 +106,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "PatientAddress" }, { "value", Model.PatientAddress } })
+                                    @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "PatientAddress" }, { "value", Model.PatientAddress }, { "clas", "col-sm-offset-12" } })
                                     <br />
                                     @Html.ValidationMessageFor(model => model.PatientAddress, "שדה חובה")
                                 </td>
