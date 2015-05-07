@@ -10,13 +10,16 @@
       rel='stylesheet' type='text/css'>
 
 @{string id;
+ 
 string submit;
 string str;
+string str1;
 if (@Model.TherapistID == null)
 {
     id = "new";
     submit = "צור";
     str = "הוספת מטפל חדש";
+    str1 ="3" + @Model.TherapistID;
 }
 else
 {
@@ -24,6 +27,7 @@ else
     submit = "שמור";
     string strTitle = Model.TherapistFirstName + " " + Model.TherapistSurName;
     str = "עריכת מטפל: " + @strTitle;
+    str1 = "3" + @Model.TherapistID;
 }
 }
 
@@ -178,12 +182,18 @@ else
             @Html.EditorFor(model => model.Passcode)
             @Html.ValidationMessageFor(model => model.Passcode)
         </div>
-        <br />
+
+         <label float:right class="description" for="element_1">
+            אימות סיסמא
+        </label>
+       
+       
+       
         @{tblTherapist ther = (tblTherapist)Session["Therapist"];
         if (ther.TherapistID.Equals(Model.TherapistID))
         {
             <p>
-                <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
+                <input type="submit" class="btn btn-primary btn-lg" onsubmit="return runSearch();" name="submit" value="@submit" />
             </p>
         }
 
@@ -202,4 +212,6 @@ $("input[data-val-length-max]").each(function (index, element) {
 var length = parseInt($(this).attr("data-val-length-max"));
 $(this).prop("maxlength", length);
 });
-    </script>
+ 
+</script>
+
