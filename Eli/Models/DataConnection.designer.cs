@@ -21,6 +21,8 @@ namespace Eli.Models
 	using System.ComponentModel;
 	using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+    using Foolproof;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
@@ -1504,7 +1506,9 @@ namespace Eli.Models
 
 
         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
+        
+        
 
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="VarChar(20)")]
 		public string SurName
@@ -1951,7 +1955,6 @@ namespace Eli.Models
         [Required(ErrorMessage = "שדה חובה")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDateReference", DbType="Date")]
 		public System.Nullable<System.DateTime> StartDateReference
 		{
@@ -1974,7 +1977,7 @@ namespace Eli.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-
+      
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDateReference", DbType="Date")]
 		public System.Nullable<System.DateTime> EndDateReference
 		{

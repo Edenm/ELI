@@ -115,13 +115,14 @@
         MailModel m = new MailModel();
        
         m.id = item.Patient.ID;
-        m.redirect = "therapist";
+        m.redirect = "patient";
         m.patientId = item.Patient.ID;
         @Html.Partial("_MailToPatient", m);
 
     }
 
     @{MailModel mail = new MailModel();
+      mail.redirect = "patient";
       @Html.Partial("_MailToAllParents", mail)
     }
     
