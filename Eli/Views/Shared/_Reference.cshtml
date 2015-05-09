@@ -1,12 +1,19 @@
 ﻿@model Eli.Models.tblReference
 @using Eli.Models
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/Scripts/mvcfoolproof.unobtrusive.min.js")
+
 
 @{  
   EliManagerDB db = new EliManagerDB();
+  DateTime start = DateTime.Now;
+
+  
+  if(Model.StartDateReference==null)
+  {
+      Model.StartDateReference = start;
+  }
+ 
+      
 
 }
 
@@ -121,7 +128,7 @@
                 </label>
             </td>
             <td style="padding-right:2%;">
-                @{ if (Model.StartDateReference != null)
+                @{ if (Model.ReasonReference != null)
                  {
                     <label float:right class="description" for="element_1">
                         תאריך סיום
@@ -138,7 +145,7 @@
                </div>
            </td>
            <td style="padding-right:2%;">
-               @{ if (Model.StartDateReference != null)
+               @{ if (Model.ReasonReference != null)
                 {
                    <div float:right; dir="rtl" class="editor-field">
                        @Html.EditorFor(model => model.EndDateReference)
