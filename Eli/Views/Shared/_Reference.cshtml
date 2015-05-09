@@ -1,6 +1,10 @@
 ﻿@model Eli.Models.tblReference
 @using Eli.Models
 
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/Scripts/mvcfoolproof.unobtrusive.min.js")
+
 @{  
   EliManagerDB db = new EliManagerDB();
 
@@ -146,7 +150,9 @@
                    @Html.HiddenFor(model => model.EndDateReference)
                 }
                }
+              
            </td>
        </tr>
 
     </table>
+

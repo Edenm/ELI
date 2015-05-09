@@ -1,7 +1,27 @@
 ﻿@model Eli.Models.MailModel
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+<meta charset="utf-8">
+<link href='http://serve.fontsproject.com/css?family=Nehama:400'
+      rel='stylesheet' type='text/css'>
 @{string id = "2" + @Model.id;}
+@{tblTherapist ther = (tblTherapist)Session["Therapist"];
+
+String name = ther.TherapistFirstName + " " + ther.TherapistSurName;
+Model.From = name;
+}
+@{
+
+
+    string str = "שליחת הודעה להורי " + Model.name;
+   
+    
+        
+    }
 
 <div id="myModal">
     <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -18,7 +38,7 @@
                         </legend>
                         @using (Html.BeginForm("ParentsMail", "General"))
                         {
-
+                            <h5 align="right"><u><b>@str </b></u></h5>
                             <label float:right class="description" for="element_1">
                                 שם מוען
                             </label>

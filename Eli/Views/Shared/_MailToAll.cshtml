@@ -4,12 +4,37 @@
 @using System.Collections.Generic;
 
 
-
-
-
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <link href="~/Content/ModalSize.css" rel="stylesheet" />
+<link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+<meta charset="utf-8">
+<link href='http://serve.fontsproject.com/css?family=Nehama:400'
+      rel='stylesheet' type='text/css'>
+@{tblTherapist ther = (tblTherapist)Session["Therapist"];
+
+  String name = ther.TherapistFirstName + " " + ther.TherapistSurName;
+  Model.From = name;
+  }
+
+
+@{
+    
+    
+    string str="";
+    if (@Model.redirect == "patient")
+    {
+        str = "הודעת תפוצה לכל ההורים";
+    }
+    if (@Model.redirect == "finance")
+    {
+        str = "הודעת תפוצה לכל הגורמים מממנים";
+    }
+    if (@Model.redirect == "therapist")
+    {
+        str = "הודעת תפוצה לכל המטפלים";
+    }
+    }
 <div id="myModal">
     <div class="modal fade" id="sendtoall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -26,6 +51,7 @@
 
                         @using (Html.BeginForm("IndexAll", "General"))
                         {
+                            <h5 align="right"><u><b>@str </b></u></h5>
 
                             <label float:right class="description" for="element_1">
                                 שם מוען

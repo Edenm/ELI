@@ -183,14 +183,12 @@ else
             @Html.ValidationMessageFor(model => model.Passcode)
         </div>
 
-         <label float:right class="description" for="element_1">
-            אימות סיסמא
-        </label>
+        
        
        
        
         @{tblTherapist ther = (tblTherapist)Session["Therapist"];
-        if (ther.TherapistID.Equals(Model.TherapistID))
+          if (ther.TherapistID.Equals(Model.TherapistID) || @Model.TherapistID == null)
         {
             <p>
                 <input type="submit" class="btn btn-primary btn-lg" onsubmit="return runSearch();" name="submit" value="@submit" />

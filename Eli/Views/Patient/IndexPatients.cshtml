@@ -33,7 +33,7 @@
 
 
 
-</html>
+
 <body >
     <b>הודעת תפוצה להורים</b>
     <br />
@@ -54,7 +54,7 @@
                     <th style="text-align: center;">פרטים נוספים</th>
                     <th style="text-align: center;">משפחה</th>
                     <th style="text-align: center;">הפניות</th>
-                    <th style="text-align: center;">שליחה להורה</th>
+                    <th style="text-align: center;">שליחה להורים</th>
                 </tr>
             </thead>
             <tbody>
@@ -117,13 +117,14 @@
         m.id = item.Patient.ID;
         m.redirect = "patient";
         m.patientId = item.Patient.ID;
+        m.name = item.Patient.FirstName + " " + item.Patient.SurName;
         @Html.Partial("_MailToPatient", m);
 
     }
 
     @{MailModel mail = new MailModel();
       mail.redirect = "patient";
-      @Html.Partial("_MailToAllParents", mail)
+      @Html.Partial("_MailToAll", mail)
     }
     
     <script>
@@ -134,7 +135,9 @@
     </script>
 
 </body>
+
 </html>
+
 
 
 

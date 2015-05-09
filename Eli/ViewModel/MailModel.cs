@@ -26,5 +26,6 @@ namespace Eli.Models
 
          public string patientId { get; set; }
          public string redirect { get; set; }
+         public string name { get; set; }
     }
 }

@@ -103,12 +103,13 @@
             m.To = item.FinancingFactorContactMail;
             m.id = ""+item.FinancingFactorNumber;
             m.redirect = "finance";
+            m.name = item.FinancingFactorName;
             @Html.Partial("_mail", m);
         }
         @{MailModel mail=new MailModel();
           
           mail.redirect="finance";
-          @Html.Partial("_MailToAllFinance", mail)
+          @Html.Partial("_MailToAll", mail)
           }
        
 

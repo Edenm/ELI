@@ -23,6 +23,7 @@ namespace Eli.Models
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using Foolproof;
+    using Eli.ViewModel;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
@@ -1951,7 +1952,6 @@ namespace Eli.Models
 			}
 		}
 
-
         [Required(ErrorMessage = "שדה חובה")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -1976,8 +1976,9 @@ namespace Eli.Models
 		}
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-      
+       [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+       // [DateGreaterThanAttribute("StartDateReference")]
+       [GreaterThan("StartDateReference")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDateReference", DbType="Date")]
 		public System.Nullable<System.DateTime> EndDateReference
 		{

@@ -1,7 +1,32 @@
 ﻿@model Eli.Models.MailModel
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+<meta charset="utf-8">
+<link href='http://serve.fontsproject.com/css?family=Nehama:400'
+      rel='stylesheet' type='text/css'>
+@{tblTherapist ther = (tblTherapist)Session["Therapist"];
 
+String name = ther.TherapistFirstName + " " + ther.TherapistSurName;
+Model.From = name;
+}
+@{
+
+
+    string str = "";
+  
+    if (@Model.redirect == "finance")
+    {
+        str = "שליחת הודעה לגורם מממן "+Model.name;
+    }
+    if (@Model.redirect == "therapist")
+    {
+        str = "שליחת הודעה למטפל " +Model.name ;
+    }
+}
 @{string id = "1" + @Model.id;}
 
 <div id="myModal">
@@ -19,7 +44,7 @@
                         </legend>
                         @using (Html.BeginForm("Index", "General"))
                         {
-
+                            <h5 align="right"><u><b>@str </b></u></h5>
                             <label float:right class="description" for="element_1">
                                 שם מוען
                             </label>
