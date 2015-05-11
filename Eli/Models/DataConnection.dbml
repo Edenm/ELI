@@ -102,21 +102,6 @@
       <Association Name="tblReference_tblRefererencePatient" Member="tblReference" ThisKey="ReferenceNumber" OtherKey="ReferenceNumber" Type="tblReference" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblTherapist" Member="tblTherapists">
-    <Type Name="tblTherapist">
-      <Column Name="TherapistID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TherapistFirstName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="TherapistSurName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="TherapistBirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="TherapistGender" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
-      <Column Name="TherapistAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="TherapistPhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="TherapistMail" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="UserName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Passcode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Association Name="tblTherapist_tblReferenceTherapist" Member="tblReferenceTherapists" ThisKey="TherapistID" OtherKey="TherapistID" Type="tblReferenceTherapist" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblTreatment" Member="tblTreatments">
     <Type Name="tblTreatment">
       <Column Name="TreatmentNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -135,6 +120,22 @@
       <Column Name="TherapistID" Type="System.String" DbType="Char(9)" CanBeNull="true" />
       <Association Name="tblFinancingFactor_tblTreatment" Member="tblFinancingFactor" ThisKey="FinancingFactorNumber" OtherKey="FinancingFactorNumber" Type="tblFinancingFactor" IsForeignKey="true" />
       <Association Name="tblReferenceTherapist_tblTreatment" Member="tblReferenceTherapist" ThisKey="ReferenceNumber,TherapistID" OtherKey="ReferenceNumber,TherapistID" Type="tblReferenceTherapist" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTherapist" Member="tblTherapists">
+    <Type Name="tblTherapist">
+      <Column Name="TherapistID" Type="System.String" DbType="Char(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TherapistFirstName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TherapistSurName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TherapistBirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TherapistGender" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="TherapistAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TherapistPhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="TherapistMail" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Passcode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PasscodeConfirm" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="tblTherapist_tblReferenceTherapist" Member="tblReferenceTherapists" ThisKey="TherapistID" OtherKey="TherapistID" Type="tblReferenceTherapist" />
     </Type>
   </Table>
 </Database>

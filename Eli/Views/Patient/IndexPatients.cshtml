@@ -118,6 +118,10 @@
         m.redirect = "patient";
         m.patientId = item.Patient.ID;
         m.name = item.Patient.FirstName + " " + item.Patient.SurName;
+        if (item.Parents.Count == 0) 
+        {
+            m.patientId = null; 
+        }
         @Html.Partial("_MailToPatient", m);
 
     }
