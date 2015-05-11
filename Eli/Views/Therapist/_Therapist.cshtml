@@ -179,8 +179,16 @@ else
             סיסמא
         </label>
         <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.Passcode)
+            @Html.PasswordFor(model => model.Passcode)
             @Html.ValidationMessageFor(model => model.Passcode)
+        </div>
+
+        <label float:right class="description" for="element_1">
+            אימות סיסמא
+        </label>
+        <div float:right; dir="rtl" class="editor-field">
+            @Html.PasswordFor(model => model.PasscodeConfirm)
+            @Html.ValidationMessageFor(model => model.PasscodeConfirm)
         </div>
 
         
