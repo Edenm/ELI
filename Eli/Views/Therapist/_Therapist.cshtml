@@ -168,43 +168,56 @@ else
             @Html.EditorFor(model => model.TherapistMail)
             @Html.ValidationMessageFor(model => model.TherapistMail)
         </div>
-        <label float:right class="description" for="element_1">
-            שם משתמש
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.UserName)
-            @Html.ValidationMessageFor(model => model.UserName)
-        </div>
-        <label float:right class="description" for="element_1">
-            סיסמא
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.PasswordFor(model => model.Passcode)
-            @Html.ValidationMessageFor(model => model.Passcode)
-        </div>
-
-        <label float:right class="description" for="element_1">
-            אימות סיסמא
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.PasswordFor(model => model.PasscodeConfirm)
-            @Html.ValidationMessageFor(model => model.PasscodeConfirm)
-        </div>
-
         
-       
-       
-       
-        @{tblTherapist ther = (tblTherapist)Session["Therapist"];
-          if (ther.TherapistID.Equals(Model.TherapistID) || @Model.TherapistID == null)
-        {
-            <p>
-                <input type="submit" class="btn btn-primary btn-lg" onsubmit="return runSearch();" name="submit" value="@submit" />
-            </p>
-        }
 
-        }
-    </fieldset>
+            @{tblTherapist ther = (tblTherapist)Session["Therapist"];
+            if (ther.TherapistID.Equals(Model.TherapistID) || @Model.TherapistID == null)
+            {
+                <label float:right class="description" for="element_1">
+                    שם משתמש
+                </label>
+                <div float:right; dir="rtl" class="editor-field">
+                    @Html.EditorFor(model => model.UserName)
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <label float:right class="description" for="element_1">
+                                סיסמא
+                            </label>
+                        </td>
+                        <td style="padding-right:2%;">
+                            <label float:right class="description" for="element_1">
+                                אימות סיסמא
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.Passcode)
+                                <br>
+                                @Html.ValidationMessageFor(model => model.Passcode)
+                            </div>
+                        </td>
+                        <td style="padding-right:2%;">
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.PasscodeConfirm)
+                                <br>
+                                @Html.ValidationMessageFor(model => model.PasscodeConfirm)
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <p>
+                    <input type="submit" class="btn btn-primary btn-lg" onsubmit="return runSearch();" name="submit" value="@submit" />
+                </p>
+            }
+
+            }
+            </fieldset>
             }
 
         </div>
@@ -214,10 +227,9 @@ else
 </div>
 
 <script>
-$("input[data-val-length-max]").each(function (index, element) {
-var length = parseInt($(this).attr("data-val-length-max"));
-$(this).prop("maxlength", length);
-});
- 
+    $("input[data-val-length-max]").each(function (index, element) {
+    var length = parseInt($(this).attr("data-val-length-max"));
+    $(this).prop("maxlength", length);
+    });
 </script>
 

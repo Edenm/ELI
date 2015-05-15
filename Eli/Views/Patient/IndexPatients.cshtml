@@ -47,8 +47,8 @@
                 <tr>
                     <th style="text-align: center;">תעודת זהות</th>
                     <th style="text-align: center;">שם</th>
+                    <th style="text-align: center;">תאריך לידה</th>
                     <th style="text-align: center;">טלפון</th>
-                    <th style="text-align: center;">פרטים נוספים</th>
                     <th style="text-align: center;">משפחה</th>
                     <th style="text-align: center;">הפניות</th>
                     <th style="text-align: center;">שליחה להורים</th>
@@ -59,20 +59,22 @@
                 @foreach (var item in Model)
                 {
                     <tr align="center">
-                        <td> @item.Patient.ID </td>
-                        @{string name = @item.Patient.FirstName + " " + @item.Patient.SurName;}
-                        <td> @name </td>
-                        <td> @item.Patient.PhoneNumber </td>
                         <td>
-                            <a data-toggle="modal" data-target="#@item.Patient.ID">
-                                <img src="~/Images/Information_32x32.png" />
+                            <a data-toggle="modal" href="#@item.Patient.ID">
+                                <div style="color:blue">
+                                    <u> @item.Patient.ID</u>
+                                </div>
                             </a>
                         </td>
+                        @{string name = @item.Patient.FirstName + " " + @item.Patient.SurName;}
+                        <td> @name </td>
+                        <td> @item.Patient.BirthDate </td>
+                        <td> @item.Patient.PhoneNumber </td>
                         <td>
                             @{
                                  string id = "1" + @item.Patient.ID;
                             }
-                            <a data-toggle="modal" data-target="#@id">
+                            <a data-toggle="modal" href="#@id">
                                 <img src="~/Images/Family-32.png" />
                             </a>
                         </td>
@@ -86,7 +88,7 @@
                             @{
                                 string id1 = "2" + @item.Patient.ID;
                             }
-                            <a src="~/Images/info.png" data-toggle="modal" data-target="#@id1">
+                            <a src="~/Images/info.png" href="modal" data-target="#@id1">
                                 <img src="~/Images/Mail-32.png" />
                             </a>
                         </td>
@@ -95,10 +97,10 @@
                                 string idAddParent = "3" + @item.Patient.ID;
                                 string idAddSibling = "4" + @item.Patient.ID;
                             }
-                            <a data-toggle="modal" data-target="#@idAddParent">
+                            <a data-toggle="modal" href="#@idAddParent">
                                 <img src="~/Images/parent.png" />
                             </a>
-                            <a data-toggle="modal" data-target="#@idAddSibling">
+                            <a data-toggle="modal" href="#@idAddSibling">
                                 <img src="~/Images/sibling.png" />
                             </a>
                         </td>
