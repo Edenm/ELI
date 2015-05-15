@@ -26,7 +26,7 @@ namespace Eli.Controllers
 
         /* The Method displays all the patients in the system-this is the main form of patients  **/
         [HttpGet]
-        public ActionResult IndexPatients()
+        public ActionResult IndexPatients(string operate,string type)
         {
             EliManagerDB db = new EliManagerDB();
 
@@ -38,6 +38,9 @@ namespace Eli.Controllers
             foreach (tblPatient f in pat){
                 fams.Add(new Family(f.ID));
             }
+
+            ViewBag.operate = operate;
+            ViewBag.type = type;
 
             return View(fams);
         }
@@ -72,8 +75,45 @@ namespace Eli.Controllers
             return RedirectToAction("IndexPatients", new { id = pid });
         }
 
+        
+        [HttpPost]
+        public ActionResult _AddParentToPatient(tblParent tpar, string pid)
+        {
+            EliManagerDB db = new EliManagerDB();
+            string type = "success", operate;
+            try {
+                db.addParentToPatient(tpar, pid);
+                operate = "ההורה התווסף בהצלחה";
+            }
+            catch (Exception e)
+            {
+                operate = e.Message;
+                type = "danger";
+            }
+            return RedirectToAction("IndexPatients", new { id = pid, operate = operate, type = type });
+        }
 
+        [HttpPost]
+        public ActionResult _AddBrotherSisterToPatient(tblBrotherSister tbs, string pid)
+        {
+            EliManagerDB db = new EliManagerDB();
+            string type = "success", operate;
+            try {
+                db.addBrotherSisterToPatient(tbs, pid);
+                operate = "האח התווסף בהצלחה";
+            }
+            catch (Exception e)
+            {
+                operate = e.Message;
+                type = "danger";
+            }
+
+            return RedirectToAction("IndexPatients", new { id = pid,operate = operate, type = type });
+        }
        
+
+
+
             public ActionResult childs()
             {
                 EliManagerDB db = new EliManagerDB();

@@ -8,7 +8,7 @@
         <td class="col-sm-1">
             <div class="editor-field">
                 <div style="text-align:right; float:right;">
-                    <select dir="rtl" class="element select col-sm-12" id="BrotherSisterGender" name="BrotherSisterGender" style="width: 300px; height: 30px">
+                    <select dir="rtl" class="element select col-sm-12" id="BrotherSisterGender" name="BrotherSisterGender">
                         @if (@Model.BrotherSisterGender == "נקבה")
                         {
                             <option selected="selected" value="נקבה">נקבה</option>
@@ -39,7 +39,7 @@
             </div>
         </td>
 
-        <td class="col-sm-2">
+        <td class="col-sm-1">
             <div class="editor-field">
                 @Html.EditorFor(model => model.BrotherSisterBirthDate, new { @class = "col-sm-12" })
                 @Html.ValidationMessageFor(model => model.BrotherSisterBirthDate)

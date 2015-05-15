@@ -338,7 +338,9 @@
     <Content Include="Images\Mail-icon.png" />
     <Content Include="Images\Mail_48x48.png" />
     <Content Include="Images\minor.png" />
+    <Content Include="Images\parent.png" />
     <Content Include="Images\References-32.png" />
+    <Content Include="Images\sibling.png" />
     <Content Include="Images\treat.png" />
     <Content Include="Images\User.png" />
     <Content Include="Models\DataConnection.dbml">

@@ -147,6 +147,42 @@ namespace Eli.Models
             db.SubmitChanges();
         }
 
+        /* The method add parent to exist patient **/
+        public void addParentToPatient(tblParent tp, string patId)
+        {
+            checkParent(tp);
+
+            var tblParentPatient = new tblParentPatient()
+            {
+                ParentID = tp.ParentID,
+                PatientID = patId
+            };
+
+            Parent.InsertOnSubmit(tp);
+            ParentPatient.InsertOnSubmit(tblParentPatient);
+
+            db.SubmitChanges();
+
+        }
+
+        /* The method add parent to exist patient **/
+        public void addBrotherSisterToPatient(tblBrotherSister tbs, string patId)
+        {
+            checkBrotherSister(tbs);
+
+            var tblBrotherSisterPatient = new tblBrotherSisterPatient()
+            {
+                BrotherSisterID = tbs.BrotherSisterID,
+                PatientID = patId
+            };
+
+            BrotherSister.InsertOnSubmit(tbs);
+            BrotherSisterPatient.InsertOnSubmit(tblBrotherSisterPatient);
+
+            db.SubmitChanges();
+
+        }
+
         /* Check if patient is exist**/
         public void checkPatient(tblPatient pat)
         {
@@ -155,6 +191,26 @@ namespace Eli.Models
                           select p;
             if (patient.Any())
                 throw new Exception("המטופל שהזנת כבר קיים במערכת");
+        }
+
+        /* Check if BrotherSister is exist**/
+        public void checkParent(tblParent tp)
+        {
+            var patParent = from p in Parent
+                            where p.ParentID.Equals(tp.ParentID)
+                            select p;
+            if (patParent.Any())
+                throw new Exception("הורה זה כבר קיים במערכת");
+        }
+
+        /* Check if BrotherSister is exist**/
+        public void checkBrotherSister(tblBrotherSister tBS)
+        {
+            var patBS = from p in BrotherSister
+                        where p.BrotherSisterID.Equals(tBS.BrotherSisterID)
+                        select p;
+            if (patBS.Any())
+                throw new Exception("אח זה כבר קיים במערכת");
         }
 
         /* Add Therapist to data base **/

@@ -38,7 +38,8 @@ namespace Eli.Controllers
                     return RedirectToAction("IndexPatients", "Patient");
                 }
             }
-
+            ViewBag.type = "danger";
+            ViewBag.operate = "שם המשתמש או סיסמה אינם תקינים";
             return View(new User());
         }
 

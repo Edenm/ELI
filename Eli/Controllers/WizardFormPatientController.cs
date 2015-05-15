@@ -39,8 +39,6 @@ namespace Eli.Controllers
                 {
                     ViewBag.operate = e.Message;
                     ViewBag.type = "danger";
-                    pat.ID = null;
-                    return View("Step1", pat);
                 }
             }
             pat.ID = null;
@@ -50,7 +48,7 @@ namespace Eli.Controllers
         public ActionResult Step3(FormCollection famlyForm, string prevBtn, string nextBtn, string add, string remove)
         {
             Family fam = GetFamily();
-
+            EliManagerDB db = new EliManagerDB();
             
 
 //--------------------------------Add/Remove Parent-------------------------------------------------------
@@ -59,29 +57,38 @@ namespace Eli.Controllers
                 tblParent parent = new tblParent();
                 parent.ParentID = famlyForm.GetValues("ParentID")[0];
                 bool flag = true;
-                foreach (tblParent p in fam.Parents)
+                try
                 {
-                    if (p.ParentID.Equals(parent.ParentID))
+                    db.checkParent(parent);
+                
+                    foreach (tblParent p in fam.Parents)
                     {
-                        flag = false;
-                        break;
+                        if (p.ParentID.Equals(parent.ParentID))
+                        {
+                            flag = false;
+                            break;
+                        }
                     }
-                }
-                if (flag)
-                {
-                    parent.ParentFirstName = famlyForm.GetValues("ParentFirstName")[0];
-                    parent.ParentSurName = famlyForm.GetValues("ParentSurName")[0];
-                    parent.ParentAddress = famlyForm.GetValues("ParentAddress")[0];
-                    parent.ParentPhoneNumber = famlyForm.GetValues("ParentPhoneNumber")[0];
-                    parent.Explain = famlyForm.GetValues("Explain")[0];
-                    parent.IsWorking = famlyForm.GetValues("IsWorking")[0];
-                    parent.ParentMail = famlyForm.GetValues("ParentMail")[0];
-                    parent.ParentGender = famlyForm.GetValues("ParentGender")[0];
-                    parent.ParentBirthDate =Convert.ToDateTime(famlyForm.GetValues("ParentBirthDate")[0]);
-                    parent.Comment = famlyForm.GetValues("Comment")[0];
+                    if (flag)
+                    {
+                        parent.ParentFirstName = famlyForm.GetValues("ParentFirstName")[0];
+                        parent.ParentSurName = famlyForm.GetValues("ParentSurName")[0];
+                        parent.ParentAddress = famlyForm.GetValues("ParentAddress")[0];
+                        parent.ParentPhoneNumber = famlyForm.GetValues("ParentPhoneNumber")[0];
+                        parent.Explain = famlyForm.GetValues("Explain")[0];
+                        parent.IsWorking = famlyForm.GetValues("IsWorking")[0];
+                        parent.ParentMail = famlyForm.GetValues("ParentMail")[0];
+                        parent.ParentGender = famlyForm.GetValues("ParentGender")[0];
+                        parent.ParentBirthDate =Convert.ToDateTime(famlyForm.GetValues("ParentBirthDate")[0]);
+                        parent.Comment = famlyForm.GetValues("Comment")[0];
 
-                    fam.Parents.Add(parent);
-                    countP++;
+                        fam.Parents.Add(parent);
+                        countP++;
+                    }
+                }catch (Exception e)
+                {
+                    ViewBag.operate = e.Message;
+                    ViewBag.type = "danger";
                 }
                 return View("Step2",fam);
             }
@@ -100,23 +107,32 @@ namespace Eli.Controllers
                 tblBrotherSister broSis = new tblBrotherSister();
                 broSis.BrotherSisterID = famlyForm.GetValues("BrotherSisterID")[0];
                 bool flag = true;
-                foreach (tblBrotherSister p in fam.BrotherSisters)
+                try
                 {
-                    if (p.BrotherSisterID.Equals(broSis.BrotherSisterID))
+                    db.checkBrotherSister(broSis);
+
+                    foreach (tblBrotherSister p in fam.BrotherSisters)
                     {
-                        flag = false;
-                        break;
+                        if (p.BrotherSisterID.Equals(broSis.BrotherSisterID))
+                        {
+                            flag = false;
+                            break;
+                        }
                     }
-                }
-                if (flag)
+                    if (flag)
+                    {
+                        broSis.BrotherSisterFirstName = famlyForm.GetValues("BrotherSisterFirstName")[0];
+                        broSis.BrotherSisterSurName = famlyForm.GetValues("BrotherSisterSurName")[0];
+                        broSis.BrotherSisterStudyFramework = famlyForm.GetValues("BrotherSisterStudyFramework")[0];
+                        broSis.BrotherSisterGender = famlyForm.GetValues("BrotherSisterGender")[0];
+                        broSis.BrotherSisterBirthDate = Convert.ToDateTime(famlyForm.GetValues("BrotherSisterBirthDate")[0]);
+                        fam.BrotherSisters.Add(broSis);
+                        countBS++;
+                    }
+                }catch (Exception e)
                 {
-                    broSis.BrotherSisterFirstName = famlyForm.GetValues("BrotherSisterFirstName")[0];
-                    broSis.BrotherSisterSurName = famlyForm.GetValues("BrotherSisterSurName")[0];
-                    broSis.BrotherSisterStudyFramework = famlyForm.GetValues("BrotherSisterStudyFramework")[0];
-                    broSis.BrotherSisterGender = famlyForm.GetValues("BrotherSisterGender")[0];
-                    broSis.BrotherSisterBirthDate = Convert.ToDateTime(famlyForm.GetValues("BrotherSisterBirthDate")[0]);
-                    fam.BrotherSisters.Add(broSis);
-                    countBS++;
+                    ViewBag.operate = e.Message;
+                    ViewBag.type = "danger";
                 }
                 return View("Step2", fam);
             }

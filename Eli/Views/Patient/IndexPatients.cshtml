@@ -26,15 +26,13 @@
           rel='stylesheet' type='text/css'>
     <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
     <meta charset="utf-8">
-    
-
-   
 </head>
 
-
-
-
 <body >
+    <script src="~/Scripts/notify.js"></script>
+    <script>
+        notify('@ViewBag.operate', '@ViewBag.type');
+    </script>
     <b>הודעת תפוצה להורים</b>
     <br />
     <button type="button" style="float: left;" title="שליחת הודעת תפוצה להורים" class="btn btn-default" data-toggle="modal" data-target="#sendtoall">
@@ -48,13 +46,13 @@
             <thead align="center">
                 <tr>
                     <th style="text-align: center;">תעודת זהות</th>
-                    <th style="text-align: center;">שם פרטי</th>
-                    <th style="text-align: center;">שם משפחה</th>
+                    <th style="text-align: center;">שם</th>
                     <th style="text-align: center;">טלפון</th>
                     <th style="text-align: center;">פרטים נוספים</th>
                     <th style="text-align: center;">משפחה</th>
                     <th style="text-align: center;">הפניות</th>
                     <th style="text-align: center;">שליחה להורים</th>
+                    <th style="text-align: center;">הוספת הורה/אח</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,8 +60,8 @@
                 {
                     <tr align="center">
                         <td> @item.Patient.ID </td>
-                        <td> @item.Patient.FirstName </td>
-                        <td> @item.Patient.SurName </td>
+                        @{string name = @item.Patient.FirstName + " " + @item.Patient.SurName;}
+                        <td> @name </td>
                         <td> @item.Patient.PhoneNumber </td>
                         <td>
                             <a data-toggle="modal" data-target="#@item.Patient.ID">
@@ -72,7 +70,7 @@
                         </td>
                         <td>
                             @{
-                                 String id = "1" + @item.Patient.ID;
+                                 string id = "1" + @item.Patient.ID;
                             }
                             <a data-toggle="modal" data-target="#@id">
                                 <img src="~/Images/Family-32.png" />
@@ -86,10 +84,22 @@
                         </td>
                         <td>
                             @{
-                    string id1 = "2" + @item.Patient.ID;
+                                string id1 = "2" + @item.Patient.ID;
                             }
                             <a src="~/Images/info.png" data-toggle="modal" data-target="#@id1">
                                 <img src="~/Images/Mail-32.png" />
+                            </a>
+                        </td>
+                        <td>
+                            @{
+                                string idAddParent = "3" + @item.Patient.ID;
+                                string idAddSibling = "4" + @item.Patient.ID;
+                            }
+                            <a data-toggle="modal" data-target="#@idAddParent">
+                                <img src="~/Images/parent.png" />
+                            </a>
+                            <a data-toggle="modal" data-target="#@idAddSibling">
+                                <img src="~/Images/sibling.png" />
                             </a>
                         </td>
 
@@ -103,27 +113,22 @@
     @foreach (Family item in Model)
     {
                 @Html.Partial("_PopUpPatient", item.Patient);
-    }
-
-    @foreach (Family item in Model)
-    {
                 @Html.Partial("_EditFamily", item);
-    }
-    @foreach (Family item in Model)
-    {
+        
+                MailModel m = new MailModel();
+                m.id = item.Patient.ID;
+                m.redirect = "patient";
+                m.patientId = item.Patient.ID;
+                m.name = item.Patient.FirstName + " " + item.Patient.SurName;
+                if (item.Parents.Count == 0) 
+                {
+                    m.patientId = null; 
+                }
+                @Html.Partial("_MailToPatient", m);
 
-        MailModel m = new MailModel();
-       
-        m.id = item.Patient.ID;
-        m.redirect = "patient";
-        m.patientId = item.Patient.ID;
-        m.name = item.Patient.FirstName + " " + item.Patient.SurName;
-        if (item.Parents.Count == 0) 
-        {
-            m.patientId = null; 
-        }
-        @Html.Partial("_MailToPatient", m);
-
+                string name = item.Patient.FirstName + " " + item.Patient.SurName;
+                @Html.Partial("PopUpParent", new tblParent(), new ViewDataDictionary { { "name", name }, { "pid", item.Patient.ID } });
+                @Html.Partial("PopUpBrotherSister", new tblBrotherSister(), new ViewDataDictionary { { "name", name }, { "pid", item.Patient.ID } });
     }
 
     @{MailModel mail = new MailModel();
@@ -132,14 +137,11 @@
     }
     
     <script>
-
         var table = $('#myTable').DataTable();
         new $.fn.dataTable.KeyTable(table);
-
     </script>
 
 </body>
-
 </html>
 
 

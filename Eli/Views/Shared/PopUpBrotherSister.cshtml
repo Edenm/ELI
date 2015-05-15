@@ -1,9 +1,25 @@
 ﻿@model Eli.Models.tblBrotherSister
 
+@{
+    string id, method, controller, strTitle = "";
 
+    if (ViewBag.pid != null)
+    {
+        method = "_AddBrotherSisterToPatient";
+        controller = "Patient";
+        id = "4" + ViewBag.pid;
+        strTitle = "הוספת אח עבור המטופל: " + ViewBag.Name;
+    }
+    else
+    {
+        method = "Step3";
+        controller = "WizardFormPatient";
+        id = "newBrotherSister";
+    }
+}
 
 <!-- Modal -->
-<div class="modal fade" id="newBrotherSister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,86 +28,87 @@
             </div>
             <div class="modal-body">
 
-                @using (Html.BeginForm("Step3", "WizardFormPatient"))
+                @using (Html.BeginForm(method, controller, new { pid = @ViewBag.pid }, FormMethod.Post))
                 {
+                    <h5 align="right"><u><b>@strTitle </b></u></h5>
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
-    <fieldset align="right" dir="rtl">
+                    <fieldset align="right" dir="rtl">
 
 
-       @{ if (Model.BrotherSisterID == null)
-        {
-            <label float:right class="description" for="element_1">
-                תעודת זהות
-            </label>
-            <div float:right; dir="rtl" class="editor-field">
-                @Html.EditorFor(model => model.BrotherSisterID, new { StringLength = 9 })
-                @Html.ValidationMessageFor(model => model.BrotherSisterID)
-            </div>
-        }
-        else
-        {
-            @Html.HiddenFor(model => model.BrotherSisterID)
-        }
-    }
+                       @{ if (Model.BrotherSisterID == null)
+                        {
+                            <label float:right class="description" for="element_1">
+                                תעודת זהות
+                            </label>
+                            <div float:right; dir="rtl" class="editor-field">
+                                @Html.EditorFor(model => model.BrotherSisterID, new { StringLength = 9 })
+                                @Html.ValidationMessageFor(model => model.BrotherSisterID)
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.HiddenFor(model => model.BrotherSisterID)
+                        }
+                    }
 
-        <div class="editor-label">
-            שם פרטי
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.BrotherSisterFirstName)
-            @Html.ValidationMessageFor(model => model.BrotherSisterFirstName)
-        </div>
+                        <div class="editor-label">
+                            שם פרטי
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.BrotherSisterFirstName)
+                            @Html.ValidationMessageFor(model => model.BrotherSisterFirstName)
+                        </div>
 
-        <div class="editor-label">
-            שם משפחה
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.BrotherSisterSurName)
-            @Html.ValidationMessageFor(model => model.BrotherSisterSurName)
-        </div>
+                        <div class="editor-label">
+                            שם משפחה
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.BrotherSisterSurName)
+                            @Html.ValidationMessageFor(model => model.BrotherSisterSurName)
+                        </div>
 
-        <div class="editor-label">
-            תאריך לידה
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.BrotherSisterBirthDate)
-            @Html.ValidationMessageFor(model => model.BrotherSisterBirthDate)
-        </div>
+                        <div class="editor-label">
+                            תאריך לידה
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.BrotherSisterBirthDate)
+                            @Html.ValidationMessageFor(model => model.BrotherSisterBirthDate)
+                        </div>
 
-        <div class="editor-label">
-            מגדר
-        </div>
-        <div float:right; dir="rtl" class="editor-field">
-            <select dir="rtl" class="element select" id="BrotherSisterGender" name="BrotherSisterGender" style="width: 300px; height: 30px">
-                @if (@Model.BrotherSisterGender == "נקבה")
-                {
-                    <option selected="selected" value="נקבה">נקבה</option>
-                    <option value="זכר">זכר</option>
-                }
-                else
-                {
-                    <option selected="selected" value="זכר">זכר</option>
-                    <option value="נקבה">נקבה</option>
-                }
+                        <div class="editor-label">
+                            מגדר
+                        </div>
+                        <div float:right; dir="rtl" class="editor-field">
+                            <select dir="rtl" class="element select" id="BrotherSisterGender" name="BrotherSisterGender" style="width: 300px; height: 30px">
+                                @if (@Model.BrotherSisterGender == "נקבה")
+                                {
+                                    <option selected="selected" value="נקבה">נקבה</option>
+                                    <option value="זכר">זכר</option>
+                                }
+                                else
+                                {
+                                    <option selected="selected" value="זכר">זכר</option>
+                                    <option value="נקבה">נקבה</option>
+                                }
 
-            </select>
+                            </select>
 
-        </div>
+                        </div>
 
-        <div class="editor-label">
-            מסגרת חינוכית
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.BrotherSisterStudyFramework)
-            @Html.ValidationMessageFor(model => model.BrotherSisterStudyFramework)
-        </div>
-        <br />
-        <p>
-            <input type="submit" name="add" value="הוספת אח/ות" class="btn btn-primary btn-lg" />
-        </p>
-    </fieldset>
+                        <div class="editor-label">
+                            מסגרת חינוכית
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.BrotherSisterStudyFramework)
+                            @Html.ValidationMessageFor(model => model.BrotherSisterStudyFramework)
+                        </div>
+                        <br />
+                        <p>
+                            <input type="submit" name="add" value="הוספת אח/ות" class="btn btn-primary btn-lg" />
+                        </p>
+                    </fieldset>
                 }
             </div>
         </div>

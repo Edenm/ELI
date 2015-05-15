@@ -22,8 +22,7 @@
 
     <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
         <meta charset="utf-8">
-        <link href='http://serve.fontsproject.com/css?family=Nehama:400'
-              rel='stylesheet' type='text/css'>
+        <link href='http://serve.fontsproject.com/css?family=Nehama:400' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -93,14 +92,11 @@
             </tbody>
         </table>
     </div>
+
     @foreach (tblTherapist item in Model)
     {
         @Html.Partial("_Therapist", item);
-    }
-
-    @foreach (tblTherapist item in Model)
-    {
-
+        
         MailModel m = new MailModel();
         m.To = item.TherapistMail;
         m.id = item.TherapistID;

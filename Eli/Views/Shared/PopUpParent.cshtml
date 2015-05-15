@@ -1,11 +1,24 @@
 ﻿@model Eli.Models.tblParent
 
-
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@{
+    string id, method, controller, strTitle="";
+    
+    if (ViewBag.pid!=null)
+    {
+        method = "_AddParentToPatient";
+        controller = "Patient";
+        id = "3" + ViewBag.pid;
+        strTitle = "הוספת הורה עבור המטופל: " + ViewBag.Name;
+    }
+    else {
+        method = "Step3";
+        controller = "WizardFormPatient";
+        id = "newParent";
+    }
+}
 
 <!-- Modal -->
-<div class="modal fade" id="newParent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:55%;">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,168 +26,169 @@
                 <h4 align="right " class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("Step3", "WizardFormPatient"))
+                @using (Html.BeginForm(method, controller, new { pid = @ViewBag.pid }, FormMethod.Post))
                 {
+                    <h5 align="right"><u><b>@strTitle </b></u></h5>
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 
-    <fieldset align="right" dir="rtl">
-        @{ if (Model.ParentID == null)
-         {
-            <label float:right class="description" for="element_1">
-                תעודת זהות
-            </label>
-            <div float:right; dir="rtl" class="editor-field">
-                @Html.EditorFor(model => model.ParentID, new { StringLength = 9 })
-                @Html.ValidationMessageFor(model => model.ParentID)
-            </div>
-         }
-         else
-         {
-            @Html.HiddenFor(model => model.ParentID)
-         }
-        }
-        <table>
-            <tr>
-                <td>
+                <fieldset align="right" dir="rtl">
+                    @{ if (Model.ParentID == null)
+                     {
+                        <label float:right class="description" for="element_1">
+                            תעודת זהות
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.ParentID, new { StringLength = 9 })
+                            @Html.ValidationMessageFor(model => model.ParentID)
+                        </div>
+                     }
+                     else
+                     {
+                        @Html.HiddenFor(model => model.ParentID)
+                     }
+                    }
+                    <table>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    שם פרטי
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    שם משפחה
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field" >
+                                    @Html.EditorFor(model => model.ParentFirstName)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.ParentFirstName)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.ParentSurName)
+                                     <br />
+                                    @Html.ValidationMessageFor(model => model.ParentSurName)
+                                </div>
+                        </tr>
+                    </table>
                     <label float:right class="description" for="element_1">
-                        שם פרטי
+                        תאריך לידה
                     </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        שם משפחה
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div float:right; dir="rtl" class="editor-field" >
-                        @Html.EditorFor(model => model.ParentFirstName)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.ParentFirstName)
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
                     <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.ParentSurName)
-                         <br />
-                        @Html.ValidationMessageFor(model => model.ParentSurName)
+                        @Html.EditorFor(model => model.ParentBirthDate)
+                        @Html.ValidationMessageFor(model => model.ParentBirthDate)
                     </div>
-            </tr>
-        </table>
-        <label float:right class="description" for="element_1">
-            תאריך לידה
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.ParentBirthDate)
-            @Html.ValidationMessageFor(model => model.ParentBirthDate)
-        </div>
-        <label float:right class="description" for="element_1">
-            מגדר
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            <select dir="rtl" class="element select" id="ParentGender" name="ParentGender" style="width: 300px; height: 30px">
-                @if (@Model.ParentGender == "נקבה")
-                {
-                    <option selected="selected" value="נקבה">נקבה</option>
-                    <option value="זכר">זכר</option>
-                }
-                else
-                {
-                    <option selected="selected" value="זכר">זכר</option>
-                    <option value="נקבה">נקבה</option>
-                }
-            </select>
-
-        </div>
-        <label float:right class="description" for="element_1">
-            כתובת
-        </label>
-        <br />
-        @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress } })
-        <br />
-        <br />
-        <table>
-            <tr>
-                <td>
                     <label float:right class="description" for="element_1">
-                        טלפון
+                        מגדר
                     </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                       דואר אלקטרוני
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.ParentPhoneNumber, new { StringLength = 10 })
-                        <br />
-                        @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.ParentMail)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.ParentMail)
-                    </div>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>
-                    <label float:right class="description" for="element_1">
-                        האם עובד
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                       פירוט
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div float:right; dir="rtl" class="editor-field">
-                        <select dir="rtl" class="element select" id="IsWorking" name="IsWorking" style="width: 300px; height: 30px">
-                            @if (@Model.IsWorking == "לא")
+                        <select dir="rtl" class="element select" id="ParentGender" name="ParentGender" style="width: 300px; height: 30px">
+                            @if (@Model.ParentGender == "נקבה")
                             {
-                                <option selected="selected" value="לא">לא</option>
-                                <option value="כן">כן</option>
+                                <option selected="selected" value="נקבה">נקבה</option>
+                                <option value="זכר">זכר</option>
                             }
                             else
                             {
-                                <option selected="selected" value="כן">כן</option>
-                                <option value="לא">לא</option>
+                                <option selected="selected" value="זכר">זכר</option>
+                                <option value="נקבה">נקבה</option>
                             }
                         </select>
+
                     </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.Explain)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.Explain)
-                    </div>
-            </tr>
-        </table>
+                    <label float:right class="description" for="element_1">
+                        כתובת
+                    </label>
+                    <br />
+                    @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress } })
+                    <br />
+                    <br />
+                    <table>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    טלפון
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                   דואר אלקטרוני
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.ParentPhoneNumber, new { StringLength = 10 })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.ParentMail)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.ParentMail)
+                                </div>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    האם עובד
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                   פירוט
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    <select dir="rtl" class="element select" id="IsWorking" name="IsWorking" style="width: 300px; height: 30px">
+                                        @if (@Model.IsWorking == "לא")
+                                        {
+                                            <option selected="selected" value="לא">לא</option>
+                                            <option value="כן">כן</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected="selected" value="כן">כן</option>
+                                            <option value="לא">לא</option>
+                                        }
+                                    </select>
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.Explain)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Explain)
+                                </div>
+                        </tr>
+                    </table>
         
-        <label float:right class="description" for="element_1">
-            הערות נוספות
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.TextAreaFor(model => model.Comment)
-            @Html.ValidationMessageFor(model => model.Comment)
-        </div>
-        <br />
-        <p>
-            <input type="submit" class="btn btn-primary btn-lg" name="add" value="הוספת הורה" />
-        </p>
-    </fieldset>
+                    <label float:right class="description" for="element_1">
+                        הערות נוספות
+                    </label>
+                    <div float:right; dir="rtl" class="editor-field">
+                        @Html.TextAreaFor(model => model.Comment)
+                        @Html.ValidationMessageFor(model => model.Comment)
+                    </div>
+                    <br />
+                    <p>
+                        <input type="submit" class="btn btn-primary btn-lg" name="add" value="הוספת הורה" />
+                    </p>
+                </fieldset>
                 }
             </div>
         </div>
