@@ -1,5 +1,6 @@
 ﻿@model Eli.Models.tblParent
 
+
 @{
     string id, method, controller, strTitle="";
     
@@ -107,6 +108,8 @@
                     </label>
                     <br />
                     @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress } })
+                    
+                    @Html.ValidationMessageFor(model => model.ParentAddress, "שדה חובה")
                     <br />
                     <br />
                     <table>
