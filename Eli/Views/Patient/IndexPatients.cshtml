@@ -68,7 +68,7 @@
                         </td>
                         @{string name = @item.Patient.FirstName + " " + @item.Patient.SurName;}
                         <td> @name </td>
-                        <td> @item.Patient.BirthDate </td>
+                        <td> @item.Patient.BirthDate.Value.ToString("dd-MM-yyyy") </td>
                         <td> @item.Patient.PhoneNumber </td>
                         <td>
                             @{

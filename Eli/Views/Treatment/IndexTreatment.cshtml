@@ -79,10 +79,9 @@
                         if (@item.treatment.TreatmentNumber!=0)
                         {
                             var hour = @item.treatment.TreatmentStartTime.Value.ToString();
-                            var date = @item.treatment.TreatmentDate.Value.ToString();
                             <tr>
                                 <td> @count </td>
-                                <td> @date.Substring(0,10) </td>
+                                <td> @item.treatment.TreatmentDate.Value.ToString("dd-MM-yyyy") </td>
                                 <td> @hour.Substring(0,5)</td>
                                 <td> @item.treatment.TreatmentPlace </td>
                                 <td> @item.treatment.TreatmentGoal</td>
@@ -91,7 +90,7 @@
                                 <td> @item.treatment.TreatmentDescription </td>
                                 <td> @item.treatment.IsPaid </td>
                                 <td>
-                                    <a class="btn " src="~/Images/info.png" data-toggle="modal" data-target="#@item.treatment.TreatmentNumber">
+                                    <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.treatment.TreatmentNumber">
                                         <img src="~/Images/info.png" />
                                     </a>
                                 </td>
@@ -108,8 +107,7 @@
 
     @foreach (Treatment item in Model)
     {
-            @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", @ViewBag.Id }, { "MyList1", @ViewBag.value1 }, { "MyList2", @ViewBag.value2 } });  
-       
+            @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", @ViewBag.Id } });  
     }
 
     <!-- Button trigger modal -->

@@ -70,7 +70,7 @@
                                 <td> @item.FinancingFactorContactName</td>
                                 <td> @item.FinancingFactorContcatPhoneNumber</td>
                                 <td>
-                                    <a  data-toggle="modal" data-target="#@item.FinancingFactorNumber">
+                                    <a data-toggle="modal" href="#@item.FinancingFactorNumber">
                                         <img src="~/Images/Information_32x32.png" />
                                     </a>
                                 </td>
@@ -78,7 +78,7 @@
                                     @{
                                         string id = "1" + @item.FinancingFactorNumber;
                                     }
-                                    <a  data-toggle="modal" data-target="#@id">
+                                    <a  data-toggle="modal" href="#@id">
                                         <img src="~/Images/Mail-32.png" />
                                     </a>
                                 </td>
@@ -92,13 +92,11 @@
                 </tbody>
             </table>
         </div>
-        @foreach (tblFinancingFactor item in Model)
-        {
-            @Html.Partial("_FinancingFactor", item);
-        }
 
         @foreach (tblFinancingFactor item in Model)
         {
+            @Html.Partial("_FinancingFactor", item);
+            
             MailModel m = new MailModel();
             m.To = item.FinancingFactorContactMail;
             m.id = ""+item.FinancingFactorNumber;
