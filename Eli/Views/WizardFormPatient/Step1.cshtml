@@ -1,7 +1,10 @@
 ﻿@model Eli.Models.tblPatient
 
 @using Eli.Models
-
+<link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+<meta charset="utf-8">
+<link href='http://serve.fontsproject.com/css?family=Nehama:400'
+      rel='stylesheet' type='text/css'>
 <script src="~/Scripts/notify.js"></script>
 <script>
         notify('@ViewBag.operate', '@ViewBag.type');
@@ -38,7 +41,7 @@
                 @using (Html.BeginForm("Step2", "WizardFormPatient"))
                 {
                     <div class="modal-header">
-                        <h4 class="modal-title" align="center">פרטים אישיים של מטופל</h4>
+                        <h5 class="modal-title" align="center">פרטים אישיים של מטופל</h5>
                     </div>
 
                     <div class="modal-body">
