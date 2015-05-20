@@ -12,7 +12,8 @@ namespace Eli.Models
         public string From { get; set; }
 
          [Required(ErrorMessage = "שדה חובה")]
-         [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+
+         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
         public string To { get; set; }
 
          [Required(ErrorMessage = "שדה חובה")]

@@ -785,7 +785,7 @@ namespace Eli.Models
 
 
         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+        [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
 	
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorContactMail", DbType="VarChar(30)")]
 		public string FinancingFactorContactMail
@@ -1090,7 +1090,7 @@ namespace Eli.Models
 
 
          [Required(ErrorMessage = "שדה חובה")]
-         [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
 	
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentMail", DbType="VarChar(30)")]
 		public string ParentMail
@@ -3145,7 +3145,7 @@ namespace Eli.Models
 		}
 
                 [Required(ErrorMessage = "שדה חובה")]
-                [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+                [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
 
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistMail", DbType="VarChar(30)")]
 		public string TherapistMail
