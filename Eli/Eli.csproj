@@ -309,6 +309,7 @@
     <Content Include="Global.asax" />
     <Content Include="Icon.png" />
     <Content Include="Images\add.png" />
+    <Content Include="Images\background.jpg" />
     <Content Include="Images\blueDelete.PNG" />
     <Content Include="Images\broadCastMail.PNG" />
     <Content Include="Images\DataTable\back_disabled.png" />

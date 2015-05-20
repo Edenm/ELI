@@ -28,7 +28,8 @@
 <body>
     <script src="~/Scripts/notify.js"></script>
     <script>
-        notify('@ViewBag.operate', '@ViewBag.type');
+        if (@ViewBag.operate!="")
+                notify('@ViewBag.operate', '@ViewBag.type');
     </script>
     <b>הודעת תפוצה למטפלים</b>
     <br />
@@ -116,6 +117,7 @@
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
         הוסף מטפל למערכת
     </button>
+    <br />
 
     <script>
 

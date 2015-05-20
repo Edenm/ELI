@@ -11,8 +11,6 @@
     @Styles.Render("~/Content/bootstrapcss")
     @Scripts.Render("~/bundles/modernizr")
     @using Eli.Models;    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -98,16 +96,17 @@
 
         </div>
     </header>
-    <div id="body" >
-        <div class=" content-wrapper" style="background-image:Url(../../Images/);">
+    <div id="body" style="background-image:Url(../../Images/background.jpg);">
+        <div class=" content-wrapper">
             @RenderBody()
         </div>
     </div>
     <br />
     <footer style="background-color:white;">
         <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - Eden & Shahar</p>
+            <div class="float-right">
+                <br />
+                <p>עדן ושחר @DateTime.Now.Year &copy;</p>
             </div>
         </div>
     </footer>

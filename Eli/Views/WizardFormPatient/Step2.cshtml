@@ -10,6 +10,7 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/notify.js"></script>
 <script>
+    if (@ViewBag.operate!="")
         notify('@ViewBag.operate', '@ViewBag.type');
 </script>
 
@@ -36,8 +37,6 @@
             </li>
         </ul>
     </div>
-</div>
-
     <div class="col-xs-12">
         <div class="modal-dialog" style="width:100%;">
             <div class="modal-content" dir="rtl">
@@ -47,106 +46,100 @@
                         <h5 class="modal-title" align="center">פרטים נוספים על מטופל</h5>
                     </div>
                     <div class="modal-body">
-
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
 
-
                         <h2 align="right">משפחה</h2>
                         <h4 align="right">פרטי הורים</h4>
-
 
                         <div class="row">
                             <div class="col-sm-12">
                                 <fieldset>
                                     <table class="table table-bordered" dir="rtl" style="text-align:center">
+                                        <tr>
+                                            <th style="text-align:center">ת. זהות</th>
+                                            <th style="text-align:center">מגדר</th>
+                                            <th style="text-align:center">שם</th>
+                                            <th style="text-align:center">עובד?</th>
+                                            <th style="text-align:center">פירוט</th>
+                                            <th style="text-align:center">הערות</th>
+                                            <th style="text-align:center">עוד</th>
+                                        </tr>
+                                        @foreach (var item in Model.Parents)
+                                        {
+                                            string FullName = @item.ParentFirstName + " " + @item.ParentSurName;
                                             <tr>
-                                                <th style="text-align:center">ת. זהות</th>
-                                                <th style="text-align:center">מגדר</th>
-                                                <th style="text-align:center">שם</th>
-                                                <th style="text-align:center">עובד?</th>
-                                                <th style="text-align:center">פירוט</th>
-                                                <th style="text-align:center">הערות</th>
-                                                <th style="text-align:center">עוד</th>
-                                            </tr>
-                                                @foreach (var item in Model.Parents)
-                                                {
-                                                    string FullName = @item.ParentFirstName + " " + @item.ParentSurName;
-                                                    <tr>
-                                                        <td class="col-sm-1">
-                                                            @item.ParentID
-                                                        </td>
-                                                        <td class="col-sm-1">
-                                                            @item.ParentGender
-                                                        </td>
-                                                        <td class="col-sm-1">
-                                                            @item.ParentGender
-                                                        </td>
-                                                        <td class="col-sm-1">
-                                                            @FullName
-                                                        </td>
-                                                        <td class="col-sm-1">
-                                                            @item.IsWorking
-                                                        </td>
-                                                        <td class="col-sm-1">
-                                                            @item.Comment
-                                                        </td>
-                                                        @{string collapseId = item.ParentID + "collapse1";}
-                                                        <td class="col-sm-1">
-                                                            <button type="button" data-toggle="collapse" data-target="#@collapseId" aria-expanded="false" aria-controls="collapseExample">
-                                                                <img src="~/Images/add.png" />
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tbody class="collapse" id="@collapseId" >
-                                                        <tr>
-                                                            <th style="text-align:center">תאריך לידה</th>
-                                                            <th style="text-align:center">כתובת</th>
-                                                            <th style="text-align:center">טלפון</th>
-                                                            <th style="text-align:center">מייל</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="col-sm-1">
-                                                                @item.ParentBirthDate
-                                                            </td>
-                                                            <td class="col-sm-1">
-                                                                @item.ParentAddress
-                                                            </td>
-                                                            <td class="col-sm-1">
-                                                                @item.ParentPhoneNumber
-                                                            </td>
-                                                            <td class="col-sm-1">
-                                                                @item.ParentMail
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                }
-                                                   
-                                            <tr style="text-align:center">
-                                                <td>
-                                                    <button type="button" class="btn btn-default" data-toggle="modal" style="float:right" data-target="#newParent">
-                                                        הוסף הורה נוסף
-                                                    </button> 
+                                                <td class="col-sm-1">
+                                                    @item.ParentID
                                                 </td>
-                                                @if (Model.Parents.Count() > 0)
-                                                { 
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>
-                                                        <button type="submit" name="remove" value="RemoveParent" class="btn btn-default">מחיקה</button>
-                                                    </td>
-                                                }
+                                                <td class="col-sm-1">
+                                                    @item.ParentGender
+                                                </td>
+                                                <td class="col-sm-1">
+                                                    @item.ParentGender
+                                                </td>
+                                                <td class="col-sm-1">
+                                                    @FullName
+                                                </td>
+                                                <td class="col-sm-1">
+                                                    @item.IsWorking
+                                                </td>
+                                                <td class="col-sm-1">
+                                                    @item.Comment
+                                                </td>
+                                                @{string collapseId = item.ParentID + "collapse1";}
+                                                <td class="col-sm-1">
+                                                    <button type="button" data-toggle="collapse" data-target="#@collapseId" aria-expanded="false" aria-controls="collapseExample">
+                                                        <img src="~/Images/add.png" />
+                                                    </button>
+                                                </td>
                                             </tr>
+                                            <tbody class="collapse" id="@collapseId">
+                                                <tr>
+                                                    <th style="text-align:center">תאריך לידה</th>
+                                                    <th style="text-align:center">כתובת</th>
+                                                    <th style="text-align:center">טלפון</th>
+                                                    <th style="text-align:center">מייל</th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-sm-1">
+                                                        @item.ParentBirthDate
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        @item.ParentAddress
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        @item.ParentPhoneNumber
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        @item.ParentMail
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        }
 
+                                        <tr style="text-align:center">
+                                            <td>
+                                                <button type="button" class="btn btn-default" data-toggle="modal" style="float:right" data-target="#newParent">
+                                                    הוסף הורה נוסף
+                                                </button>
+                                            </td>
+                                            @if (Model.Parents.Count() > 0)
+                                            {
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button type="submit" name="remove" value="RemoveParent" class="btn btn-default">מחיקה</button>
+                                                </td>
+                                            }
+                                        </tr>
                                     </table>
                                 </fieldset>
-
                             </div>
                         </div>
-
                         <h4 align="right">פרטי אחים</h4>
                         <div class="row">
                             <div class="col-sm-12">
@@ -161,33 +154,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
-                                            @foreach (var item in Model.BrotherSisters)
-                                            {
-                                                string FullName = @item.BrotherSisterFirstName + " " + @item.BrotherSisterSurName;
-                                                <tr>
-                                                    <td class="col-sm-1">
-                                                        @item.BrotherSisterID
-                                                    </td>
-                                                    <td class="col-sm-0">
-                                                        @item.BrotherSisterGender
-                                                    </td>
-                                                    <td class="col-sm-0">
-                                                        @FullName
-                                                    </td>
-                                                    <td class="col-sm-0">
-                                                        @item.BrotherSisterBirthDate
-                                                    </td>
-                                                    <td class="col-sm-0">
-                                                        @item.BrotherSisterStudyFramework
-                                                    </td>
-                                                </tr>
-                                            }
+
+                                        @foreach (var item in Model.BrotherSisters)
+                                        {
+                                            string FullName = @item.BrotherSisterFirstName + " " + @item.BrotherSisterSurName;
+                                            <tr>
+                                                <td class="col-sm-1">
+                                                    @item.BrotherSisterID
+                                                </td>
+                                                <td class="col-sm-0">
+                                                    @item.BrotherSisterGender
+                                                </td>
+                                                <td class="col-sm-0">
+                                                    @FullName
+                                                </td>
+                                                <td class="col-sm-0">
+                                                    @item.BrotherSisterBirthDate
+                                                </td>
+                                                <td class="col-sm-0">
+                                                    @item.BrotherSisterStudyFramework
+                                                </td>
+                                            </tr>
+                                        }
                                         <tr style="text-align:center">
                                             <td>
                                                 <button type="button" class="btn btn-default" data-toggle="modal" style="float:right" data-target="#newBrotherSister">
                                                     הוספת אח\ות נוספ\ת
-                                                </button> 
+                                                </button>
                                             </td>
                                             @if (Model.BrotherSisters != null && Model.BrotherSisters.Count() > 0)
                                             {
@@ -199,12 +192,10 @@
                                                 </td>
                                             }
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="submit" name="prevBtn" value="Previous" class="btn btn-default">הקודם</button>
@@ -214,6 +205,8 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+</div>
+
 
 @Html.Partial("PopUpParent", new tblParent())
 @Html.Partial("PopUpBrotherSister", new tblBrotherSister())

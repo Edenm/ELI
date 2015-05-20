@@ -30,7 +30,8 @@
 <body>
     <script src="~/Scripts/notify.js"></script>
     <script>
-        notify('@ViewBag.operate', '@ViewBag.type');
+        if (@ViewBag.operate!="")
+            notify('@ViewBag.operate', '@ViewBag.type');
     </script>
 
     <h3 align="right">
@@ -84,7 +85,7 @@
                                 </td>
                                 <td style="text-align: center;">
                                     <a href="@Url.Action("IndexTreatment", "Treatment", new { rid = @item.ReferenceNumber, pid = @ViewBag.Id })">
-                                        <img src="~/Images/treat.png" />
+                                        <img src="~/Images/parent.png" />
                                     </a>
                                 </td>
                             </tr>
@@ -109,6 +110,7 @@
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
         הוסף הפנייה חדשה
     </button> 
+    <br />
 
     <script>
         var table = $('#reference').DataTable();

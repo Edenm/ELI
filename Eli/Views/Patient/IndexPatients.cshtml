@@ -31,7 +31,8 @@
 <body >
     <script src="~/Scripts/notify.js"></script>
     <script>
-        notify('@ViewBag.operate', '@ViewBag.type');
+        if (@ViewBag.operate!="")
+            notify('@ViewBag.operate', '@ViewBag.type');
     </script>
     <b>הודעת תפוצה להורים</b>
     <br />

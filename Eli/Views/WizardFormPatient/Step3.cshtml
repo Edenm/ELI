@@ -33,8 +33,6 @@
             </li>
         </ul>
     </div>
-</div>
-
 
     <div class="col-xs-12">
         <div class="modal-dialog" style="width:100%;">
@@ -45,14 +43,11 @@
                         <h5 class="modal-title" align="center">פרטי הפנייה</h5>
                     </div>
                     <div class="modal-body">
-
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
-
                         <fieldset>
                             @Html.Partial("_Reference", Model)
                         </fieldset>
-
                     </div>
                     <div class="modal-footer">
                         <button type="submit" name="prevBtn" value="Previous" class="btn btn-default">הקודם</button>
@@ -62,3 +57,4 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+</div>

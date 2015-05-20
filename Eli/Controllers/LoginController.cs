@@ -33,6 +33,8 @@ namespace Eli.Controllers
                 {
                     Session["Therapist"] = ther;
                     //WebSecurity.Login(user.UserName, user.Password);
+                    //WebSecurity.CreateUserAndAccount(user.UserName, user.Password);
+                    //WebSecurity.Login(user.UserName, user.Password,false);
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
                     //FormsAuthentication.SetAuthCookie(user.userId.ToString(), false);
                     return RedirectToAction("IndexPatients", "Patient");
@@ -41,6 +43,11 @@ namespace Eli.Controllers
             ViewBag.type = "danger";
             ViewBag.operate = "שם המשתמש או סיסמה אינם תקינים";
             return View(new User());
+        }
+
+        public ActionResult LogOut(){
+            WebSecurity.Logout();
+            return RedirectToAction("IndexLogin", "Login");
         }
 
         [HttpGet]

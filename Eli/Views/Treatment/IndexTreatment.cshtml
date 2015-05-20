@@ -34,7 +34,8 @@
 <body>
     <script src="~/Scripts/notify.js"></script>
     <script>
-        notify('@ViewBag.operate', '@ViewBag.type');
+        if (@ViewBag.operate!="")
+            notify('@ViewBag.operate', '@ViewBag.type');
     </script>
 
     <h3 align="right">
@@ -61,7 +62,7 @@
                 <thead>
                     <tr>
                         <th style="text-align: center;">#</th>
-                        <th style="text-align: center;">תאריך</th>
+                        <th style="text-align: center;">תאריך טיפול</th>
                         <th style="text-align: center;">שעה</th>
                         <th style="text-align: center;">מקום</th>
                         <th style="text-align: center;">מטרה </th>
@@ -111,10 +112,10 @@
     }
 
     <!-- Button trigger modal -->
-    <br /> <br />
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
         הוסף טיפול חדש
     </button>  
+    <br />
 
 
     <script>
