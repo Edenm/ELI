@@ -34,7 +34,7 @@
     }
 <div id="myModal">
     <div class="modal fade" id="sendtoall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -45,7 +45,6 @@
                         <legend>
                             Send Email
                         </legend>
-
                         @using (Html.BeginForm("IndexAll", "General"))
                         {
                             <h5 align="right"><u><b>@str </b></u></h5>
