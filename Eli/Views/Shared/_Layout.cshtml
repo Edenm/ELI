@@ -20,14 +20,16 @@
 <body onload="changeActiveTab()" >
 
     <header>
-        <div class="content-wrapper">
+        
             <table dir="rtl" align="center" style="width:100%;">
                 <tr>
+                    <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td style="text-align:right">
                         <div>
-                            <a href="@Url.Action("IndexPatients", "Patient")" style="color:black; font-weight:bold;"> <img src="~/Images/logo.png" /></a>
+                            <a href="@Url.Action("IndexPatients", "Patient")" style="color:black; font-weight:bold;"> <img src="~/Images/logo.png" style="width:80%; height:80%;"/></a>
                         </div>
                     </td>
+                    <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td style="text-align:center;">
                         @{tblTherapist ther = (tblTherapist)Session["Therapist"];
                         string name = ther.TherapistFirstName + " " + ther.TherapistSurName;}
@@ -39,26 +41,23 @@
                                         <li class="btn" style=" text-align:center;"><a href="@Url.Action( "", "")" style="color:black; font-weight:bold;">התנתק</a></li>
                                     </ul>
                                 </li>
+                                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                                 <li role="presentation" class="btn " id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black; font-weight:bold;" id="FinanceFactorC">גורמים מממנים</a></li>
                                 <li role="presentation" class="btn " id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" style="color:black; font-weight:bold;" id="TherapistC">מטפלים</a></li>
                                 <li role="presentation" class="btn " id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" style="color:black; font-weight:bold;" id="ScheduleC">יומן פגישות</a></li>
                                 <li role="presentation" class="dropdown btn " id="Patient">
-                                    <a href="#" id="PatientC" data-toggle="dropdown" role="button" aria-expanded="false" style="color:black; font-weight:bold;">מטופלים <span class=" caret"></span></a>
+                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="PatientC" style="color:black; font-weight:bold;">מטופלים <span class=" caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li class="btn" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" style="color:black; font-weight:bold;">כללי</a></li>
+                                        <li class="divider-vertical"></li>
                                         <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" style="color:black; font-weight:bold;">מטופל חדש</a></li>
                                     </ul>
                                 </li>
-
-
-
                             </ul>
                         </nav>
                     </td>
                 </tr>
             </table>
-
-
             <script>
                 function changeActiveTab() {
                     var url = document.URL;
@@ -92,9 +91,7 @@
                     }
                 }
             </script>
-
-
-        </div>
+        
     </header>
     <div id="body" style="background-image:Url(../../Images/background.jpg);">
         <div class=" content-wrapper">
