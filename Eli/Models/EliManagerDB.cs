@@ -588,6 +588,24 @@ namespace Eli.Models
            }
 
 
+           /*the function return all treatment hours strings*/
+           public List<String> getAllHours()
+           {
+               List<String> list = new List<String>();
+               list.Add("08:00");
+               list.Add("09:00");
+               list.Add("10:00");
+               list.Add("11:00");
+               list.Add("12:00");
+               list.Add("13:00");
+               list.Add("14:00");
+               list.Add("15:00");
+               list.Add("16:00");
+               list.Add("17:00");
+               return list;
+           }
+
+
     //----------------------------LOGIN-------------------------------------------------------------------
         
         public tblTherapist isUserValid(User user)

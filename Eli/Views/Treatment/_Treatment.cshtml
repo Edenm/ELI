@@ -160,25 +160,36 @@
                 <td style="padding-right:2%;">
                     <div style="text-align:right; float:right;">
                         <select dir="rtl" class="element select" id="time" name="TreatmentStartTime" style="width: 300px; height: 30px">
-                            @if (@Model.TreatmentNumber != 0)
+                         @{
+                              String hour="";
+                        if (Model.TreatmentNumber != 0)
+                         {
+                           hour = Model.TreatmentStartTime.Value.ToString();
+                           hour = hour.Substring(0, 5);
+                        }
+                        else
+                        {
+                            hour = "0";
+                        }
+                         }
+                            @{foreach (string s in db.getAllHours())
                             {
-                                <option selected="selected" value="@Model.TreatmentStartTime">@Model.TreatmentStartTime.ToString()</option>
+                                if (s ==hour )
+                                {
+                                    <option selected="selected" value="@s">@s</option>
+                                }
+                                else
+                                {
+                                    <option value="@s">@s</option>
+                                }
                             }
-                            @{ int time = 8;
-                             for (; time < 18; time++)
-                             {
-                                 string display;
-                                 if (time >= 10)
-                                 {
-                                     display = time + ":00";
-                                 }
-                                 else
-                                 {
-                                     display = "0" + time + ":00";
-                                 }
-                                <option value="@display">@display</option>
-                             }
                             }
+
+
+
+
+
+
                         </select>
                     </div>
                 </td>
