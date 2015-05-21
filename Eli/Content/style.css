@@ -1,0 +1,250 @@
+/* Website template by freewebsitetemplates.com */
+/*------------------------- Layout styles ------------------------*/
+
+
+/*------------------------- Font ------------------------*/ 
+
+/*------------------------carousel-------------------------*/
+h2{
+    margin: 0;     
+    color: #666;
+    padding-top: 90px;
+    font-size: 52px;
+    font-family: "trebuchet ms", sans-serif;    
+}
+.item{
+    background: #333;    
+    text-align: center;
+    height: 300px !important;
+}
+.carousel{
+    margin-top: 20px;
+}
+.bs-example{
+	margin: 20px;
+}
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+
+/*------------------------- Header ------------------------*/ 
+
+
+/*------------------------- Body ------------------------*/ 
+
+
+.body div#featured h3{
+	color:#f78117;
+	font-size:36px;
+	font-family: 'RokkittRegular';
+	margin:0 0 30px;
+	width:490px;
+	padding:100px 0 0;
+	font-weight:normal;
+}
+
+.body div#featured input{
+	background:url(../Images/interface.jpg) no-repeat;
+	border:0;
+    height:48px;
+    width:216px;
+	font-family: 'RokkittRegular';
+	color:#fff;
+	font-size:30px;
+	margin:28px 0 0 125px;
+	cursor:pointer;
+	outline:none;
+}
+.body ul.blog{
+	list-style:none;
+	margin:40px 0 0;
+	padding:0 0 50px;
+	background:url(../Images/separator.jpg) no-repeat center top;
+	overflow:hidden;
+}
+.body ul.blog li:first-child{
+	margin:60px 0 0;
+}
+.body ul.blog li{
+	float:left;
+	background:url(../Images/interface.jpg) no-repeat 0 -68px!important;
+	margin:60px 0 0 48px;
+	height:400px;
+	padding:0;
+}
+.body ul.blog li div{
+	width:281px;
+	height:380px;
+	text-align:center;
+	padding: 0px 0 0px 0;
+	float:none;
+	margin:0;
+	background:none;
+}
+.body ul.blog li div a img{
+	border:0;
+	margin:0 0 0 -3px;
+}
+.body ul.blog li div a img:hover{
+	filter:alpha(opacity=80);
+	opacity:0.8;
+}
+.body ul.blog li div p{
+	width:258px;
+	text-align:justify;
+	color:#090909;
+	font-family: 'RokkittRegular';
+	margin:0 0 0 0;
+	line-height:20px;
+	font-size:14px;
+	background:none;
+	padding:0;
+}
+.body ul.blog li div a:first-child{
+	margin:0;
+	padding:0;
+	background:none;
+	width:auto;
+}
+.body ul.blog li div a:hover{
+	color:#F78117;
+}
+.body ul.blog li div a{
+	color:#040404;
+	font-family: 'RokkittRegular';
+	font-style:italic;
+	text-decoration:none;
+	padding:98px 0 0;
+	margin:32px auto 0;
+	display:block;
+	width: 150px;
+	background:url(../Images/button-more.jpg) no-repeat center top;
+	outline:none;
+	font-size:16px;
+	font-weight:normal;
+	text-shadow: 0 1px 0 #fcfcfc;
+}
+.body h3{
+	font-family: 'RokkittRegular';
+	font-size:16px;
+	font-weight:bold;
+	color:#636363;
+	margin:0 0 0;
+	line-height:21px;
+}
+.body p{
+	font-family: 'RokkittRegular';
+	font-size:16px;
+	text-align:justify;
+	color:#080606;
+	margin:0 0 0;
+	line-height:21px;
+}
+.body p a{
+	outline:none;
+	color:#0d0d0d;
+}
+.body ul{
+	list-style:none;
+    margin:0;
+    padding:0;
+	overflow:hidden;
+}
+.body ul li:first-child{
+	background:none;
+	padding:0 0 0;
+}
+.body ul li{
+	overflow:hidden;
+	background:url(../Images/separator.jpg) no-repeat center top;
+	padding:0 0;
+}
+.body ul li div.featured{
+	background:url(../Images/interface.jpg) no-repeat 0 -68px;
+	width:281px;
+	height:292px;
+	text-align: center;
+	margin:0;
+}
+.body ul li div.featured img{
+	margin:10px 0 0 -3px;
+	border:0;
+}
+.body ul li div.featured ul{
+	overflow:hidden;
+	margin:2px 0 0 10px;
+	
+}
+.body ul li div.featured ul li:first-child{
+	margin:0;
+}
+.body ul li div.featured ul li{
+	float:left;
+	margin:0 0 0 0;
+	background:none;
+	padding:0;
+}
+.body ul li div.featured ul li a{
+	padding:0;
+}
+.body ul li div.featured ul li a img{
+	margin:0;
+}
+.body ul li div.featured ul li a img:hover{
+	filter:alpha(opacity=80);
+	opacity:0.8;
+}
+.body ul li div.featured a{
+	clear:both;
+	display:block;
+	font-size:13px;
+	font-family: 'RokkittRegular';
+	text-decoration:none;
+	color:#0d0d0d;
+	font-weight:bold;
+	padding:0 0 0;
+	width:auto;
+	outline:none;
+}
+.body ul li div{
+	float:left;
+	margin:0 0 0 0;
+	width:609px;
+	background:url(../Images/button-more.jpg) no-repeat left bottom;
+}
+.body ul li div h3{
+	margin:0;
+	font-size:20px;
+	font-weight:bold;
+	font-family: 'RokkittRegular';
+	color:#f28220;
+	line-height:22px;
+}
+.body ul li div p{
+	line-height:22px;
+	font-family: 'RokkittRegular';
+	font-size:14px;
+	color:#090909;
+	padding:0 0 90px;
+	margin:0;
+}
+.body ul.paging{
+	margin:0 0 0 0;
+}
+.body ul.paging li{
+	float:left;
+	padding:0 0px;
+	background:none;
+}
+.body ul.paging li a{
+	text-decoration:none;
+	color:#ff7e0d;
+	font-family: arial;
+	font-size:12px;
+}
+.body ul.paging li a:hover{
+	color:#0c0b0b;
+}
