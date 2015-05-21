@@ -79,7 +79,7 @@
                                 @Html.HiddenFor(model => model.redirect)
                                 @Html.ValidationMessageFor(model => model.redirect)
                             </div>
-                            <input type="submit" class="btn btn-primary btn-lg" value="שלח" />
+                            <input id="btn1" type="submit" class="btn btn-primary btn-lg" value="שלח" />
                         }
                     </fieldset>
                 </div>
@@ -88,3 +88,24 @@
     </div>
 </div>
 
+
+<script>
+
+    $(document).ready(function () {
+        $("form").submit(function () {
+            
+
+            var btn = $("#btn1");
+            
+                btn.attr("disabled", "disabled"); // disable button
+                window.setTimeout(function () {
+                    btn.removeAttr("disabled"); // enable button
+                    $("#btn1").val("שלח");
+                }, 30000 /* time out*/);
+                $("#btn1").val("אנא המתן");
+            
+        });
+        
+    });
+
+</script>

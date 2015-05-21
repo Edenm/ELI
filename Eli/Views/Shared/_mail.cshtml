@@ -84,7 +84,7 @@ Model.From = name;
                                         @Html.HiddenFor(model => model.redirect)
                                         @Html.ValidationMessageFor(model => model.redirect)
                                     </div>
-                            <input type="submit" class="btn btn-primary btn-lg" value="שלח" />
+                            <input id="btn" type="submit" class="btn btn-primary btn-lg" value="שלח" />
                         }
                     </fieldset>
                 </div>
@@ -92,3 +92,26 @@ Model.From = name;
         </div>
     </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $("form").submit(function () {
+
+
+            var btn = $("#btn");
+
+            btn.attr("disabled", "disabled"); // disable button
+            window.setTimeout(function () {
+                btn.removeAttr("disabled"); // enable button
+                $("#btn").val("שלח");
+            }, 4200 /* time out*/);
+            $("#btn").val("אנא המתן");
+
+
+        });
+
+    });
+
+</script>

@@ -68,7 +68,7 @@
                                 @Html.HiddenFor(model => model.patientId)
                                 @Html.ValidationMessageFor(model => model.patientId)
                             </div>
-                            <input type="submit" class="btn btn-primary btn-lg" value="שלח" />
+                            <input id="btn2" type="submit" class="btn btn-primary btn-lg" value="שלח" />
                             }
                         }
                          else
@@ -81,3 +81,26 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $("form").submit(function () {
+
+
+            var btn = $("#btn2");
+
+            btn.attr("disabled", "disabled"); // disable button
+            window.setTimeout(function () {
+                btn.removeAttr("disabled"); // enable button
+                $("#btn2").val("שלח");
+            }, 6200 /* time out*/);
+            $("#btn2").val("אנא המתן");
+
+
+        });
+
+    });
+
+</script>
