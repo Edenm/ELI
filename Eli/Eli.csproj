@@ -362,6 +362,7 @@
     <Content Include="Scripts\DataTable\dataTables.keyTable.js" />
     <Content Include="Scripts\DataTable\dataTables.keyTable.min.css" />
     <Content Include="Scripts\DataTable\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTable\fontTable.css" />
     <Content Include="Scripts\DataTable\jquery.dataTables.css" />
     <Content Include="Scripts\DataTable\jquery.dataTables.js" />
     <Content Include="Scripts\DataTable\jquery.dataTables.min.css" />

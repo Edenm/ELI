@@ -1,6 +1,17 @@
 ﻿
             h5 {
                 font-family: 'Nehama', serif;
-                font-size: 150px;
+                font-size: 90px;
             }
+
+            h3 {
+                font-family: 'Nehama', serif;
+                font-size: 50px;
+            }
+
+
+            marquee {
+   font-family: 'David CLM', serif;
+   font-size: 20px;
+}
     
