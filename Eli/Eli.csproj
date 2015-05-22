@@ -311,10 +311,10 @@
     <Content Include="Icon.png" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\2.jpg" />
+    <Content Include="Images\5.JPG" />
     <Content Include="Images\6.png" />
     <Content Include="Images\3.jpg" />
     <Content Include="Images\4.jpg" />
-    <Content Include="Images\5.JPG" />
     <Content Include="Images\add.png" />
     <Content Include="Images\background.jpg" />
     <Content Include="Images\bg-body.jpg" />
