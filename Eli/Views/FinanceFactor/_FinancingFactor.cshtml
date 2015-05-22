@@ -41,7 +41,7 @@
                 <div class="modal-body">
                     @using (Html.BeginForm())
                     {
-                        <h3 align="right"><u><b>@str </b></u></h3>
+                        <div class="medium" align="right"><u><b>@str </b></u></div>
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
 

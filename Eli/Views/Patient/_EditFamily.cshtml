@@ -25,8 +25,8 @@ string id = "1" + @Model.Patient.ID;
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.Patient)
 
-                    <h4 align="right"><u><b>משפחה</b></u></h4>
-                    <h4 align="right">פרטי הורים</h4>
+                    <div class="small" align="right"><u><b>משפחה</b></u></div>
+                    <div class="small" align="right">פרטי הורים</div>
 
                     if (Model.Parents.Count > 0) { 
                     
@@ -58,9 +58,9 @@ string id = "1" + @Model.Patient.ID;
                     }
                     else
                     {
-                        <h4 align="right">לא הוכנסו פרטי הורים עבור המטופל</h4>
+                        <div class="small" align="right">לא הוכנסו פרטי הורים עבור המטופל</div>
                     }
-                    <h4 align="right">פרטי אחים</h4>
+                    <div class="small" align="right">פרטי אחים</div>
                     
                     if (Model.BrotherSisters.Count > 0) { 
                         
@@ -88,7 +88,7 @@ string id = "1" + @Model.Patient.ID;
                     }
                     else
                     {
-                        <h4 align="right">לא הוכנסו פרטי אחים עבור המטופל</h4>
+                        <div class="small" align="right">לא הוכנסו פרטי אחים עבור המטופל</div>
                     }
                     <p dir="rtl">
                         <input type="submit" class="btn btn-primary btn-lg" value="שמור" />

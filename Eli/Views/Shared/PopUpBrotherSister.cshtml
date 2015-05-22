@@ -20,22 +20,21 @@
 
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width:65%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 align="right " class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
-
                 @using (Html.BeginForm(method, controller, new { pid = @ViewBag.pid }, FormMethod.Post))
                 {
-                    <h5 align="right"><u><b>@strTitle </b></u></h5>
+                    <div class="medium" align="right"><u><b>@strTitle </b></u></div>
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
                     <fieldset align="right" dir="rtl">
-                       @{ if (Model.BrotherSisterID == null)
-                        {
+                        @{ if (Model.BrotherSisterID == null)
+                         {
                             <label float:right class="description" for="element_1">
                                 תעודת זהות
                             </label>
@@ -43,12 +42,12 @@
                                 @Html.EditorFor(model => model.BrotherSisterID, new { StringLength = 9 })
                                 @Html.ValidationMessageFor(model => model.BrotherSisterID)
                             </div>
-                        }
-                        else
-                        {
+                         }
+                         else
+                         {
                             @Html.HiddenFor(model => model.BrotherSisterID)
+                         }
                         }
-                    }
                         <div class="editor-label">
                             שם פרטי
                         </div>
@@ -56,7 +55,6 @@
                             @Html.EditorFor(model => model.BrotherSisterFirstName)
                             @Html.ValidationMessageFor(model => model.BrotherSisterFirstName)
                         </div>
-
                         <div class="editor-label">
                             שם משפחה
                         </div>
@@ -64,7 +62,6 @@
                             @Html.EditorFor(model => model.BrotherSisterSurName)
                             @Html.ValidationMessageFor(model => model.BrotherSisterSurName)
                         </div>
-
                         <div class="editor-label">
                             תאריך לידה
                         </div>
@@ -72,7 +69,6 @@
                             @Html.EditorFor(model => model.BrotherSisterBirthDate)
                             @Html.ValidationMessageFor(model => model.BrotherSisterBirthDate)
                         </div>
-
                         <div class="editor-label">
                             מגדר
                         </div>
@@ -88,11 +84,8 @@
                                     <option selected="selected" value="זכר">זכר</option>
                                     <option value="נקבה">נקבה</option>
                                 }
-
                             </select>
-
                         </div>
-
                         <div class="editor-label">
                             מסגרת חינוכית
                         </div>

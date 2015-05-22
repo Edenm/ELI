@@ -29,7 +29,7 @@
             <div class="modal-body">
                 @using (Html.BeginForm(method, controller, new { pid = @ViewBag.pid }, FormMethod.Post))
                 {
-                    <h5 align="right"><u><b>@strTitle </b></u></h5>
+                    <div class="medium" align="right"><u><b>@strTitle </b></u></div>
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
 

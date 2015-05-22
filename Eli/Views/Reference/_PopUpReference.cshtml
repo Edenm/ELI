@@ -27,7 +27,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:55%;">
+    <div class="modal-dialog" style="width:70%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -35,22 +35,22 @@
             </div>
 
             <div class="modal-body">
-                @using (Html.BeginForm("IndexReference", "Reference", new { pid = @ViewBag.pid }, FormMethod.Post))
-                {
-                    <h3 align="right"><u><b>@str </b></u></h3>
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
+                                @using (Html.BeginForm("IndexReference", "Reference", new { pid = @ViewBag.pid }, FormMethod.Post))
+                                {
+                                    <div class="medium" align="right">
+                                        <u><b>@str </b></u></div>
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true)
 
-                    <fieldset align="right" dir="rtl">
-
-                        @Html.Partial("_Reference", Model)
-                        <br />
-                        <p>
-                            <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
-                        </p>
-                    </fieldset>
-                }
-            </div>
+                                        <fieldset align="right" dir="rtl">
+                                            @Html.Partial("_Reference", Model)
+                                            <br />
+                                            <p>
+                                                <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
+                                            </p>
+                                        </fieldset>
+                                }
+                            </div>
         </div>
     </div>
 </div>

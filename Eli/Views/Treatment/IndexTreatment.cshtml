@@ -20,73 +20,72 @@
             notify('@ViewBag.operate', '@ViewBag.type');
     </script>
 
-    <h3 align="right">
+    <h3 class="small" align="right">
         @Html.ActionLink("מטופלים", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
         ->
-        @Html.ActionLink("הפניות", "IndexReference", "Reference", new { pid = @ViewBag.Id},new { @class = "link" })
+        @Html.ActionLink("הפניות", "IndexReference", "Reference", new { pid = @ViewBag.Id }, new { @class = "link" })
         ->
         טיפולים
-</h3>
+    </h3>
    
 
     <div align="right" dir="rtl">
         <div class="big">טיפולים</div>
 
         @{String name = ViewBag.Name; }
-        <h3>
+        <div class="medium">
             <b>טיפולים עבור: @name</b>
-            <br />עבור הפניית @ViewBag.Ref 
-        </h3>
+            <br />עבור הפניית @ViewBag.Ref
+            </div>
 
-        <h4 align="right">חיפוש:</h4>
-        <div class="table-responsive">
-            <table id="myTable" class="display table table-bordered" >
-                <thead>
-                    <tr>
-                        <th style="text-align: center;">#</th>
-                        <th style="text-align: center;">תאריך טיפול</th>
-                        <th style="text-align: center;">שעה</th>
-                        <th style="text-align: center;">מקום</th>
-                        <th style="text-align: center;">מטרה </th>
-                        <th style="text-align: center;">נושא</th>
-                        <th style="text-align: center;">מצב המטופל</th>
-                        <th style="text-align: center;">תיאור</th>
-                        <th style="text-align: center;">האם שולם?</th>
-                        <th style="text-align: center;">עריכה</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{ int count = 1;}
-                    @foreach (var item in Model)
-                    {
-                        if (@item.treatment.TreatmentNumber!=0)
+        <div class="small" align="right"><b>:חיפוש</b></div>
+            <div class="table-responsive">
+                <table id="myTable" class="display table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">#</th>
+                            <th style="text-align: center;">תאריך טיפול</th>
+                            <th style="text-align: center;">שעה</th>
+                            <th style="text-align: center;">מקום</th>
+                            <th style="text-align: center;">מטרה </th>
+                            <th style="text-align: center;">נושא</th>
+                            <th style="text-align: center;">מצב המטופל</th>
+                            <th style="text-align: center;">תיאור</th>
+                            <th style="text-align: center;">האם שולם?</th>
+                            <th style="text-align: center;">עריכה</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int count = 1;}
+                        @foreach (var item in Model)
                         {
-                            var hour = @item.treatment.TreatmentStartTime.Value.ToString();
-                            <tr>
-                                <td> @count </td>
-                                <td> @item.treatment.TreatmentDate.Value.ToString("dd-MM-yyyy") </td>
-                                <td> @hour.Substring(0,5)</td>
-                                <td> @item.treatment.TreatmentPlace </td>
-                                <td> @item.treatment.TreatmentGoal</td>
-                                <td> @item.treatment.TreatmentSubject </td>
-                                <td> @item.treatment.TreatmentStatusPatient </td>
-                                <td> @item.treatment.TreatmentDescription </td>
-                                <td> @item.treatment.IsPaid </td>
-                                <td>
-                                    <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.treatment.TreatmentNumber">
-                                        <img src="~/Images/info.png" />
-                                    </a>
-                                </td>
-                            </tr>
-                            count++;
+                            if (@item.treatment.TreatmentNumber != 0)
+                            {
+                                var hour = @item.treatment.TreatmentStartTime.Value.ToString();
+                                <tr>
+                                    <td> @count </td>
+                                    <td> @item.treatment.TreatmentDate.Value.ToString("dd-MM-yyyy") </td>
+                                    <td> @hour.Substring(0, 5)</td>
+                                    <td> @item.treatment.TreatmentPlace </td>
+                                    <td> @item.treatment.TreatmentGoal</td>
+                                    <td> @item.treatment.TreatmentSubject </td>
+                                    <td> @item.treatment.TreatmentStatusPatient </td>
+                                    <td> @item.treatment.TreatmentDescription </td>
+                                    <td> @item.treatment.IsPaid </td>
+                                    <td>
+                                        <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.treatment.TreatmentNumber">
+                                            <img src="~/Images/info.png" />
+                                        </a>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
                         }
-                    }
-                </tbody>
-            </table>
-            <br />
-
+                    </tbody>
+                </table>
+                <br />
+            </div>
         </div>
-    </div>
 
     @foreach (Treatment item in Model)
     {

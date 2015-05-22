@@ -19,18 +19,17 @@
             notify('@ViewBag.operate', '@ViewBag.type');
     </script>
 
-    <h3 align="right">
+    <h3  class="small" align="right">
         @Html.ActionLink("מטופלים", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
         ->
         הפניות
-    </h3>
+        </h3>
 
-    <div align="right" dir="rtl">
-        <div class="big"> הפניות </div>
-
+        <div align="right" dir="rtl">
+            <div class="big"> הפניות </div>
             @{String name = ViewBag.Name; }
-            <h3><b>  הפניות עבור: @name</b></h3>
-            <h4 align="right">חיפוש:</h4>
+            <h4 class="medium"><b>  הפניות עבור: @name</b></h4>
+            <div class="small" align="right"><b>:חיפוש</b></div>
             <div class="table-responsive">
                 <table id="reference" class="display table table-bordered" width="100%">
                     <thead>
@@ -80,26 +79,21 @@
                 <br /><br />
             </div>
         </div>
+        @foreach (tblReference item in Model)
+        {
+            @Html.Partial("_PopUpReference", item, new ViewDataDictionary { { "pid", @ViewBag.Id }, { "name", @ViewBag.Name } });
 
-    @foreach (tblReference item in Model)
-    {
-        @Html.Partial("_PopUpReference", item, new ViewDataDictionary { { "pid", @ViewBag.Id},{ "name", @ViewBag.Name } });
+        }
+        <!-- Button trigger modal -->
 
-    }
-
-    <!-- Button trigger modal -->
-  
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
-        הוסף הפנייה חדשה
-    </button> 
-    <br />
-
-    <script>
-        var table = $('#reference').DataTable();
-        new $.fn.dataTable.KeyTable(table);
-    </script>
-
-
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+            הוסף הפנייה חדשה
+        </button>
+        <br />
+        <script>
+            var table = $('#reference').DataTable();
+            new $.fn.dataTable.KeyTable(table);
+        </script>
 
 </body>
 

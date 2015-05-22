@@ -23,56 +23,57 @@
                 </div>
                 <div class="modal-body">
                     <fieldset align="right">
-                         @if (Model.patientId != null)
-                        {
-                        using (Html.BeginForm("ParentsMail", "General"))
-                        {
-                            <h3 align="right"><u><b>@str </b></u></h3>
-                            <label float:right class="description" for="element_1">
-                                שם מוען
-                            </label>
+                                                 @if (Model.patientId != null)
+                                                 {
+                                                     using (Html.BeginForm("ParentsMail", "General"))
+                                                     {
+                                                        <div class="medium" align="right">
+                                                            <u><b>@str </b></u></div>
+                                                            <label float:right class="description" for="element_1">
+                                                                שם מוען
+                                                            </label>
 
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.From)
-                                @Html.ValidationMessageFor(model => model.From)
-                            </div>
-                           
-                            <label float:right class="description" for="element_1">
-                                נושא הודעה
-                            </label>
+                                                            <div float:right; dir="rtl" class="editor-field">
+                                                                @Html.EditorFor(model => model.From)
+                                                                @Html.ValidationMessageFor(model => model.From)
+                                                            </div>
 
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.Subject)
-                                @Html.ValidationMessageFor(model => model.Subject)
-                            </div>
-                            <label float:right class="description" for="element_1">
-                                תוכן הודעה
-                            </label>
+                                                            <label float:right class="description" for="element_1">
+                                                                נושא הודעה
+                                                            </label>
 
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.TextAreaFor(model => model.Body)
-                                @Html.ValidationMessageFor(model => model.Body)
-                            </div>
+                                                            <div float:right; dir="rtl" class="editor-field">
+                                                                @Html.EditorFor(model => model.Subject)
+                                                                @Html.ValidationMessageFor(model => model.Subject)
+                                                            </div>
+                                                            <label float:right class="description" for="element_1">
+                                                                תוכן הודעה
+                                                            </label>
+
+                                                            <div float:right; dir="rtl" class="editor-field">
+                                                                @Html.TextAreaFor(model => model.Body)
+                                                                @Html.ValidationMessageFor(model => model.Body)
+                                                            </div>
 
 
 
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.HiddenFor(model => model.redirect)
-                                @Html.ValidationMessageFor(model => model.redirect)
-                            </div>
+                                                            <div float:right; dir="rtl" class="editor-field">
+                                                                @Html.HiddenFor(model => model.redirect)
+                                                                @Html.ValidationMessageFor(model => model.redirect)
+                                                            </div>
 
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.HiddenFor(model => model.patientId)
-                                @Html.ValidationMessageFor(model => model.patientId)
-                            </div>
-                            <input id="btn2" type="submit" class="btn btn-primary btn-lg" value="שלח" />
-                            }
-                        }
-                         else
-                         {
-                            <h4 align="right">לא הוכנסו פרטי הורים עבור המטופל</h4>
-                         }
-                    </fieldset>
+                                                            <div float:right; dir="rtl" class="editor-field">
+                                                                @Html.HiddenFor(model => model.patientId)
+                                                                @Html.ValidationMessageFor(model => model.patientId)
+                                                            </div>
+                                                            <input id="btn2" type="submit" class="btn btn-primary btn-lg" value="שלח" />
+                                                     }
+                                                 }
+                                                 else
+                                                 {
+                                                    <h4 align="right">לא הוכנסו פרטי הורים עבור המטופל</h4>
+                                                 }
+</fieldset>
                 </div>
             </div>
         </div>

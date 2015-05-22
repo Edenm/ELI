@@ -18,14 +18,14 @@
         if (@ViewBag.operate!="")
                 notify('@ViewBag.operate', '@ViewBag.type');
     </script>
-    <h4> <b>הודעת תפוצה למטפלים</b></h4>
+    <h4 class="small"> <b>הודעת תפוצה למטפלים</b></h4>
     
     <button id="mail" type="button" style="float: left;" title="שליחת הודעת תפוצה למטפלים" class="btn btn-default" data-toggle="modal" data-target="#sendtoall">
         <img src="~/Images/Mail_48x48.png" />
     </button>
    
     <div class="big">מטפלים</div>
-        <h4 align="right">:חיפוש</h4>
+    <div class="small" align="right"><b>:חיפוש</b></div>
         <div dir="rtl">
             <table id="myTable" class="display nowrap table-bordered">
                 <thead align="center">
