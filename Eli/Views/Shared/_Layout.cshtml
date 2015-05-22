@@ -10,10 +10,19 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrapcss")
     @Scripts.Render("~/bundles/modernizr")
-    @using Eli.Models;    
+    @Styles.Render("~/Content/themes/base/css")
+    @using Eli.Models; 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+    <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTable/fontTable.css" rel="stylesheet" />
+    <link href='http://serve.fontsproject.com/css?family=Nehama:400'rel='stylesheet' type='text/css'>
+    <link href='http://serve.fontsproject.com/css?family=David+CLM:500'rel='stylesheet' type='text/css'>
+    <script src="~/Scripts/DataTable/dataTables.keyTable.js"></script>
+    <script src="~/Scripts/DataTable/jquery.js"></script>
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+    <link href="~/Scripts/DataTable/dataTables.keyTable.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTable/jquery.dataTables.css" rel="stylesheet" />
 </head>
 
     
@@ -21,7 +30,7 @@
     <header>
             <table dir="rtl" align="center" style="width:100%;">
                 <tr>
-                    <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td> &nbsp;&nbsp;</td>
                     <td style="text-align:right">
                         <div>
                             <a href="@Url.Action("HomePage", "Login")" style="color:black; font-weight:bold;"> <img src="~/Images/logo.png" style="width:80%; height:80%;"/></a>
@@ -39,7 +48,7 @@
                                         <li class="btn" style=" text-align:center;"><a href="@Url.Action("Logout","Login")" style="color:black; font-weight:bold;">התנתק</a></li>
                                     </ul>
                                 </li>
-                                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                                 <li role="presentation" class="btn " id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black; font-weight:bold;" id="FinanceFactorC">גורמים מממנים</a></li>
                                 <li role="presentation" class="btn " id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" style="color:black; font-weight:bold;" id="TherapistC">מטפלים</a></li>
                                 <li role="presentation" class="btn " id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" style="color:black; font-weight:bold;" id="ScheduleC">יומן פגישות</a></li>
@@ -93,12 +102,12 @@
     <div id="body" style="background-image:Url(../../Images/background.jpg);">    
         <div class="content-wrapper ">
             <marquee onmouseover="this.scrollAmount=0" direction="right" onmouseout="this.scrollAmount=3" scrollamount="5" loop="true" width="100%">
-                <center dir="rtl">
+                <center >
                     <b>
                         30/5/15- פגישת סיכום חודש מאי &nbsp;
                         7/6/15- שפיים ונהנים !! &nbsp;
                         10/6/15- יוסי הללי טכנאי מזגנים מגיע בשעה 15:30 &nbsp;
-                        20/6/15- יומולדת להילה!! 18:30 במשרד &nbsp
+                        20/6/15- יומולדת להילה!! 18:30 במשרד &nbsp;
                     </b>
                 </center>
             </marquee>

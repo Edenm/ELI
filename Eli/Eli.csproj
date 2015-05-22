@@ -444,7 +444,6 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Reference\Index.cshtml" />
     <Content Include="Views\SendMailer\Index.cshtml" />
     <Content Include="Views\SendMailer\success.cshtml" />
     <Content Include="Views\Patient\_BrotherSister.cshtml" />

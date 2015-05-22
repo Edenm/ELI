@@ -10,27 +10,7 @@
     <meta charset="utf-8" />
     <title></title>
     <meta name="viewport" content="width=device-width" />
-    <script src="~/Scripts/DataTable/dataTables.keyTable.js"></script>
-    <script src="~/Scripts/DataTable/jquery.js"></script>
-
-    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
-    <link href="~/Scripts/DataTable/dataTables.keyTable.css" rel="stylesheet" />
-    <link href="~/Scripts/DataTable/jquery.dataTables.css" rel="stylesheet" />
-    
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    @Styles.Render("~/Content/bootstrapcss")
-    @Styles.Render("~/Content/themes/base/css")
-    <meta charset="utf-8">
-    <link href='http://serve.fontsproject.com/css?family=Nehama:400'
-          rel='stylesheet' type='text/css'>
-    <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
-    <link href='http://serve.fontsproject.com/css?family=David+CLM:500'
-          rel='stylesheet' type='text/css'>
-    <link href="~/Scripts/DataTable/fontTable.css" rel="stylesheet" />
-    <meta charset="utf-8">
 </head>
-
 <body >
     <script src="~/Scripts/notify.js"></script>
     <script>
@@ -38,9 +18,7 @@
             notify('@ViewBag.operate', '@ViewBag.type');
     </script>
 
- 
-    <h4> <b>הודעת תפוצה להורים</b></h4>
- 
+    <h4><b>הודעת תפוצה להורים</b></h4>
     <button id="mail" type="button" style="float: left;" title="שליחת הודעת תפוצה להורים" class="btn btn-default" data-toggle="modal" data-target="#sendtoall">
         <img src="~/Images/Mail_48x48.png" />
     </button>
@@ -49,9 +27,7 @@
     <div dir="rtl">
         <table id="myTable" class="display nowrap table-bordered" >
             <thead align="center">
-                
                 <tr>
-
                     <th style="text-align: center;">תעודת זהות</th>
                     <th style="text-align: center;">שם</th>
                     <th style="text-align: center;">תאריך לידה</th>
@@ -123,7 +99,6 @@
     {
                 @Html.Partial("_PopUpPatient", item.Patient);
                 @Html.Partial("_EditFamily", item);
-        
                 MailModel m = new MailModel();
                 m.id = item.Patient.ID;
                 m.redirect = "patient";
@@ -154,14 +129,9 @@
 </html>
 
 <script>
-
     $("#mail").click(function(){
-      
         $("#btn1").removeAttr('disabled');
     });
-
-
-
 </script>
 
 

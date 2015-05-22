@@ -1,20 +1,22 @@
 ﻿
-            .big
-            {
-                font-family: 'Nehama', serif;
-                font-size: 90px;
-                color:blue;
-                text-align:center;
-            }
+.big
+{
+    font-family: 'Nehama', serif;
+    font-size: 90px;
+    color:blue;
+    text-align:center;
+}
 
-            h3 {
-                font-family: 'Nehama', serif;
-                font-size: 50px;
-            }
+h3 
+{
+    font-family: 'Nehama', serif;
+    font-size: 50px;
+}
 
 
-            marquee {
-                   font-family: 'David CLM', serif;
-                   font-size: 20px;
-            }
+marquee
+{
+    font-family: 'David CLM', serif;
+    font-size: 20px;
+}           
     
