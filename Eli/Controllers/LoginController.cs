@@ -37,7 +37,7 @@ namespace Eli.Controllers
                     //WebSecurity.Login(user.UserName, user.Password,false);
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
                     //FormsAuthentication.SetAuthCookie(user.userId.ToString(), false);
-                    return RedirectToAction("IndexPatients", "Patient");
+                    return RedirectToAction("HomePage", "Login");
                 }
             }
             ViewBag.type = "danger";
