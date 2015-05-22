@@ -17,7 +17,7 @@ namespace Eli
     {
         protected void Application_Start()
         {
-            //WebSecurity.InitializeDatabaseConnection("ELIConnectionString", "tblTherapist", "UserName", "Passcode", true);
+            WebSecurity.InitializeDatabaseConnection("ELIConnectionString", "tblTherapist", "UserName", "Passcode", false);
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

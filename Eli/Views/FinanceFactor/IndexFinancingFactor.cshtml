@@ -44,18 +44,16 @@
         <img src="~/Images/Mail_48x48.png" />
     </button>
     
-    <h5 align="center" style="color:blue">גורמים מממנים</h5>
-    <h4 align="right">:חיפוש</h4>
-   
-  
-        
+    <div class="big">גורמים מממנים</div>
+        <h4 align="right">:חיפוש</h4>
+
+
+
         <div dir="rtl">
 
-
             <table id="myTable" class="display nowrap table-bordered">
-                
-                <thead align="center">
 
+                <thead align="center">
                     <tr>
                         <th style="text-align: center;"></th>
                         <th style="text-align: center;">שם</th>
@@ -84,48 +82,43 @@
                                 </td>
                                 <td>
                                     @{
-                                        string id = "1" + @item.FinancingFactorNumber;
+                            string id = "1" + @item.FinancingFactorNumber;
                                     }
-                                    <a  data-toggle="modal" href="#@id">
+                                    <a data-toggle="modal" href="#@id">
                                         <img src="~/Images/Mail-32.png" />
                                     </a>
                                 </td>
 
-
-
                             </tr>
                         }
                     }
-                    
+
                 </tbody>
             </table>
         </div>
-
         @foreach (tblFinancingFactor item in Model)
         {
             @Html.Partial("_FinancingFactor", item);
-            
-            MailModel m = new MailModel();
-            m.To = item.FinancingFactorContactMail;
-            m.id = ""+item.FinancingFactorNumber;
-            m.redirect = "finance";
-            m.name = item.FinancingFactorName;
-            @Html.Partial("_mail", m);
+
+                                                   MailModel m = new MailModel();
+                                                   m.To = item.FinancingFactorContactMail;
+                                                   m.id = "" + item.FinancingFactorNumber;
+                                                   m.redirect = "finance";
+                                                   m.name = item.FinancingFactorName;
+                                                @Html.Partial("_mail", m);
         }
-        @{MailModel mail=new MailModel();
-          
-          mail.redirect="finance";
-          @Html.Partial("_MailToAll", mail)
-          }
-       
+        @{MailModel mail = new MailModel();
+
+        mail.redirect = "finance";
+        @Html.Partial("_MailToAll", mail)
+        }
 
         <!-- Button trigger modal -->
-        <br /> 
+        <br />
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
             הוסף גורם מממן למערכת
         </button>
         <br />
-
 
         <script>
 

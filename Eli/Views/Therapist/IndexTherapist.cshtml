@@ -42,95 +42,91 @@
         <img src="~/Images/Mail_48x48.png" />
     </button>
    
-    <h5 align="center" style="color:blue">מטפלים</h5>
-    <h4 align="right">:חיפוש</h4>
-    <div dir="rtl">
-        <table id="myTable" class="display nowrap table-bordered">
-            <thead align="center">
-                <tr>
-                    <th style="text-align: center;">#</th>
-                    <th style="text-align: center;">תעודת זהות</th>
-                    <th style="text-align: center;">שם</th>
-                    <th style="text-align: center;">כתובת</th>
-                    <th style="text-align: center;">טלפון</th>
-                    <th style="text-align: center;">פרטים נוספים</th>
-                    <th style="text-align: center;">שליחה</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    if (@item.TherapistID != null)
+    <div class="big">מטפלים</div>
+        <h4 align="right">:חיפוש</h4>
+        <div dir="rtl">
+            <table id="myTable" class="display nowrap table-bordered">
+                <thead align="center">
+                    <tr>
+                        <th style="text-align: center;">#</th>
+                        <th style="text-align: center;">תעודת זהות</th>
+                        <th style="text-align: center;">שם</th>
+                        <th style="text-align: center;">כתובת</th>
+                        <th style="text-align: center;">טלפון</th>
+                        <th style="text-align: center;">פרטים נוספים</th>
+                        <th style="text-align: center;">שליחה</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
-                        <tr align="center">
-                            <td>
-                                @{if (item.TherapistGender == "זכר")
-                                {
-                                    <div>מטפל</div>
-                                }
-                                else
-                                {
-                                    <div>מטפלת</div>
-                                }
-                                }
-                            </td>
-                            <td> @item.TherapistID </td>
-                            @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
-                            <td> @FullName</td>
-                            <td> @item.TherapistAddress</td>
-                            <td> @item.TherapistPhoneNumber </td>
-                            <td>
-                                <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.TherapistID">
-                                    <img src="~/Images/Information_32x32.png" />
-                                </a>
-                            </td>
-                            <td>
-                                @{
-                                    string id = "1" + @item.TherapistID;
-                                }
-                                <a src="~/Images/info.png" data-toggle="modal" href="#@id">
-                                    <img src="~/Images/Mail-32.png" />
-                                </a>
-                            </td>
-                        </tr>
+                        if (@item.TherapistID != null)
+                        {
+                            <tr align="center">
+                                <td>
+                                    @{if (item.TherapistGender == "זכר")
+                                    {
+                                        <div>מטפל</div>
+                                    }
+                                    else
+                                    {
+                                        <div>מטפלת</div>
+                                    }
+                                    }
+                                </td>
+                                <td> @item.TherapistID </td>
+                                @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
+                                <td> @FullName</td>
+                                <td> @item.TherapistAddress</td>
+                                <td> @item.TherapistPhoneNumber </td>
+                                <td>
+                                    <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.TherapistID">
+                                        <img src="~/Images/Information_32x32.png" />
+                                    </a>
+                                </td>
+                                <td>
+                                    @{
+                            string id = "1" + @item.TherapistID;
+                                    }
+                                    <a src="~/Images/info.png" data-toggle="modal" href="#@id">
+                                        <img src="~/Images/Mail-32.png" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
                     }
-                }
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+        @foreach (tblTherapist item in Model)
+        {
+            @Html.Partial("_Therapist", item);
 
-    @foreach (tblTherapist item in Model)
-    {
-        @Html.Partial("_Therapist", item);
-        
-        MailModel m = new MailModel();
-        m.To = item.TherapistMail;
-        m.id = item.TherapistID;
-        m.redirect = "therapist";
-        m.name = item.TherapistFirstName + " " + item.TherapistSurName;
-        @Html.Partial("_Mail", m);
+                                         MailModel m = new MailModel();
+                                         m.To = item.TherapistMail;
+                                         m.id = item.TherapistID;
+                                         m.redirect = "therapist";
+                                         m.name = item.TherapistFirstName + " " + item.TherapistSurName;
+                                        @Html.Partial("_Mail", m);
 
-    }
+        }
+        @{MailModel mail = new MailModel();
 
-    @{MailModel mail = new MailModel();
+        mail.redirect = "therapist";
+        }
+        @Html.Partial("_MailToAll", mail)
+        <!-- Button trigger modal -->
+        <br />
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+            הוסף מטפל למערכת
+        </button>
+        <br />
+        <script>
 
-    mail.redirect = "therapist";
-    }
-    @Html.Partial("_MailToAll", mail)
-    <!-- Button trigger modal -->
-    <br /> 
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
-        הוסף מטפל למערכת
-    </button>
-    <br />
+            var table = $('#myTable').DataTable();
+            new $.fn.dataTable.KeyTable(table);
 
-    <script>
-
-        var table = $('#myTable').DataTable();
-        new $.fn.dataTable.KeyTable(table);
-
-    </script>
-
+        </script>
 </body>
 </html>
 

@@ -45,63 +45,60 @@
     </h3>
 
     <div align="right" dir="rtl">
-        <h5 align="center" style="color:blue">הפניות </h5>
+        <div class="big"> הפניות </div>
 
-        @{String name =ViewBag.Name; }
-        <h3><b>  הפניות עבור: @name</b></h3>
+            @{String name = ViewBag.Name; }
+            <h3><b>  הפניות עבור: @name</b></h3>
+            <h4 align="right">חיפוש:</h4>
+            <div class="table-responsive">
+                <table id="reference" class="display table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;"> #</th>
+                            <th style="text-align: center;">סיבה</th>
+                            <th style="text-align: center;">סטטוס</th>
+                            <th style="text-align: center;">פירוט</th>
+                            <th style="text-align: center;">סוג</th>
+                            <th style="text-align: center;">כיצד הגיע?</th>
+                            <th style="text-align: center;">תאריך התחלה</th>
+                            <th style="text-align: center;">עריכה</th>
+                            <th style="text-align: center;">טיפולים</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int count = 1;}
 
-        <h4 align="right">חיפוש:</h4>
-        <div class="table-responsive">
-            <table id="reference" class="display table table-bordered" width="100%">
-                <thead>
-                    <tr>
-                        <th style="text-align: center;"> #</th>
-                        <th style="text-align: center;">סיבה</th>
-                        <th style="text-align: center;">סטטוס</th>
-                        <th style="text-align: center;">פירוט</th>
-                        <th style="text-align: center;">סוג</th>
-                        <th style="text-align: center;">כיצד הגיע?</th>
-                        <th style="text-align: center;">תאריך התחלה</th>
-                        <th style="text-align: center;">עריכה</th>
-                        <th style="text-align: center;">טיפולים</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{ int count = 1;}
- 
-
-                    @foreach (var item in Model)
-                    {
-                        if (@item.ReferenceNumber!=0)
+                        @foreach (var item in Model)
                         {
-                            <tr>
-                                <td> @count</td>
-                                <td> @item.ReasonReference </td>
-                                <td> @item.StatusReference </td>
-                                <td> @item.OtherStatus </td>
-                                <td> @item.AbuseType </td>
-                                <td> @item.ReferenceSource </td>
-                                <td> @item.StartDateReference.Value.ToString("dd-MM-yyyy") </td>
-                                <td style="text-align: center;">
-                                    <a class="btn " data-toggle="modal" href="#@item.ReferenceNumber">
-                                        <img src="~/Images/edit.png" />
-                                    </a>
-                                </td>
-                                <td style="text-align: center;">
-                                    <a href="@Url.Action("IndexTreatment", "Treatment", new { rid = @item.ReferenceNumber, pid = @ViewBag.Id })">
-                                        <img src="~/Images/parent.png" />
-                                    </a>
-                                </td>
-                            </tr>
-                            count++;
-                       }
-                    }
-                </tbody>
-            </table>
-            <br /><br />
-
+                            if (@item.ReferenceNumber != 0)
+                            {
+                                <tr>
+                                    <td> @count</td>
+                                    <td> @item.ReasonReference </td>
+                                    <td> @item.StatusReference </td>
+                                    <td> @item.OtherStatus </td>
+                                    <td> @item.AbuseType </td>
+                                    <td> @item.ReferenceSource </td>
+                                    <td> @item.StartDateReference.Value.ToString("dd-MM-yyyy") </td>
+                                    <td style="text-align: center;">
+                                        <a class="btn " data-toggle="modal" href="#@item.ReferenceNumber">
+                                            <img src="~/Images/edit.png" />
+                                        </a>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a href="@Url.Action("IndexTreatment", "Treatment", new { rid = @item.ReferenceNumber, pid = @ViewBag.Id })">
+                                            <img src="~/Images/parent.png" />
+                                        </a>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+                        }
+                    </tbody>
+                </table>
+                <br /><br />
+            </div>
         </div>
-    </div>
 
     @foreach (tblReference item in Model)
     {

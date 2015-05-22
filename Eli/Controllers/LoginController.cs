@@ -15,12 +15,14 @@ namespace Eli.Controllers
     public class LoginController : Controller
     {
 
+        /** The method get the login screen */
         [HttpGet]
         public ActionResult IndexLogin()
         {
             return View(new User());
         }
 
+        /** The method registred the user to system and to session */
         [HttpPost]
         public ActionResult IndexLogin(User user )
         {
@@ -32,11 +34,7 @@ namespace Eli.Controllers
                 if (ther != null)
                 {
                     Session["Therapist"] = ther;
-                    //WebSecurity.Login(user.UserName, user.Password);
-                    //WebSecurity.CreateUserAndAccount(user.UserName, user.Password);
-                    //WebSecurity.Login(user.UserName, user.Password,false);
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    //FormsAuthentication.SetAuthCookie(user.userId.ToString(), false);
                     return RedirectToAction("HomePage", "Login");
                 }
             }
@@ -45,23 +43,27 @@ namespace Eli.Controllers
             return View(new User());
         }
 
+        /** The method transfer HomePage screen */
         [Authorize]
         public ActionResult HomePage()
         {
             return View();
         }
 
+        /** The method log out from system */
         public ActionResult LogOut(){
             WebSecurity.Logout();
             return RedirectToAction("IndexLogin", "Login");
         }
 
+        /** The method transfer ForgetPassword screen */
         [HttpGet]
         public ActionResult ForgetPassword()
         {
             return View();
         }
 
+        /** The method get mail from ForgetPassword and send mail to user with his mail */
         [HttpPost]
         public ActionResult ForgetPassword(FormCollection mail)
         {

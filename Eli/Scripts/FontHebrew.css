@@ -1,7 +1,10 @@
 ﻿
-            h5 {
+            .big
+            {
                 font-family: 'Nehama', serif;
                 font-size: 90px;
+                color:blue;
+                text-align:center;
             }
 
             h3 {
@@ -11,7 +14,7 @@
 
 
             marquee {
-   font-family: 'David CLM', serif;
-   font-size: 20px;
-}
+                   font-family: 'David CLM', serif;
+                   font-size: 20px;
+            }
     
