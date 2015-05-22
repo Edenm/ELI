@@ -35,7 +35,7 @@
         <div class="modal-body">
             @using (Html.BeginForm("IndexTreatment", "Treatment", new { pid = @ViewBag.pid }, FormMethod.Post))
             {
-                <h5 align="right"><u><b>@strTitle </b></u></h5>
+                <h3 align="right"><u><b>@strTitle </b></u></h3>
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
 

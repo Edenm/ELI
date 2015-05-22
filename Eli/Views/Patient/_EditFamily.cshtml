@@ -2,6 +2,14 @@
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<meta charset="utf-8">
+<link href='http://serve.fontsproject.com/css?family=Nehama:400'
+      rel='stylesheet' type='text/css'>
+<link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+<link href='http://serve.fontsproject.com/css?family=David+CLM:500'
+      rel='stylesheet' type='text/css'>
+<link href="~/Scripts/DataTable/fontTable.css" rel="stylesheet" />
+<meta charset="utf-8">
 
 @using Eli.Models;
 
@@ -24,7 +32,7 @@ string id = "1" + @Model.Patient.ID;
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.Patient)
 
-                    <h2 align="right"><u><b>משפחה</b></u></h2>
+                    <h4 align="right"><u><b>משפחה</b></u></h4>
                     <h4 align="right">פרטי הורים</h4>
 
                     if (Model.Parents.Count > 0) { 
