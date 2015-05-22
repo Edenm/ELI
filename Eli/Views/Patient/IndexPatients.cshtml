@@ -25,6 +25,9 @@
     <link href='http://serve.fontsproject.com/css?family=Nehama:400'
           rel='stylesheet' type='text/css'>
     <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
+    <link href='http://serve.fontsproject.com/css?family=David+CLM:500'
+          rel='stylesheet' type='text/css'>
+    <link href="~/Scripts/DataTable/fontTable.css" rel="stylesheet" />
     <meta charset="utf-8">
 </head>
 
@@ -34,18 +37,25 @@
         if (@ViewBag.operate!="")
             notify('@ViewBag.operate', '@ViewBag.type');
     </script>
+
+ 
+    
+        
+    
     <b>הודעת תפוצה להורים</b>
     <br />
     <button id="mail" type="button" style="float: left;" title="שליחת הודעת תפוצה להורים" class="btn btn-default" data-toggle="modal" data-target="#sendtoall">
         <img src="~/Images/Mail_48x48.png" />
     </button>
-    <br />
+   
     <h5 align="center" style="color:blue">מטופלים</h5>
     <h4 align="right">:חיפוש</h4>
     <div dir="rtl">
         <table id="myTable" class="display nowrap table-bordered" >
             <thead align="center">
+                
                 <tr>
+
                     <th style="text-align: center;">תעודת זהות</th>
                     <th style="text-align: center;">שם</th>
                     <th style="text-align: center;">תאריך לידה</th>
