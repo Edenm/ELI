@@ -63,6 +63,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.40804.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -107,10 +111,6 @@
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -239,6 +239,7 @@
     <Content Include="Content\LinkStyle.css" />
     <Content Include="Content\ModalSize.css" />
     <Content Include="Content\notify.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -310,8 +311,13 @@
     <Content Include="Icon.png" />
     <Content Include="Images\add.png" />
     <Content Include="Images\background.jpg" />
+    <Content Include="Images\bg-body.jpg" />
+    <Content Include="Images\bg-footer.jpg" />
+    <Content Include="Images\bg-header.jpg" />
+    <Content Include="Images\bg-navigation.jpg" />
     <Content Include="Images\blueDelete.PNG" />
     <Content Include="Images\broadCastMail.PNG" />
+    <Content Include="Images\button-more.jpg" />
     <Content Include="Images\DataTable\back_disabled.png" />
     <Content Include="Images\DataTable\back_enabled.png" />
     <Content Include="Images\DataTable\back_enabled_hover.png" />
@@ -325,14 +331,19 @@
     <Content Include="Images\DataTable\sort_desc.png" />
     <Content Include="Images\DataTable\sort_desc_disabled.png" />
     <Content Include="Images\delete.png" />
+    <Content Include="Images\download.jpg" />
+    <Content Include="Images\download2.jpg" />
+    <Content Include="Images\download3.jpg" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\Eli-Log.jpg" />
     <Content Include="Images\Family-32.png" />
+    <Content Include="Images\house.jpg" />
     <Content Include="Images\info.png" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\DataTable\Sorting icons.psd" />
     <Content Include="Images\Information_32x32.png" />
+    <Content Include="Images\interface.jpg" />
     <Content Include="Images\logo-big.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Mail-32.png" />
@@ -341,6 +352,7 @@
     <Content Include="Images\minor.png" />
     <Content Include="Images\parent.png" />
     <Content Include="Images\References-32.png" />
+    <Content Include="Images\separator.jpg" />
     <Content Include="Images\sibling.png" />
     <Content Include="Images\treat.png" />
     <Content Include="Images\User.png" />
@@ -455,6 +467,7 @@
     <Content Include="Views\Login\ForgetPassword.cshtml" />
     <Content Include="Views\Shared\_MailToPatient.cshtml" />
     <Content Include="Views\Shared\_MailToAll.cshtml" />
+    <Content Include="Views\Login\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

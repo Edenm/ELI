@@ -45,6 +45,12 @@ namespace Eli.Controllers
             return View(new User());
         }
 
+        [Authorize]
+        public ActionResult HomePage()
+        {
+            return View();
+        }
+
         public ActionResult LogOut(){
             WebSecurity.Logout();
             return RedirectToAction("IndexLogin", "Login");
