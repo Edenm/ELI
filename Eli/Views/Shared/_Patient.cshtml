@@ -17,7 +17,7 @@
                            else
                            {
                              string strTitle = Model.FirstName + " " + Model.SurName;
-                            <h4 align="right"><u><b> עריכת פרטי המטופל: @strTitle </b></u></h4>
+                            <div class="medium" align="right"><u><b> עריכת פרטי המטופל: @strTitle </b></u></div>
                             @Html.HiddenFor(model => model.ID)
                          }
                         }
