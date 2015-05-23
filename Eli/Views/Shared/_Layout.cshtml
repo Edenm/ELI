@@ -42,17 +42,17 @@
                         <nav dir="rtl" style="float:right;">
                             <ul id="menu" class="nav nav-tabs">
                                 <li role="presentation" class="dropdown btn " style="float:left;">
-                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="tabsSmall" style="color:black;"> <img src="~/Images/User.png" /> שלום @name <span class=" caret"></span></a>
+                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="tabsSmall" style="color:black;" id="user" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)"> <img src="~/Images/User.png" /> שלום @name <span class=" caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li class="btn" style=" text-align:center;"><a href="@Url.Action("Logout","Login")" class="tabsSmall" style="color:black;" id="disConnect" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">התנתק</a></li>
                                     </ul>
                                 </li>
                                 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                <li role="presentation" class="btn" id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black;" class="tabs" id="FinanceFactorC">גורמים מממנים</a></li>
-                                <li role="presentation" class="btn" id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" class="tabs" style="color:black;" id="TherapistC">מטפלים</a></li>
-                                <li role="presentation" class="btn" id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" class="tabs" style="color:black;" id="ScheduleC">יומן פגישות</a></li>
+                                <li role="presentation" class="btn" id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black;" class="tabs" id="FinanceFactorC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">גורמים מממנים</a></li>
+                                <li role="presentation" class="btn" id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" class="tabs" style="color:black;" id="TherapistC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">מטפלים</a></li>
+                                <li role="presentation" class="btn" id="Schedule" ><a href="@Url.Action("IndexSchedule", "Schedule")" class="tabs" style="color:black;" id="ScheduleC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">יומן פגישות</a></li>
                                 <li role="presentation" class="dropdown btn " id="Patient">
-                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="PatientC" class="tabs" style="color:black;">מטופלים <span class=" caret"></span></a>
+                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="PatientC" class="tabs" style="color:black;" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">מטופלים <span class=" caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li class="btn cell-border" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" class="tabsSmall" style="color:black;" id="general" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">כללי</a></li>
                                         <li class="divider-vertical"><img src="~/Images/separator.jpg" /></li>
@@ -67,12 +67,20 @@
             <script>
                 function changeOnOver(id)
                 {
-                    document.getElementById(id).style.backgroundColor = "blue";
+                    document.getElementById(id).style.backgroundColor = "#286090";
                     document.getElementById(id).style.color = "white";
                 }
                 function changeOnOut(id) {
                     document.getElementById(id).style.backgroundColor="inherit";
                     document.getElementById(id).style.color = "black";
+                }
+
+                function changeOnOverTabs(id) {
+                    document.getElementById(id).style.color = "#286090";
+                }
+                function changeOnOutTabs(id) {
+                    document.getElementById(id).style.color = "black";
+                    changeActiveTab();
                 }
 
                 function changeActiveTab() {
