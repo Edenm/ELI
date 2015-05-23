@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <title>עוצמות</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -14,6 +13,7 @@
     @using Eli.Models; 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
     <link href="~/Scripts/DataTable/fontTable.css" rel="stylesheet" />
     <link href="~/Scripts/special.css" rel="stylesheet" />
@@ -44,7 +44,7 @@
                                 <li role="presentation" class="dropdown btn " style="float:left;">
                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="tabsSmall" style="color:black;"> <img src="~/Images/User.png" /> שלום @name <span class=" caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Logout","Login")" class="tabsSmall" style="color:black;">התנתק</a></li>
+                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Logout","Login")" class="tabsSmall" style="color:black;" id="disConnect" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">התנתק</a></li>
                                     </ul>
                                 </li>
                                 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
@@ -54,9 +54,9 @@
                                 <li role="presentation" class="dropdown btn " id="Patient">
                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="PatientC" class="tabs" style="color:black;">מטופלים <span class=" caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" class="tabsSmall" style="color:black;">כללי</a></li>
+                                        <li class="btn cell-border" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" class="tabsSmall" style="color:black;" id="general" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">כללי</a></li>
                                         <li class="divider-vertical"><img src="~/Images/separator.jpg" /></li>
-                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" class="tabsSmall" style="color:black;">מטופל חדש</a></li>
+                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" class="tabsSmall" style="color:black;" id="new" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">מטופל חדש</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -65,6 +65,16 @@
                 </tr>
             </table>
             <script>
+                function changeOnOver(id)
+                {
+                    document.getElementById(id).style.backgroundColor = "blue";
+                    document.getElementById(id).style.color = "white";
+                }
+                function changeOnOut(id) {
+                    document.getElementById(id).style.backgroundColor="inherit";
+                    document.getElementById(id).style.color = "black";
+                }
+
                 function changeActiveTab() {
                     var url = document.URL;
                     var ind = url.lastIndexOf("/");
