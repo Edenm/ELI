@@ -2,11 +2,6 @@
 
 @using Eli.Models
 <meta charset="utf-8">
-<script src="~/Scripts/notify.js"></script>
-<script>
-    if (@ViewBag.operate!="")
-        notify('@ViewBag.operate', '@ViewBag.type');
-</script>
 
 <div class="row form-group">
     <div class=" col-xs-12">
@@ -56,3 +51,13 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
+
+@{ if (ViewBag.operate != null)
+ {
+    <script src="~/Scripts/notify.js"></script>
+    <script>
+        alert("@ViewBag.operate")
+        //notify('@ViewBag.operate', '@ViewBag.type');
+    </script>
+ }
+}

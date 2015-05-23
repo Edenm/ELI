@@ -78,14 +78,13 @@
         @foreach (tblTherapist item in Model)
         {
             @Html.Partial("_Therapist", item);
-
-                                         MailModel m = new MailModel();
-                                         m.To = item.TherapistMail;
-                                         m.id = item.TherapistID;
-                                         m.redirect = "therapist";
-                                         m.name = item.TherapistFirstName + " " + item.TherapistSurName;
-                                        @Html.Partial("_Mail", m);
-
+            
+            MailModel m = new MailModel();
+            m.To = item.TherapistMail;
+            m.id = item.TherapistID;
+            m.redirect = "therapist";
+            m.name = item.TherapistFirstName + " " + item.TherapistSurName;
+            @Html.Partial("_Mail", m);  
         }
         @{MailModel mail = new MailModel();
 
@@ -104,6 +103,7 @@
             new $.fn.dataTable.KeyTable(table);
 
         </script>
+
     @{ if (ViewBag.operate != null)
      {
         <script src="~/Scripts/notify.js"></script>
@@ -113,19 +113,22 @@
         </script>
      }
     }
-</body>
-</html>
 
+    <script>
 
-<script>
+    $("#mail").click(function () {
 
-    $("#mail").click(function(){
-       
         $("#btn1").removeAttr('disabled');
     });
 
 
 
-</script>
+    </script>
+
+</body>
+</html>
+
+
+
 
 

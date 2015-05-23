@@ -1,23 +1,10 @@
 ﻿@model Eli.ViewModel.User
 
 @{Layout = "~/Views/Shared/_LoginLayout.cshtml";}
- 
 
-@{ if (ViewBag.operate != null)
- {
-    <script src="~/Scripts/notify.js"></script>
-    <script>
-            alert('@ViewBag.operate');
-            notify('@ViewBag.operate', '@ViewBag.type');
-    </script>
- }
-}
 
 
 <link href="~/Content/login.css" rel="stylesheet" />
-            
-                       
-
   <div class="container center" dir="rtl" style="height: 100%;">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -67,6 +54,16 @@
         </div>
     </div>
 </div>
+
+@{ if (ViewBag.operate != null)
+ {
+    <script src="~/Scripts/notify.js"></script>
+    <script>
+        alert("@ViewBag.operate")
+        //notify('@ViewBag.operate', '@ViewBag.type');
+    </script>
+ }
+}
 
 
 

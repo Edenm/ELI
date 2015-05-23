@@ -5,11 +5,6 @@
 <meta charset="utf-8">
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/Scripts/notify.js"></script>
-<script>
-    if (@ViewBag.operate!="")
-        notify('@ViewBag.operate', '@ViewBag.type');
-</script>
 
 <div class="row form-group">
     <div class="col-xs-12">
@@ -209,6 +204,15 @@
 @Html.Partial("PopUpParent", new tblParent())
 @Html.Partial("PopUpBrotherSister", new tblBrotherSister())
 
+@{ if (ViewBag.operate != null)
+ {
+    <script src="~/Scripts/notify.js"></script>
+    <script>
+        alert("@ViewBag.operate")
+        //notify('@ViewBag.operate', '@ViewBag.type');
+    </script>
+ }
+}
     
 
 

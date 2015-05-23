@@ -14,12 +14,6 @@
     <link href="~/Content/ModalSize.css" rel="stylesheet" />
 </head>
 <body>
-    <script src="~/Scripts/notify.js"></script>
-    <script>
-        if (@ViewBag.operate!="")
-            notify('@ViewBag.operate', '@ViewBag.type');
-    </script>
-
     <div class="links">
         @Html.ActionLink("מטופלים", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
         ->
@@ -104,6 +98,15 @@
         new $.fn.dataTable.KeyTable(table);
     </script>
 
+    @{ if (ViewBag.operate != null)
+     {
+        <script src="~/Scripts/notify.js"></script>
+        <script>
+            alert("@ViewBag.operate")
+            //notify('@ViewBag.operate', '@ViewBag.type');
+        </script>
+     }
+    }
 
 
 </body>

@@ -27,117 +27,131 @@
 
     
 <body onload="changeActiveTab()" >
+    
     <header>
-            <table dir="rtl" align="center" style="width:100%;">
-                <tr>
-                    <td> &nbsp;&nbsp;</td>
-                    <td style="text-align:right">
-                        <div>
-                            <a href="@Url.Action("HomePage", "Login")" style="color:black; font-weight:bold;"> <img src="~/Images/logo.png" style="width:80%; height:80%;"/></a>
-                        </div>
-                    </td>
-                    <td style="text-align:center;">
-                        @{tblTherapist ther = (tblTherapist)Session["Therapist"];
-                        string name = ther.TherapistFirstName + " " + ther.TherapistSurName;}
-                        <nav dir="rtl" style="float:right;">
-                            <ul id="menu" class="nav nav-tabs">
-                                <li role="presentation" class="dropdown btn " style="float:left;">
-                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="tabsSmall" style="color:black;" id="user" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)"> <img src="~/Images/User.png" /> שלום @name <span class=" caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Logout","Login")" class="tabsSmall" style="color:black;" id="disConnect" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">התנתק</a></li>
-                                    </ul>
-                                </li>
-                                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                <li role="presentation" class="btn" id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black;" class="tabs" id="FinanceFactorC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">גורמים מממנים</a></li>
-                                <li role="presentation" class="btn" id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" class="tabs" style="color:black;" id="TherapistC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">מטפלים</a></li>
-                                <li role="presentation" class="btn" id="Schedule" ><a href="@Url.Action("IndexSchedule", "Schedule")" class="tabs" style="color:black;" id="ScheduleC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">יומן פגישות</a></li>
-                                <li role="presentation" class="dropdown btn " id="Patient">
-                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="PatientC" class="tabs" style="color:black;" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">מטופלים <span class=" caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="btn cell-border" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" class="tabsSmall" style="color:black;" id="general" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">כללי</a></li>
-                                        <li class="divider-vertical"><img src="~/Images/separator.jpg" /></li>
-                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" class="tabsSmall" style="color:black;" id="new" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">מטופל חדש</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                    </td>
-                </tr>
-            </table>
-            <script>
-                function changeOnOver(id)
-                {
-                    document.getElementById(id).style.backgroundColor = "#286090";
-                    document.getElementById(id).style.color = "white";
-                }
-                function changeOnOut(id) {
-                    document.getElementById(id).style.backgroundColor="inherit";
-                    document.getElementById(id).style.color = "black";
-                }
-
-                function changeOnOverTabs(id) {
-                    document.getElementById(id).style.color = "#286090";
-                }
-                function changeOnOutTabs(id) {
-                    document.getElementById(id).style.color = "black";
-                    changeActiveTab();
-                }
-
-                function changeActiveTab() {
-                    var url = document.URL;
-                    var ind = url.lastIndexOf("/");
-                    url = url.substring(0, ind);
-                    ind = url.lastIndexOf("/");
-                    url = url.substring(ind + 1, url.length);
-
-                    switch (url) {
-                        case "WizardFormPatient":
-                            document.getElementById("Patient").className = "btn btn-primary";
-                            document.getElementById("PatientC").style.color = "white";
-                            break;
-                        case "Patient":
-                            document.getElementById("Patient").className = "btn btn-primary";
-                            document.getElementById("PatientC").style.color = "white";
-                            break;
-                        case "Schedule":
-                            document.getElementById("Schedule").className = "btn btn-primary";
-                            document.getElementById("ScheduleC").style.color = "white";
-                            break;
-                        case "Therapist":
-                            document.getElementById("Therapist").className = "btn btn-primary";
-                            document.getElementById("TherapistC").style.color = "white";
-                            break;
-                        case "FinanceFactor":
-                            document.getElementById("FinanceFactor").className = "btn btn-primary";
-                            document.getElementById("FinanceFactorC").style.color = "white";
-                            break;
-                        default:
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-11">
+                <table dir="rtl" align="center" style="width:100%;">
+                    <tr>
+                        <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td style="float:right">
+                            <div>
+                                <a href="@Url.Action("HomePage", "Login")" style="color:black; font-weight:bold;"> <img src="~/Images/logo.png" style="width:80%; height:80%;" /></a>
+                            </div>
+                        </td>
+                        <td> &nbsp;&nbsp;</td>
+                        <td style="text-align:center;">
+                            @{tblTherapist ther = (tblTherapist)Session["Therapist"];
+                            string name = ther.TherapistFirstName + " " + ther.TherapistSurName;}
+                            <nav dir="rtl" style="float:right;">
+                                <ul id="menu" class="nav nav-tabs">
+                                    <li role="presentation" class="dropdown btn">
+                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="tabsSmall" style="color:black;" id="user" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)"> <img src="~/Images/User.png" /> שלום @name <span class=" caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li class="btn" style=" text-align:center;"><a href="@Url.Action("Logout","Login")" class="tabsSmall" style="color:black;" id="disConnect" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">התנתק</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li role="presentation" class="btn" id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black;" class="tabs" id="FinanceFactorC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">גורמים מממנים</a></li>
+                                    <li role="presentation" class="btn" id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" class="tabs" style="color:black;" id="TherapistC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">מטפלים</a></li>
+                                    <li role="presentation" class="btn" id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" class="tabs" style="color:black;" id="ScheduleC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">יומן פגישות</a></li>
+                                    <li role="presentation" class="dropdown btn " id="Patient">
+                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="PatientC" class="tabs" style="color:black;" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">מטופלים <span class=" caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li class="btn cell-border" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" class="tabsSmall" style="color:black;" id="general" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">כללי</a></li>
+                                            <li class="divider-vertical"><img src="~/Images/separator.jpg" /></li>
+                                            <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" class="tabsSmall" style="color:black;" id="newPatient" onmouseover="changeOnOver(id)" onmouseout="changeOnOut(id)">מטופל חדש</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+                <script>
+                    function changeOnOver(id) {
+                        document.getElementById(id).style.backgroundColor = "#286090";
+                        document.getElementById(id).style.color = "white";
                     }
-                }
-            </script>
+                    function changeOnOut(id) {
+                        document.getElementById(id).style.backgroundColor = "inherit";
+                        document.getElementById(id).style.color = "inherit";
+                    }
+
+                    function changeOnOverTabs(id) {
+                        document.getElementById(id).style.color = "#286090";
+                    }
+                    function changeOnOutTabs(id) {
+                        document.getElementById(id).style.color = "inherit";
+                    }
+
+                    function changeActiveTab() {
+                        var url = document.URL;
+                        var ind = url.lastIndexOf("/");
+                        url = url.substring(0, ind);
+                        ind = url.lastIndexOf("/");
+                        url = url.substring(ind + 1, url.length);
+
+                        switch (url) {
+                            case "WizardFormPatient":
+                                document.getElementById("Patient").className = "btn btn-primary";
+                                document.getElementById("PatientC").style.color = "white";
+                                break;
+                            case "Patient":
+                                document.getElementById("Patient").className = "btn btn-primary";
+                                document.getElementById("PatientC").style.color = "white";
+                                break;
+                            case "Schedule":
+                                document.getElementById("Schedule").className = "btn btn-primary";
+                                document.getElementById("ScheduleC").style.color = "white";
+                                break;
+                            case "Therapist":
+                                document.getElementById("Therapist").className = "btn btn-primary";
+                                document.getElementById("TherapistC").style.color = "white";
+                                break;
+                            case "FinanceFactor":
+                                document.getElementById("FinanceFactor").className = "btn btn-primary";
+                                document.getElementById("FinanceFactorC").style.color = "white";
+                                break;
+                            default:
+                        }
+                    }
+                </script>
     </header>
-    <div id="body" style="background-image:Url(../../Images/background.jpg);">    
-        <div class="content-wrapper ">
-            <marquee onmouseover="this.scrollAmount=0" direction="right" onmouseout="this.scrollAmount=3" scrollamount="5" loop="true" width="100%">
-                <center >
-                    <b>
-                        30/5/15- פגישת סיכום חודש מאי &nbsp;
-                        7/6/15- שפיים ונהנים !! &nbsp;
-                        10/6/15- יוסי הללי טכנאי מזגנים מגיע בשעה 15:30 &nbsp;
-                        20/6/15- יומולדת להילה!! 18:30 במשרד &nbsp;
-                    </b>
-                </center>
-            </marquee>
-            @RenderBody()
-        </div>            
         
+           
+    <div id="body" style="background-image:Url(../../Images/background.jpg);">    
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <marquee onmouseover="this.scrollAmount=0" dir="rtl" direction="right" onmouseout="this.scrollAmount=3" scrollamount="5" loop="true" width="100%">
+                    <center>
+                        <b>
+                            30/5/15- פגישת סיכום חודש מאי &nbsp;
+                            7/6/15- שפיים ונהנים!! &nbsp;
+                            10/6/15- יוסי הללי טכנאי מזגנים מגיע ב- 15:30 &nbsp;
+                            <!--20/6/15- יומולדת להילה!! 18:30 במשרד &nbsp; -->
+                        </b>
+                    </center>
+                </marquee>
+                @RenderBody()
+            </div>
+        </div>
     </div>
     
     <footer style="background-color:white;">
-        <div class="content-wrapper">
-            <div class="float-right">
-                <br />
-                <p>עדן ושחר @DateTime.Now.Year &copy;</p>
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <div class="content-wrapper">
+                    <div class="float-right">
+                        <br />
+                        <p>עדן ושחר - @DateTime.Now.Year &copy;</p>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
