@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        html { overflow-x: hidden; }
+    </style>
     <meta charset="utf-8" />
     <title>עוצמות</title>
     <meta name="viewport" content="width=device-width" />
@@ -10,7 +13,7 @@
     @Styles.Render("~/Content/bootstrapcss")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/themes/base/css")
-    @using Eli.Models; 
+    @using Eli.Models;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -25,9 +28,9 @@
     <link href="~/Scripts/DataTable/jquery.dataTables.css" rel="stylesheet" />
 </head>
 
-    
-<body onload="changeActiveTab()" >
-    
+
+<body onload="changeActiveTab()">
+
     <header>
         <div class="row">
             <div class="col-xs-1"></div>
@@ -71,59 +74,59 @@
                 </table>
             </div>
         </div>
-                <script>
-                    function changeOnOver(id) {
-                        document.getElementById(id).style.backgroundColor = "#286090";
-                        document.getElementById(id).style.color = "white";
-                    }
-                    function changeOnOut(id) {
-                        document.getElementById(id).style.backgroundColor = "inherit";
-                        document.getElementById(id).style.color = "inherit";
-                    }
+        <script>
+            function changeOnOver(id) {
+                document.getElementById(id).style.backgroundColor = "#286090";
+                document.getElementById(id).style.color = "white";
+            }
+            function changeOnOut(id) {
+                document.getElementById(id).style.backgroundColor = "inherit";
+                document.getElementById(id).style.color = "inherit";
+            }
 
-                    function changeOnOverTabs(id) {
-                        document.getElementById(id).style.color = "#286090";
-                    }
-                    function changeOnOutTabs(id) {
-                        document.getElementById(id).style.color = "inherit";
-                    }
+            function changeOnOverTabs(id) {
+                document.getElementById(id).style.color = "#286090";
+            }
+            function changeOnOutTabs(id) {
+                document.getElementById(id).style.color = "inherit";
+            }
 
-                    function changeActiveTab() {
-                        var url = document.URL;
-                        var ind = url.lastIndexOf("/");
-                        url = url.substring(0, ind);
-                        ind = url.lastIndexOf("/");
-                        url = url.substring(ind + 1, url.length);
+            function changeActiveTab() {
+                var url = document.URL;
+                var ind = url.lastIndexOf("/");
+                url = url.substring(0, ind);
+                ind = url.lastIndexOf("/");
+                url = url.substring(ind + 1, url.length);
 
-                        switch (url) {
-                            case "WizardFormPatient":
-                                document.getElementById("Patient").className = "btn btn-primary";
-                                document.getElementById("PatientC").style.color = "white";
-                                break;
-                            case "Patient":
-                                document.getElementById("Patient").className = "btn btn-primary";
-                                document.getElementById("PatientC").style.color = "white";
-                                break;
-                            case "Schedule":
-                                document.getElementById("Schedule").className = "btn btn-primary";
-                                document.getElementById("ScheduleC").style.color = "white";
-                                break;
-                            case "Therapist":
-                                document.getElementById("Therapist").className = "btn btn-primary";
-                                document.getElementById("TherapistC").style.color = "white";
-                                break;
-                            case "FinanceFactor":
-                                document.getElementById("FinanceFactor").className = "btn btn-primary";
-                                document.getElementById("FinanceFactorC").style.color = "white";
-                                break;
-                            default:
-                        }
-                    }
-                </script>
+                switch (url) {
+                    case "WizardFormPatient":
+                        document.getElementById("Patient").className = "btn btn-primary";
+                        document.getElementById("PatientC").style.color = "white";
+                        break;
+                    case "Patient":
+                        document.getElementById("Patient").className = "btn btn-primary";
+                        document.getElementById("PatientC").style.color = "white";
+                        break;
+                    case "Schedule":
+                        document.getElementById("Schedule").className = "btn btn-primary";
+                        document.getElementById("ScheduleC").style.color = "white";
+                        break;
+                    case "Therapist":
+                        document.getElementById("Therapist").className = "btn btn-primary";
+                        document.getElementById("TherapistC").style.color = "white";
+                        break;
+                    case "FinanceFactor":
+                        document.getElementById("FinanceFactor").className = "btn btn-primary";
+                        document.getElementById("FinanceFactorC").style.color = "white";
+                        break;
+                    default:
+                }
+            }
+        </script>
     </header>
-        
-           
-    <div id="body" style="background-image:Url(../../Images/background.jpg);">    
+
+
+    <div id="body" style="background-image:Url(../../Images/background.jpg);">
         <div class="row">
             <div class="col-xs-1"></div>
             <div class="col-xs-10">
@@ -141,7 +144,7 @@
             </div>
         </div>
     </div>
-    
+
     <footer style="background-color:white;">
         <div class="row">
             <div class="col-xs-1"></div>
@@ -160,3 +163,4 @@
 
 
 </html>
+
