@@ -17,9 +17,7 @@
     <link href="~/Scripts/FontHebrew.css" rel="stylesheet" />
     <link href="~/Scripts/DataTable/fontTable.css" rel="stylesheet" />
     <link href="~/Scripts/special.css" rel="stylesheet" />
-
     <link href="~/Scripts/special1.css" rel="stylesheet" />
-    
     <script src="~/Scripts/DataTable/dataTables.keyTable.js"></script>
     <script src="~/Scripts/DataTable/jquery.js"></script>
     <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
@@ -38,28 +36,27 @@
                             <a href="@Url.Action("HomePage", "Login")" style="color:black; font-weight:bold;"> <img src="~/Images/logo.png" style="width:80%; height:80%;"/></a>
                         </div>
                     </td>
-                    <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td style="text-align:center;">
                         @{tblTherapist ther = (tblTherapist)Session["Therapist"];
                         string name = ther.TherapistFirstName + " " + ther.TherapistSurName;}
                         <nav dir="rtl" style="float:right;">
                             <ul id="menu" class="nav nav-tabs">
                                 <li role="presentation" class="dropdown btn " style="float:left;">
-                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" style="color:black; font-weight:bold;"> <img src="~/Images/User.png" /> שלום @name <span class=" caret"></span></a>
+                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="tabsSmall" style="color:black;"> <img src="~/Images/User.png" /> שלום @name <span class=" caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Logout","Login")" style="color:black; font-weight:bold;">התנתק</a></li>
+                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Logout","Login")" class="tabsSmall" style="color:black;">התנתק</a></li>
                                     </ul>
                                 </li>
-                                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                <li role="presentation" class="btn " id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black; font-weight:bold;" id="FinanceFactorC">גורמים מממנים</a></li>
-                                <li role="presentation" class="btn " id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" style="color:black; font-weight:bold;" id="TherapistC">מטפלים</a></li>
-                                <li role="presentation" class="btn " id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" style="color:black; font-weight:bold;" id="ScheduleC">יומן פגישות</a></li>
+                                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                <li role="presentation" class="btn" id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black;" class="tabs" id="FinanceFactorC">גורמים מממנים</a></li>
+                                <li role="presentation" class="btn" id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" class="tabs" style="color:black;" id="TherapistC">מטפלים</a></li>
+                                <li role="presentation" class="btn" id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" class="tabs" style="color:black;" id="ScheduleC">יומן פגישות</a></li>
                                 <li role="presentation" class="dropdown btn " id="Patient">
-                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="PatientC" style="color:black; font-weight:bold;">מטופלים <span class=" caret"></span></a>
+                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="PatientC" class="tabs" style="color:black;">מטופלים <span class=" caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" style="color:black; font-weight:bold;">כללי</a></li>
-                                        <li class="divider-vertical"></li>
-                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" style="color:black; font-weight:bold;">מטופל חדש</a></li>
+                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action( "IndexPatients", "Patient")" class="tabsSmall" style="color:black;">כללי</a></li>
+                                        <li class="divider-vertical"><img src="~/Images/separator.jpg" /></li>
+                                        <li class="btn" style=" text-align:center;"><a href="@Url.Action("Step1", "WizardFormPatient")" class="tabsSmall" style="color:black;">מטופל חדש</a></li>
                                     </ul>
                                 </li>
                             </ul>

@@ -51,13 +51,14 @@ namespace Eli.Controllers
         public ActionResult IndexPatients(tblPatient pat)
         {
             EliManagerDB db = new EliManagerDB();
+            string type = "success", operate = "פרטי מטופל עודכנו בהצלחה";
             String gender = Request.Form["gender"];
             pat.Gender = gender;
             String status = Request.Form["status"];
             pat.PatientStatus = status;
             db.EditPatient(pat);
 
-            return RedirectToAction("IndexPatients");
+            return RedirectToAction("IndexPatients",new { operate = operate, type = type });
         }
 
         
@@ -66,13 +67,14 @@ namespace Eli.Controllers
         public ActionResult _EditFamily(FormCollection family, string pid)
         {
             EliManagerDB db = new EliManagerDB();
+            string type = "success", operate="פרטי משפחה עודכנו בהצלחה";
             var name = family.GetValues("IsWorking");
 
             Family fam = new Family(pid);
 
             db.EditFamily(family, pid);
 
-            return RedirectToAction("IndexPatients", new { id = pid });
+            return RedirectToAction("IndexPatients", new { id = pid, operate = operate, type = type });
         }
 
         

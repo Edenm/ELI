@@ -17,6 +17,7 @@ namespace Eli.Controllers
         [HttpPost]
         public ActionResult Index(MailModel _objModelMail)
         {
+            string type = "success", operate = "מייל נשלח בהצלחה";
             _objModelMail.From = _objModelMail.From;
             MailMessage mail = new MailMessage();
             mail.To.Add(_objModelMail.To);
@@ -30,19 +31,19 @@ namespace Eli.Controllers
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new System.Net.NetworkCredential
-            ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
+            ("otzmotnoreply@gmail.com", "shahareden");// Enter seders User name and password
             smtp.EnableSsl = true;
             smtp.Send(mail);
             
           if (_objModelMail.redirect=="therapist")
           {
             
-              return RedirectToAction("IndexTherapist", "Therapist");
+              return RedirectToAction("IndexTherapist", "Therapist",new { operate = operate, type = type });
           }
 
           if (_objModelMail.redirect == "finance")
             {
-                return RedirectToAction("IndexFinancingFactor", "FinanceFactor");
+                return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = operate, type = type });
             }
             return RedirectToAction("IndexFinancingFactor", "FinanceFactor");
 
@@ -78,7 +79,7 @@ namespace Eli.Controllers
                     smtp.Port = 587;
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new System.Net.NetworkCredential
-                    ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
+                    ("otzmotnoreply@gmail.com", "shahareden");// Enter seders User name and password
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
@@ -114,7 +115,7 @@ namespace Eli.Controllers
                     smtp.Port = 587;
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new System.Net.NetworkCredential
-                    ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
+                    ("otzmotnoreply@gmail.com", "shahareden");// Enter seders User name and password
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
@@ -140,7 +141,7 @@ namespace Eli.Controllers
                     smtp.Port = 587;
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new System.Net.NetworkCredential
-                    ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
+                    ("otzmotnoreply@gmail.com", "shahareden");// Enter seders User name and password
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
@@ -167,7 +168,7 @@ namespace Eli.Controllers
                     smtp.Port = 587;
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new System.Net.NetworkCredential
-                    ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
+                    ("otzmotnoreply@gmail.com", "shahareden");// Enter seders User name and password
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }

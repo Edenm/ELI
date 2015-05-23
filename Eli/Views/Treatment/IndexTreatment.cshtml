@@ -20,13 +20,13 @@
             notify('@ViewBag.operate', '@ViewBag.type');
     </script>
 
-    <h3 class="small" align="right">
+    <div class="links">
         @Html.ActionLink("מטופלים", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
         ->
         @Html.ActionLink("הפניות", "IndexReference", "Reference", new { pid = @ViewBag.Id }, new { @class = "link" })
         ->
         טיפולים
-    </h3>
+    </div>
    
 
     <div align="right" dir="rtl">
@@ -38,7 +38,7 @@
             <br />עבור הפניית @ViewBag.Ref
             </div>
 
-        <div class="small" align="right"><b>:חיפוש</b></div>
+        <div class="small" align="right"><b>חיפוש:</b></div>
             <div class="table-responsive">
                 <table id="myTable" class="display table table-bordered">
                     <thead>
@@ -64,7 +64,7 @@
                                 var hour = @item.treatment.TreatmentStartTime.Value.ToString();
                                 <tr>
                                     <td> @count </td>
-                                    <td> @item.treatment.TreatmentDate.Value.ToString("dd-MM-yyyy") </td>
+                                    <td> @item.treatment.TreatmentDate.Value.ToString("dd-MM-yy") </td>
                                     <td> @hour.Substring(0, 5)</td>
                                     <td> @item.treatment.TreatmentPlace </td>
                                     <td> @item.treatment.TreatmentGoal</td>

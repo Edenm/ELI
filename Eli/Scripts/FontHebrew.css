@@ -2,7 +2,7 @@
 .big
 {
     font-family: 'Nehama', serif;
-    font-size: 80px;
+    font-size: 100px;
     color:blue;
     text-align:center;
 }
@@ -18,5 +18,29 @@ marquee
 {
     font-family: 'David CLM', serif;
     font-size: 20px;
+    color:#2384a4;
 }           
-    
+ 
+.tabs
+{
+    font-family: 'David CLM', serif;
+    font-size: 22.5px;
+    font-weight: bold;
+    color:black;
+} 
+
+.tabsSmall
+{
+    font-family: 'David CLM', serif;
+    font-size: 15px;
+    font-weight: bold;
+    color:black;
+}  
+
+.links
+{
+    font-family: 'David CLM', serif;
+    font-size: 25px;
+    font-weight: bold;
+    text-align:right;
+}     

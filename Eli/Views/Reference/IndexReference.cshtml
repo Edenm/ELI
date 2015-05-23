@@ -19,17 +19,17 @@
             notify('@ViewBag.operate', '@ViewBag.type');
     </script>
 
-    <h3  class="small" align="right">
+    <div  class="links" >
         @Html.ActionLink("מטופלים", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
         ->
         הפניות
-        </h3>
+        </div>
 
         <div align="right" dir="rtl">
             <div class="big"> הפניות </div>
             @{String name = ViewBag.Name; }
             <h4 class="medium"><b>  הפניות עבור: @name</b></h4>
-            <div class="small" align="right"><b>:חיפוש</b></div>
+            <div class="small" align="right"><b>חיפוש:</b></div>
             <div class="table-responsive">
                 <table id="reference" class="display table table-bordered" width="100%">
                     <thead>
@@ -59,7 +59,7 @@
                                     <td> @item.OtherStatus </td>
                                     <td> @item.AbuseType </td>
                                     <td> @item.ReferenceSource </td>
-                                    <td> @item.StartDateReference.Value.ToString("dd-MM-yyyy") </td>
+                                    <td> @item.StartDateReference.Value.ToString("dd-MM-yy") </td>
                                     <td style="text-align: center;">
                                         <a class="btn " data-toggle="modal" href="#@item.ReferenceNumber">
                                             <img src="~/Images/edit.png" />
