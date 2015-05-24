@@ -39,9 +39,9 @@
         this.uuid    = "ID"+(new Date().getTime())+"RAND"+(Math.ceil(Math.random() * 100000));
         this.element = $([
 
-            '<div class="alert notify-message">',
+            '<div class="alert notify-message" style="position:fixed; margin-top:20%;">',
                 '<button type="button" class="close" aria-hidden="true">&times;</button>',
-                '<div>'+this.options.message+'</div>',
+                '<div style="text-align:center">'+this.options.message+'</div>',
             '</div>'
 
         ].join('')).data("notifyMessage", this);

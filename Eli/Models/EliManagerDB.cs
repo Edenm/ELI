@@ -108,7 +108,7 @@ namespace Eli.Models
                     ParentID = p.ParentID,
                     PatientID = family.Patient.ID
                 };
-
+                
                 ParentPatient.InsertOnSubmit(tbPP);
             }
 

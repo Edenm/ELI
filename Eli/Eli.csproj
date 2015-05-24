@@ -313,7 +313,6 @@
     <Content Include="Images\2.jpg" />
     <Content Include="Images\5.JPG" />
     <Content Include="Images\6.png" />
-    <Content Include="Images\3.jpg" />
     <Content Include="Images\4.jpg" />
     <Content Include="Images\add.png" />
     <Content Include="Images\background.jpg" />
@@ -366,6 +365,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap-3.3.2.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -380,7 +380,7 @@
     <Content Include="Scripts\DataTable\jquery.dataTables.min.js" />
     <Content Include="Scripts\DataTable\jquery.dataTables_themeroller.css" />
     <Content Include="Scripts\DataTable\jquery.js" />
-    <Content Include="Scripts\FontHebrew.css" />
+    <Content Include="Content\FontHebrew.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -389,6 +389,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />

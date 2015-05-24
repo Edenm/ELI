@@ -24,7 +24,9 @@ namespace Eli.Controllers
 
         /** The method registred the user to system and to session */
         [HttpPost]
-        public ActionResult IndexLogin(User user )
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult IndexLogin(User user)
         {
             EliManagerDB db= new EliManagerDB();
             if (ModelState.IsValid)
@@ -35,6 +37,7 @@ namespace Eli.Controllers
                 {
                     Session["Therapist"] = ther;
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
+                  
                     return RedirectToAction("HomePage", "Login");
                 }
             }
