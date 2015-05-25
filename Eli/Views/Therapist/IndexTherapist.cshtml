@@ -13,6 +13,11 @@
 </head>
 
 <body>
+    @{ if (ViewBag.operate != null)
+     {
+        @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
+     }
+    }
     <h4 class="small"> <b>הודעת תפוצה</b></h4>
     
     <button id="mail" type="button" style="float: left;" title="שליחת הודעת תפוצה למטפלים" class="btn btn-default" data-toggle="modal" data-target="#sendtoall">
@@ -103,16 +108,6 @@
             new $.fn.dataTable.KeyTable(table);
 
         </script>
-
-    @{ if (ViewBag.operate != null)
-     {
-        <script src="~/Scripts/notify.js"></script>
-        <script>
-            alert("@ViewBag.operate");
-            //notify('@ViewBag.operate', '@ViewBag.type');
-        </script>
-     }
-    }
 
     <script>
 

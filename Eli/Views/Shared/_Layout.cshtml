@@ -44,8 +44,17 @@
                         </td>
                         <td> &nbsp;&nbsp;</td>
                         <td style="text-align:center;">
-                            @{tblTherapist ther = (tblTherapist)Session["Therapist"];
-                            string name = ther.TherapistFirstName + " " + ther.TherapistSurName;}
+                            @{
+                                tblTherapist ther = (tblTherapist)Session["Therapist"];
+                                if (ther == null)
+                                {
+                                    <script>
+                                        window.location.href = "/Login/IndexLogin/";
+                                    </script>
+                                }
+                                string name = ther.TherapistFirstName + " " + ther.TherapistSurName;
+                            }
+                            
                             <nav dir="rtl" style="float:right;">
                                 <ul id="menu" class="nav nav-tabs">
                                     <li role="presentation" class="dropdown btn">
@@ -121,6 +130,7 @@
                     default:
                 }
             }
+
         </script>
     </header>
 

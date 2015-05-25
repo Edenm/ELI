@@ -3,6 +3,11 @@
 @{Layout = "~/Views/Shared/_LoginLayout.cshtml";}
 
 
+@{ if (ViewBag.operate != null)
+ {
+    @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
+ }
+}
 
 <link href="~/Content/login.css" rel="stylesheet" />
   <div class="container center" dir="rtl" style="height: 100%;">
@@ -54,16 +59,6 @@
         </div>
     </div>
 </div>
-
-@{ if (ViewBag.operate != null)
- {
-    <script src="~/Scripts/notify.js"></script>
-    <script>
-        alert("@ViewBag.operate")
-        //notify('@ViewBag.operate', '@ViewBag.type');
-    </script>
- }
-}
 
 
 

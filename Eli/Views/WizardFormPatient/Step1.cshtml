@@ -27,6 +27,12 @@
         </ul>
     </div>
 
+    @{ if (ViewBag.operate != null)
+     {
+        @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
+     }
+    }
+
     <div class="col-xs-12">
         <div class="modal-dialog" style="width:100%;">
             <div class="modal-content" dir="rtl">
@@ -51,13 +57,3 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
-
-@{ if (ViewBag.operate != null)
- {
-    <script src="~/Scripts/notify.js"></script>
-    <script>
-        alert("@ViewBag.operate")
-        //notify('@ViewBag.operate', '@ViewBag.type');
-    </script>
- }
-}

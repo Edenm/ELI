@@ -23,9 +23,8 @@ namespace Eli.Controllers
         }
 
         /** The method registred the user to system and to session */
+        [Authorize]
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public ActionResult IndexLogin(User user)
         {
             EliManagerDB db= new EliManagerDB();
@@ -67,6 +66,7 @@ namespace Eli.Controllers
         }
 
         /** The method get mail from ForgetPassword and send mail to user with his mail */
+        [Authorize]
         [HttpPost]
         public ActionResult ForgetPassword(FormCollection mail)
         {

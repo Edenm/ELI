@@ -14,6 +14,11 @@
     <link href="~/Content/ModalSize.css" rel="stylesheet" />
 </head>
 <body>
+    @{ if (ViewBag.operate != null)
+     {
+        @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
+     }
+    }
     <div class="links">
         @Html.ActionLink("מטופלים", "IndexPatients", "Patient", new { n = "" }, new { @class = "link" })
         ->
@@ -97,17 +102,6 @@
         var table = $('#myTable').DataTable();
         new $.fn.dataTable.KeyTable(table);
     </script>
-
-    @{ if (ViewBag.operate != null)
-     {
-        <script src="~/Scripts/notify.js"></script>
-        <script>
-            alert("@ViewBag.operate")
-            //notify('@ViewBag.operate', '@ViewBag.type');
-        </script>
-     }
-    }
-
 
 </body>
 

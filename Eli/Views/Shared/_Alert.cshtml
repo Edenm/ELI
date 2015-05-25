@@ -1,0 +1,23 @@
+﻿
+
+@{if (ViewBag.type == "success")
+    {
+        <div id="div" class="alert alert-success alert-dismissible" style="text-align: center; align-self:center; margin-top:0%" role="alert">
+            <strong>@ViewBag.operate</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+    }
+  else
+  {
+        <div id="div" class="alert alert-danger alert-dismissible" style="text-align: center; align-self:center; margin-top:0%" role="alert">
+            <strong>@ViewBag.operate</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+  }
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#div").fadeOut(1500);
+    })
+</script>
