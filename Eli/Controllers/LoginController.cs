@@ -23,7 +23,6 @@ namespace Eli.Controllers
         }
 
         /** The method registred the user to system and to session */
-        [Authorize]
         [HttpPost]
         public ActionResult IndexLogin(User user)
         {
@@ -66,7 +65,6 @@ namespace Eli.Controllers
         }
 
         /** The method get mail from ForgetPassword and send mail to user with his mail */
-        [Authorize]
         [HttpPost]
         public ActionResult ForgetPassword(FormCollection mail)
         {

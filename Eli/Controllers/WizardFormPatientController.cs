@@ -32,7 +32,6 @@ namespace Eli.Controllers
                     db.checkPatient(pat);
                     Family obj = GetFamily();
                     obj.Patient = pat;
-
                     return View(obj);
                 }
                 catch (Exception e)

@@ -9,16 +9,17 @@
     <title></title>
     <meta name="viewport" content="width=device-width" />
     <script src="~/Content/bootbox.min.js"></script>
-    <link href="~/Content/ModalSize.css" rel="stylesheet" />
 </head>
 
 
 <body>
+
     @{ if (ViewBag.operate != null)
      {
         @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
      }
     }
+
     <h4 class="small"><b>הודעת תפוצה</b></h4>
   
     <button id="mail" type="button" style="float: left;" title="שליחת הודעת תפוצה לגורמים מממנים" class="btn btn-default" data-toggle="modal" data-target="#sendtoall">
@@ -80,14 +81,14 @@
         @foreach (tblFinancingFactor item in Model)
         {
             @Html.Partial("_FinancingFactor", item);
-
-                                                   MailModel m = new MailModel();
-                                                   m.To = item.FinancingFactorContactMail;
-                                                   m.id = "" + item.FinancingFactorNumber;
-                                                   m.redirect = "finance";
-                                                   m.name = item.FinancingFactorName;
-                                                @Html.Partial("_mail", m);
+            MailModel m = new MailModel();
+            m.To = item.FinancingFactorContactMail;
+            m.id = "" + item.FinancingFactorNumber;
+            m.redirect = "finance";
+            m.name = item.FinancingFactorName;
+            @Html.Partial("_mail", m);
         }
+                                                   
         @{MailModel mail = new MailModel();
 
         mail.redirect = "finance";

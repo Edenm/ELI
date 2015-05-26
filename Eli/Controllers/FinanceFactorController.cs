@@ -29,6 +29,9 @@ namespace Eli.Controllers
 
             finfac.Add(new tblFinancingFactor());
 
+            ViewBag.operate = operate;
+            ViewBag.type = type;
+
             return View(finfac);
 
         }
@@ -46,12 +49,12 @@ namespace Eli.Controllers
                 if (submit.Equals("צור"))
                 {
                     db.addFinanceFactor(ff);
-                    ViewBag.operate = "מטפל התווסף בהצלחה";
+                    ViewBag.operate = "גורם מממן התווסף בהצלחה";
                 }
                 else
                 {
                     db.EditFinanceFactor(ff);
-                    ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
+                    ViewBag.operate = "פרטי גורם מממן התעדכנו בהצלחה";
                 }
             }catch(Exception e){
                 ViewBag.operate = e.Message;

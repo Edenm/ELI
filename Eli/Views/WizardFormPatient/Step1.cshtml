@@ -3,6 +3,12 @@
 @using Eli.Models
 <meta charset="utf-8">
 
+@{ if (ViewBag.operate != null)
+ {
+    @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
+ }
+}
+
 <div class="row form-group">
     <div class=" col-xs-12">
         <ul class="nav nav-pills nav-justified thumbnail setup-panel" dir="rtl">
@@ -27,11 +33,7 @@
         </ul>
     </div>
 
-    @{ if (ViewBag.operate != null)
-     {
-        @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
-     }
-    }
+   
 
     <div class="col-xs-12">
         <div class="modal-dialog" style="width:100%;">
