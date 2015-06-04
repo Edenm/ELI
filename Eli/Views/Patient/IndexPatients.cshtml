@@ -95,6 +95,13 @@
         </table>
     </div>
 
+    <script>
+        var table = $('#myTable').DataTable();
+        new $.fn.dataTable.KeyTable(table);
+    </script>
+
+
+
     @foreach (Family item in Model)
     {
                 @Html.Partial("_PopUpPatient", item.Patient);
@@ -120,10 +127,7 @@
       @Html.Partial("_MailToAll", mail)
     }
     
-    <script>
-        var table = $('#myTable').DataTable();
-        new $.fn.dataTable.KeyTable(table);
-    </script>
+   
 
 </body>
 </html>
