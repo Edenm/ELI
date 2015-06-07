@@ -24,6 +24,12 @@ namespace Eli.Controllers
             return View(new tblPatient());
         }
 
+        public ActionResult WebForm1()
+        {
+
+            return View();
+        }
+
         /* The Method displays all the patients in the system-this is the main form of patients  **/
         [HttpGet]
         public ActionResult IndexPatients(string operate,string type)

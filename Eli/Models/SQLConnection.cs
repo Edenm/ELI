@@ -15,7 +15,6 @@ namespace Eli.Models
 
         //for server
         private static string connectionString = "Data Source=132.75.252.109;Initial Catalog=es2015;Persist Security Info=True;User ID=es2015;Password=th41pn9";
-        
         public static DataConnectionDataContext GetDataContextInstance()
         {
             DataConnectionDataContext dbDataContext = new DataConnectionDataContext(connectionString);
