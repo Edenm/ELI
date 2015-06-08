@@ -214,9 +214,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Calendar.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Models\DataConnection.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,13 +228,6 @@
     <Compile Include="ViewModel\ReferenceTeratments.cs" />
     <Compile Include="ViewModel\Treatment.cs" />
     <Compile Include="ViewModel\User.cs" />
-    <Compile Include="Views\Patient\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.cshtml</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Patient\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.cshtml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootbox.min.js" />
@@ -420,7 +410,6 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\special.css" />
     <Content Include="Scripts\special1.css" />
-    <None Include="Views\Patient\WebForm1.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -504,9 +493,7 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Models\Calendar.aspx.cs</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
