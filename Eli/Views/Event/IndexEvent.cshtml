@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Eli.Models.tblEvent>
+@using Eli.Models;
+@using System;
+@using System.Collections.Generic;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Content/bootbox.min.js"></script>
+</head>
+
+<body>
+
+    @{ if (ViewBag.operate != null)
+     {
+        @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
+     }
+    }
+
+    <div class="big">ניהול הודעות</div>
+    <div class="small" align="right"><b>:חיפוש</b></div>
+
+    <div dir="rtl">
+        <table id="myTable" class="display nowrap table-bordered">
+            <thead align="center">
+                <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">תאריך</th>
+                    <th style="text-align: center;">שעה</th>
+                    <th style="text-align: center;">הודעה</th>
+                    <th style="text-align: center;">עריכה</th>
+                    <th style="text-align: center;">מחיקה</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.EventNum != 0)
+                    {
+                        <tr align="center">
+                            <td> @item.EventNum </td>
+                            <td> @item.EventDate </td>
+                            <td> @item.EventTime </td>
+                            <td> @item.Description</td>
+                            <td>
+                                <a data-toggle="modal" href="#@item.EventNum">
+                                    <img src="~/Images/Information_32x32.png" />
+                                </a>
+                            </td>
+                            @{
+                                string id = "del" + item.EventNum;
+                            }
+                            <td>
+                                <a data-toggle="modal" href="#@id">
+                                    <img src="~/Images/delete.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <br />
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+        הוסף אירוע חדש
+    </button>
+
+    @foreach (tblEvent item in Model)
+    {
+        @Html.Partial("_Event",item);
+        if (item.EventNum != 0) { 
+            @Html.Partial("_DeleteEvent", item);
+        }
+    }
+
+    <br />
+    <script>
+            var table = $('#myTable').DataTable();
+            new $.fn.dataTable.KeyTable(table);
+    </script>
+
+</body>
+</html>

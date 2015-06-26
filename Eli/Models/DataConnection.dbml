@@ -138,4 +138,12 @@
       <Association Name="tblTherapist_tblReferenceTherapist" Member="tblReferenceTherapists" ThisKey="TherapistID" OtherKey="TherapistID" Type="tblReferenceTherapist" />
     </Type>
   </Table>
+  <Table Name="dbo.tblEvent" Member="tblEvents">
+    <Type Name="tblEvent">
+      <Column Name="EventNum" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EventTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

@@ -11073,7 +11073,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "אין מידע זמין עבור טבלה זאת",
 	
 	
 			/**

@@ -40,227 +40,227 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
 
-    <fieldset align="right" dir="rtl">
-        <legend>tblTreatment</legend>
-        @Html.HiddenFor(model => model.TreatmentNumber)
+                <fieldset align="right" dir="rtl">
+                    <legend>tblTreatment</legend>
+                    @Html.HiddenFor(model => model.TreatmentNumber)
 
-        <table>
-            <tr>
-                <td>
-                    <label float:right class="description" for="element_1">
-                        נושא טיפול
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        סטטוס מטופל
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TreatmentSubject)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TreatmentSubject)
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TreatmentStatusPatient)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TreatmentStatusPatient)
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>
-                    <label float:right class="description" for="element_1">
-                        מטרת טיפול
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        תיאור טיפול
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.TextAreaFor(model => model.TreatmentGoal)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TreatmentGoal)
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.TextAreaFor(model => model.TreatmentDescription)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TreatmentDescription)
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label float:right class="description" for="element_1">
-                        סיכום טיפול
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        הערות לפגישה הבאה
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.TextAreaFor(model => model.TreatmentSummary)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TreatmentSummary)
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.TextAreaFor(model => model.NextTreatment)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.NextTreatment)
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>
-                    <label float:right class="description" for="element_1">
-                        תאריך טיפול
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        שעת טיפול
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        מקום טיפול
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TreatmentDate)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TreatmentDate)
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div style="text-align:right; float:right;">
-                        <select dir="rtl" class="element select" id="time" name="TreatmentStartTime" style="width: 300px; height: 30px">
-                         @{
-                              String hour="";
-                        if (Model.TreatmentNumber != 0)
-                         {
-                           hour = Model.TreatmentStartTime.Value.ToString();
-                           hour = hour.Substring(0, 5);
-                        }
-                        else
-                        {
-                            hour = "0";
-                        }
-                         }
-                            @{foreach (string s in db.getAllHours())
-                            {
-                                if (s ==hour )
-                                {
-                                    <option selected="selected" value="@s">@s</option>
-                                }
-                                else
-                                {
-                                    <option value="@s">@s</option>
-                                }
-                            }
-                            }
-
-
+                    <table>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    נושא טיפול
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    סטטוס מטופל
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TreatmentSubject)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TreatmentSubject)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TreatmentStatusPatient)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TreatmentStatusPatient)
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    מטרת טיפול
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    תיאור טיפול
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.TextAreaFor(model => model.TreatmentGoal)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TreatmentGoal)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.TextAreaFor(model => model.TreatmentDescription)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TreatmentDescription)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    סיכום טיפול
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    הערות לפגישה הבאה
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.TextAreaFor(model => model.TreatmentSummary)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TreatmentSummary)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.TextAreaFor(model => model.NextTreatment)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.NextTreatment)
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    תאריך טיפול
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    שעת טיפול
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    מקום טיפול
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TreatmentDate)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TreatmentDate)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div style="text-align:right; float:right;">
+                                    <select dir="rtl" class="element select" id="time" name="TreatmentStartTime" style="width: 300px; height: 30px">
+                                     @{
+                                          String hour="";
+                                    if (Model.TreatmentNumber != 0)
+                                     {
+                                       hour = Model.TreatmentStartTime.Value.ToString();
+                                       hour = hour.Substring(0, 5);
+                                    }
+                                    else
+                                    {
+                                        hour = "0";
+                                    }
+                                     }
+                                        @{foreach (string s in db.getAllHours())
+                                        {
+                                            if (s ==hour )
+                                            {
+                                                <option selected="selected" value="@s">@s</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@s">@s</option>
+                                            }
+                                        }
+                                        }
 
 
 
 
-                        </select>
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TreatmentPlace)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TreatmentPlace)
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label float:right class="description" for="element_1">
-                        גורם מממן
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
 
-                    <label float:right class="description" for="element_1">
-                        האם שולם
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div style="text-align:right; float:right;">
-                        <select dir="rtl" class="element select" id="FinancingFactorNumber" name="FinancingFactorNumber" style="width: 300px; height: 30px">
-                            @{foreach (tblFinancingFactor ff in db.getAllFinanceFactor())
-                            {
-                                if (ff.FinancingFactorNumber == Model.FinancingFactorNumber)
-                                {
-                                    <option selected="selected" value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
-                                }
-                                else
-                                {
-                                    <option value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
-                                }
-                            }
-                            }
-                        </select>
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div style="text-align:right; float:right;">
-                        <select dir="rtl" class="element select" id="IsPaid" name="IsPaid" style="width: 300px; height: 30px">
-                            @if (@Model.IsPaid == "כן")
-                            {
-                                <option selected="selected" value="כן">כן</option>
-                                <option value="לא">לא</option>
-                            }
-                            else
-                            {
-                                <option selected="selected" value="לא">לא</option>
-                                <option value="כן">כן</option>
-                            }
 
-                        </select>
-                    </div>
-                </td>
-            </tr>
-        </table>
+                                    </select>
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TreatmentPlace)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TreatmentPlace)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    גורם מממן
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
 
-        <br />
-        <input type="text" name="ReferenceNumber" dir="rtl" value="@Model.ReferenceNumber" hidden>
-        <br />
-        <p>
-            <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
-        </p>
-    </fieldset>
+                                <label float:right class="description" for="element_1">
+                                    האם שולם
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="text-align:right; float:right;">
+                                    <select dir="rtl" class="element select" id="FinancingFactorNumber" name="FinancingFactorNumber" style="width: 300px; height: 30px">
+                                        @{foreach (tblFinancingFactor ff in db.getAllFinanceFactor())
+                                        {
+                                            if (ff.FinancingFactorNumber == Model.FinancingFactorNumber)
+                                            {
+                                                <option selected="selected" value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
+                                            }
+                                        }
+                                        }
+                                    </select>
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div style="text-align:right; float:right;">
+                                    <select dir="rtl" class="element select" id="IsPaid" name="IsPaid" style="width: 300px; height: 30px">
+                                        @if (@Model.IsPaid == "כן")
+                                        {
+                                            <option selected="selected" value="כן">כן</option>
+                                            <option value="לא">לא</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected="selected" value="לא">לא</option>
+                                            <option value="כן">כן</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <input type="text" name="ReferenceNumber" dir="rtl" value="@Model.ReferenceNumber" hidden>
+                    <br />
+                    <p>
+                        <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
+                    </p>
+                </fieldset>
             }
         </div>
     </div>

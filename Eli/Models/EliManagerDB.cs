@@ -82,6 +82,11 @@ namespace Eli.Models
             get { return db.tblRefererencePatients; }
         }
 
+        public Table<tblEvent> Events
+        {
+            get { return db.tblEvents; }
+        }
+
 //-------------------------Add methods----------------------------------------------------------
         
         /* The method add patient with all the details about him **/
@@ -289,6 +294,24 @@ namespace Eli.Models
             db.SubmitChanges();
         }
 
+        /* Add Event to data base **/
+        public void addEvent(tblEvent ev)
+        {
+            if (Events.Count() == 0)
+            {
+                ev.EventNum = 1;
+            }
+            else
+            {
+                int eve = Events.ToArray().Last().EventNum;
+                ev.EventNum = eve+1;
+            }
+            
+
+            Events.InsertOnSubmit(ev);
+            db.SubmitChanges();
+        }
+
 
         //-------------------------Edit methods----------------------------------------------------------
 
@@ -405,6 +428,27 @@ namespace Eli.Models
                 countBS++;
             }
             
+            db.SubmitChanges();
+        }
+
+        public void EditEvent(tblEvent ev)
+        {
+            var eve = Events.First(e => e.EventNum == ev.EventNum);
+            eve.EventDate = ev.EventDate;
+            eve.EventTime = ev.EventTime;
+            eve.Description = ev.Description;
+
+            db.SubmitChanges();
+        }
+
+        //-----------------------remove Method----------------------------------------------------------------
+
+        public void RemoveEvent(int evNum)
+        {
+            var eve = Events.First(e => e.EventNum == evNum);
+
+            Events.DeleteOnSubmit(eve);
+
             db.SubmitChanges();
         }
 
