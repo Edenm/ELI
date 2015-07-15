@@ -145,12 +145,20 @@
             <div class="col-xs-10 col-xs-offset-1">
                 <marquee onmouseover="this.scrollAmount=0" dir="rtl" direction="right" onmouseout="this.scrollAmount=3" scrollamount="5" loop="true" width="100%">
                     <center>
-                        <b>
-                            30/5/15- פגישת סיכום חודש מאי &nbsp;
-                            7/6/15- שפיים ונהנים!! &nbsp;
-                            10/6/15- יוסי הללי טכנאי מזגנים מגיע ב- 15:30 &nbsp;
-                            <!--20/6/15- יומולדת להילה!! 18:30 במשרד &nbsp; -->
-                        </b>
+                        
+                            @{
+                                var events = new EliManagerDB().getAllEvents();
+                                String msg="";
+                                foreach (var item in events)
+                                {
+                                    var hour = item.EventTime.Value.ToString();
+                                    msg +=" "+ item.EventDate.Value.ToString("dd/MM/yy") + " " + hour.Substring(0, 5) + " " + item.Description;
+                                    
+                                    
+                                }
+                            }
+                            <a href="~/Event/IndexEvent"><b>@msg</b></a>
+                            <!--&nbsp; -->
                     </center>
                 </marquee>
                 @RenderBody()

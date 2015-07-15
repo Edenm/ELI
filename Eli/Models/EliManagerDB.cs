@@ -578,6 +578,11 @@ namespace Eli.Models
             return FinancingFactor.ToList();
         }
 
+        public List<tblEvent> getAllEvents()
+        {
+            return Events.ToList();
+        }
+
 //-------------------------------Help Method-----------------------------------------
 
         /*the function return all StatusReference strings*/
