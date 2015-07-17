@@ -94,7 +94,10 @@ namespace Eli.Controllers
 
         public ActionResult IndexAll(MailModel _objModelMail)
         {
-
+            tblTherapist ther = (tblTherapist)Session["Therapist"];
+            string email = ther.TherapistMail;
+            string password = ther.Passcode;     
+                                
             EliManagerDB db = new EliManagerDB();
             
             if (_objModelMail.redirect == "therapist")
@@ -115,7 +118,7 @@ namespace Eli.Controllers
                     smtp.Port = 587;
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new System.Net.NetworkCredential
-                    ("otzmotnoreply@gmail.com", "shahareden");// Enter seders User name and password
+                    (email, password);// Enter seders User name and password
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
