@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ELIDataSetDebatorsFF" targetNamespace="http://tempuri.org/ELIDataSetDebatorsFF.xsd" xmlns:mstns="http://tempuri.org/ELIDataSetDebatorsFF.xsd" xmlns="http://tempuri.org/ELIDataSetDebatorsFF.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ELIConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ELIConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ELIConnectionString2.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblFinanceFactorDebatorsTableAdapter" GeneratorDataComponentClassName="tblFinanceFactorDebatorsTableAdapter" Name="tblFinanceFactorDebators" UserDataComponentName="tblFinanceFactorDebatorsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ELIConnectionString2 (Web.config)" DbObjectName="ELI.dbo.tblFinanceFactorDebators" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT FinancingFactorNumber, FinancingFactorName, FinancingFactorType, FinancingFactorAddress, FinancingFactorContactName, FinancingFactorContcatPhoneNumber, FinancingFactorContactMail, TreatmentDate, TreatmentStartTime, ID, PatientName, TherapistName FROM dbo.tblFinanceFactorDebators</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="FinancingFactorNumber" DataSetColumn="FinancingFactorNumber" />
+              <Mapping SourceColumn="FinancingFactorName" DataSetColumn="FinancingFactorName" />
+              <Mapping SourceColumn="FinancingFactorType" DataSetColumn="FinancingFactorType" />
+              <Mapping SourceColumn="FinancingFactorAddress" DataSetColumn="FinancingFactorAddress" />
+              <Mapping SourceColumn="FinancingFactorContactName" DataSetColumn="FinancingFactorContactName" />
+              <Mapping SourceColumn="FinancingFactorContcatPhoneNumber" DataSetColumn="FinancingFactorContcatPhoneNumber" />
+              <Mapping SourceColumn="FinancingFactorContactMail" DataSetColumn="FinancingFactorContactMail" />
+              <Mapping SourceColumn="TreatmentDate" DataSetColumn="TreatmentDate" />
+              <Mapping SourceColumn="TreatmentStartTime" DataSetColumn="TreatmentStartTime" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="PatientName" DataSetColumn="PatientName" />
+              <Mapping SourceColumn="TherapistName" DataSetColumn="TherapistName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ELIDataSetDebatorsFF" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ELIDataSetDebatorsFF" msprop:Generator_UserDSName="ELIDataSetDebatorsFF">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblFinanceFactorDebators" msprop:Generator_TableClassName="tblFinanceFactorDebatorsDataTable" msprop:Generator_TableVarName="tabletblFinanceFactorDebators" msprop:Generator_TablePropName="tblFinanceFactorDebators" msprop:Generator_RowDeletingName="tblFinanceFactorDebatorsRowDeleting" msprop:Generator_RowChangingName="tblFinanceFactorDebatorsRowChanging" msprop:Generator_RowEvHandlerName="tblFinanceFactorDebatorsRowChangeEventHandler" msprop:Generator_RowDeletedName="tblFinanceFactorDebatorsRowDeleted" msprop:Generator_UserTableName="tblFinanceFactorDebators" msprop:Generator_RowChangedName="tblFinanceFactorDebatorsRowChanged" msprop:Generator_RowEvArgName="tblFinanceFactorDebatorsRowChangeEvent" msprop:Generator_RowClassName="tblFinanceFactorDebatorsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FinancingFactorNumber" msprop:Generator_ColumnVarNameInTable="columnFinancingFactorNumber" msprop:Generator_ColumnPropNameInRow="FinancingFactorNumber" msprop:Generator_ColumnPropNameInTable="FinancingFactorNumberColumn" msprop:Generator_UserColumnName="FinancingFactorNumber" type="xs:int" />
+              <xs:element name="FinancingFactorName" msprop:Generator_ColumnVarNameInTable="columnFinancingFactorName" msprop:Generator_ColumnPropNameInRow="FinancingFactorName" msprop:Generator_ColumnPropNameInTable="FinancingFactorNameColumn" msprop:Generator_UserColumnName="FinancingFactorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FinancingFactorType" msprop:Generator_ColumnVarNameInTable="columnFinancingFactorType" msprop:Generator_ColumnPropNameInRow="FinancingFactorType" msprop:Generator_ColumnPropNameInTable="FinancingFactorTypeColumn" msprop:Generator_UserColumnName="FinancingFactorType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FinancingFactorAddress" msprop:Generator_ColumnVarNameInTable="columnFinancingFactorAddress" msprop:Generator_ColumnPropNameInRow="FinancingFactorAddress" msprop:Generator_ColumnPropNameInTable="FinancingFactorAddressColumn" msprop:Generator_UserColumnName="FinancingFactorAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FinancingFactorContactName" msprop:Generator_ColumnVarNameInTable="columnFinancingFactorContactName" msprop:Generator_ColumnPropNameInRow="FinancingFactorContactName" msprop:Generator_ColumnPropNameInTable="FinancingFactorContactNameColumn" msprop:Generator_UserColumnName="FinancingFactorContactName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FinancingFactorContcatPhoneNumber" msprop:Generator_ColumnVarNameInTable="columnFinancingFactorContcatPhoneNumber" msprop:Generator_ColumnPropNameInRow="FinancingFactorContcatPhoneNumber" msprop:Generator_ColumnPropNameInTable="FinancingFactorContcatPhoneNumberColumn" msprop:Generator_UserColumnName="FinancingFactorContcatPhoneNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FinancingFactorContactMail" msprop:Generator_ColumnVarNameInTable="columnFinancingFactorContactMail" msprop:Generator_ColumnPropNameInRow="FinancingFactorContactMail" msprop:Generator_ColumnPropNameInTable="FinancingFactorContactMailColumn" msprop:Generator_UserColumnName="FinancingFactorContactMail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TreatmentDate" msprop:Generator_ColumnVarNameInTable="columnTreatmentDate" msprop:Generator_ColumnPropNameInRow="TreatmentDate" msprop:Generator_ColumnPropNameInTable="TreatmentDateColumn" msprop:Generator_UserColumnName="TreatmentDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TreatmentStartTime" msprop:Generator_ColumnVarNameInTable="columnTreatmentStartTime" msprop:Generator_ColumnPropNameInRow="TreatmentStartTime" msprop:Generator_ColumnPropNameInTable="TreatmentStartTimeColumn" msprop:Generator_UserColumnName="TreatmentStartTime" type="xs:duration" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PatientName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPatientName" msprop:Generator_ColumnPropNameInRow="PatientName" msprop:Generator_ColumnPropNameInTable="PatientNameColumn" msprop:Generator_UserColumnName="PatientName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="41" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TherapistName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTherapistName" msprop:Generator_ColumnPropNameInRow="TherapistName" msprop:Generator_ColumnPropNameInTable="TherapistNameColumn" msprop:Generator_UserColumnName="TherapistName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="41" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<Eli.ViewModel.Treatment>
+
+@using Eli.Models;
+@using Eli.ViewModel;
+@using System.Collections.Generic;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,6 +13,59 @@
 </head>
 <body>
     <div class="big"> יומן פגישות</div>
-    <iframe src="https://www.google.com/calendar/embed?src=gc0kgcdp4hcmfi614gl59s3mbk%40group.calendar.google.com&ctz=Asia/Jerusalem" style="border: 0; width:100%;" height="600" frameborder="0" scrolling="no"></iframe>
+    <div align="right" dir="rtl">
+        <div class="small" align="right"><b>חיפוש:</b></div>
+        <div class="table-responsive">
+            <table id="myTable" class="display table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">#</th>
+                        <th style="text-align: center;">תאריך טיפול</th>
+                        <th style="text-align: center;">שעה</th>
+                        <th style="text-align: center;">מקום</th>
+                        <th style="text-align: center;">שם המטופל </th>
+                        <th style="text-align: center;">עריכה</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int count = 1;}
+                    @foreach (var item in Model)
+                    {
+                        if (item.treatment.TreatmentNumber != 0)
+                        {
+                            var hour = item.treatment.TreatmentStartTime.Value.ToString();
+                            string patient = item.patient.FirstName + " " + item.patient.SurName;
+                            <tr>
+                                <td> @count </td>
+                                <td> @item.treatment.TreatmentDate.Value.ToString("dd-MM-yy") </td>
+                                <td> @hour.Substring(0, 5)</td>
+                                <td> @item.treatment.TreatmentPlace </td>
+                                <td> @patient </td>
+                                <td>
+                                    <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.treatment.TreatmentNumber">
+                                        <img src="~/Images/info.png" />
+                                    </a>
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+        </div>
+    </div>
+
+    @foreach (Treatment item in Model)
+    {
+        @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", @item.patient.ID } });
+    }
+
+        
+        <iframe src="https://www.google.com/calendar/embed?src=gc0kgcdp4hcmfi614gl59s3mbk%40group.calendar.google.com&ctz=Asia/Jerusalem" style="border: 0; width:100%;" height="600" frameborder="0" scrolling="no"></iframe>
+        <script>
+            var table = $('#myTable').DataTable();
+            new $.fn.dataTable.KeyTable(table);
+        </script>
 </body>
 </html>
