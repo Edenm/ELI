@@ -37,7 +37,7 @@ namespace Eli.Controllers
 
                         
                         MailMessage mail = new MailMessage();
-                        mail.To.Add(tt.TherapistMail);
+                        mail.To.Add("otzmotnoreply@gmail.com");
                         // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
                         mail.Subject = "נוספת בהצלחה למערכת";
                         string Body = "שלום רב נוספת בהצלחה למערכת";
