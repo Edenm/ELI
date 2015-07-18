@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,6 +34,24 @@ namespace Eli.Controllers
                 ViewBag.type = "success";
                 try{
                     if (submit.Equals("צור")){
+
+                        
+                        MailMessage mail = new MailMessage();
+                        mail.To.Add(tt.TherapistMail);
+                        // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
+                        mail.Subject = "נוספת בהצלחה למערכת";
+                        string Body = "שלום רב נוספת בהצלחה למערכת";
+                        mail.Body = Body;
+                        mail.IsBodyHtml = false;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential
+                        (tt.TherapistMail, tt.Passcode);// Enter seders User name and password
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+
                    
                             db.addTherapist(tt);
                             ViewBag.operate = "מטפל התווסף בהצלחה";
@@ -41,7 +60,14 @@ namespace Eli.Controllers
                             db.EditTherapist(tt);
                             ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
                     }
-                 }catch (Exception e){
+                 }
+
+                catch (SmtpException e)
+                {
+                    ViewBag.operate = "סיסמא לא תואמת לכתובת מייל.המטפל לא נוסף";
+                    ViewBag.type = "danger";
+                }
+                catch (Exception e){
                         ViewBag.operate = e.Message;
                         ViewBag.type = "danger";
                  }
