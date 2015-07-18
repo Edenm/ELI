@@ -64,7 +64,7 @@ namespace Eli.Controllers
 
                 catch (SmtpException e)
                 {
-                    ViewBag.operate = "סיסמא לא תואמת לכתובת מייל.המטפל לא נוסף";
+                    ViewBag.operate = "סיסמא לא תואמת לכתובת מייל או יש צורך בשינוי הגדרות אבטחה של המייל.המטפל לא נוסף";
                     ViewBag.type = "danger";
                 }
                 catch (Exception e){
