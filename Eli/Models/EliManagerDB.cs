@@ -659,15 +659,28 @@ namespace Eli.Models
            {
                List<String> list = new List<String>();
                list.Add("08:00");
+               list.Add("08:30");
                list.Add("09:00");
-               list.Add("10:00");
+               list.Add("09:30");
+               list.Add("10:30");
                list.Add("11:00");
+               list.Add("11:30");
                list.Add("12:00");
+               list.Add("12:30");
                list.Add("13:00");
+               list.Add("13:30");
                list.Add("14:00");
+               list.Add("14:30");
                list.Add("15:00");
+               list.Add("15:30");
                list.Add("16:00");
+               list.Add("16:30");
                list.Add("17:00");
+               list.Add("17:30");
+               list.Add("18:00");
+               list.Add("18:30");
+               list.Add("19:00");
+               list.Add("19:30");
                return list;
            }
 
