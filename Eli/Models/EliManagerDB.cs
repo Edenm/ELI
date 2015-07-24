@@ -599,6 +599,12 @@ namespace Eli.Models
             list.Add("פוגע");
             list.Add("נפגע");
             list.Add("פוגע ונפגע");
+            list.Add("משבר");
+            list.Add("טראומה");
+            list.Add("טיפול זוגי");
+            list.Add("טיפול משפחתי");
+            list.Add("ילדים-בעיות בבית ספר");
+            list.Add("ילדים -צרכים מיוחדים");
             list.Add("אחר");
 
             return list;
@@ -624,6 +630,10 @@ namespace Eli.Models
             list.Add("הסברה");
             list.Add("איש מקצוע");
             list.Add("מדיה");
+            list.Add("איש חינוך");
+            list.Add("אישיות דתית");
+            list.Add("אחר");
+
            
 
             return list;

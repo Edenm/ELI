@@ -36,21 +36,7 @@ namespace Eli.Controllers
                     if (submit.Equals("צור")){
 
                         
-                        MailMessage mail = new MailMessage();
-                        mail.To.Add("otzmotnoreply@gmail.com");
-                        // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
-                        mail.Subject = "נוספת בהצלחה למערכת";
-                        string Body = "שלום רב נוספת בהצלחה למערכת";
-                        mail.Body = Body;
-                        mail.IsBodyHtml = false;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.Port = 587;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential
-                        (tt.TherapistMail, tt.Passcode);// Enter seders User name and password
-                        smtp.EnableSsl = true;
-                        smtp.Send(mail);
+                       
 
                    
                             db.addTherapist(tt);
@@ -62,11 +48,7 @@ namespace Eli.Controllers
                     }
                  }
 
-                catch (SmtpException e)
-                {
-                    ViewBag.operate = "סיסמא לא תואמת לכתובת מייל או יש צורך בשינוי הגדרות אבטחה של המייל.המטפל לא נוסף";
-                    ViewBag.type = "danger";
-                }
+               
                 catch (Exception e){
                         ViewBag.operate = e.Message;
                         ViewBag.type = "danger";

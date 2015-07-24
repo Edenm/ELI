@@ -17,9 +17,10 @@ namespace Eli.Controllers
         [HttpPost]
         public ActionResult Index(MailModel _objModelMail)
         {
+            
             tblTherapist ther = (tblTherapist)Session["Therapist"];
             string email = ther.TherapistMail;
-            string password = ther.Passcode; 
+            
             string type = "success", operate = "מייל נשלח בהצלחה";
             _objModelMail.From = _objModelMail.From;
             MailMessage mail = new MailMessage();
@@ -34,19 +35,51 @@ namespace Eli.Controllers
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new System.Net.NetworkCredential
-          (email, password);// Enter seders User name and password
+          (email, _objModelMail.MailPassword);// Enter seders User name and password
             smtp.EnableSsl = true;
-            smtp.Send(mail);
             
           if (_objModelMail.redirect=="therapist")
           {
-            
-              return RedirectToAction("IndexTherapist", "Therapist",new { operate = operate, type = type });
+              try
+              {
+                  smtp.Send(mail);
+                  return RedirectToAction("IndexTherapist", "Therapist", new { operate = operate, type = type });
+
+              }
+              catch (SmtpException e)
+              {
+
+                  return RedirectToAction("IndexTherapist", "Therapist", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+              }
+              catch (Exception e)
+              {
+
+                  return RedirectToAction("IndexTherapist", "Therapist", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+              }
           }
 
           if (_objModelMail.redirect == "finance")
             {
-                return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = operate, type = type });
+                try
+                {
+                    smtp.Send(mail);
+                    return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = operate, type = type });
+
+                }
+                catch (SmtpException e)
+                {
+
+                    return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+                }
+                catch (Exception e)
+                {
+
+                    return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+                }
             }
             return RedirectToAction("IndexFinancingFactor", "FinanceFactor");
 
@@ -63,36 +96,51 @@ namespace Eli.Controllers
         {
             tblTherapist ther = (tblTherapist)Session["Therapist"];
             string email = ther.TherapistMail;
-            string password = ther.Passcode;  
             EliManagerDB db = new EliManagerDB();
             List<tblParent> parents = db.Parent.ToList();
-
-            if ((parents = db.getAllParentsByPatient(_objModelMail.patientId)) != null)
+            try
             {
-                for (int i = 0; i < parents.Count(); i++)
+                if ((parents = db.getAllParentsByPatient(_objModelMail.patientId)) != null)
                 {
-                    _objModelMail.From = _objModelMail.From;
-                    MailMessage mail = new MailMessage();
-                    mail.To.Add(parents.ElementAt(i).ParentMail);
-                    // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
-                    mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
-                    string Body = _objModelMail.Body;
-                    mail.Body = Body;
-                    mail.IsBodyHtml = false;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new System.Net.NetworkCredential
-                     (email, password);// Enter seders User name and password
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
+                    for (int i = 0; i < parents.Count(); i++)
+                    {
+                        _objModelMail.From = _objModelMail.From;
+                        MailMessage mail = new MailMessage();
+                        mail.To.Add(parents.ElementAt(i).ParentMail);
+                        // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
+                        mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
+                        string Body = _objModelMail.Body;
+                        mail.Body = Body;
+                        mail.IsBodyHtml = false;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential
+                          (email, _objModelMail.MailPassword);// Enter seders User name and password
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+
+
+
                 }
 
-                
+                return RedirectToAction("IndexPatients", "Patient",new { operate = "ההודעה נשלחה בהצלחה", type = "success" });
+            }
+            
+            catch (SmtpException e)
+            {
+
+                return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
             }
-            return RedirectToAction("IndexPatients", "Patient");
+            catch (Exception e)
+            {
+
+                return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+            }
         }
 
 
@@ -101,87 +149,126 @@ namespace Eli.Controllers
         {
             tblTherapist ther = (tblTherapist)Session["Therapist"];
             string email = ther.TherapistMail;
-            string password = ther.Passcode;     
                                 
             EliManagerDB db = new EliManagerDB();
             
             if (_objModelMail.redirect == "therapist")
             {
-                List<tblTherapist> therapist = db.Therapist.ToList();
-                for (int i = 0; i < therapist.Count(); i++)
+                try
                 {
-                    _objModelMail.From = _objModelMail.From;
-                    MailMessage mail = new MailMessage();
-                    mail.To.Add(therapist.ElementAt(i).TherapistMail);
-                    // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
-                    mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
-                    string Body = _objModelMail.Body;
-                    mail.Body = Body;
-                    mail.IsBodyHtml = false;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new System.Net.NetworkCredential
-                    (email, password);// Enter seders User name and password
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
-                }
+                    List<tblTherapist> therapist = db.Therapist.ToList();
+                    for (int i = 0; i < therapist.Count(); i++)
+                    {
+                        _objModelMail.From = _objModelMail.From;
+                        MailMessage mail = new MailMessage();
+                        mail.To.Add(therapist.ElementAt(i).TherapistMail);
+                        // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
+                        mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
+                        string Body = _objModelMail.Body;
+                        mail.Body = Body;
+                        mail.IsBodyHtml = false;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential
+                         (email, _objModelMail.MailPassword);// Enter seders User name and password
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
 
-                return RedirectToAction("IndexTherapist", "Therapist");
+                    return RedirectToAction("IndexTherapist", "Therapist",new { operate = "ההודעה נשלחה בהצלחה", type = "success" });
+                }
+                catch (SmtpException e)
+                {
+                    return RedirectToAction("IndexTherapist", "Therapist", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("IndexTherapist", "Therapist", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+                }
                 
             }
              if (_objModelMail.redirect == "finance")
             {
-                List<tblFinancingFactor> finance = db.FinancingFactor.ToList();
-                for (int i = 0; i < finance.Count(); i++)
-                {
-                    _objModelMail.From = _objModelMail.From;
-                    MailMessage mail = new MailMessage();
-                    mail.To.Add(finance.ElementAt(i).FinancingFactorContactMail);
-                    // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
-                    mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
-                    string Body = _objModelMail.Body;
-                    mail.Body = Body;
-                    mail.IsBodyHtml = false;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new System.Net.NetworkCredential
-                     (email, password);// Enter seders User name and password
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
-                }
 
-                return RedirectToAction("IndexFinancingFactor", "FinanceFactor");
+                try
+                {
+                    List<tblFinancingFactor> finance = db.FinancingFactor.ToList();
+                    for (int i = 0; i < finance.Count(); i++)
+                    {
+                        _objModelMail.From = _objModelMail.From;
+                        MailMessage mail = new MailMessage();
+                        mail.To.Add(finance.ElementAt(i).FinancingFactorContactMail);
+                        // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
+                        mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
+                        string Body = _objModelMail.Body;
+                        mail.Body = Body;
+                        mail.IsBodyHtml = false;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential
+                         (email, _objModelMail.MailPassword);// Enter seders User name and password
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+
+                    return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה נשלחה בהצלחה", type = "success" });
+                }
+                catch (SmtpException e)
+                {
+                    return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+                }
 
             }
             if (_objModelMail.redirect == "patient")
             {
-
-                List<tblParent> parents = db.Parent.ToList();
-                for (int i = 0; i < parents.Count(); i++)
+                try
                 {
-                    _objModelMail.From = _objModelMail.From;
-                    MailMessage mail = new MailMessage();
-                    mail.To.Add(parents.ElementAt(i).ParentMail);
-                    // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
-                    mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
-                    string Body = _objModelMail.Body;
-                    mail.Body = Body;
-                    mail.IsBodyHtml = false;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new System.Net.NetworkCredential
-                     (email, password);// Enter seders User name and password
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
+                    List<tblParent> parents = db.Parent.ToList();
+                    for (int i = 0; i < parents.Count(); i++)
+                    {
+                        _objModelMail.From = _objModelMail.From;
+                        MailMessage mail = new MailMessage();
+                        mail.To.Add(parents.ElementAt(i).ParentMail);
+                        // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
+                        mail.Subject = _objModelMail.Subject + " מאת :" + _objModelMail.From;
+                        string Body = _objModelMail.Body;
+                        mail.Body = Body;
+                        mail.IsBodyHtml = false;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential
+                         (email, _objModelMail.MailPassword);// Enter seders User name and password
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+
+                    return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה נשלחה בהצלחה", type = "success" });
+                }
+                catch (SmtpException e)
+                {
+                    return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
+
                 }
 
-                return RedirectToAction("IndexPatients", "Patient");
             }
             
             

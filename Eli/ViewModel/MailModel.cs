@@ -25,6 +25,9 @@ namespace Eli.Models
          [Required(ErrorMessage = "שדה חובה")]
         public string id { get; set; }
 
+        [Required(ErrorMessage = "שדה חובה")]
+         public string MailPassword { get; set; }
+
          public string patientId { get; set; }
          public string redirect { get; set; }
          public string name { get; set; }
