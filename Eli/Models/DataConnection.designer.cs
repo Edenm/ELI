@@ -3166,7 +3166,8 @@ namespace Eli.Models
 
 
                 [Required(ErrorMessage = "שדה חובה")]
-                [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+                [RegularExpression(".+@gmail.com", ErrorMessage = "please insert gmail mail")]
+                
 	
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistMail", DbType="VarChar(30)")]
 		public string TherapistMail
