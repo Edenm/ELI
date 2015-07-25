@@ -649,6 +649,7 @@ namespace Eli.Models
               list.Add("מערכת חינוך");
               list.Add("פרויקט");
               list.Add("פנימייה");
+              list.Add("עצמי");
 
               return list;
            }

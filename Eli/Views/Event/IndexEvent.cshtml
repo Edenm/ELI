@@ -39,10 +39,11 @@
                 {
                     if (item.EventNum != 0)
                     {
+                        var hour = @item.EventTime.Value.ToString();
                         <tr align="center">
                             <td> @item.EventNum </td>
-                            <td> @item.EventDate </td>
-                            <td> @item.EventTime </td>
+                            <td> @item.EventDate.Value.ToString("dd-MM-yy") </td>
+                            <td> @hour.Substring(0, 5) </td>
                             <td> @item.Description</td>
                             <td>
                                 <a data-toggle="modal" href="#@item.EventNum">
