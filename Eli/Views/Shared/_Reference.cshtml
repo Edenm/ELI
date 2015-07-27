@@ -68,11 +68,6 @@
                     סוג פגיעה
                 </label>
             </td>
-            <td style="padding-right:2%;">
-                <label float:right class="description" for="element_1">
-                    כיצד הגיע?
-                </label>
-            </td>
         </tr>
         <tr>
             <td>
@@ -93,7 +88,21 @@
                     </select>
                 </div>
             </td>
+        </tr>
+        <tr>
+            <td>
+                <label float:right class="description" for="element_1">
+                    כיצד הגיע?
+                </label>
+            </td>
             <td style="padding-right:2%;">
+                <label float:right class="description" for="element_1">
+                    פירוט אחר
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <div style="text-align:right; float:right;">
                     <select dir="rtl" class="element select" id="ReferenceSource" name="ReferenceSource" style="width: 300px; height: 30px">
                         @{foreach (string s in db.getAllReferenceSource())
@@ -110,7 +119,13 @@
                         }
                     </select>
                 </div>
-             </td>
+            </td>
+            <td style="padding-right:2%;">
+                <div float:right; dir="rtl" class="editor-field">
+                    @Html.EditorFor(model => model.OtherReference)
+                    @Html.ValidationMessageFor(model => model.OtherReference)
+                </div>
+            </td>
         </tr>
         <tr>
             <td>

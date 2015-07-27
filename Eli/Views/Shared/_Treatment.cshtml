@@ -185,12 +185,6 @@
                                             }
                                         }
                                         }
-
-
-
-
-
-
                                     </select>
                                 </div>
                             </td>
@@ -205,33 +199,43 @@
                         <tr>
                             <td>
                                 <label float:right class="description" for="element_1">
-                                    גורם מממן
+                                    האם הגיע?
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    מחיר
                                 </label>
                             </td>
                             <td style="padding-right:2%;">
 
                                 <label float:right class="description" for="element_1">
-                                    האם שולם
+                                    האם שולם?
                                 </label>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div style="text-align:right; float:right;">
-                                    <select dir="rtl" class="element select" id="FinancingFactorNumber" name="FinancingFactorNumber" style="width: 300px; height: 30px">
-                                        @{foreach (tblFinancingFactor ff in db.getAllFinanceFactor())
+                                    <select dir="rtl" class="element select" id="IsArrived" name="IsArrived" style="width: 300px; height: 30px">
+                                        @if (@Model.IsArrived == "כן")
                                         {
-                                            if (ff.FinancingFactorNumber == Model.FinancingFactorNumber)
-                                            {
-                                                <option selected="selected" value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
-                                            }
+                                            <option selected="selected" value="כן">כן</option>
+                                            <option value="לא">לא</option>
                                         }
+                                        else
+                                        {
+                                            <option selected="selected" value="לא">לא</option>
+                                            <option value="כן">כן</option>
                                         }
                                     </select>
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.Cost)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Cost)
                                 </div>
                             </td>
                             <td style="padding-right:2%;">
@@ -248,6 +252,33 @@
                                             <option value="כן">כן</option>
                                         }
 
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    גורם מממן
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="text-align:right; float:right;">
+                                    <select dir="rtl" class="element select" id="FinancingFactorNumber" name="FinancingFactorNumber" style="width: 300px; height: 30px">
+                                        @{foreach (tblFinancingFactor ff in db.getAllFinanceFactor())
+                                            {
+                                                if (ff.FinancingFactorNumber == Model.FinancingFactorNumber)
+                                                {
+                                                    <option selected="selected" value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@ff.FinancingFactorNumber">@ff.FinancingFactorName</option>
+                                                }
+                                            }
+                                        }
                                     </select>
                                 </div>
                             </td>

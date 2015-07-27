@@ -372,6 +372,7 @@ namespace Eli.Models
             refe.OtherStatus = re.OtherStatus;
             refe.AbuseType = re.AbuseType;
             refe.StatusReference = re.StatusReference;
+            refe.OtherReference = re.OtherReference;
 
             db.SubmitChanges();
         }
@@ -390,6 +391,8 @@ namespace Eli.Models
             treat.NextTreatment = tr.NextTreatment;
             treat.TreatmentPlace = tr.TreatmentPlace;
             treat.TreatmentSubject = tr.TreatmentSubject;
+            treat.Cost = tr.Cost;
+            treat.IsArrived = tr.IsArrived;
 
             treat.FinancingFactorNumber = tr.FinancingFactorNumber;
             treat.TherapistID = tr.TherapistID;
