@@ -69,7 +69,18 @@ namespace Eli.Controllers
         public ActionResult ForgetPassword(FormCollection mail)
         {
             string mailToSend=mail.GetValues("mail")[0];
-
+            if (mailToSend.Length==0)
+            {
+                ViewBag.type = "danger";
+                ViewBag.operate = "אנא הקלד מייל לשליחת סיסמא";
+                return View();
+            }
+            if (!mailToSend.Contains("@"))
+            {
+                ViewBag.type = "danger";
+                ViewBag.operate = "אנא הקלד כתובת מייל חוקית";
+                return View();
+            }
             EliManagerDB db = new EliManagerDB();
 
             tblTherapist therapist;
@@ -89,7 +100,7 @@ namespace Eli.Controllers
                     smtp.Port = 587;
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new System.Net.NetworkCredential
-                    ("margulis.shaharm@gmail.com", "smajrubh123");// Enter seders User name and password
+                    ("otzmotnoreply@gmail.com", "shahareden");// Enter seders User name and password
                     smtp.EnableSsl = true;
                     smtp.Send(Mail);
 
