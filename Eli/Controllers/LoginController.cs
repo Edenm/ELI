@@ -75,12 +75,20 @@ namespace Eli.Controllers
                 ViewBag.operate = "אנא הקלד מייל לשליחת סיסמא";
                 return View();
             }
-            if (!mailToSend.Contains("@"))
+            
+            try
+            {
+                MailAddress m = new MailAddress(mailToSend);
+
+               
+            }
+            catch (FormatException)
             {
                 ViewBag.type = "danger";
                 ViewBag.operate = "אנא הקלד כתובת מייל חוקית";
                 return View();
             }
+
             EliManagerDB db = new EliManagerDB();
 
             tblTherapist therapist;
