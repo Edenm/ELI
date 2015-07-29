@@ -38,7 +38,12 @@ namespace Eli.Controllers
         public ActionResult IndexReference(tblReference refe, string submit, string pid)
         {
             EliManagerDB db = new EliManagerDB();
+            if(refe.EndDateReference<refe.StartDateReference)
+            {
+                ViewBag.operate = "תאריך התחלה צריך להיות לפני תאריך סיום";
+                return RedirectToAction("IndexReference", new { pid = pid, operate = ViewBag.operate, type = ViewBag.type });
 
+            }
             ViewBag.type = "success";
             if (submit.Equals("צור"))
             {

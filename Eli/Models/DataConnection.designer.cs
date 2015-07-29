@@ -2397,6 +2397,8 @@ namespace Eli.Models
 		}
 
 
+
+         [Required(ErrorMessage = "שדה חובה")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
