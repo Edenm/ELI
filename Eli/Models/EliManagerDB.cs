@@ -685,6 +685,7 @@ namespace Eli.Models
                list.Add("18:30");
                list.Add("19:00");
                list.Add("19:30");
+               list.Add("20:00");
                return list;
            }
 
