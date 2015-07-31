@@ -4,7 +4,7 @@
                             <td class="col-sm-1">
                                 <div class="editor-field">
                                     <div style="text-align:right; float:right;">
-                                        <select dir="rtl" class="element select col-sm-12" id="ParentGender" name="ParentGender" >
+                                        <select dir="rtl" class="element select col-sm-12" id="ParentGender" name="ParentGender">
                                             @if (@Model.ParentGender == "נקבה")
                                             {
                                                 <option selected="selected" value="נקבה">נקבה</option>
@@ -15,7 +15,6 @@
                                                 <option selected="selected" value="זכר">זכר</option>
                                                 <option value="נקבה">נקבה</option>
                                             }
-
 
                                         </select>
                                 </div>
@@ -29,40 +28,42 @@
                             </td>
                             <td class="col-sm-1">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.ParentSurName, new { @class = "col-sm-12" })
+                                    @Html.TextBoxFor(model => model.ParentSurName, new { @class = "col-sm-10" })
                                     @Html.ValidationMessageFor(model => model.ParentSurName)
                                 </div>
                             </td>
                             <td class="col-sm-1">
                                 <div class="editor-field">
                                     <div style="text-align:right; float:right;">
-                                        <select dir="rtl" class="element select col-sm-12" id="IsWorking" name="IsWorking">
-                                            @if (@Model.IsWorking == "לא")
-                                            {
-                                                <option selected="selected" value="לא">לא</option>
-                                                <option value="כן">כן</option>
-                                            }
-                                            else
-                                            {
-                                                <option selected="selected" value="כן">כן</option>
-                                                <option value="לא">לא</option>
-                                            }
-
-                                        </select>
+                                        @Html.TextBoxFor(model => model.ParentMail, new { @class = "col-sm-20" })
+                                        @Html.ValidationMessageFor(model => model.ParentMail)
+                                        
                                     </div>
                                 </div>
                             </td>
                             <td class="col-sm-1">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.Explain, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.Explain)
+                                    <select dir="rtl" class="element select col-sm-12" id="IsWorking" name="IsWorking">
+                                        @if (@Model.IsWorking == "לא")
+                                        {
+                                            <option selected="selected" value="לא">לא</option>
+                                            <option value="כן">כן</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected="selected" value="כן">כן</option>
+                                            <option value="לא">לא</option>
+                                        }
+                                    </select>
+
+                                   
                                 </div>
                             </td>
 
                             <td class="col-sm-1">
                                 <div class="editor-field">
-                                    @Html.TextBoxFor(model => model.Comment, new { @class = "col-sm-12" })
-                                    @Html.ValidationMessageFor(model => model.Comment)
+                                    @Html.TextBoxFor(model => model.Explain, new { @class = "col-sm-12" })
+                                    @Html.ValidationMessageFor(model => model.Explain) 
                                 </div>
                             </td>
                             
@@ -75,31 +76,35 @@
                         </tr>
                         <tbody class="collapse" id="@collapseId" >
                             <tr>
-                                <th style="text-align:center">תאריך לידה</th>
+                                <th style="text-align:center">הערות</th>
                                 <th style="text-align:center">כתובת</th>
                                 <th style="text-align:center">טלפון</th>
-                                <th style="text-align:center">מייל</th>
+                                <th style="text-align:center">תאריך לידה</th>
                             </tr>
                             <tr>
                                 <td class="col-sm-1">
                                     <div class="editor-field">
-                                        @Html.EditorFor(model => model.ParentBirthDate, new { @class = "col-sm-12" })
-                                        @Html.ValidationMessageFor(model => model.ParentBirthDate)
+                                        @Html.TextBoxFor(model => model.Comment, new { @class = "col-sm-12" })
+                                        @Html.ValidationMessageFor(model => model.Comment)
+                                       
+
+                                       
                                     </div>
                                 </td>
                                 <td class="col-sm-1">
-                                    @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress }, { "clas", "col-sm-12" } })
+                                    @Html.Partial("GoogleAddressApi", new ViewDataDictionary { { "fieldName", "ParentAddress" }, { "value", Model.ParentAddress }, { "clas", "col-sm-14" } })
                                 </td>
                                 <td class="col-sm-1">
                                     <div class="editor-field">
-                                        @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-12", StringLength = 10 })
+                                        @Html.TextBoxFor(model => model.ParentPhoneNumber, new { @class = "col-sm-11", StringLength = 10 })
                                         @Html.ValidationMessageFor(model => model.ParentPhoneNumber)
                                     </div>
                                 </td>
                                 <td class="col-sm-1">
                                     <div class="editor-field">
-                                        @Html.TextBoxFor(model => model.ParentMail, new { @class = "col-sm-12" })
-                                        @Html.ValidationMessageFor(model => model.ParentMail)
+                                       
+                                        @Html.EditorFor(model => model.ParentBirthDate, new { @class = "col-sm-12" })
+                                        @Html.ValidationMessageFor(model => model.ParentBirthDate)
                                     </div>
                                 </td>
                             </tr>
