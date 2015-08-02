@@ -430,6 +430,23 @@ namespace Eli.Models
                 broSis.BrotherSisterBirthDate = Convert.ToDateTime(family.GetValues("BrotherSisterBirthDate")[countBS]);
                 countBS++;
             }
+
+            var patient = Patients.First(p => p.ID == pid);
+
+            patient.ContactName1 = family.GetValues("ContactName1")[0];
+            patient.ContactMail1 = family.GetValues("ContactMail1")[0];
+            patient.ContactProfession1 = family.GetValues("ContactProfession1")[0];
+            patient.ContactPhone1 = family.GetValues("ContactPhone1")[0];
+
+            patient.ContactName2 = family.GetValues("ContactName2")[0];
+            patient.ContactMail2 = family.GetValues("ContactMail2")[0];
+            patient.ContactProfession2 = family.GetValues("ContactProfession2")[0];
+            patient.ContactPhone2 = family.GetValues("ContactPhone2")[0];
+
+            patient.ContactName3 = family.GetValues("ContactName3")[0];
+            patient.ContactMail3 = family.GetValues("ContactMail3")[0];
+            patient.ContactProfession3 = family.GetValues("ContactProfession3")[0];
+            patient.ContactPhone3 = family.GetValues("ContactPhone3")[0];
             
             db.SubmitChanges();
         }

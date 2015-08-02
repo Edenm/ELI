@@ -74,7 +74,6 @@ namespace Eli.Controllers
         {
             EliManagerDB db = new EliManagerDB();
             string type = "success", operate="פרטי משפחה עודכנו בהצלחה";
-            var name = family.GetValues("IsWorking");
 
             Family fam = new Family(pid);
 

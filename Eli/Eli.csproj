@@ -585,6 +585,8 @@
     <Content Include="Views\Event\_DeleteEvent.cshtml" />
     <Content Include="Views\Report\IndexReport.cshtml" />
     <Content Include="Views\Report\Index2Report.cshtml" />
+    <Content Include="Views\Shared\_ContactPatient.cshtml" />
+    <Content Include="Views\Shared\_PatientNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

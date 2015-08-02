@@ -1,0 +1,92 @@
+﻿@model Eli.Models.tblPatient
+
+@Html.HiddenFor(model => model.ID)
+
+
+<tr>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactName1, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactName1)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactProfession1, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactProfession1)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactMail1, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactMail1)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactPhone1, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactPhone1)
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactName2, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactName2)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactProfession2, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactProfession2)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactMail2, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactMail2)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactPhone2, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactPhone2)
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactName3, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactName3)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactProfession3, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactProfession3)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactMail3, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactMail3)
+        </div>
+    </td>
+    <td class="col-sm-1">
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ContactPhone3, new { @class = "col-sm-12" })
+            @Html.ValidationMessageFor(model => model.ContactPhone3)
+        </div>
+    </td>
+</tr>
+
+
+
+<script>
+$("input[data-val-length-max]").each(function (index, element) {
+var length = parseInt($(this).attr("data-val-length-max"));
+$(this).prop("maxlength", length);
+});
+</script>
