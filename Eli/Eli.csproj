@@ -430,6 +430,9 @@
     <Content Include="Images\Mail_48x48.png" />
     <Content Include="Images\minor.png" />
     <Content Include="Images\parent.png" />
+    <Content Include="Images\pic1.jpg" />
+    <Content Include="Images\pic2.png" />
+    <Content Include="Images\pic3.jpg" />
     <Content Include="Images\References-32.png" />
     <Content Include="Images\separator.jpg" />
     <Content Include="Images\sibling.png" />
