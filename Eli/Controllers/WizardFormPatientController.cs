@@ -12,8 +12,7 @@ namespace Eli.Controllers
     [Authorize]
     public class WizardFormPatientController : Controller
     {
-        //
-        // GET: /WizardFormPatient/
+        
         public static int countP = 0;
         public static int countBS= 0;
 

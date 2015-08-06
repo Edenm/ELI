@@ -7,9 +7,10 @@
 @using Eli.Models;
 
 @{
-    
 string id = "1" + @Model.Patient.ID;
+string idCollapse = "collapseContact" + Model.Patient.ID;
 }
+
 <!-- Modal -->
 <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:95%; height:100%;">
@@ -92,12 +93,12 @@ string id = "1" + @Model.Patient.ID;
                     }
 
                     <p dir="rtl">
-                        <button type="button" dir="rtl" data-toggle="collapse" data-target="#collapseContact" aria-expanded="false" aria-controls="collapseExample">
+                        <button type="button" dir="rtl" data-toggle="collapse" data-target="#@idCollapse" aria-expanded="false" aria-controls="collapseExample">
                             <img src="~/Images/add.png" /> <div class="small" align="right"><u><b>אנשי קשר נוספים</b></u></div>
                         </button>
                     </p>
-
-                    <div class="row collapse" id="collapseContact">
+                    
+                    <div class="row collapse" id="@idCollapse">
                         <div class="col-sm-12">
                             <table class="table table-bordered" dir="rtl" style="text-align:center">
                                 <thead>
@@ -116,7 +117,7 @@ string id = "1" + @Model.Patient.ID;
                     </div>
 
 
-<p dir="rtl">
+                    <p dir="rtl">
                         <input type="submit" class="btn btn-primary btn-lg" value="שמור" />
                     </p>
                 }
