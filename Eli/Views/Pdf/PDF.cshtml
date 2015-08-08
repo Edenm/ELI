@@ -1,0 +1,29 @@
+﻿
+
+@model List<Eli.Models.tblTherapist>
+
+@{Layout = "~/Views/Shared/_LoginLayout.cshtml";}
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h2>Html List in PDF</h2>
+    <table width="100%">
+        <tr>
+            <td>First Name</td>
+
+            <td>Last Name</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TherapistID</td>
+
+                <td>@item.TherapistFirstName</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

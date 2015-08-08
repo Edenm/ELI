@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Eli.Models.tblTherapist>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@{Layout = "~/Views/Shared/_LoginLayout.cshtml";}
+
+
+
+@{
+    ViewBag.Title = "GetPersons";
+}
+
+<h2>GetPersons</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+       
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            
+        </tr>
+    }
+
+</table>
