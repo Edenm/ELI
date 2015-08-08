@@ -602,6 +602,7 @@
     <Content Include="Views\Shared\_PatientNew.cshtml" />
     <Content Include="Views\Pdf\Index.cshtml" />
     <Content Include="Views\Pdf\PDF.cshtml" />
+    <Content Include="Views\Pdf\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

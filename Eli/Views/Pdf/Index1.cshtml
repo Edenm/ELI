@@ -1,4 +1,4 @@
-﻿@model IEnumerable<eli.models.tbltherapist>
+﻿@model IEnumerable<eli.models.tblPatient>
 
     @{
         ViewBag.Title = "PDF TRY";
@@ -14,7 +14,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayNameFor(model => model.ID)
             </th>
 
 
@@ -25,7 +25,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
+                    @Html.DisplayFor(modelItem => item.ID)
                 </td>
 
             </tr>
