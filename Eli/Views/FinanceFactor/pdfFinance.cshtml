@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Eli.Models.tblFinancingFactor>
+    @using Eli.Models;
+    @using System;
+    @using System.Collections.Generic;
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FinancingFactorContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinancingFactorContcatPhoneNumber)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinancingFactorContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinancingFactorContcatPhoneNumber)
+                </td>
+                <td></td>
+            </tr>
+        }
+
+    </table>

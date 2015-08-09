@@ -27,6 +27,7 @@ namespace Eli.Controllers
 
             var grid = new GridView();
             grid.DataSource = from p in patient
+                              
                               select new
                               {
                                   שם = p.FirstName+" "+p.SurName,
@@ -38,6 +39,48 @@ namespace Eli.Controllers
             Response.ClearContent();
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=PatientList.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.Default;
+
+
+
+            Response.Charset = "";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            grid.RenderControl(htw);
+
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return View();
+        }
+
+
+
+        public ActionResult TreatExcel()
+        {
+
+            EliManagerDB db = new EliManagerDB();
+            List<tblTreatment> treat = db.Treatment.ToList();
+
+            var grid = new GridView();
+            grid.DataSource = from t in treat
+                              where t.IsPaid=="לא"
+                              select new
+                              {
+                                  מספר = t.TreatmentNumber,
+                                  תאריך=t.TreatmentDate,
+                                  האםשולם=t.IsPaid
+
+                                 
+                              };
+            grid.DataBind();
+
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=Treatment.xls");
             Response.ContentType = "application/ms-excel";
             Response.ContentEncoding = System.Text.Encoding.Default;
 

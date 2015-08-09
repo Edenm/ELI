@@ -603,6 +603,7 @@
     <Content Include="Views\Shared\_PatientNew.cshtml" />
     <Content Include="Views\Pdf\Index.cshtml" />
     <Content Include="Views\Excel\PatientExcel.cshtml" />
+    <Content Include="Views\Excel\TreatExcel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
