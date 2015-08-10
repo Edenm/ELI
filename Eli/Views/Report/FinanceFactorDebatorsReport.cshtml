@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Eli.Models.ViewFinanceFactorDebator>
+
+<table class="table table-bordered">
+        <tr>
+            <th>גורם מממן</th>
+            <th>תאריך טיפול</th>
+            <th>מטופל</th>
+        </tr>
+    @foreach (var item in Model){
+        <tr>
+            <td>@item.FinancingFactorName</td>
+            <td>@item.TreatmentDate</td>
+            <td>@item.PatientName</td>
+        </tr>
+    }
+</table>
+

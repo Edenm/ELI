@@ -87,6 +87,11 @@ namespace Eli.Models
             get { return db.tblEvents; }
         }
 
+        public Table<ViewFinanceFactorDebator> Debators
+        {
+            get { return db.ViewFinanceFactorDebators; }
+        }
+
 //-------------------------Add methods----------------------------------------------------------
         
         /* The method add patient with all the details about him **/
@@ -608,6 +613,11 @@ namespace Eli.Models
         public List<tblEvent> getAllEvents()
         {
             return Events.ToList();
+        }
+
+        public List<ViewFinanceFactorDebator> getAllDebators()
+        {
+            return Debators.ToList();
         }
 
 //-------------------------------Help Method-----------------------------------------

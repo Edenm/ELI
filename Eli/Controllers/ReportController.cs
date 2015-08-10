@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WebForms;
+﻿using Eli.Models;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,8 +16,21 @@ namespace Eli.Controllers
 
         public ActionResult IndexReport()
         {
-            
+                EliManagerDB db = new EliManagerDB();
+                
                 return View();
+        }
+
+        public ActionResult FinanceFactorDebatorsReport()
+        {
+            EliManagerDB db = new EliManagerDB();
+
+            return View(db.getAllDebators());
+        }
+
+        public ActionResult GeneratePDF()
+        {
+            return new Rotativa.ActionAsPdf("FinanceFactorDebatorsReport");
         }
     }
 }

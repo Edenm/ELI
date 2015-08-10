@@ -74,35 +74,35 @@
         <elementListCompartment Id="7c8209d2-8510-40d1-bd70-45e25f4a91bc" absoluteBounds="6.265, 4.71, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 16.251509152494); (3.125 : 15.876509152494); (3.125 : 12.2219962565104); (3.5 : 12.2219962565104)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 16.251509152494); (3.125 : 15.876509152494); (3.125 : 12.2219962565104); (3.5 : 12.2219962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataConnectionDataContext/tblBrotherSister/tblBrotherSister_tblBrotherSisterPatient" />
       <nodes>
         <classShapeMoniker Id="a338674b-f8d4-418a-b317-6461199d1226" />
         <classShapeMoniker Id="1c6d6fcc-65c0-485c-8d23-5c6e6fe1a71f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 21.2123527018229); (4.5 : 21.2123527018229); (4.5 : 14.8189925130208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 21.2123527018229); (4.5 : 21.2123527018229); (4.5 : 14.8189925130208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataConnectionDataContext/tblParent/tblParent_tblParentPatient" />
       <nodes>
         <classShapeMoniker Id="d4804cbf-2072-4c83-986a-4fcd6b447e64" />
         <classShapeMoniker Id="696239a2-b716-40c0-b85d-9aaa7a618474" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 11.8609981282552); (3.5 : 11.8609981282552)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 11.8609981282552); (3.5 : 11.8609981282552)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataConnectionDataContext/tblPatient/tblPatient_tblBrotherSisterPatient" />
       <nodes>
         <classShapeMoniker Id="afbc7e2c-51d8-4daa-99c3-207444cc4fde" />
         <classShapeMoniker Id="1c6d6fcc-65c0-485c-8d23-5c6e6fe1a71f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 14.1113598632812); (3.04166666666667 : 14.1113598632812 : JumpStart); (3.20833333333333 : 14.1113598632812 : JumpEnd); (3.5 : 14.1113598632812)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 14.1113598632812); (3.04166666666667 : 14.1113598632812 : JumpStart); (3.20833333333333 : 14.1113598632812 : JumpEnd); (3.5 : 14.1113598632812)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataConnectionDataContext/tblPatient/tblPatient_tblParentPatient" />
       <nodes>
         <classShapeMoniker Id="afbc7e2c-51d8-4daa-99c3-207444cc4fde" />
         <classShapeMoniker Id="696239a2-b716-40c0-b85d-9aaa7a618474" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.22199625651042); (3.04166666666667 : 6.22199625651042 : JumpStart); (3.20833333333333 : 6.22199625651042 : JumpEnd); (3.5 : 6.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 6.22199625651042); (3.04166666666667 : 6.22199625651042 : JumpStart); (3.20833333333333 : 6.22199625651042 : JumpEnd); (3.5 : 6.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataConnectionDataContext/tblReference/tblReference_tblReferenceTherapist" />
       <nodes>
         <classShapeMoniker Id="85b80180-368b-4a94-aee3-98242af2f380" />
@@ -123,26 +123,32 @@
         <classShapeMoniker Id="3199dfe0-8430-4b48-8f93-d270d4bf96d3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.61316594210737); (3.1875 : 4.05066594210737); (3.1875 : 5.89224612825521); (3.5 : 5.89224612825521)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.61316594210737); (3.1875 : 4.05066594210737); (3.1875 : 6.22199625651042); (3.5 : 6.22199625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataConnectionDataContext/tblTherapist/tblTherapist_tblReferenceTherapist" />
       <nodes>
         <classShapeMoniker Id="5778be4e-b253-4516-9ef0-1af9830845a9" />
         <classShapeMoniker Id="99a6eef4-1a57-41ae-8f60-322394a87c86" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 8.47435678255208); (6.46875 : 8.47435678255208); (6.46875 : 8.13621256510417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 8.47435678255208); (6.46875 : 8.47435678255208); (6.46875 : 8.13621256510417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataConnectionDataContext/tblFinancingFactor/tblFinancingFactor_tblTreatment" />
       <nodes>
         <classShapeMoniker Id="c949d9b7-1d76-49fa-91f9-ec0e9cf1da64" />
         <classShapeMoniker Id="6658fef5-a165-4112-b0c0-ef97c7155d0b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 6.22199625651042); (6.25 : 6.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 6.22199625651042); (6.25 : 6.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataConnectionDataContext/tblReferenceTherapist/tblReferenceTherapist_tblTreatment" />
       <nodes>
         <classShapeMoniker Id="99a6eef4-1a57-41ae-8f60-322394a87c86" />
         <classShapeMoniker Id="6658fef5-a165-4112-b0c0-ef97c7155d0b" />
       </nodes>
     </associationConnector>
+    <classShape Id="7a898010-3402-45d7-8735-4f6fdb8d98f1" absoluteBounds="5.625, 16.75, 2, 3.1170068359375">
+      <DataClassMoniker Name="/DataConnectionDataContext/ViewFinanceFactorDebator" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9ac5bc0d-8d9e-4d45-88e1-182ad3f445c5" absoluteBounds="5.64, 17.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
