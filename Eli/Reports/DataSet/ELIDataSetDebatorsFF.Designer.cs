@@ -24,7 +24,7 @@ namespace Eli.Reports.DataSet {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class ELIDataSetDebatorsFF : global::System.Data.DataSet {
         
-        private tblFinanceFactorDebatorsDataTable tabletblFinanceFactorDebators;
+        private ViewFinanceFactorDebatorsDataTable tableViewFinanceFactorDebators;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace Eli.Reports.DataSet {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["tblFinanceFactorDebators"] != null)) {
-                    base.Tables.Add(new tblFinanceFactorDebatorsDataTable(ds.Tables["tblFinanceFactorDebators"]));
+                if ((ds.Tables["ViewFinanceFactorDebators"] != null)) {
+                    base.Tables.Add(new ViewFinanceFactorDebatorsDataTable(ds.Tables["ViewFinanceFactorDebators"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Eli.Reports.DataSet {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public tblFinanceFactorDebatorsDataTable tblFinanceFactorDebators {
+        public ViewFinanceFactorDebatorsDataTable ViewFinanceFactorDebators {
             get {
-                return this.tabletblFinanceFactorDebators;
+                return this.tableViewFinanceFactorDebators;
             }
         }
         
@@ -152,8 +152,8 @@ namespace Eli.Reports.DataSet {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["tblFinanceFactorDebators"] != null)) {
-                    base.Tables.Add(new tblFinanceFactorDebatorsDataTable(ds.Tables["tblFinanceFactorDebators"]));
+                if ((ds.Tables["ViewFinanceFactorDebators"] != null)) {
+                    base.Tables.Add(new ViewFinanceFactorDebatorsDataTable(ds.Tables["ViewFinanceFactorDebators"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Eli.Reports.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tabletblFinanceFactorDebators = ((tblFinanceFactorDebatorsDataTable)(base.Tables["tblFinanceFactorDebators"]));
+            this.tableViewFinanceFactorDebators = ((ViewFinanceFactorDebatorsDataTable)(base.Tables["ViewFinanceFactorDebators"]));
             if ((initTable == true)) {
-                if ((this.tabletblFinanceFactorDebators != null)) {
-                    this.tabletblFinanceFactorDebators.InitVars();
+                if ((this.tableViewFinanceFactorDebators != null)) {
+                    this.tableViewFinanceFactorDebators.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace Eli.Reports.DataSet {
             this.Namespace = "http://tempuri.org/ELIDataSetDebatorsFF.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tabletblFinanceFactorDebators = new tblFinanceFactorDebatorsDataTable();
-            base.Tables.Add(this.tabletblFinanceFactorDebators);
+            this.tableViewFinanceFactorDebators = new ViewFinanceFactorDebatorsDataTable();
+            base.Tables.Add(this.tableViewFinanceFactorDebators);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializetblFinanceFactorDebators() {
+        private bool ShouldSerializeViewFinanceFactorDebators() {
             return false;
         }
         
@@ -270,14 +270,14 @@ namespace Eli.Reports.DataSet {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void tblFinanceFactorDebatorsRowChangeEventHandler(object sender, tblFinanceFactorDebatorsRowChangeEvent e);
+        public delegate void ViewFinanceFactorDebatorsRowChangeEventHandler(object sender, ViewFinanceFactorDebatorsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class tblFinanceFactorDebatorsDataTable : global::System.Data.TypedTableBase<tblFinanceFactorDebatorsRow> {
+        public partial class ViewFinanceFactorDebatorsDataTable : global::System.Data.TypedTableBase<ViewFinanceFactorDebatorsRow> {
             
             private global::System.Data.DataColumn columnFinancingFactorNumber;
             
@@ -305,8 +305,8 @@ namespace Eli.Reports.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblFinanceFactorDebatorsDataTable() {
-                this.TableName = "tblFinanceFactorDebators";
+            public ViewFinanceFactorDebatorsDataTable() {
+                this.TableName = "ViewFinanceFactorDebators";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -314,7 +314,7 @@ namespace Eli.Reports.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tblFinanceFactorDebatorsDataTable(global::System.Data.DataTable table) {
+            internal ViewFinanceFactorDebatorsDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -331,7 +331,7 @@ namespace Eli.Reports.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected tblFinanceFactorDebatorsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ViewFinanceFactorDebatorsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -443,34 +443,34 @@ namespace Eli.Reports.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblFinanceFactorDebatorsRow this[int index] {
+            public ViewFinanceFactorDebatorsRow this[int index] {
                 get {
-                    return ((tblFinanceFactorDebatorsRow)(this.Rows[index]));
+                    return ((ViewFinanceFactorDebatorsRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblFinanceFactorDebatorsRowChangeEventHandler tblFinanceFactorDebatorsRowChanging;
+            public event ViewFinanceFactorDebatorsRowChangeEventHandler ViewFinanceFactorDebatorsRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblFinanceFactorDebatorsRowChangeEventHandler tblFinanceFactorDebatorsRowChanged;
+            public event ViewFinanceFactorDebatorsRowChangeEventHandler ViewFinanceFactorDebatorsRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblFinanceFactorDebatorsRowChangeEventHandler tblFinanceFactorDebatorsRowDeleting;
+            public event ViewFinanceFactorDebatorsRowChangeEventHandler ViewFinanceFactorDebatorsRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblFinanceFactorDebatorsRowChangeEventHandler tblFinanceFactorDebatorsRowDeleted;
+            public event ViewFinanceFactorDebatorsRowChangeEventHandler ViewFinanceFactorDebatorsRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddtblFinanceFactorDebatorsRow(tblFinanceFactorDebatorsRow row) {
+            public void AddViewFinanceFactorDebatorsRow(ViewFinanceFactorDebatorsRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblFinanceFactorDebatorsRow AddtblFinanceFactorDebatorsRow(int FinancingFactorNumber, string FinancingFactorName, string FinancingFactorType, string FinancingFactorAddress, string FinancingFactorContactName, string FinancingFactorContcatPhoneNumber, string FinancingFactorContactMail, System.DateTime TreatmentDate, System.TimeSpan TreatmentStartTime, string ID, string PatientName, string TherapistName) {
-                tblFinanceFactorDebatorsRow rowtblFinanceFactorDebatorsRow = ((tblFinanceFactorDebatorsRow)(this.NewRow()));
+            public ViewFinanceFactorDebatorsRow AddViewFinanceFactorDebatorsRow(int FinancingFactorNumber, string FinancingFactorName, string FinancingFactorType, string FinancingFactorAddress, string FinancingFactorContactName, string FinancingFactorContcatPhoneNumber, string FinancingFactorContactMail, System.DateTime TreatmentDate, System.TimeSpan TreatmentStartTime, string ID, string PatientName, string TherapistName) {
+                ViewFinanceFactorDebatorsRow rowViewFinanceFactorDebatorsRow = ((ViewFinanceFactorDebatorsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FinancingFactorNumber,
                         FinancingFactorName,
@@ -484,15 +484,15 @@ namespace Eli.Reports.DataSet {
                         ID,
                         PatientName,
                         TherapistName};
-                rowtblFinanceFactorDebatorsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowtblFinanceFactorDebatorsRow);
-                return rowtblFinanceFactorDebatorsRow;
+                rowViewFinanceFactorDebatorsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowViewFinanceFactorDebatorsRow);
+                return rowViewFinanceFactorDebatorsRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                tblFinanceFactorDebatorsDataTable cln = ((tblFinanceFactorDebatorsDataTable)(base.Clone()));
+                ViewFinanceFactorDebatorsDataTable cln = ((ViewFinanceFactorDebatorsDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -500,7 +500,7 @@ namespace Eli.Reports.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new tblFinanceFactorDebatorsDataTable();
+                return new ViewFinanceFactorDebatorsDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -564,28 +564,28 @@ namespace Eli.Reports.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblFinanceFactorDebatorsRow NewtblFinanceFactorDebatorsRow() {
-                return ((tblFinanceFactorDebatorsRow)(this.NewRow()));
+            public ViewFinanceFactorDebatorsRow NewViewFinanceFactorDebatorsRow() {
+                return ((ViewFinanceFactorDebatorsRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new tblFinanceFactorDebatorsRow(builder);
+                return new ViewFinanceFactorDebatorsRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(tblFinanceFactorDebatorsRow);
+                return typeof(ViewFinanceFactorDebatorsRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.tblFinanceFactorDebatorsRowChanged != null)) {
-                    this.tblFinanceFactorDebatorsRowChanged(this, new tblFinanceFactorDebatorsRowChangeEvent(((tblFinanceFactorDebatorsRow)(e.Row)), e.Action));
+                if ((this.ViewFinanceFactorDebatorsRowChanged != null)) {
+                    this.ViewFinanceFactorDebatorsRowChanged(this, new ViewFinanceFactorDebatorsRowChangeEvent(((ViewFinanceFactorDebatorsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -593,8 +593,8 @@ namespace Eli.Reports.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.tblFinanceFactorDebatorsRowChanging != null)) {
-                    this.tblFinanceFactorDebatorsRowChanging(this, new tblFinanceFactorDebatorsRowChangeEvent(((tblFinanceFactorDebatorsRow)(e.Row)), e.Action));
+                if ((this.ViewFinanceFactorDebatorsRowChanging != null)) {
+                    this.ViewFinanceFactorDebatorsRowChanging(this, new ViewFinanceFactorDebatorsRowChangeEvent(((ViewFinanceFactorDebatorsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -602,8 +602,8 @@ namespace Eli.Reports.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.tblFinanceFactorDebatorsRowDeleted != null)) {
-                    this.tblFinanceFactorDebatorsRowDeleted(this, new tblFinanceFactorDebatorsRowChangeEvent(((tblFinanceFactorDebatorsRow)(e.Row)), e.Action));
+                if ((this.ViewFinanceFactorDebatorsRowDeleted != null)) {
+                    this.ViewFinanceFactorDebatorsRowDeleted(this, new ViewFinanceFactorDebatorsRowChangeEvent(((ViewFinanceFactorDebatorsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -611,14 +611,14 @@ namespace Eli.Reports.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.tblFinanceFactorDebatorsRowDeleting != null)) {
-                    this.tblFinanceFactorDebatorsRowDeleting(this, new tblFinanceFactorDebatorsRowChangeEvent(((tblFinanceFactorDebatorsRow)(e.Row)), e.Action));
+                if ((this.ViewFinanceFactorDebatorsRowDeleting != null)) {
+                    this.ViewFinanceFactorDebatorsRowDeleting(this, new ViewFinanceFactorDebatorsRowChangeEvent(((ViewFinanceFactorDebatorsRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovetblFinanceFactorDebatorsRow(tblFinanceFactorDebatorsRow row) {
+            public void RemoveViewFinanceFactorDebatorsRow(ViewFinanceFactorDebatorsRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -645,7 +645,7 @@ namespace Eli.Reports.DataSet {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "tblFinanceFactorDebatorsDataTable";
+                attribute2.FixedValue = "ViewFinanceFactorDebatorsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -689,25 +689,25 @@ namespace Eli.Reports.DataSet {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class tblFinanceFactorDebatorsRow : global::System.Data.DataRow {
+        public partial class ViewFinanceFactorDebatorsRow : global::System.Data.DataRow {
             
-            private tblFinanceFactorDebatorsDataTable tabletblFinanceFactorDebators;
+            private ViewFinanceFactorDebatorsDataTable tableViewFinanceFactorDebators;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tblFinanceFactorDebatorsRow(global::System.Data.DataRowBuilder rb) : 
+            internal ViewFinanceFactorDebatorsRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabletblFinanceFactorDebators = ((tblFinanceFactorDebatorsDataTable)(this.Table));
+                this.tableViewFinanceFactorDebators = ((ViewFinanceFactorDebatorsDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int FinancingFactorNumber {
                 get {
-                    return ((int)(this[this.tabletblFinanceFactorDebators.FinancingFactorNumberColumn]));
+                    return ((int)(this[this.tableViewFinanceFactorDebators.FinancingFactorNumberColumn]));
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.FinancingFactorNumberColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.FinancingFactorNumberColumn] = value;
                 }
             }
             
@@ -716,15 +716,15 @@ namespace Eli.Reports.DataSet {
             public string FinancingFactorName {
                 get {
                     try {
-                        return ((string)(this[this.tabletblFinanceFactorDebators.FinancingFactorNameColumn]));
+                        return ((string)(this[this.tableViewFinanceFactorDebators.FinancingFactorNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorName\' in table \'tblFinanceFactorDebators\' is" +
-                                " DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorName\' in table \'ViewFinanceFactorDebators\' i" +
+                                "s DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.FinancingFactorNameColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.FinancingFactorNameColumn] = value;
                 }
             }
             
@@ -733,15 +733,15 @@ namespace Eli.Reports.DataSet {
             public string FinancingFactorType {
                 get {
                     try {
-                        return ((string)(this[this.tabletblFinanceFactorDebators.FinancingFactorTypeColumn]));
+                        return ((string)(this[this.tableViewFinanceFactorDebators.FinancingFactorTypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorType\' in table \'tblFinanceFactorDebators\' is" +
-                                " DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorType\' in table \'ViewFinanceFactorDebators\' i" +
+                                "s DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.FinancingFactorTypeColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.FinancingFactorTypeColumn] = value;
                 }
             }
             
@@ -750,15 +750,15 @@ namespace Eli.Reports.DataSet {
             public string FinancingFactorAddress {
                 get {
                     try {
-                        return ((string)(this[this.tabletblFinanceFactorDebators.FinancingFactorAddressColumn]));
+                        return ((string)(this[this.tableViewFinanceFactorDebators.FinancingFactorAddressColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorAddress\' in table \'tblFinanceFactorDebators\'" +
-                                " is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorAddress\' in table \'ViewFinanceFactorDebators" +
+                                "\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.FinancingFactorAddressColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.FinancingFactorAddressColumn] = value;
                 }
             }
             
@@ -767,15 +767,15 @@ namespace Eli.Reports.DataSet {
             public string FinancingFactorContactName {
                 get {
                     try {
-                        return ((string)(this[this.tabletblFinanceFactorDebators.FinancingFactorContactNameColumn]));
+                        return ((string)(this[this.tableViewFinanceFactorDebators.FinancingFactorContactNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorContactName\' in table \'tblFinanceFactorDebat" +
-                                "ors\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorContactName\' in table \'ViewFinanceFactorDeba" +
+                                "tors\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.FinancingFactorContactNameColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.FinancingFactorContactNameColumn] = value;
                 }
             }
             
@@ -784,15 +784,15 @@ namespace Eli.Reports.DataSet {
             public string FinancingFactorContcatPhoneNumber {
                 get {
                     try {
-                        return ((string)(this[this.tabletblFinanceFactorDebators.FinancingFactorContcatPhoneNumberColumn]));
+                        return ((string)(this[this.tableViewFinanceFactorDebators.FinancingFactorContcatPhoneNumberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorContcatPhoneNumber\' in table \'tblFinanceFact" +
-                                "orDebators\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorContcatPhoneNumber\' in table \'ViewFinanceFac" +
+                                "torDebators\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.FinancingFactorContcatPhoneNumberColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.FinancingFactorContcatPhoneNumberColumn] = value;
                 }
             }
             
@@ -801,15 +801,15 @@ namespace Eli.Reports.DataSet {
             public string FinancingFactorContactMail {
                 get {
                     try {
-                        return ((string)(this[this.tabletblFinanceFactorDebators.FinancingFactorContactMailColumn]));
+                        return ((string)(this[this.tableViewFinanceFactorDebators.FinancingFactorContactMailColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorContactMail\' in table \'tblFinanceFactorDebat" +
-                                "ors\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FinancingFactorContactMail\' in table \'ViewFinanceFactorDeba" +
+                                "tors\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.FinancingFactorContactMailColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.FinancingFactorContactMailColumn] = value;
                 }
             }
             
@@ -818,15 +818,15 @@ namespace Eli.Reports.DataSet {
             public System.DateTime TreatmentDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tabletblFinanceFactorDebators.TreatmentDateColumn]));
+                        return ((global::System.DateTime)(this[this.tableViewFinanceFactorDebators.TreatmentDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TreatmentDate\' in table \'tblFinanceFactorDebators\' is DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TreatmentDate\' in table \'ViewFinanceFactorDebators\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.TreatmentDateColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.TreatmentDateColumn] = value;
                 }
             }
             
@@ -835,15 +835,15 @@ namespace Eli.Reports.DataSet {
             public System.TimeSpan TreatmentStartTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tabletblFinanceFactorDebators.TreatmentStartTimeColumn]));
+                        return ((global::System.TimeSpan)(this[this.tableViewFinanceFactorDebators.TreatmentStartTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TreatmentStartTime\' in table \'tblFinanceFactorDebators\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TreatmentStartTime\' in table \'ViewFinanceFactorDebators\' is" +
+                                " DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.TreatmentStartTimeColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.TreatmentStartTimeColumn] = value;
                 }
             }
             
@@ -851,10 +851,10 @@ namespace Eli.Reports.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string ID {
                 get {
-                    return ((string)(this[this.tabletblFinanceFactorDebators.IDColumn]));
+                    return ((string)(this[this.tableViewFinanceFactorDebators.IDColumn]));
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.IDColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.IDColumn] = value;
                 }
             }
             
@@ -863,15 +863,15 @@ namespace Eli.Reports.DataSet {
             public string PatientName {
                 get {
                     try {
-                        return ((string)(this[this.tabletblFinanceFactorDebators.PatientNameColumn]));
+                        return ((string)(this[this.tableViewFinanceFactorDebators.PatientNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PatientName\' in table \'tblFinanceFactorDebators\' is DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PatientName\' in table \'ViewFinanceFactorDebators\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.PatientNameColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.PatientNameColumn] = value;
                 }
             }
             
@@ -880,136 +880,136 @@ namespace Eli.Reports.DataSet {
             public string TherapistName {
                 get {
                     try {
-                        return ((string)(this[this.tabletblFinanceFactorDebators.TherapistNameColumn]));
+                        return ((string)(this[this.tableViewFinanceFactorDebators.TherapistNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TherapistName\' in table \'tblFinanceFactorDebators\' is DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TherapistName\' in table \'ViewFinanceFactorDebators\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tabletblFinanceFactorDebators.TherapistNameColumn] = value;
+                    this[this.tableViewFinanceFactorDebators.TherapistNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFinancingFactorNameNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.FinancingFactorNameColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.FinancingFactorNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFinancingFactorNameNull() {
-                this[this.tabletblFinanceFactorDebators.FinancingFactorNameColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.FinancingFactorNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFinancingFactorTypeNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.FinancingFactorTypeColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.FinancingFactorTypeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFinancingFactorTypeNull() {
-                this[this.tabletblFinanceFactorDebators.FinancingFactorTypeColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.FinancingFactorTypeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFinancingFactorAddressNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.FinancingFactorAddressColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.FinancingFactorAddressColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFinancingFactorAddressNull() {
-                this[this.tabletblFinanceFactorDebators.FinancingFactorAddressColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.FinancingFactorAddressColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFinancingFactorContactNameNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.FinancingFactorContactNameColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.FinancingFactorContactNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFinancingFactorContactNameNull() {
-                this[this.tabletblFinanceFactorDebators.FinancingFactorContactNameColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.FinancingFactorContactNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFinancingFactorContcatPhoneNumberNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.FinancingFactorContcatPhoneNumberColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.FinancingFactorContcatPhoneNumberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFinancingFactorContcatPhoneNumberNull() {
-                this[this.tabletblFinanceFactorDebators.FinancingFactorContcatPhoneNumberColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.FinancingFactorContcatPhoneNumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFinancingFactorContactMailNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.FinancingFactorContactMailColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.FinancingFactorContactMailColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFinancingFactorContactMailNull() {
-                this[this.tabletblFinanceFactorDebators.FinancingFactorContactMailColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.FinancingFactorContactMailColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTreatmentDateNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.TreatmentDateColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.TreatmentDateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTreatmentDateNull() {
-                this[this.tabletblFinanceFactorDebators.TreatmentDateColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.TreatmentDateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTreatmentStartTimeNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.TreatmentStartTimeColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.TreatmentStartTimeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTreatmentStartTimeNull() {
-                this[this.tabletblFinanceFactorDebators.TreatmentStartTimeColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.TreatmentStartTimeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPatientNameNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.PatientNameColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.PatientNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPatientNameNull() {
-                this[this.tabletblFinanceFactorDebators.PatientNameColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.PatientNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTherapistNameNull() {
-                return this.IsNull(this.tabletblFinanceFactorDebators.TherapistNameColumn);
+                return this.IsNull(this.tableViewFinanceFactorDebators.TherapistNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTherapistNameNull() {
-                this[this.tabletblFinanceFactorDebators.TherapistNameColumn] = global::System.Convert.DBNull;
+                this[this.tableViewFinanceFactorDebators.TherapistNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1017,22 +1017,22 @@ namespace Eli.Reports.DataSet {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class tblFinanceFactorDebatorsRowChangeEvent : global::System.EventArgs {
+        public class ViewFinanceFactorDebatorsRowChangeEvent : global::System.EventArgs {
             
-            private tblFinanceFactorDebatorsRow eventRow;
+            private ViewFinanceFactorDebatorsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblFinanceFactorDebatorsRowChangeEvent(tblFinanceFactorDebatorsRow row, global::System.Data.DataRowAction action) {
+            public ViewFinanceFactorDebatorsRowChangeEvent(ViewFinanceFactorDebatorsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblFinanceFactorDebatorsRow Row {
+            public ViewFinanceFactorDebatorsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1060,7 +1060,7 @@ namespace Eli.Reports.DataSet.ELIDataSetDebatorsFFTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class tblFinanceFactorDebatorsTableAdapter : global::System.ComponentModel.Component {
+    public partial class ViewFinanceFactorDebatorsTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1074,7 +1074,7 @@ namespace Eli.Reports.DataSet.ELIDataSetDebatorsFFTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public tblFinanceFactorDebatorsTableAdapter() {
+        public ViewFinanceFactorDebatorsTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1171,7 +1171,7 @@ namespace Eli.Reports.DataSet.ELIDataSetDebatorsFFTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "tblFinanceFactorDebators";
+            tableMapping.DataSetTable = "ViewFinanceFactorDebators";
             tableMapping.ColumnMappings.Add("FinancingFactorNumber", "FinancingFactorNumber");
             tableMapping.ColumnMappings.Add("FinancingFactorName", "FinancingFactorName");
             tableMapping.ColumnMappings.Add("FinancingFactorType", "FinancingFactorType");
@@ -1200,7 +1200,7 @@ namespace Eli.Reports.DataSet.ELIDataSetDebatorsFFTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT FinancingFactorNumber, FinancingFactorName, FinancingFactorType, FinancingFactorAddress, FinancingFactorContactName, FinancingFactorContcatPhoneNumber, FinancingFactorContactMail, TreatmentDate, TreatmentStartTime, ID, PatientName, TherapistName FROM dbo.tblFinanceFactorDebators";
+            this._commandCollection[0].CommandText = @"SELECT FinancingFactorNumber, FinancingFactorName, FinancingFactorType, FinancingFactorAddress, FinancingFactorContactName, FinancingFactorContcatPhoneNumber, FinancingFactorContactMail, TreatmentDate, TreatmentStartTime, ID, PatientName, TherapistName FROM dbo.ViewFinanceFactorDebators";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1208,7 +1208,7 @@ namespace Eli.Reports.DataSet.ELIDataSetDebatorsFFTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(ELIDataSetDebatorsFF.tblFinanceFactorDebatorsDataTable dataTable) {
+        public virtual int Fill(ELIDataSetDebatorsFF.ViewFinanceFactorDebatorsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1221,9 +1221,9 @@ namespace Eli.Reports.DataSet.ELIDataSetDebatorsFFTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ELIDataSetDebatorsFF.tblFinanceFactorDebatorsDataTable GetData() {
+        public virtual ELIDataSetDebatorsFF.ViewFinanceFactorDebatorsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            ELIDataSetDebatorsFF.tblFinanceFactorDebatorsDataTable dataTable = new ELIDataSetDebatorsFF.tblFinanceFactorDebatorsDataTable();
+            ELIDataSetDebatorsFF.ViewFinanceFactorDebatorsDataTable dataTable = new ELIDataSetDebatorsFF.ViewFinanceFactorDebatorsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

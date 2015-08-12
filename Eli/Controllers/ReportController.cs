@@ -15,9 +15,7 @@ namespace Eli.Controllers
         // GET: /Report/
 
         public ActionResult IndexReport()
-        {
-                EliManagerDB db = new EliManagerDB();
-                
+        {       
                 return View();
         }
 

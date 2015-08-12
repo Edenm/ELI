@@ -610,7 +610,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>a1739af1-71d7-441c-9f98-062130b08b61</rd:DataSourceID>
+      <rd:DataSourceID>7150e318-b145-435f-9db9-d8ae943678d5</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -671,11 +671,11 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>ELIDataSetDebatorsFF</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Eden\Source\Repos\ELI\Eli\ELIDataSetDebatorsFF.xsd</rd:SchemaPath>
-        <rd:TableName>tblFinanceFactorDebators</rd:TableName>
+        <rd:SchemaPath>C:\Users\Eden\Source\Repos\ELI\Eli\Reports\DataSet\ELIDataSetDebatorsFF.xsd</rd:SchemaPath>
+        <rd:TableName>ViewFinanceFactorDebators</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>tblFinanceFactorDebatorsTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>ViewFinanceFactorDebatorsTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

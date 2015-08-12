@@ -15,18 +15,6 @@ namespace Eli.Controllers
     {
         public ActionResult Index()
         {
-
-            return View();
-        }
-
-        public ActionResult Test()
-        {
-            return View(new tblPatient());
-        }
-
-        public ActionResult WebForm1()
-        {
-
             return View();
         }
 
