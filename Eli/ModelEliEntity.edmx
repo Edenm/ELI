@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ELIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ELI.dbo.ViewFinanceFactorDebators' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewFinanceFactorDebators">
+          <Key>
+            <PropertyRef Name="FinancingFactorNumber" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FinancingFactorNumber" Type="int" Nullable="false" />
+          <Property Name="FinancingFactorName" Type="varchar" MaxLength="20" />
+          <Property Name="FinancingFactorType" Type="varchar" MaxLength="15" />
+          <Property Name="FinancingFactorAddress" Type="varchar(max)" />
+          <Property Name="FinancingFactorContactName" Type="varchar" MaxLength="20" />
+          <Property Name="FinancingFactorContcatPhoneNumber" Type="char" MaxLength="10" />
+          <Property Name="FinancingFactorContactMail" Type="varchar" MaxLength="30" />
+          <Property Name="TreatmentDate" Type="date" />
+          <Property Name="TreatmentStartTime" Type="time" Precision="7" />
+          <Property Name="ID" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="PatientName" Type="varchar" MaxLength="41" />
+          <Property Name="TherapistName" Type="varchar" MaxLength="41" />
+        </EntityType>
+        <EntityContainer Name="ELIModelStoreContainer">
+          <EntitySet Name="ViewFinanceFactorDebators" EntityType="Self.ViewFinanceFactorDebators" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ViewFinanceFactorDebators].[FinancingFactorNumber] AS [FinancingFactorNumber], 
+[ViewFinanceFactorDebators].[FinancingFactorName] AS [FinancingFactorName], 
+[ViewFinanceFactorDebators].[FinancingFactorType] AS [FinancingFactorType], 
+[ViewFinanceFactorDebators].[FinancingFactorAddress] AS [FinancingFactorAddress], 
+[ViewFinanceFactorDebators].[FinancingFactorContactName] AS [FinancingFactorContactName], 
+[ViewFinanceFactorDebators].[FinancingFactorContcatPhoneNumber] AS [FinancingFactorContcatPhoneNumber], 
+[ViewFinanceFactorDebators].[FinancingFactorContactMail] AS [FinancingFactorContactMail], 
+[ViewFinanceFactorDebators].[TreatmentDate] AS [TreatmentDate], 
+[ViewFinanceFactorDebators].[TreatmentStartTime] AS [TreatmentStartTime], 
+[ViewFinanceFactorDebators].[ID] AS [ID], 
+[ViewFinanceFactorDebators].[PatientName] AS [PatientName], 
+[ViewFinanceFactorDebators].[TherapistName] AS [TherapistName]
+FROM [dbo].[ViewFinanceFactorDebators] AS [ViewFinanceFactorDebators]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ELIModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="ViewFinanceFactorDebator">
+          <Key>
+            <PropertyRef Name="FinancingFactorNumber" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FinancingFactorNumber" Type="Int32" Nullable="false" />
+          <Property Name="FinancingFactorName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FinancingFactorType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FinancingFactorAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FinancingFactorContactName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FinancingFactorContcatPhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="FinancingFactorContactMail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TreatmentDate" Type="DateTime" Precision="0" />
+          <Property Name="TreatmentStartTime" Type="Time" Precision="7" />
+          <Property Name="ID" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PatientName" Type="String" MaxLength="41" FixedLength="false" Unicode="false" />
+          <Property Name="TherapistName" Type="String" MaxLength="41" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ViewFinanceFactorDebators" EntityType="Self.ViewFinanceFactorDebator" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ELIModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ViewFinanceFactorDebators">
+            <EntityTypeMapping TypeName="ELIModel.ViewFinanceFactorDebator">
+              <MappingFragment StoreEntitySet="ViewFinanceFactorDebators">
+                <ScalarProperty Name="FinancingFactorNumber" ColumnName="FinancingFactorNumber" />
+                <ScalarProperty Name="FinancingFactorName" ColumnName="FinancingFactorName" />
+                <ScalarProperty Name="FinancingFactorType" ColumnName="FinancingFactorType" />
+                <ScalarProperty Name="FinancingFactorAddress" ColumnName="FinancingFactorAddress" />
+                <ScalarProperty Name="FinancingFactorContactName" ColumnName="FinancingFactorContactName" />
+                <ScalarProperty Name="FinancingFactorContcatPhoneNumber" ColumnName="FinancingFactorContcatPhoneNumber" />
+                <ScalarProperty Name="FinancingFactorContactMail" ColumnName="FinancingFactorContactMail" />
+                <ScalarProperty Name="TreatmentDate" ColumnName="TreatmentDate" />
+                <ScalarProperty Name="TreatmentStartTime" ColumnName="TreatmentStartTime" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="TherapistName" ColumnName="TherapistName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

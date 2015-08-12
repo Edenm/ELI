@@ -13,10 +13,10 @@ namespace Eli
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ELIEntity : DbContext
+    public partial class Entities : DbContext
     {
-        public ELIEntity()
-            : base("name=ELIEntity")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,6 +25,6 @@ namespace Eli
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<tblFinanceFactorDebator> tblFinanceFactorDebators { get; set; }
+        public DbSet<ViewFinanceFactorDebator> ViewFinanceFactorDebators { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Eli
     using System;
     using System.Collections.Generic;
     
-    public partial class tblFinanceFactorDebator
+    public partial class ViewFinanceFactorDebator
     {
         public int FinancingFactorNumber { get; set; }
         public string FinancingFactorName { get; set; }
