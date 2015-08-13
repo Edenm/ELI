@@ -9,5 +9,5 @@
             </DataSources>
         </LocalReport>
     </rsweb:ReportViewer>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=EDEN-PC\SQLEXPRESS1;Initial Catalog=ELI;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [ViewFinanceFactorDebators]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=SHAHAR-PC\SQLEXPRESS;Initial Catalog=ELI;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [ViewFinanceFactorDebators]"></asp:SqlDataSource>
 </form>
