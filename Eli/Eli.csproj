@@ -271,6 +271,7 @@
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\TherapistController.cs" />
