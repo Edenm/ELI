@@ -15,17 +15,23 @@ namespace Eli.Controllers
         public ActionResult Index()
         {
             EliManagerDB db = new EliManagerDB();
-
+            
             List<tblTherapist> t = db.Therapist.ToList();
             return View(t);
         }
 
         public ActionResult GeneratePDF()
         {
-            return new Rotativa.ActionAsPdf("Index");
+            return new Rotativa.ActionAsPdf("PatientPdf");
         }
 
-        
+        public ActionResult PatientPdf()
+        {
+            EliManagerDB db = new EliManagerDB();
+
+            List<tblPatient> p = db.Patients.ToList();
+            return View(p);
+        }
 
     }
 }
