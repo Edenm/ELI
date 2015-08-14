@@ -284,7 +284,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PdfController.cs" />
-    <Compile Include="Controllers\RazorController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\TherapistController.cs" />
@@ -619,8 +618,6 @@
     <Content Include="Views\Excel\TreatExcel.cshtml" />
     <Content Include="Views\ExportPdf\getpatients.cshtml" />
     <Content Include="Views\Pdf\PatientPdf.cshtml" />
-    <Content Include="Views\Razor\Index.cshtml" />
-    <Content Include="Views\Razor\pdf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
