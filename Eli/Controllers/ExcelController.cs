@@ -43,7 +43,7 @@ namespace Eli.Controllers
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=PatientList.xls");
             Response.ContentType = "application/ms-excel";
-            Response.ContentEncoding = System.Text.Encoding.Default;
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
 
 
 
@@ -94,8 +94,9 @@ namespace Eli.Controllers
                               };
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;filename=UserDetails.pdf");
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.ContentEncoding = System.Text.Encoding.Default;
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
             StringWriter sw = new StringWriter();
             HtmlTextWriter hw = new HtmlTextWriter(sw);
             grid.AllowPaging = false;
@@ -156,7 +157,7 @@ namespace Eli.Controllers
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=PatientContactList.xls");
             Response.ContentType = "application/ms-excel";
-            Response.ContentEncoding = System.Text.Encoding.Default;
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
 
 
 
