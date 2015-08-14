@@ -1,4 +1,7 @@
 ﻿using Eli.Models;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -89,22 +92,29 @@ namespace Eli.Controllers
                                   סכום_טיפול=tr.Cost
 
                               };
-            grid.DataBind();
-
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=NotPaidTreatment.xls");
-            Response.ContentType = "application/ms-excel";
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=UserDetails.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.ContentEncoding = System.Text.Encoding.Default;
-
-            Response.Charset = "";
             StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-
-            grid.RenderControl(htw);
-
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            grid.AllowPaging = false;
+            grid.DataBind();
+            grid.RenderControl(hw);
+            grid.HeaderRow.Style.Add("width", "15%");
+            grid.HeaderRow.Style.Add("font-size", "10px");
+            grid.Style.Add("text-decoration", "none");
+            grid.Style.Add("font-family", "Arial, Helvetica, sans-serif;");
+            grid.Style.Add("font-size", "8px");
+            
+            StringReader sr = new StringReader(sw.ToString());
+            Document pdfDoc = new Document(PageSize.A2, 7f, 7f, 7f, 0f);
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            pdfDoc.Open();
+            htmlparser.Parse(sr);
+            pdfDoc.Close();
+            Response.Write(pdfDoc);
             Response.End();
 
             return View();
