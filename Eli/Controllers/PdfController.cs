@@ -22,7 +22,7 @@ namespace Eli.Controllers
 
         public ActionResult GeneratePDF()
         {
-            return new Rotativa.ActionAsPdf("PatientPdf");
+            return new Rotativa.ActionAsPdf("Index");
         }
 
         public ActionResult PatientPdf()
