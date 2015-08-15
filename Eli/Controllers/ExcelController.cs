@@ -146,9 +146,8 @@ namespace Eli.Controllers
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=PatientContactList.xls");
             Response.ContentType = "application/ms-excel";
-            Response.ContentEncoding = System.Text.Encoding.Default;
-
-
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
 
             Response.Charset = "";
             StringWriter sw = new StringWriter();
