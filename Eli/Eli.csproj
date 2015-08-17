@@ -325,6 +325,7 @@
     <Compile Include="ViewFinanceFactorDebator.cs">
       <DependentUpon>ModelEliEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\PatientByFinanceFactor.cs" />
     <Compile Include="ViewModel\Family.cs" />
     <Compile Include="ViewModel\MailModel.cs" />
     <Compile Include="ViewModel\ReferenceTeratments.cs" />
@@ -618,6 +619,9 @@
     <Content Include="Views\Excel\TreatExcel.cshtml" />
     <Content Include="Views\ExportPdf\getpatients.cshtml" />
     <Content Include="Views\Pdf\PatientPdf.cshtml" />
+    <Content Include="Views\Report\PatientReport.cshtml" />
+    <Content Include="Views\Report\ContactsPatientsReport.cshtml" />
+    <Content Include="Views\Report\PatientByFinanceFactorReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

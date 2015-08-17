@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Eli.Models.tblPatient>
+
+<div class="links">
+    @Html.ActionLink("דוחות", "IndexReport", "Report", new { n = "" }, new { @class = "link" })
+    ->
+    רשימת מטופלים
+</div>
+
+<div class="medium" style="text-align:center;">רשימת קשר של מטופלים</div>
+
+<table class="table table-bordered" dir="rtl">
+    <tr align ="center">
+        <th style="text-align: center;">ת"ז</th>
+        <th style="text-align: center;">מין</th>
+        <th style="text-align: center;">שם</th>
+        <th style="text-align: center;">טלפון</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        string name = item.FirstName + " " + item.SurName;
+        <tr align="center">
+            <td>@item.ID</td>
+            <td>@item.Gender</td>
+            <td>@name</td>
+            <td>@item.PhoneNumber</td>
+        </tr>
+    }
+</table>
+

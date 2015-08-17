@@ -1,4 +1,30 @@
 ﻿
+@using Eli.Models;
 
+@{  EliManagerDB db = new EliManagerDB();}
 
-@Html.Partial("ReportViewer")
+@using (Html.BeginForm("SelectReport", "Report"))
+{
+    <div class="modal-header">
+        <div class="medium" align="center">דו"חות</div>
+    </div>
+    <div class="modal-body" dir="rtl">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <select dir="rtl" class="element select" id="reportName" name="reportName" style="width: 300px; height: 30px">
+                @{
+                    int count = 0;
+                    foreach (string item in db.getAllReportNames())
+                    {
+                        <option value="@count">@item</option>
+                        count++;
+                    }
+                }
+            </select>
+
+        </fieldset>
+        <br />
+        <button type="submit" value="Next" dir="rtl" name="nextBtn" class="btn btn-primary" >בחר </button>
+    </div>
+}

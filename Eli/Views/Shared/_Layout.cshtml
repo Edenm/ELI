@@ -65,6 +65,7 @@
                                         </ul>
                                     </li>
                                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li role="presentation" class="btn" id="Report"><a href="@Url.Action("IndexReport", "Report")" style="color:black;" class="tabs" id="ReportC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">דוחות</a></li>
                                     <li role="presentation" class="btn" id="FinanceFactor"><a href="@Url.Action("IndexFinancingFactor", "FinanceFactor")" style="color:black;" class="tabs" id="FinanceFactorC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">גורמים מממנים</a></li>
                                     <li role="presentation" class="btn" id="Therapist"><a href="@Url.Action("IndexTherapist", "Therapist")" class="tabs" style="color:black;" id="TherapistC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">מטפלים</a></li>
                                     <li role="presentation" class="btn" id="Schedule"><a href="@Url.Action("IndexSchedule", "Schedule")" class="tabs" style="color:black;" id="ScheduleC" onmouseover="changeOnOverTabs(id)" onmouseout="changeOnOutTabs(id)">יומן פגישות</a></li>
@@ -135,6 +136,10 @@
                     case "FinanceFactor":
                         document.getElementById("FinanceFactor").className = "btn btn-primary";
                         document.getElementById("FinanceFactorC").style.color = "white";
+                        break;
+                    case "Report":
+                        document.getElementById("Report").className = "btn btn-primary";
+                        document.getElementById("ReportC").style.color = "white";
                         break;
                     default:
                 }

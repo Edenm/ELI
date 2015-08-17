@@ -615,6 +615,11 @@ namespace Eli.Models
             return Events.ToList();
         }
 
+        public List<tblPatient> getAllPatients()
+        {
+            return Patients.ToList();
+        }
+
         public List<ViewFinanceFactorDebator> getAllDebators()
         {
             return Debators.ToList();
@@ -716,6 +721,17 @@ namespace Eli.Models
                return list;
            }
 
+           /*the function return all the names of the reports*/
+           public List<String> getAllReportNames()
+           {
+               List<String> list = new List<String>();
+               list.Add("רשימת מטופלים");
+               list.Add("מטופלים עפ''י גרומים מממנים");
+               list.Add("תשלומים עבור גורם מממן");
+               list.Add("אנשי קשר של מטפלים");
+
+               return list;
+           }
 
     //----------------------------LOGIN-------------------------------------------------------------------
         
