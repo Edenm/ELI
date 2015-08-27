@@ -1,30 +1,63 @@
-﻿
-@using Eli.Models;
+﻿<!DOCTYPE html>
+<html lang="en">
+    
+<body>
 
-@{  EliManagerDB db = new EliManagerDB();}
+    @using Eli.Models;
+    @{  EliManagerDB db = new EliManagerDB();}
 
-@using (Html.BeginForm("SelectReport", "Report"))
-{
-    <div class="modal-header">
-        <div class="medium" align="center">דו"חות</div>
-    </div>
-    <div class="modal-body" dir="rtl">
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-        <fieldset>
-            <select dir="rtl" class="element select" id="reportName" name="reportName" style="width: 300px; height: 30px">
+    @using (Html.BeginForm("SelectReport", "Report"))
+    {
+        <div class="modal-header">
+            <div class="medium" align="center">דו"חות</div>
+        </div>
+        <div class="modal-body" dir="rtl">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <select dir="rtl" class="element select" id="reportName" name="reportName" style="width: 300px; height: 30px" onchange="changedReport(id)">
                 @{
-                    int count = 0;
+                    int countRepor = 0;
                     foreach (string item in db.getAllReportNames())
                     {
-                        <option value="@count">@item</option>
-                        count++;
+                        <option value="@countRepor" id="@countRepor">@item</option>
+                        countRepor++;
                     }
                 }
             </select>
+            <br />
+            <div style="visibility:hidden;" id="patientByFF">
+                <div class="small" align="right">בחר גורם מממן</div>
+                <select dir="rtl" class="element select" id="patientByFF" name="reportName" style="width: 300px; height: 30px;">
+                    @{
+                        <option value="0">ללא</option>
+                        int countFF = 1;
+                        foreach (tblFinancingFactor item in db.getAllFinanceFactor())
+                        {
+                            <option value="@countFF">@item.FinancingFactorName</option>
+                            countFF++;
+                        }
+                    }
+                </select>
+            </div>
+            <br />
+            <button type="submit" value="Next" dir="rtl" name="nextBtn" class="btn btn-primary" id="123" onmouseover="changedReport(id)">בחר </button>
+        </div>
+        
+    }
 
-        </fieldset>
-        <br />
-        <button type="submit" value="Next" dir="rtl" name="nextBtn" class="btn btn-primary" >בחר </button>
-    </div>
-}
+    <script>
+    function changedReport(id) {
+        var msg = document.getElementById(id).value;
+        switch (msg) {
+            case "1":document.getElementById("patientByFF").style.visibility = "visible";
+                     break;
+            default:
+        }
+       
+    }
+    </script>
+
+</body>
+</html>
+
+

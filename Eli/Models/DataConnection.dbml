@@ -161,20 +161,4 @@
       <Association Name="tblReferenceTherapist_tblTreatment" Member="tblReferenceTherapist" ThisKey="ReferenceNumber,TherapistID" OtherKey="ReferenceNumber,TherapistID" Type="tblReferenceTherapist" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ViewFinanceFactorDebators" Member="ViewFinanceFactorDebators">
-    <Type Name="ViewFinanceFactorDebator">
-      <Column Name="FinancingFactorNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FinancingFactorName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="FinancingFactorType" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="FinancingFactorAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="FinancingFactorContactName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="FinancingFactorContcatPhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="FinancingFactorContactMail" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="TreatmentDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="TreatmentStartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
-      <Column Name="ID" Type="System.String" DbType="Char(9) NOT NULL" CanBeNull="false" />
-      <Column Name="PatientName" Type="System.String" DbType="VarChar(41)" CanBeNull="true" />
-      <Column Name="TherapistName" Type="System.String" DbType="VarChar(41)" CanBeNull="true" />
-    </Type>
-  </Table>
 </Database>

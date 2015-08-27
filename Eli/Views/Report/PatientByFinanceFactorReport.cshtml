@@ -10,21 +10,29 @@
 
 <table class="table table-bordered" dir="rtl">
     <tr align="center">
-        <th style="text-align: center;">שם</th>
+        <th style="text-align: center;">גורם מממן</th>
         <th style="text-align: center;">סוג</th>
         <th style="text-align: center;">ת"ז</th>
         <th style="text-align: center;">שם</th>
-        <th></th>
     </tr>
     @foreach (var item in Model)
     {
         <tr align="center">
-            <td><b>@item.FinancingFactor.FinancingFactorName</b></td>
+            @{if (item.FinancingFactor.FinancingFactorName == ""){
+                <td><b>ללא גורם מממן</b></td>
+            }
+            else{
+                <td><b>@item.FinancingFactor.FinancingFactorName</b></td>
+            }
+            }
             <td><b>@item.FinancingFactor.FinancingFactorType</b></td>
+            <td></td>
+            <td></td>
         </tr>
         foreach (var pat in item.Patients) {
             string name = pat.FirstName + " " + pat.SurName;
             <tr>
+                <td></td>
                 <td></td>
                 <td>@pat.ID</td>
                 <td>@name</td>

@@ -26,11 +26,16 @@ namespace Eli.Controllers
             switch (reportName)
             {
                 case "0": return RedirectToAction("PatientReport");
-                case "1": return RedirectToAction("PatientByFinanceFactorReport");
+                case "1": return RedirectToAction("PatientByFinanceFactorReportParam");
                 case "2": return RedirectToAction("IndexReport");
                 case "3": return RedirectToAction("ContactsPatientsReport");
             }
             return RedirectToAction("PatientReport");
+        }
+
+        public ActionResult PatientByFinanceFactorReportParam(string reportName)
+        {
+            return View();
         }
 
         // display PatientReport
@@ -69,16 +74,19 @@ namespace Eli.Controllers
         {
             List<PatientByFinanceFactor> Result = new List<PatientByFinanceFactor>();
             List<tblPatient> pats = new List<tblPatient>();
-            int count = 1;
+            tblPatient tempPatient = new tblPatient();
+            tblFinancingFactor tempFinanceNext = new tblFinancingFactor();
+            PatientByFinanceFactor temp = new PatientByFinanceFactor();
+            int NextId = 0;
+            int CurId = 0;
 
-            string Command = "select count(finan.FinancingFactorNumber),finan.FinancingFactorName,finan.FinancingFactorType,pat.ID,pat.FirstName,pat.SurName"
-                            + "from tblPatient pat inner join tblRefererencePatient refPat on pat.ID=refPat.PatientID"
-                            + "inner join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber"
-                            + "inner join tblTherapist ther on refTher.TherapistID=ther.TherapistID"
-                            + "inner join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID"
-                            + "inner join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber"
-                            + "where finan.FinancingFactorName=@" + FinancingFactorName
-                            + "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType";
+            string Command = "";
+
+            if (FinancingFactorName != null)
+                Command = "select max(IsNull(finan.FinancingFactorNumber,'')) as FinancingFactorNumber,IsNull(finan.FinancingFactorName,'') as FinancingFactorName,IsNull(finan.FinancingFactorType,'') as FinancingFactorType ,ID,FirstName,SurName from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber where finan.FinancingFactorName='" + FinancingFactorName + "' " + "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
+            else
+                Command = "select max(IsNull(finan.FinancingFactorNumber,'')) as FinancingFactorNumber,IsNull(finan.FinancingFactorName,'') as FinancingFactorName,IsNull(finan.FinancingFactorType,'') as FinancingFactorType ,ID,FirstName,SurName from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
+
             using (SqlConnection mConnection = new SqlConnection(connectionString))
             {
                 mConnection.Open();
@@ -86,36 +94,74 @@ namespace Eli.Controllers
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        reader.Read();
+                        while (true)
                         {
-                            int amount = Int16.Parse((string)reader[0]);
+                            CurId = (Int32)reader[0];
+                            NextId = (Int32)reader[0];
 
-                            tblPatient tempPatient = new tblPatient()
+                            tblFinancingFactor tempFinance = new tblFinancingFactor()
+                            {
+                                FinancingFactorName = (string)reader[1],
+                                FinancingFactorType = (string)reader[2]
+                            };
+
+                            tempPatient = new tblPatient()
                             {
                                 ID = (string)reader[3],
                                 FirstName = (string)reader[4],
                                 SurName = (string)reader[5]
                             };
+
                             pats.Add(tempPatient);
 
-                            if (count>=amount)
+                            while (NextId == CurId && reader.Read())
                             {
-                                tblFinancingFactor tempFinance = new tblFinancingFactor()
-                                {
-                                    FinancingFactorContactName = (string)reader[1],
-                                    FinancingFactorType = (string)reader[2]
-                                };
 
-                                PatientByFinanceFactor temp = new PatientByFinanceFactor()
+                                NextId = (Int32)reader[0];
+
+                                tempPatient = new tblPatient()
+                                {
+                                    ID = (string)reader[3],
+                                    FirstName = (string)reader[4],
+                                    SurName = (string)reader[5]
+                                };
+                                
+                                if (NextId == CurId)
+                                {
+                                    pats.Add(tempPatient);
+                                }
+                                else
+                                {
+                                    temp = new PatientByFinanceFactor()
+                                    {
+                                        Patients = pats,
+                                        FinancingFactor = tempFinance
+                                    };
+
+                                    Result.Add(temp);
+                                    pats = new List<tblPatient>();
+                                    pats.Add(tempPatient);
+
+                                    tempFinanceNext = new tblFinancingFactor()
+                                    {
+                                        FinancingFactorName = (string)reader[1],
+                                        FinancingFactorType = (string)reader[2]
+                                    };
+
+                                }
+                            }
+
+                            if (!reader.Read())
+                            {
+                                temp = new PatientByFinanceFactor()
                                 {
                                     Patients = pats,
-                                    FinancingFactor = tempFinance
+                                    FinancingFactor = tempFinanceNext
                                 };
-
                                 Result.Add(temp);
-                                count = 1;
+                                break;
                             }
-                            count++;
                         }
                     }
                 }
