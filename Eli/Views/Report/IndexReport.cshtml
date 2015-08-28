@@ -27,20 +27,20 @@
             <br />
             <div style="visibility:hidden;" id="patientByFF">
                 <div class="small" align="right">בחר גורם מממן</div>
-                <select dir="rtl" class="element select" id="patientByFF" name="reportName" style="width: 300px; height: 30px;">
+                <select dir="rtl" class="element select" id="patientByFF" name="ffParam" style="width: 300px; height: 30px;">
                     @{
-                        <option value="0">ללא</option>
-                        int countFF = 1;
+                         <option value="הכל">הכל</option>
+                        //int countFF = 1;
                         foreach (tblFinancingFactor item in db.getAllFinanceFactor())
                         {
-                            <option value="@countFF">@item.FinancingFactorName</option>
-                            countFF++;
+                                <option value="@item.FinancingFactorName">@item.FinancingFactorName</option>
+                                //countFF++;
                         }
                     }
                 </select>
             </div>
             <br />
-            <button type="submit" value="Next" dir="rtl" name="nextBtn" class="btn btn-primary" id="123" onmouseover="changedReport(id)">בחר </button>
+            <button type="submit" value="Next" dir="rtl" name="nextBtn" class="btn btn-primary" onmouseover="changedReport(id)">בחר </button>
         </div>
         
     }

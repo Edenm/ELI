@@ -21,26 +21,30 @@ namespace Eli.Controllers
                 return View();
         }
 
-        public ActionResult SelectReport(string reportName)
+        public ActionResult SelectReport(string reportName, string ffParam)
         {
             switch (reportName)
             {
                 case "0": return RedirectToAction("PatientReport");
-                case "1": return RedirectToAction("PatientByFinanceFactorReportParam");
+                case "1": return RedirectToAction("PatientByFinanceFactorReport", new { FinancingFactorName = ffParam });
                 case "2": return RedirectToAction("IndexReport");
                 case "3": return RedirectToAction("ContactsPatientsReport");
             }
             return RedirectToAction("PatientReport");
         }
 
-        public ActionResult PatientByFinanceFactorReportParam(string reportName)
+        public ActionResult PatientByFinanceFactorReport(string reportName, string FinancingFactorName)
         {
-            return View();
+            List<PatientByFinanceFactor> Result = getPatientByFinanceFactor(FinancingFactorName);
+
+            return View(Result);
         }
 
         // display PatientReport
         public ActionResult PatientReport()
         {
+            return View(new EliManagerDB().getAllPatients());
+            /*
             List<tblPatient> Result = new List<tblPatient>();
             string Command = "select * from tblPatient";
             using (SqlConnection mConnection = new SqlConnection(connectionString))
@@ -67,25 +71,43 @@ namespace Eli.Controllers
                 }
             }
             return View(Result);
+             */
         }
 
         // display PatientByFinanceFactorReport
-        public ActionResult PatientByFinanceFactorReport(string FinancingFactorName)
+        public List<PatientByFinanceFactor> getPatientByFinanceFactor(string FinancingFactorName)
         {
             List<PatientByFinanceFactor> Result = new List<PatientByFinanceFactor>();
             List<tblPatient> pats = new List<tblPatient>();
             tblPatient tempPatient = new tblPatient();
             tblFinancingFactor tempFinanceNext = new tblFinancingFactor();
             PatientByFinanceFactor temp = new PatientByFinanceFactor();
+            Boolean flagJustOne = false;
             int NextId = 0;
             int CurId = 0;
 
-            string Command = "";
+            string Command = null;
 
-            if (FinancingFactorName != null)
-                Command = "select max(IsNull(finan.FinancingFactorNumber,'')) as FinancingFactorNumber,IsNull(finan.FinancingFactorName,'') as FinancingFactorName,IsNull(finan.FinancingFactorType,'') as FinancingFactorType ,ID,FirstName,SurName from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber where finan.FinancingFactorName='" + FinancingFactorName + "' " + "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
+            if (FinancingFactorName != "הכל")
+            {
+                Command = "select max(IsNull(finan.FinancingFactorNumber,'')) as FinancingFactorNumber,IsNull(finan.FinancingFactorName,'') as FinancingFactorName,IsNull(finan.FinancingFactorType,'') as FinancingFactorType ,ID,FirstName,SurName " +
+                    "from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID "+
+                    "left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber "+ 
+                    "left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID "+  
+                    "left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID "+ 
+                    "left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber "+ 
+                    "where finan.FinancingFactorName='" + FinancingFactorName + "' " + 
+                    "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
+                flagJustOne = true;
+            }
             else
-                Command = "select max(IsNull(finan.FinancingFactorNumber,'')) as FinancingFactorNumber,IsNull(finan.FinancingFactorName,'') as FinancingFactorName,IsNull(finan.FinancingFactorType,'') as FinancingFactorType ,ID,FirstName,SurName from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
+                Command = "select max(IsNull(finan.FinancingFactorNumber,'')) as FinancingFactorNumber,IsNull(finan.FinancingFactorName,'') as FinancingFactorName,IsNull(finan.FinancingFactorType,'') as FinancingFactorType ,ID,FirstName,SurName "+ 
+                    "from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID " +
+                    "left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber "+ 
+                    "left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID "+ 
+                    "left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID "+ 
+                    "left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber "+
+                    "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
 
             using (SqlConnection mConnection = new SqlConnection(connectionString))
             {
@@ -151,7 +173,16 @@ namespace Eli.Controllers
 
                                 }
                             }
-
+                            if (flagJustOne)
+                            {
+                                temp = new PatientByFinanceFactor()
+                                {
+                                    Patients = pats,
+                                    FinancingFactor = tempFinance
+                                };
+                                Result.Add(temp);
+                                break;
+                            }
                             if (!reader.Read())
                             {
                                 temp = new PatientByFinanceFactor()
@@ -166,7 +197,7 @@ namespace Eli.Controllers
                     }
                 }
             }
-            return View(Result);
+            return Result;
         }
 
         // display FinanceFactorDebatorsReport
