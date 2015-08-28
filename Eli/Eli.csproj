@@ -622,8 +622,6 @@
     <Content Include="Views\Report\PatientReport.cshtml" />
     <Content Include="Views\Report\ContactsPatientsReport.cshtml" />
     <Content Include="Views\Report\PatientByFinanceFactorReport.cshtml" />
-    <Content Include="Views\Report\PatientByFinanceFactorReportParam.cshtml" />
-    <Content Include="Views\Shared\_ReportOptions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,11 +30,9 @@
                 <select dir="rtl" class="element select" id="patientByFF" name="ffParam" style="width: 300px; height: 30px;">
                     @{
                          <option value="הכל">הכל</option>
-                        //int countFF = 1;
                         foreach (tblFinancingFactor item in db.getAllFinanceFactor())
                         {
                                 <option value="@item.FinancingFactorName">@item.FinancingFactorName</option>
-                                //countFF++;
                         }
                     }
                 </select>
