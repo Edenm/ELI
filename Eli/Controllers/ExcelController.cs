@@ -33,6 +33,8 @@ namespace Eli.Controllers
                               
                               select new
                               {
+                                  תז=p.ID,
+                                  מין=p.Gender,
                                   שם = p.FirstName+" "+p.SurName,
                                    
                                   טלפון="*"+p.PhoneNumber
@@ -43,7 +45,7 @@ namespace Eli.Controllers
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=PatientList.xls");
             Response.ContentType = "application/ms-excel";
-            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.ContentEncoding = System.Text.Encoding.Default;
 
 
 

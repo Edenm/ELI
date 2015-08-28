@@ -14,7 +14,9 @@ namespace Eli.Controllers
 {
     public class ReportController : Controller
     {
-        static string connectionString = "Data Source=Eden-PC\\SQLEXPRESS1;Initial Catalog=Eli;Integrated Security=True";
+        //static string connectionString = "Data Source=Eden-PC\\SQLEXPRESS1;Initial Catalog=Eli;Integrated Security=True";
+        static string connectionString = "Data Source=SHAHAR-PC\\SQLEXPRESS;Initial Catalog=Eli;Integrated Security=True";
+
 
         public ActionResult IndexReport()
         {       
