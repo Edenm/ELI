@@ -718,7 +718,7 @@ namespace Eli.Models
            {
                List<String> list = new List<String>();
                list.Add("רשימת מטופלים");
-               list.Add("מטופלים עפ''י גרומים מממנים");
+               list.Add("מטופלים עפ''י גורמים מממנים");
                list.Add("תשלומים עבור גורם מממן");
                list.Add("אנשי קשר של מטפלים");
 
@@ -733,10 +733,6 @@ namespace Eli.Models
 
             return u;
         }
-
-    
-
-       
     }
 
 }
