@@ -59,7 +59,10 @@
   {
     <div class="medium" style="text-align:center;"> עבור @ViewBag.FinancingFactorName לא קיימים מטופלים  </div>
   }
+  
 }
+                          <button type="button"  onclick="location.href='@Url.Action("PatByFinanceExcel", "Excel", new { name = @Model })'"> ייבוא דוח לקובץ אקסל</button>
+
 
 
 
