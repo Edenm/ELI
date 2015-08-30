@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
     
-<body>
+<body onload="changedReportView()">
 
     @using Eli.Models;
     @{  EliManagerDB db = new EliManagerDB();}
@@ -29,10 +29,10 @@
                 <div class="small" align="right">בחר גורם מממן</div>
                 <select dir="rtl" class="element select" id="patientByFF" name="ffParam" style="width: 300px; height: 30px;">
                     @{
-                         <option value="הכל">הכל</option>
+                        <option value="הכל">הכל</option>
                         foreach (tblFinancingFactor item in db.getAllFinanceFactor())
                         {
-                                <option value="@item.FinancingFactorName">@item.FinancingFactorName</option>
+                            <option value="@item.FinancingFactorName">@item.FinancingFactorName</option>
                         }
                     }
                 </select>
@@ -40,22 +40,34 @@
             <br />
             <button type="submit" value="Next" dir="rtl" name="nextBtn" class="btn btn-primary" onmouseover="changedReport(id)">בחר </button>
         </div>
-        
+
     }
 
     <script>
-    function changedReport(id) {
-        var msg = document.getElementById(id).value;
-        switch (msg) {
-            case "1":document.getElementById("patientByFF").style.visibility = "visible";
-                     break;
-            default:
+        function changedReportView() {
+            var id = "reportName";
+            changedReport(id);
         }
-       
-    }
+
+        function changedReport(id) {
+            var msg = document.getElementById(id).value;
+            switch (msg) {
+                case "0": document.getElementById("patientByFF").style.visibility = "hidden";
+                    break;
+                case "1": document.getElementById("patientByFF").style.visibility = "visible";
+                    break;
+                case "2": document.getElementById("patientByFF").style.visibility = "hidden";
+                    break;
+                case "3": document.getElementById("patientByFF").style.visibility = "hidden";
+                    break;
+                default:
+            }
+
+        }
     </script>
 
 </body>
+
 </html>
 
 

@@ -36,7 +36,6 @@ namespace Eli.Controllers
                                   תז=p.ID,
                                   מין=p.Gender,
                                   שם = p.FirstName+" "+p.SurName,
-                                   
                                   טלפון="*"+p.PhoneNumber
                               };
             grid.DataBind();
