@@ -492,6 +492,8 @@
       <DependentUpon>ModelEliEntity.edmx</DependentUpon>
       <LastGenOutput>ModelEliEntity.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\GISHA.TTF" />
+    <Content Include="fonts\GISHABD.TTF" />
     <None Include="Reports\DataSet\ELIDataSetDebatorsFF.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ELIDataSetDebatorsFF.Designer.cs</LastGenOutput>
