@@ -7,23 +7,37 @@
 </div>
 
 <div class="medium" style="text-align:center;">רשימת קשר של מטופלים</div>
-
-<table class="table table-bordered" dir="rtl">
-    <tr align ="center">
-        <th style="text-align: center;">ת"ז</th>
-        <th style="text-align: center;">מין</th>
-        <th style="text-align: center;">שם</th>
-        <th style="text-align: center;">טלפון</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        string name = item.FirstName + " " + item.SurName;
-        <tr align="center">
-            <td>@item.ID</td>
-            <td>@item.Gender</td>
-            <td>@name</td>
-            <td>@item.PhoneNumber</td>
-        </tr>
-    }
-</table>
+                      <div id="divPrnt">
+                          <table class="table table-bordered" dir="rtl">
+                              <tr align="center">
+                                  <th style="text-align: center;">ת"ז</th>
+                                  <th style="text-align: center;">מין</th>
+                                  <th style="text-align: center;">שם</th>
+                                  <th style="text-align: center;">טלפון</th>
+                              </tr>
+                              @foreach (var item in Model)
+                              {
+                                  string name = item.FirstName + " " + item.SurName;
+                                  <tr align="center">
+                                      <td>@item.ID</td>
+                                      <td>@item.Gender</td>
+                                      <td>@name</td>
+                                      <td>@item.PhoneNumber</td>
+                                  </tr>
+                              }
+                          </table>
+                      </div>
+                      <input type="button" onclick="CallPrint('divPrnt')" value="הדפס טבלה" />
                       <button type="button"  onclick="location.href='@Url.Action("patientexcel", "Excel")'"> ייבוא דוח לקובץ אקסל</button>
+
+                      <script type="text/javascript">
+                          function CallPrint(strid) {
+                              var prtContent = document.getElementById(strid);
+                              var WinPrint = window.open('', '', 'letf=100,top=100,width=600,height=600');
+                              WinPrint.document.write(prtContent.innerHTML);
+                              WinPrint.document.close();
+                              WinPrint.focus();
+                              WinPrint.print();
+                              //WinPrint.close()   
+                          }
+                      </script>

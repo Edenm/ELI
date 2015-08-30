@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -45,7 +46,7 @@ namespace Eli.Controllers
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=PatientList.xls");
             Response.ContentType = "application/ms-excel";
-Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
             Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
             Response.Charset = "";
             StringWriter sw = new StringWriter();
@@ -67,61 +68,32 @@ Response.ContentEncoding = System.Text.Encoding.Unicode;
 
         public ActionResult TreatExcel()
         {
-
             EliManagerDB db = new EliManagerDB();
-            List<tblPatient> pat = db.Patients.ToList();
-             List<tblRefererencePatient> refpat = db.ReferencePatient.ToList();
-             List<tblReferenceTherapist> refterapist = db.ReferenceTherapist.ToList();
-            List<tblTherapist> ter = db.Therapist.ToList();
-            List<tblTreatment> treat = db.Treatment.ToList();
-             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
-            var grid = new GridView();
-            grid.DataSource = from p in pat  join rp in refpat on p.ID equals rp.PatientID
-                              join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
-                              join t in ter on rt.TherapistID equals t.TherapistID 
-                              join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
-                              join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
-                              where tr.IsPaid=="לא" && (rt.TherapistID==tr.TherapistID)
-                              select new
-                              {
-                                  שם_גורם_מממן = f.FinancingFactorName,
-                                  שם_איש_קשר=f.FinancingFactorContactName,
-                                  טלפון_איש_קשר="*"+f.FinancingFactorContcatPhoneNumber,              
-                                  מייל_איש_קשר=f.FinancingFactorContactMail,
-                                  תאריך_טיפול=tr.TreatmentDate.ToString().Substring(1,10),
-                                  שעת_טיפול=tr.TreatmentStartTime,
-                                  שם_מטופל=p.FirstName+" "+p.SurName,
-                                  שם_מטפל=t.TherapistFirstName+" "+t.TherapistSurName,
-                                  סכום_טיפול=tr.Cost
+            List<tblPatient> patient = db.Patients.ToList();
+            WebGrid grid = new WebGrid(source: patient, canPage: false, canSort: false);
+            string gridHtml = grid.GetHtml(
+                    columns: grid.Columns(
+                    grid.Column("ID", "Id"),
+                    grid.Column("Gender", "Gender")
+                   )).ToString();
 
-                              };
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=UserDetails.pdf");
-            Response.ContentEncoding = System.Text.Encoding.UTF8;
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.ContentEncoding = System.Text.Encoding.UTF8;
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-            grid.AllowPaging = false;
-            grid.DataBind();
-            grid.RenderControl(hw);
-            grid.HeaderRow.Style.Add("width", "15%");
-            grid.HeaderRow.Style.Add("font-size", "10px");
-            grid.Style.Add("text-decoration", "none");
-            grid.Style.Add("font-family", "Arial, Helvetica, sans-serif;");
-            grid.Style.Add("font-size", "8px");
-            
-            StringReader sr = new StringReader(sw.ToString());
-            Document pdfDoc = new Document(PageSize.A2, 7f, 7f, 7f, 0f);
-            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-            pdfDoc.Open();
-            htmlparser.Parse(sr);
-            pdfDoc.Close();
-            Response.Write(pdfDoc);
-            Response.End();
+            string exportData = String.Format("<html><head>{0}</head><body>{1}</body></html>", "<style>table{ border-spacing: 10px; border-collapse: separate; }</style>", gridHtml);
+            var bytes = System.Text.Encoding.Default.GetBytes(exportData);
+            using (var input = new MemoryStream(bytes))
+            {
+                var output = new MemoryStream();
+                var document = new iTextSharp.text.Document(PageSize.A4, 50, 50, 50, 50);
+                var writer = PdfWriter.GetInstance(document, output);
+                writer.CloseStream = false;
+                document.Open();
 
-            return View();
+                var xmlWorker = iTextSharp.tool.xml.XMLWorkerHelper.GetInstance();
+                xmlWorker.ParseXHtml(writer, document, input, System.Text.Encoding.Default);
+                document.Close();
+                output.Position = 0;
+
+                return new FileStreamResult(output, "application/pdf");
+            }
         }
 
 
