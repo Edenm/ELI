@@ -1,9 +1,11 @@
 ﻿using Eli.Models;
+using Eli.ViewModel;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -18,6 +20,7 @@ namespace Eli.Controllers
     {
         //
         // GET: /Excel/
+        static string connectionString = SQLConnection.GetConnectionString();
 
         public ActionResult Index()
         {
@@ -66,34 +69,44 @@ namespace Eli.Controllers
 
 
 
-        public ActionResult TreatExcel()
+        public ActionResult TreatExcel(String name)
         {
             EliManagerDB db = new EliManagerDB();
-            List<tblPatient> patient = db.Patients.ToList();
-            WebGrid grid = new WebGrid(source: patient, canPage: false, canSort: false);
-            string gridHtml = grid.GetHtml(
-                    columns: grid.Columns(
-                    grid.Column("ID", "Id"),
-                    grid.Column("Gender", "Gender")
-                   )).ToString();
+            List<PatientByFinanceFactor> Result = getPatientByFinanceFactor(name);
 
-            string exportData = String.Format("<html><head>{0}</head><body>{1}</body></html>", "<style>table{ border-spacing: 10px; border-collapse: separate; }</style>", gridHtml);
-            var bytes = System.Text.Encoding.Default.GetBytes(exportData);
-            using (var input = new MemoryStream(bytes))
-            {
-                var output = new MemoryStream();
-                var document = new iTextSharp.text.Document(PageSize.A4, 50, 50, 50, 50);
-                var writer = PdfWriter.GetInstance(document, output);
-                writer.CloseStream = false;
-                document.Open();
+            var grid = new GridView();
 
-                var xmlWorker = iTextSharp.tool.xml.XMLWorkerHelper.GetInstance();
-                xmlWorker.ParseXHtml(writer, document, input, System.Text.Encoding.Default);
-                document.Close();
-                output.Position = 0;
+            grid.DataSource = from p in Result
 
-                return new FileStreamResult(output, "application/pdf");
-            }
+                              select new
+                              {
+                                  שם_מטופל = p.FinancingFactor,
+                                  ש=p.Patients
+                                 
+
+                              };
+            grid.DataBind();
+
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=PatientContactList.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+
+
+            Response.Charset = "";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            grid.RenderControl(htw);
+
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return View();
+        
         }
 
 
@@ -104,6 +117,7 @@ namespace Eli.Controllers
             List<tblPatient> patient = db.Patients.ToList();
 
             var grid = new GridView();
+            
             grid.DataSource = from p in patient
 
                               select new
@@ -122,9 +136,6 @@ namespace Eli.Controllers
                                   טלפון3 = "*"+p.ContactPhone3,
                                   מייל3 = p.ContactMail3,
 
-
-
-                                  
                               };
             grid.DataBind();
 
@@ -132,8 +143,8 @@ namespace Eli.Controllers
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=PatientContactList.xls");
             Response.ContentType = "application/ms-excel";
-            Response.ContentEncoding = System.Text.Encoding.UTF8;
-
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
 
 
             Response.Charset = "";
@@ -148,6 +159,128 @@ namespace Eli.Controllers
 
             return View();
         }
+
+
+
+        // display PatientByFinanceFactorReport
+        public List<PatientByFinanceFactor> getPatientByFinanceFactor(string FinancingFactorName)
+        {
+            List<PatientByFinanceFactor> Result = new List<PatientByFinanceFactor>();
+            List<tblPatient> pats = new List<tblPatient>();
+            tblPatient tempPatient = new tblPatient();
+            tblFinancingFactor tempFinanceNext = new tblFinancingFactor();
+            PatientByFinanceFactor temp = new PatientByFinanceFactor();
+            Boolean flagJustOne = false;
+            int NextId = 0;
+            int CurId = 0;
+
+            string Command = "select max(IsNull(finan.FinancingFactorNumber,'')) as FinancingFactorNumber,IsNull(finan.FinancingFactorName,'') as FinancingFactorName,IsNull(finan.FinancingFactorType,'') as FinancingFactorType ,ID,FirstName,SurName " +
+                    "from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID " +
+                    "left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber " +
+                    "left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID " +
+                    "left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID " +
+                    "left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber ";
+
+            if (FinancingFactorName != "הכל")
+            {
+                Command += "where finan.FinancingFactorName='" + FinancingFactorName + "' ";
+                flagJustOne = true;
+            }
+            Command += "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
+
+            using (SqlConnection mConnection = new SqlConnection(connectionString))
+            {
+                mConnection.Open();
+                using (SqlCommand cmd = new SqlCommand(Command, mConnection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            while (true)
+                            {
+                                CurId = (Int32)reader[0];
+                                NextId = (Int32)reader[0];
+
+                                tblFinancingFactor tempFinance = new tblFinancingFactor()
+                                {
+                                    FinancingFactorName = (string)reader[1],
+                                    FinancingFactorType = (string)reader[2]
+                                };
+
+                                tempPatient = new tblPatient()
+                                {
+                                    ID = (string)reader[3],
+                                    FirstName = (string)reader[4],
+                                    SurName = (string)reader[5]
+                                };
+
+                                pats.Add(tempPatient);
+
+                                while (NextId == CurId && reader.Read())
+                                {
+
+                                    NextId = (Int32)reader[0];
+
+                                    tempPatient = new tblPatient()
+                                    {
+                                        ID = (string)reader[3],
+                                        FirstName = (string)reader[4],
+                                        SurName = (string)reader[5]
+                                    };
+
+                                    if (NextId == CurId)
+                                    {
+                                        pats.Add(tempPatient);
+                                    }
+                                    else
+                                    {
+                                        temp = new PatientByFinanceFactor()
+                                        {
+                                            Patients = pats,
+                                            FinancingFactor = tempFinance
+                                        };
+
+                                        Result.Add(temp);
+                                        pats = new List<tblPatient>();
+                                        pats.Add(tempPatient);
+
+                                        tempFinanceNext = new tblFinancingFactor()
+                                        {
+                                            FinancingFactorName = (string)reader[1],
+                                            FinancingFactorType = (string)reader[2]
+                                        };
+
+                                    }
+                                }
+                                if (flagJustOne)
+                                {
+                                    temp = new PatientByFinanceFactor()
+                                    {
+                                        Patients = pats,
+                                        FinancingFactor = tempFinance
+                                    };
+                                    Result.Add(temp);
+                                    break;
+                                }
+                                if (!reader.Read())
+                                {
+                                    temp = new PatientByFinanceFactor()
+                                    {
+                                        Patients = pats,
+                                        FinancingFactor = tempFinanceNext
+                                    };
+                                    Result.Add(temp);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return Result;
+        }
+
 
     }
 }
