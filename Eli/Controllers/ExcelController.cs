@@ -47,13 +47,14 @@ namespace Eli.Controllers
 
             Response.ClearContent();
             Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=PatientList.xls");
+            Response.AddHeader("content-disposition", "attachment; filename=רשימת מטופלים.xls");
             Response.ContentType = "application/ms-excel";
             Response.ContentEncoding = System.Text.Encoding.Unicode;
             Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
+            htw.Write("<table><tr><td colspan='3'>רשימת מטופלים</td></tr>");
 
             grid.RenderControl(htw);
 
@@ -224,7 +225,7 @@ namespace Eli.Controllers
 
             Response.ClearContent();
             Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=PatientContactList.xls");
+            Response.AddHeader("content-disposition", "attachment; filename=אנשי קשר.xls");
             Response.ContentType = "application/ms-excel";
             Response.ContentEncoding = System.Text.Encoding.Unicode;
             Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
@@ -233,6 +234,7 @@ namespace Eli.Controllers
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
+            htw.Write("<table><tr><td colspan='3'>אנשי קשר של מטופלים</td></tr>");
 
             grid.RenderControl(htw);
 
