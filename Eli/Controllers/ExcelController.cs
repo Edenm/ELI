@@ -67,6 +67,52 @@ namespace Eli.Controllers
           
         }
 
+        public ActionResult PatientByFinance()
+        {
+
+            EliManagerDB db = new EliManagerDB();
+            List<tblPatient> pat = db.Patients.ToList();
+            List<tblRefererencePatient> refpat = db.ReferencePatient.ToList();
+            List<tblReferenceTherapist> refterapist = db.ReferenceTherapist.ToList();
+            List<tblTherapist> ter = db.Therapist.ToList();
+            List<tblTreatment> treat = db.Treatment.ToList();
+            List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
+            var grid = new GridView();
+            grid.DataSource = (from p in pat
+                               join rp in refpat on p.ID equals rp.PatientID
+                               join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                               join t in ter on rt.TherapistID equals t.TherapistID
+                               join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                               join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                               //where tr.IsPaid == "לא" && (rt.TherapistID == tr.TherapistID)
+                               select new
+                               {
+                                   שם_גורם_מממן = f.FinancingFactorName,
+                                   סוג_גורם_מממן = f.FinancingFactorType,
+                                   תז_מטופל = p.ID,
+
+                                   שם_מטופל = p.FirstName + " " + p.SurName,
+
+                               }).ToList().Distinct(); grid.DataBind();
+
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=PatientByFinance.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+            Response.Charset = "";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            grid.RenderControl(htw);
+
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return View();
+        }
 
 
         public ActionResult TreatExcel(String name)
