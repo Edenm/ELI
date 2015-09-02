@@ -118,7 +118,15 @@ namespace Eli.Controllers
 
             Response.ClearContent();
             Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=PatientByFinance.xls");
+            if (name != "הכל")
+            {
+                Response.AddHeader("content-disposition", "attachment; filename=מטופלים של  " + name + ".xls");
+            }
+            else
+            {
+                Response.AddHeader("content-disposition", "attachment; filename= מטופלים לפי גורמים מממנים.xls");
+
+            }
             Response.ContentType = "application/ms-excel";
             Response.ContentEncoding = System.Text.Encoding.Unicode;
             Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
