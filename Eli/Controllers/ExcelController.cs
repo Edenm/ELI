@@ -67,7 +67,7 @@ namespace Eli.Controllers
           
         }
 
-        public ActionResult PatientByFinance()
+        public ActionResult PatientByFinance(String name)
         {
 
             EliManagerDB db = new EliManagerDB();
@@ -84,7 +84,7 @@ namespace Eli.Controllers
                                join t in ter on rt.TherapistID equals t.TherapistID
                                join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
                                join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
-                               //where tr.IsPaid == "לא" && (rt.TherapistID == tr.TherapistID)
+                               where f.FinancingFactorName ==name
                                select new
                                {
                                    שם_גורם_מממן = f.FinancingFactorName,
