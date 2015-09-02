@@ -54,6 +54,8 @@
        
             
         </table>
+    <button type="button" onclick="location.href='@Url.Action("PatientByFinance", "Excel", new { name = @ViewBag.FinancingFactorName })'"> ייבוא דוח לקובץ אקסל</button>
+
 }
   else
   {
@@ -61,7 +63,6 @@
   }
   
 }
-<button type="button"  onclick="location.href='@Url.Action("PatientByFinance", "Excel", new { name = @ViewBag.FinancingFactorName })'"> ייבוא דוח לקובץ אקסל</button>
 
 
 

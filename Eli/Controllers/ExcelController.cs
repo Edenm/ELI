@@ -78,22 +78,43 @@ namespace Eli.Controllers
             List<tblTreatment> treat = db.Treatment.ToList();
             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
             var grid = new GridView();
-            grid.DataSource = (from p in pat
-                               join rp in refpat on p.ID equals rp.PatientID
-                               join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
-                               join t in ter on rt.TherapistID equals t.TherapistID
-                               join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
-                               join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
-                               where f.FinancingFactorName ==name
-                               select new
-                               {
-                                   שם_גורם_מממן = f.FinancingFactorName,
-                                   סוג_גורם_מממן = f.FinancingFactorType,
-                                   תז_מטופל = p.ID,
+            if (name != "הכל")
+            {
+                grid.DataSource = (from p in pat
+                                   join rp in refpat on p.ID equals rp.PatientID
+                                   join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                                   join t in ter on rt.TherapistID equals t.TherapistID
+                                   join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                                   join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                                   where f.FinancingFactorName == name
+                                   select new
+                                   {
+                                       שם_גורם_מממן = f.FinancingFactorName,
+                                       סוג_גורם_מממן = f.FinancingFactorType,
+                                       תז_מטופל = p.ID,
 
-                                   שם_מטופל = p.FirstName + " " + p.SurName,
+                                       שם_מטופל = p.FirstName + " " + p.SurName,
 
-                               }).ToList().Distinct(); grid.DataBind();
+                                   }).ToList().Distinct(); grid.DataBind();
+            }
+            else
+            {
+                grid.DataSource = (from p in pat
+                                   join rp in refpat on p.ID equals rp.PatientID
+                                   join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                                   join t in ter on rt.TherapistID equals t.TherapistID
+                                   join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                                   join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                                   select new
+                                   {
+                                       שם_גורם_מממן = f.FinancingFactorName,
+                                       סוג_גורם_מממן = f.FinancingFactorType,
+                                       תז_מטופל = p.ID,
+
+                                       שם_מטופל = p.FirstName + " " + p.SurName,
+
+                                   }).ToList().Distinct(); grid.DataBind();
+            }
 
             Response.ClearContent();
             Response.Buffer = true;
