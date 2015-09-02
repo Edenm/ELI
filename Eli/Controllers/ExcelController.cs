@@ -118,6 +118,7 @@ namespace Eli.Controllers
 
             Response.ClearContent();
             Response.Buffer = true;
+            
             if (name != "הכל")
             {
                 Response.AddHeader("content-disposition", "attachment; filename=מטופלים של  " + name + ".xls");
@@ -133,7 +134,14 @@ namespace Eli.Controllers
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
-
+            if (name != "הכל")
+            {
+                htw.Write("<table><tr><td colspan='3'>"+ name+ "</td></tr>");
+            }
+            else
+            {
+                htw.Write("<table><tr><td colspan='3'>מטופלים לפי גורם מממן</td></tr>");
+            }
             grid.RenderControl(htw);
 
             Response.Output.Write(sw.ToString());
