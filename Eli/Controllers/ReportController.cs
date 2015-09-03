@@ -38,6 +38,7 @@ namespace Eli.Controllers
         public ActionResult PatientByFinanceFactorReport(string FinancingFactorName)
         {
             List<PatientByFinanceFactor> Result = getPatientByFinanceFactor(FinancingFactorName);
+            ViewBag.type = Result.ElementAt(0).FinancingFactor.FinancingFactorType;
 
             ViewBag.FinancingFactorName = FinancingFactorName;
 
