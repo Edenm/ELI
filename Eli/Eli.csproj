@@ -329,6 +329,7 @@
     <Compile Include="ViewModel\MailModel.cs" />
     <Compile Include="ViewModel\ReferenceTeratments.cs" />
     <Compile Include="ViewModel\Treatment.cs" />
+    <Compile Include="ViewModel\TreatmentByFinanceFactor.cs" />
     <Compile Include="ViewModel\User.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@
         <div class="modal-body" dir="rtl">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
-            <select dir="rtl" class="element select" id="reportName" name="reportName" style="width: 300px; height: 30px" onchange="changedReport(id)">
+            <select dir="rtl" class="element select" id="reportName" name="reportName" style="width: 300px; height: 30px" onchange="changedReport(id)" onclick="changedReport(id)">
                 @{
                     int countRepor = 0;
                     foreach (string item in db.getAllReportNames())
@@ -56,7 +56,7 @@
                     break;
                 case "1": document.getElementById("patientByFF").style.visibility = "visible";
                     break;
-                case "2": document.getElementById("patientByFF").style.visibility = "hidden";
+                case "2": document.getElementById("patientByFF").style.visibility = "visible";
                     break;
                 case "3": document.getElementById("patientByFF").style.visibility = "hidden";
                     break;

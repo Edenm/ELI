@@ -14,8 +14,6 @@ namespace Eli.Controllers
 {
     public class ReportController : Controller
     {
-        //static string connectionString = "Data Source=Eden-PC\\SQLEXPRESS1;Initial Catalog=Eli;Integrated Security=True";
-        //static string connectionString = "Data Source=SHAHAR-PC\\SQLEXPRESS;Initial Catalog=Eli;Integrated Security=True";
         static string connectionString = SQLConnection.GetConnectionString();
 
         public ActionResult IndexReport()
@@ -29,12 +27,19 @@ namespace Eli.Controllers
             {
                 case "0": return RedirectToAction("PatientReport");
                 case "1": return RedirectToAction("PatientByFinanceFactorReport", new { FinancingFactorName = ffParam });
-                case "2": return RedirectToAction("IndexReport");
+                case "2": return RedirectToAction("FinanceFactorDebatorsReport", new { FinancingFactorName = ffParam });
                 case "3": return RedirectToAction("ContactsPatientsReport");
             }
             return RedirectToAction("PatientReport");
         }
 
+        // display PatientReport
+        public ActionResult PatientReport()
+        {
+            return View(new EliManagerDB().getAllPatients());
+        }
+
+        // display PatientByFinanceFactorReport
         public ActionResult PatientByFinanceFactorReport(string FinancingFactorName)
         {
             List<PatientByFinanceFactor> Result = getPatientByFinanceFactor(FinancingFactorName);
@@ -44,39 +49,25 @@ namespace Eli.Controllers
             return View(Result);
         }
 
-        // display PatientReport
-        public ActionResult PatientReport()
+        // display FinanceFactorDebatorsReport
+        public ActionResult FinanceFactorDebatorsReport(string from, string to, string FinancingFactorName)
         {
-            return View(new EliManagerDB().getAllPatients());
-            /*
-            List<tblPatient> Result = new List<tblPatient>();
-            string Command = "select * from tblPatient";
-            using (SqlConnection mConnection = new SqlConnection(connectionString))
-            {
-                mConnection.Open();
-                using (SqlCommand cmd = new SqlCommand(Command, mConnection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            tblPatient temp = new tblPatient()
-                            {
-                                ID = (string)reader[0],
-                                FirstName = (string)reader[1],
-                                SurName = (string)reader[2],
-                                Gender = (string)reader[4],
-                                PhoneNumber = (string)reader[7]
-                            };
+            List<TreatmentByFinanceFactor> Result = getFinanceFactorDebatorByTreat(from, to, FinancingFactorName);
 
-                            Result.Add(temp);
-                        }
-                    }
-                }
-            }
+            ViewBag.FinancingFactorName = FinancingFactorName;
+            ViewBag.From = from;
+            ViewBag.To = to;
+
             return View(Result);
-             */
         }
+
+        // display ContactsPatientsReport
+        public ActionResult ContactsPatientsReport()
+        {
+            EliManagerDB db = new EliManagerDB();
+            return View(db.getAllPatients());
+        }
+
 
         // display PatientByFinanceFactorReport
         public List<PatientByFinanceFactor> getPatientByFinanceFactor(string FinancingFactorName)
@@ -91,18 +82,18 @@ namespace Eli.Controllers
             int CurId = 0;
 
             string Command = "select max(IsNull(finan.FinancingFactorNumber,'')) as FinancingFactorNumber,IsNull(finan.FinancingFactorName,'') as FinancingFactorName,IsNull(finan.FinancingFactorType,'') as FinancingFactorType ,ID,FirstName,SurName " +
-                    "from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID "+
-                    "left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber "+ 
-                    "left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID "+  
-                    "left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID "+ 
-                    "left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber " ;
+                    "from tblPatient left outer join tblRefererencePatient refPat on ID=refPat.PatientID " +
+                    "left outer join tblReferenceTherapist refTher on refPat.ReferenceNumber=refTher.ReferenceNumber " +
+                    "left outer join tblTherapist ther on refTher.TherapistID=ther.TherapistID " +
+                    "left outer join tblTreatment treat on refTher.ReferenceNumber=treat.ReferenceNumber and refTher.TherapistID=treat.TherapistID " +
+                    "left outer join tblFinancingFactor finan on treat.FinancingFactorNumber=finan.FinancingFactorNumber ";
 
             if (FinancingFactorName != "הכל")
             {
-                Command += "where finan.FinancingFactorName='" + FinancingFactorName + "' " ;
+                Command += "where finan.FinancingFactorName='" + FinancingFactorName + "' ";
                 flagJustOne = true;
             }
-            Command +="group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
+            Command += "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
 
             using (SqlConnection mConnection = new SqlConnection(connectionString))
             {
@@ -197,20 +188,170 @@ namespace Eli.Controllers
             return Result;
         }
 
-        // display FinanceFactorDebatorsReport
-        public ActionResult FinanceFactorDebatorsReport()
+
+        // display PatientByFinanceFactorReport
+        public List<TreatmentByFinanceFactor> getFinanceFactorDebatorByTreat(string from, string to, string FinancingFactorName)
         {
-            return View();
+            List<TreatmentByFinanceFactor> Result = new List<TreatmentByFinanceFactor>();
+            List<TreatmentPatient> treatPats = new List<TreatmentPatient>();
+            TreatmentPatient tempTreatmentPatient = new TreatmentPatient();
+            tblTreatment tempTreatment = new tblTreatment();
+            tblPatient tempPatient = new tblPatient();
+            TreatmentByFinanceFactor temp = new TreatmentByFinanceFactor();
+            tblFinancingFactor tempFinanceNext = new tblFinancingFactor();
+            Boolean flagJustOne = false;
+            int NextId = 0;
+            int CurId = 0;
+            double totalFinance = 0;
+            double total = 0;
+
+
+            string Command = "select ff.FinancingFactorNumber,FinancingFactorName,FinancingFactorContactMail, TreatmentDate, tr.IsPaid,Cost ,p.FirstName,p.SurName , deb.SumCost as totalByFinance , bSum.SumCost as total "
+                        + "from tblFinancingFactor ff inner join tblTreatment tr on ff.FinancingFactorNumber=tr.FinancingFactorNumber "
+                        + "inner join tblReferenceTherapist rt on rt.ReferenceNumber=tr.ReferenceNumber and rt.TherapistID=tr.TherapistID "
+                        + "inner join tblRefererencePatient rp on rp.ReferenceNumber=rt.ReferenceNumber "
+                        + "inner join tblPatient p on p.ID=rp.PatientID "
+                        + "inner join (select finf.FinancingFactorNumber, SUM(Cost) as SumCost "
+                                       + "from tblFinancingFactor finf inner join tblTreatment tr on finf.FinancingFactorNumber=tr.FinancingFactorNumber "
+                                       + "where IsPaid='לא' "//and TreatmentDate between (" + from + ") and (" + to + ") "
+                                       + "group by finf.FinancingFactorNumber) as deb on ff.FinancingFactorNumber=deb.FinancingFactorNumber "
+                           + "inner join (select SUM(Cost) as SumCost, IsPaid "
+                                       + "from tblFinancingFactor ff inner join tblTreatment tr on ff.FinancingFactorNumber=tr.FinancingFactorNumber "
+                                       + "where IsPaid='לא' "
+                                       + "group by IsPaid) as bSum on bSum.IsPaid=tr.IsPaid "
+                                       + "where tr.IsPaid='לא' ";//  and TreatmentDate between ("+from+") and ("+to+") ";
+            
+            if (FinancingFactorName != "הכל")
+            {
+                Command += "and FinancingFactorName='" + FinancingFactorName + "' ";
+                flagJustOne = true;
+            }
+            
+            Command +="order by FinancingFactorContactName, TreatmentDate";
+
+            using (SqlConnection mConnection = new SqlConnection(connectionString))
+            {
+                mConnection.Open();
+                using (SqlCommand cmd = new SqlCommand(Command, mConnection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            while (true)
+                            {
+                                CurId = (Int32)reader[0];
+                                NextId = (Int32)reader[0];
+
+                                totalFinance=(double)reader[8];
+                                total = (double)reader[9];
+
+                                tblFinancingFactor tempFinance = new tblFinancingFactor()
+                                {
+                                    FinancingFactorName = (string)reader[1],
+                                    FinancingFactorContactMail = (string)reader[2]
+                                };
+                                
+                                tempTreatment = new tblTreatment()
+                                {
+                                    TreatmentDate = (DateTime)reader[3],
+                                    Cost = (double)reader[5],
+                                };
+                                
+                                tempPatient= new tblPatient(){
+                                    FirstName = (string)reader[6],
+                                    SurName = (string)reader[7],
+                                };
+                                
+
+                                tempTreatmentPatient = new TreatmentPatient()
+                                {
+                                    Treatment = tempTreatment,
+                                    Patient= tempPatient
+                                };
+
+                                treatPats.Add(tempTreatmentPatient);
+
+                                while (NextId == CurId && reader.Read())
+                                {
+
+                                    NextId = (Int32)reader[0];
+                                    
+                                    tempTreatment = new tblTreatment()
+                                    {
+                                        TreatmentDate = (DateTime)reader[3],
+                                        Cost = (double)reader[5],
+                                    };
+                                    
+                                    tempPatient = new tblPatient()
+                                    {
+                                        FirstName = (string)reader[6],
+                                        SurName = (string)reader[7],
+                                    };
+
+
+                                    tempTreatmentPatient = new TreatmentPatient()
+                                    {
+                                        Treatment = tempTreatment,
+                                        Patient = tempPatient
+                                    };
+
+                                    if (NextId == CurId)
+                                    {
+                                        treatPats.Add(tempTreatmentPatient);
+                                    }
+                                    else
+                                    {
+                                        temp = new TreatmentByFinanceFactor()
+                                        {
+                                            FinancingFactor = tempFinance,
+                                            TreatmentPatient=treatPats,
+                                            TotalDebateFinance = totalFinance,
+                                            Total = total
+                                        };
+
+                                        Result.Add(temp);
+                                        treatPats = new List<TreatmentPatient>();
+                                        treatPats.Add(tempTreatmentPatient);
+
+                                        tempFinanceNext = new tblFinancingFactor()
+                                        {
+                                            FinancingFactorName = (string)reader[1],
+                                            FinancingFactorContactMail = (string)reader[2]
+                                        };
+
+                                    }
+                                }
+                                if (flagJustOne)
+                                {
+                                    temp = new TreatmentByFinanceFactor()
+                                    {
+                                        FinancingFactor = tempFinance,
+                                        TreatmentPatient = treatPats,
+                                        TotalDebateFinance = totalFinance,
+                                        Total = total
+                                    };
+                                    Result.Add(temp);
+                                    break;
+                                }
+                                if (!reader.Read())
+                                {
+                                    temp = new TreatmentByFinanceFactor()
+                                    {
+                                        FinancingFactor = tempFinanceNext,
+                                        TreatmentPatient = treatPats,
+                                        TotalDebateFinance = totalFinance,
+                                        Total = total
+                                    };
+                                    Result.Add(temp);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return Result;
         }
-
-        // display ContactsPatientsReport
-        public ActionResult ContactsPatientsReport()
-        {
-            EliManagerDB db = new EliManagerDB();
-            return View(db.getAllPatients());
-        }
-
-
-
     }
 }
