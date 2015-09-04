@@ -68,7 +68,7 @@ namespace Eli.Controllers
           
         }
 
-        public ActionResult PatientByFinance(String name)
+        public ActionResult PatientByFinance(String name,String type,String phone)
         {
 
             EliManagerDB db = new EliManagerDB();
@@ -90,8 +90,7 @@ namespace Eli.Controllers
                                    where f.FinancingFactorName == name
                                    select new
                                    {
-                                       שם_גורם_מממן = f.FinancingFactorName,
-                                       סוג_גורם_מממן = f.FinancingFactorType,
+                                      
                                        תז_מטופל = p.ID,
 
                                        שם_מטופל = p.FirstName + " " + p.SurName,
@@ -135,9 +134,10 @@ namespace Eli.Controllers
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
+            String s = "שם גורם מממן= " + name + " ,סוג גורם מממן = " + type ;
             if (name != "הכל")
             {
-                htw.Write("<table><tr><td colspan='3'>"+ name+ "</td></tr>");
+                htw.Write("<table><tr><td colspan='3'>"+s+ "</td></tr>");
             }
             else
             {
