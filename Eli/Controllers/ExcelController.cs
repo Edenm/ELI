@@ -168,12 +168,10 @@ namespace Eli.Controllers
             List<tblTherapist> ter = db.Therapist.ToList();
             List<tblTreatment> treat = db.Treatment.ToList();
             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
-            var financeNum = (from f in fin
-                  where f.FinancingFactorName == name
-                  select new { f.FinancingFactorNumber}
-                  ).ToList().First();
+            var financeNum = db.getFinanceNumByName(name);
+            var mail = db.getFinanceMailByName(name);
             var allFinance = (from t in treat
-                              where t.FinancingFactorNumber.ToString() == financeNum.FinancingFactorNumber.ToString() && t.IsPaid=="לא"
+                              where t.FinancingFactorNumber.ToString() == financeNum && t.IsPaid=="לא"
                               select new { t.Cost }
                   ).ToList();
             var Financesum = allFinance.Select(c => c.Cost).Sum();
@@ -238,7 +236,7 @@ namespace Eli.Controllers
             String s = "שם גורם מממן= " + name + " ,סוג גורם מממן = " ;
             if (name != "הכל")
             {
-                htw.Write("<table><tr><td colspan='3'><b> טיפולים שלא שולמו עבור גורם מממן "+ name + "<b></td></tr>");
+                htw.Write("<table><tr><td colspan='3'><b> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל= " + mail + "<b></td></tr>");
                                     htw.Write("<table><tr><td colspan='3'>סהכ חובות עבור כל גורמים הממנים:"  +totallSum+ "</td></tr>");
                                     htw.Write("<table><tr><td colspan='3'>חובות עבור גורם מממן " + name + " " + Financesum + "</td></tr>");
 

@@ -539,6 +539,27 @@ namespace Eli.Models
             return Therapist.Where(t => t.TherapistMail == tmail).FirstOrDefault();
         }
 
+        public String getFinanceNumByName(string name)
+        {
+            List<tblFinancingFactor> fin = db.tblFinancingFactors.ToList();
+            var financeNum = (from f in fin
+                  where f.FinancingFactorName == name
+                  select new { f.FinancingFactorNumber}
+                  ).ToList().First();
+            return (financeNum.FinancingFactorNumber.ToString());
+        }
+
+
+        public String getFinanceMailByName(string name)
+        {
+            List<tblFinancingFactor> fin = db.tblFinancingFactors.ToList();
+            var financeNum = (from f in fin
+                              where f.FinancingFactorName == name
+                              select new { f.FinancingFactorContactMail }
+                  ).ToList().First();
+            return (financeNum.FinancingFactorContactMail.ToString());
+        }
+
         public tblFinancingFactor getFinancingFactorByTreatmentNumber(int tnum)
         {
             var financeNum = getTreatmentByNumber(tnum).FinancingFactorNumber;
