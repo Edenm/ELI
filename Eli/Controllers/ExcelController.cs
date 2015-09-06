@@ -68,7 +68,7 @@ namespace Eli.Controllers
           
         }
 
-        public ActionResult PatientByFinance(String name,String type,String phone)
+        public ActionResult PatientByFinance(String name,String type)
         {
 
             EliManagerDB db = new EliManagerDB();
@@ -146,6 +146,112 @@ namespace Eli.Controllers
             grid.RenderControl(htw);
 
             Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return View();
+        }
+
+
+
+        public ActionResult PaymentByFinance(String name)
+        {
+
+            EliManagerDB db = new EliManagerDB();
+            var data = db.Treatment.Where(d => d.IsPaid == "לא");
+            var totallSum = data.Sum(d => d.Cost);
+
+
+            List<tblPatient> pat = db.Patients.ToList();
+            List<tblRefererencePatient> refpat = db.ReferencePatient.ToList();
+            List<tblReferenceTherapist> refterapist = db.ReferenceTherapist.ToList();
+            List<tblTherapist> ter = db.Therapist.ToList();
+            List<tblTreatment> treat = db.Treatment.ToList();
+            List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
+            var financeNum = (from f in fin
+                  where f.FinancingFactorName == name
+                  select new { f.FinancingFactorNumber}
+                  ).ToList().First();
+            var allFinance = (from t in treat
+                              where t.FinancingFactorNumber.ToString() == financeNum.FinancingFactorNumber.ToString() && t.IsPaid=="לא"
+                              select new { t.Cost }
+                  ).ToList();
+            var Financesum = allFinance.Select(c => c.Cost).Sum();
+            var grid = new GridView();
+            if (name != "הכל")
+            {
+                grid.DataSource = (from p in pat
+                                   join rp in refpat on p.ID equals rp.PatientID
+                                   join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                                   join t in ter on rt.TherapistID equals t.TherapistID
+                                   join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                                   join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                                   where f.FinancingFactorName == name && tr.IsPaid=="לא"
+                                   select new
+                                   {
+
+                                       תאריך = tr.TreatmentDate,
+
+                                       שם_מטופל = p.FirstName + " " + p.SurName,
+                                       עלות = tr.Cost,
+
+
+                                   }).ToList().Distinct(); grid.DataBind();
+            }
+            else
+            {
+                grid.DataSource = (from p in pat
+                                   join rp in refpat on p.ID equals rp.PatientID
+                                   join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                                   join t in ter on rt.TherapistID equals t.TherapistID
+                                   join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                                   join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                                   select new
+                                   {
+                                       שם_גורם_מממן = f.FinancingFactorName,
+                                       סוג_גורם_מממן = f.FinancingFactorType,
+                                       תז_מטופל = p.ID,
+
+                                       שם_מטופל = p.FirstName + " " + p.SurName,
+
+                                   }).ToList().Distinct(); grid.DataBind();
+            }
+
+            Response.ClearContent();
+            Response.Buffer = true;
+
+            if (name != "הכל")
+            {
+                Response.AddHeader("content-disposition", "attachment; filename=מטופלים של  " + name + ".xls");
+            }
+            else
+            {
+                Response.AddHeader("content-disposition", "attachment; filename= מטופלים לפי גורמים מממנים.xls");
+
+            }
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+            Response.Charset = "";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            String s = "שם גורם מממן= " + name + " ,סוג גורם מממן = " ;
+            if (name != "הכל")
+            {
+                htw.Write("<table><tr><td colspan='3'><b> טיפולים שלא שולמו עבור גורם מממן "+ name + "<b></td></tr>");
+                                    htw.Write("<table><tr><td colspan='3'>סהכ חובות עבור כל גורמים הממנים:"  +totallSum+ "</td></tr>");
+                                    htw.Write("<table><tr><td colspan='3'>חובות עבור גורם מממן " + name + " " + Financesum + "</td></tr>");
+
+
+            }
+            else
+            {
+                htw.Write("<table><tr><td colspan='3'>כל הטיפולים שלא שולמו לפי גורם מממן</td></tr>");
+            }
+            grid.RenderControl(htw);
+
+            Response.Output.Write(sw.ToString());
+            
             Response.Flush();
             Response.End();
 

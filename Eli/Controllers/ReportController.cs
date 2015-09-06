@@ -56,6 +56,7 @@ namespace Eli.Controllers
             List<TreatmentByFinanceFactor> Result = getFinanceFactorDebatorByTreat(from, to, FinancingFactorName);
 
             ViewBag.FinancingFactorName = FinancingFactorName;
+
             ViewBag.From = from;
             ViewBag.To = to;
 
