@@ -536,11 +536,14 @@ namespace Eli.Models
 
         public tblTherapist getTherapistByMail(string tmail)
         {
+            
             return Therapist.Where(t => t.TherapistMail == tmail).FirstOrDefault();
         }
 
         public String getFinanceNumByName(string name)
         {
+            if (name == "הכל")
+                return "";
             List<tblFinancingFactor> fin = db.tblFinancingFactors.ToList();
             var financeNum = (from f in fin
                   where f.FinancingFactorName == name
@@ -552,14 +555,47 @@ namespace Eli.Models
 
         public String getFinanceMailByName(string name)
         {
+            
             List<tblFinancingFactor> fin = db.tblFinancingFactors.ToList();
-            var financeNum = (from f in fin
-                              where f.FinancingFactorName == name
-                              select new { f.FinancingFactorContactMail }
-                  ).ToList().First();
-            return (financeNum.FinancingFactorContactMail.ToString());
+            for (int i = 0; i < fin.Count();i++ )
+            {
+                if (fin.ElementAt(i).FinancingFactorName == name)
+                    return (fin.ElementAt(i).FinancingFactorContactMail.ToString());
+            }
+            return("No mail for finance factor");
+
+               
         }
 
+         public Double totatlNotPaidTreat()
+        {
+            Double sum = 0;
+            List<tblTreatment> treat = db.tblTreatments.ToList();
+            for (int i = 0; i < treat.Count(); i++)
+            {
+                if (treat.ElementAt(i).IsPaid == "לא")
+                    sum = sum + (Double)treat.ElementAt(i).Cost;
+            }
+            return (sum);
+
+
+        }
+
+         public int getNotPaidTreatmentByName(String name)
+        {
+            int count = 0;
+            List<tblFinancingFactor> fin = db.tblFinancingFactors.ToList();
+            var financeNum = getFinanceNumByName(name);
+            List<tblTreatment> t = db.tblTreatments.ToList();
+             for(int i=0;i<t.Count();i++)
+             {
+                 if (t.ElementAt(i).FinancingFactorNumber.ToString() == financeNum)
+                     count++;
+             }
+             return count;
+
+
+        }
         public tblFinancingFactor getFinancingFactorByTreatmentNumber(int tnum)
         {
             var financeNum = getTreatmentByNumber(tnum).FinancingFactorNumber;

@@ -198,21 +198,7 @@ namespace Eli.Controllers
             }
             else
             {
-                grid.DataSource = (from p in pat
-                                   join rp in refpat on p.ID equals rp.PatientID
-                                   join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
-                                   join t in ter on rt.TherapistID equals t.TherapistID
-                                   join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
-                                   join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
-                                   select new
-                                   {
-                                       שם_גורם_מממן = f.FinancingFactorName,
-                                       סוג_גורם_מממן = f.FinancingFactorType,
-                                       תז_מטופל = p.ID,
-
-                                       שם_מטופל = p.FirstName + " " + p.SurName,
-
-                                   }).ToList().Distinct(); grid.DataBind();
+                return RedirectToAction("allPaymentFinance");
             }
 
             Response.ClearContent();
@@ -469,6 +455,92 @@ namespace Eli.Controllers
             }
             return Result;
         }
+
+
+        public ActionResult allPaymentFinance()
+        {
+
+            EliManagerDB db = new EliManagerDB();
+            List<tblPatient> pat = db.Patients.ToList();
+            List<tblRefererencePatient> refpat = db.ReferencePatient.ToList();
+            List<tblReferenceTherapist> refterapist = db.ReferenceTherapist.ToList();
+            List<tblTherapist> ter = db.Therapist.ToList();
+            List<tblTreatment> treat = db.Treatment.ToList();
+            List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
+            Double totall = db.totatlNotPaidTreat();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=חובות לפי גורמים מממנים.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+            Response.Charset = "";
+            var data = db.Treatment.Where(d => d.IsPaid == "לא");
+            
+            for (int i = 0; i < fin.Count(); i++)
+            {
+                
+                var financeNum = db.getFinanceNumByName(fin.ElementAt(i).FinancingFactorName);
+                var mail = db.getFinanceMailByName(fin.ElementAt(i).FinancingFactorName);
+                var allFinance = (from t in treat
+                                  where t.FinancingFactorNumber.ToString() == financeNum && t.IsPaid == "לא"
+                                  select new { t.Cost }
+                      ).ToList();
+                var Financesum = allFinance.Select(c => c.Cost).Sum();
+                var grid = new GridView();
+                grid.DataSource = (from p in pat
+                                   join rp in refpat on p.ID equals rp.PatientID
+                                   join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                                   join t in ter on rt.TherapistID equals t.TherapistID
+                                   join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                                   join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                                   where f.FinancingFactorName == fin.ElementAt(i).FinancingFactorName && tr.IsPaid == "לא"
+                                   select new
+                                   {
+
+                                       תאריך = tr.TreatmentDate,
+
+                                       שם_מטופל = p.FirstName + " " + p.SurName,
+                                       עלות = tr.Cost,
+
+
+                                   }).ToList().Distinct();
+                grid.DataBind();
+
+                
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                if(i==0)
+                {
+                    htw.Write("<table><tr><td colspan='3'><b> סהכ חובות עבור כל הגורמים מממנים " + totall + "<b></td></tr>");
+
+                }
+                if (db.getNotPaidTreatmentByName(fin.ElementAt(i).FinancingFactorName) == 0)
+                {
+                    htw.Write("<table><tr><td colspan='3'>" + fin.ElementAt(i).FinancingFactorName + "</td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b> אין חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
+                    grid.RenderControl(htw);
+
+                    Response.Output.Write(sw.ToString());
+                    continue;
+
+                }
+                htw.Write("<table><tr><td colspan='3'>"+fin.ElementAt(i).FinancingFactorName+"</td></tr>");
+                htw.Write("<table><tr><td colspan='3'><b> טיפולים שלא שולמו עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
+                htw.Write("<table><tr><td colspan='3'>חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + " " + Financesum + "</td></tr>");
+                grid.RenderControl(htw);
+
+                Response.Output.Write(sw.ToString());
+            }
+
+            Response.Flush();
+            Response.End();
+
+            return View();
+
+
+        }
+
 
 
     }
