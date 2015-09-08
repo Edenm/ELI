@@ -596,6 +596,35 @@ namespace Eli.Models
 
 
         }
+
+
+         public int getNumPatientPerFinance(String name)
+         {
+             List<tblPatient> pat = Patients.ToList();
+             List<tblRefererencePatient> refpat = ReferencePatient.ToList();
+             List<tblReferenceTherapist> refterapist = ReferenceTherapist.ToList();
+             List<tblTherapist> ter = Therapist.ToList();
+             List<tblTreatment> treat = Treatment.ToList();
+             List<tblFinancingFactor> fin = FinancingFactor.ToList();
+             var temp = (from p in pat
+                                   join rp in refpat on p.ID equals rp.PatientID
+                                   join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                                   join t in ter on rt.TherapistID equals t.TherapistID
+                                   join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                                   join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                                   where f.FinancingFactorName == name
+                                   select new
+                                   {
+
+                                       תז_מטופל = p.ID,
+
+
+                                   }).ToList().Distinct();
+            
+             return temp.Count();
+
+
+         }
         public tblFinancingFactor getFinancingFactorByTreatmentNumber(int tnum)
         {
             var financeNum = getTreatmentByNumber(tnum).FinancingFactorNumber;
