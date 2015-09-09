@@ -375,7 +375,7 @@ namespace Eli.Controllers
         {
 
             EliManagerDB db = new EliManagerDB();
-            List<tblPatient> pat = db.Patients.ToList();
+            List<tblPatient> pat = db.inizializePatientNullValues(db.Patients.ToList());
             
             Response.ClearContent();
             Response.Buffer = true;

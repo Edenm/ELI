@@ -597,6 +597,61 @@ namespace Eli.Models
 
         }
 
+         public List<tblPatient> inizializePatientNullValues(List<tblPatient> arr)
+         {
+             for(int i=0;i<arr.Count();i++)
+             {
+                 if(arr.ElementAt(i).ContactMail1.ToString()=="")
+                 {
+                     arr.ElementAt(i).ContactMail1 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactMail2.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactMail2 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactMail3.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactMail3 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactName1.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactName1 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactName2.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactName2 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactName3.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactName3 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactPhone1.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactPhone1 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactPhone2.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactPhone2 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactPhone3.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactPhone3 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactProfession1.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactProfession1 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactProfession2.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactProfession2 = "מידע לא זמין";
+                 }
+                 if (arr.ElementAt(i).ContactProfession3.ToString() == "")
+                 {
+                     arr.ElementAt(i).ContactProfession3 = "מידע לא זמין";
+                 }
+             }
+             return arr;
+         }
 
          public int getNumPatientPerFinance(String name)
          {
