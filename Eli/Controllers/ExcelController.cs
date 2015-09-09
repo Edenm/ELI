@@ -371,6 +371,66 @@ namespace Eli.Controllers
         }
 
 
+        public ActionResult ContactList()
+        {
+
+            EliManagerDB db = new EliManagerDB();
+            List<tblPatient> pat = db.Patients.ToList();
+            
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=אנשי קשר של מטופלים.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+            Response.Charset = "";
+
+            for (int i = 0; i < pat.Count(); i++)
+            {
+
+                var grid = new GridView();
+                grid.DataSource = (from p in pat
+                                   
+                                   where p.ID.ToString() == pat.ElementAt(i).ID.ToString()
+                                   select new
+                                   {
+
+                                       שם_איש_קשר1 = p.ContactName1,
+                                       תפקיד1 = p.ContactProfession1,
+                                       טלפון1 = "*" + p.ContactPhone1,
+                                       מייל1 = p.ContactMail1,
+                                       שם_איש_קשר2 = p.ContactName2,
+                                       תפקיד2 = p.ContactProfession2,
+                                       טלפון2 = "*" + p.ContactPhone2,
+                                       מייל2 = p.ContactMail2,
+                                       שם_איש_קשר3 = p.ContactName3,
+                                       תפקיד3 = p.ContactProfession3,
+                                       טלפון3 = "*" + p.ContactPhone3,
+                                       מייל3 = p.ContactMail3,
+
+                                   }).ToList().Distinct(); grid.DataBind();
+
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                if (i == 0)
+                {
+                    htw.Write("<table><tr><td colspan='3'><h1><b> אנשי קשר של מטופלים <b></h1></td></tr>");
+
+                }
+               
+                htw.Write("<table><tr><td colspan='3'><h3><b>" + pat.ElementAt(i).FirstName +" "+pat.ElementAt(i).SurName+"<b></h3></td></tr>");
+                grid.RenderControl(htw);
+
+                Response.Output.Write(sw.ToString());
+            }
+
+            Response.Flush();
+            Response.End();
+
+            return View();
+        }
+
+
 
         // display PatientByFinanceFactorReport
         public List<PatientByFinanceFactor> getPatientByFinanceFactor(string FinancingFactorName)
