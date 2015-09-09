@@ -54,7 +54,7 @@ namespace Eli.Controllers
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
-            htw.Write("<table><tr><td colspan='3'>רשימת מטופלים</td></tr>");
+            htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת מטופלים<b></u></h2></td></tr>");
 
             grid.RenderControl(htw);
 
@@ -118,7 +118,7 @@ namespace Eli.Controllers
             HtmlTextWriter htw = new HtmlTextWriter(sw);
             String s = "שם גורם מממן= " + name + " ,סוג גורם מממן = " + type ;
 
-            htw.Write("<table><tr><td colspan='3'><h2><b>" + s + "<b></h2></td></tr>");
+            htw.Write("<table><tr><td colspan='3'><h2><u><b>" + s + "<b></u></h2></td></tr>");
             
            
             grid.RenderControl(htw);
@@ -175,12 +175,12 @@ namespace Eli.Controllers
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
                 if (i == 0)
                 {
-                    htw.Write("<table><tr><td colspan='3'><h1><b> מטופלים לפי גורמים ממנים <b></h1></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><h1><u><b> מטופלים לפי גורמים ממנים <b></u></h1></td></tr>");
 
                 }
                 if (db.getNumPatientPerFinance(fin.ElementAt(i).FinancingFactorName) == 0)
                 {
-                    htw.Write("<br><table><tr><td colspan='3'><h3><b>" + fin.ElementAt(i).FinancingFactorName + "<b></h3></td></tr>");
+                    htw.Write("<br><table><tr><td colspan='3'><h3><u><b>" + fin.ElementAt(i).FinancingFactorName + "<b></u></h3></td></tr>");
                     htw.Write("<table><tr><td colspan='3'><b> אין מטופלים עבור גורם מממן  " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
                     grid.RenderControl(htw);
 
@@ -188,7 +188,7 @@ namespace Eli.Controllers
                     continue;
 
                 }
-                htw.Write("<table><tr><td colspan='3'><h3><b>" + fin.ElementAt(i).FinancingFactorName + "<b></h3></td></tr>");
+                htw.Write("<table><tr><td colspan='3'><h3><u><b>" + fin.ElementAt(i).FinancingFactorName + "<b><u></h3></td></tr>");
                 htw.Write("<table><tr><td colspan='3'><b> מטופלים עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
                 grid.RenderControl(htw);
 
@@ -261,9 +261,9 @@ namespace Eli.Controllers
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
             String s = "שם גורם מממן= " + name + " ,סוג גורם מממן = " ;
-            htw.Write("<table><tr><td colspan='3'><b><h2> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל= " + mail + "</h2><b></td></tr>");
-            htw.Write("<table><tr><td colspan='3'><b><h3>סהכ חובות עבור כל גורמים הממנים:" + totallSum + "</h3><b></td></tr>");
-            htw.Write("<table><tr><td colspan='3'><b><h3>חובות עבור גורם מממן " + name + " " + Financesum + "</h3><b></td></tr>");
+            htw.Write("<table><tr><td colspan='3'><b><u><h2> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל= " + mail + "</h2></u><b></td></tr>");
+            htw.Write("<table><tr><td colspan='3'><b><u><h3>סהכ חובות עבור כל גורמים הממנים:" + totallSum + "</h3></u><b></td></tr>");
+            htw.Write("<table><tr><td colspan='3'><b><u><h3>חובות עבור גורם מממן " + name + " " + Financesum + "</h3></u><b></td></tr>");
 
 
            
@@ -359,7 +359,7 @@ namespace Eli.Controllers
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
-            htw.Write("<table><tr><td colspan='3'>אנשי קשר של מטופלים</td></tr>");
+            htw.Write("<table><tr><td colspan='3'><u>אנשי קשר של מטופלים</u></td></tr>");
 
             grid.RenderControl(htw);
 
@@ -414,11 +414,11 @@ namespace Eli.Controllers
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
                 if (i == 0)
                 {
-                    htw.Write("<table><tr><td colspan='3'><h1><b> אנשי קשר של מטופלים <b></h1></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><h1><u><b> אנשי קשר של מטופלים <b></u></h1></td></tr>");
 
                 }
-               
-                htw.Write("<table><tr><td colspan='3'><h3><b>" + pat.ElementAt(i).FirstName +" "+pat.ElementAt(i).SurName+"<b></h3></td></tr>");
+
+                htw.Write("<table><tr><td colspan='3'><h3><u><b>שם:" + pat.ElementAt(i).FirstName + " " + pat.ElementAt(i).SurName +" תז: "+pat.ElementAt(i).ID+ "<b></u></h3></td></tr>");
                 grid.RenderControl(htw);
 
                 Response.Output.Write(sw.ToString());
@@ -607,14 +607,14 @@ namespace Eli.Controllers
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
                 if(i==0)
                 {
-                    htw.Write("<table><tr><td colspan='3'><b><h1> חובות לפי גורמים מממנים </h1><b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b><u><h1> חובות לפי גורמים מממנים </h1></u><b></td></tr>");
 
-                    htw.Write("<table><tr><td colspan='3'><b><h3> סהכ חובות עבור כל הגורמים מממנים " + totall + "</h3><b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b><u><h3> סהכ חובות עבור כל הגורמים מממנים " + totall + "</h3></u><b></td></tr>");
 
                 }
                 if (db.getNotPaidTreatmentByName(fin.ElementAt(i).FinancingFactorName) == 0)
                 {
-                    htw.Write("<table><tr><td colspan='3'><b><h4>" + fin.ElementAt(i).FinancingFactorName + "</h4><b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b><u><h4>" + fin.ElementAt(i).FinancingFactorName + "</h4></u><b></td></tr>");
                     htw.Write("<table><tr><td colspan='3'><b> אין חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
                     grid.RenderControl(htw);
 
@@ -622,7 +622,7 @@ namespace Eli.Controllers
                     continue;
 
                 }
-                htw.Write("<table><tr><td colspan='3'><b>" + fin.ElementAt(i).FinancingFactorName + "<b></td></tr>");
+                htw.Write("<table><tr><td colspan='3'><u><h4><b>" + fin.ElementAt(i).FinancingFactorName + "<b></h4></u></td></tr>");
                 htw.Write("<table><tr><td colspan='3'><b> טיפולים שלא שולמו עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
                 htw.Write("<table><tr><td colspan='3'>חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + " " + Financesum + "</td></tr>");
                 grid.RenderControl(htw);
