@@ -78,11 +78,11 @@
         </tr>
 
     </table>
-    <button type="button" onclick="location.href='@Url.Action("PaymentByFinance", "Excel", new { name = @ViewBag.FinancingFactorName })'"> ייבוא דוח לקובץ אקסל</button>
+    <button style="float: right;" type="button" onclick="location.href='@Url.Action("PaymentByFinance", "Excel", new { name = @ViewBag.FinancingFactorName })'"> ייצוא דוח לקובץ אקסל</button>
 
 }
-else
-{
+  else
+  {
     <div class="medium" style="text-align:center;"> עבור @ViewBag.FinancingFactorName לא קיימים חובות עבור  </div>
 }
 

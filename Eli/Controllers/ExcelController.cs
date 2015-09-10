@@ -181,7 +181,7 @@ namespace Eli.Controllers
                 if (db.getNumPatientPerFinance(fin.ElementAt(i).FinancingFactorName) == 0)
                 {
                     htw.Write("<br><table><tr><td colspan='3'><h3><u><b>" + fin.ElementAt(i).FinancingFactorName + "<b></u></h3></td></tr>");
-                    htw.Write("<table><tr><td colspan='3'><b> אין מטופלים עבור גורם מממן  " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b> אין מטופלים עבור גורם מממן  " + fin.ElementAt(i).FinancingFactorName + "  מייל: " + mail + "<b></td></tr>");
                     grid.RenderControl(htw);
 
                     Response.Output.Write(sw.ToString());
@@ -260,14 +260,14 @@ namespace Eli.Controllers
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
-            String s = "שם גורם מממן= " + name + " ,סוג גורם מממן = " ;
-            htw.Write("<table><tr><td colspan='3'><b><u><h2> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל= " + mail + "</h2></u><b></td></tr>");
-            htw.Write("<table><tr><td colspan='3'><b><u><h3>סהכ חובות עבור כל גורמים הממנים:" + totallSum + "</h3></u><b></td></tr>");
+            String s = "שם גורם מממן= " + name + " ,סוג גורם מממן : " ;
+            htw.Write("<table><tr><td colspan='3'><b><u><h2> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל: " + mail + "</h2></u><b></td></tr>");
             htw.Write("<table><tr><td colspan='3'><b><u><h3>חובות עבור גורם מממן " + name + " " + Financesum + "</h3></u><b></td></tr>");
 
 
            
             grid.RenderControl(htw);
+            htw.Write("<table><tr><td colspan='3'><b><u><h3>סהכ חובות עבור כל גורמים הממנים:" + totallSum + "</h3></u><b></td></tr>");
 
             Response.Output.Write(sw.ToString());
             
@@ -609,7 +609,6 @@ namespace Eli.Controllers
                 {
                     htw.Write("<table><tr><td colspan='3'><b><u><h1> חובות לפי גורמים מממנים </h1></u><b></td></tr>");
 
-                    htw.Write("<table><tr><td colspan='3'><b><u><h3> סהכ חובות עבור כל הגורמים מממנים " + totall + "</h3></u><b></td></tr>");
 
                 }
                 if (db.getNotPaidTreatmentByName(fin.ElementAt(i).FinancingFactorName) == 0)
@@ -617,17 +616,32 @@ namespace Eli.Controllers
                     htw.Write("<table><tr><td colspan='3'><b><u><h4>" + fin.ElementAt(i).FinancingFactorName + "</h4></u><b></td></tr>");
                     htw.Write("<table><tr><td colspan='3'><b> אין חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
                     grid.RenderControl(htw);
+                    if (i == (fin.Count() - 1))
+                    {
 
+                        htw.Write("<table><tr><td colspan='3'><b><u><h3> סהכ חובות עבור כל הגורמים מממנים " + totall + "</h3></u><b></td></tr>");
+
+                    }
                     Response.Output.Write(sw.ToString());
+                    
                     continue;
 
                 }
                 htw.Write("<table><tr><td colspan='3'><u><h4><b>" + fin.ElementAt(i).FinancingFactorName + "<b></h4></u></td></tr>");
-                htw.Write("<table><tr><td colspan='3'><b> טיפולים שלא שולמו עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
-                htw.Write("<table><tr><td colspan='3'>חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + " " + Financesum + "</td></tr>");
+                htw.Write("<table><tr><td colspan='3'><b> טיפולים שלא שולמו עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל: " + mail + "<b></td></tr>");
                 grid.RenderControl(htw);
+                htw.Write("<table><tr><td colspan='3'><b>סהכ חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + " :" + Financesum + "<b></td></tr>");
 
+
+                if (i == (fin.Count() - 1))
+                {
+
+                    htw.Write("<table><tr><td colspan='3'><b><u><h3> סהכ חובות עבור כל הגורמים מממנים " + totall + "</h3></u><b></td></tr>");
+
+                }
                 Response.Output.Write(sw.ToString());
+
+                
             }
 
             Response.Flush();
