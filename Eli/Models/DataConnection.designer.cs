@@ -20,6 +20,8 @@ namespace Eli.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ELI")]
@@ -238,7 +240,11 @@ namespace Eli.Models
 			this._tblBrotherSisterPatients = new EntitySet<tblBrotherSisterPatient>(new Action<tblBrotherSisterPatient>(this.attach_tblBrotherSisterPatients), new Action<tblBrotherSisterPatient>(this.detach_tblBrotherSisterPatients));
 			OnCreated();
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string BrotherSisterID
 		{
@@ -258,7 +264,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterFirstName", DbType="VarChar(20)")]
 		public string BrotherSisterFirstName
 		{
@@ -278,7 +287,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterSurName", DbType="VarChar(20)")]
 		public string BrotherSisterSurName
 		{
@@ -298,7 +311,14 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterBirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BrotherSisterBirthDate
 		{
@@ -435,7 +455,13 @@ namespace Eli.Models
 			this._tblPatient = default(EntityRef<tblPatient>);
 			OnCreated();
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string PatientID
 		{
@@ -459,7 +485,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrotherSisterID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string BrotherSisterID
 		{
@@ -625,7 +655,14 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventDate", DbType="Date")]
 		public System.Nullable<System.DateTime> EventDate
 		{
@@ -665,7 +702,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)")]
 		public string Description
 		{
@@ -774,7 +813,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,50}$", ErrorMessage = "שם  גורם מממן אינו יכול להכיל מספרים")]
+
+	
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorName", DbType="VarChar(20)")]
 		public string FinancingFactorName
 		{
@@ -794,7 +837,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorType", DbType="VarChar(15)")]
 		public string FinancingFactorType
 		{
@@ -814,7 +857,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorAddress", DbType="VarChar(MAX)")]
 		public string FinancingFactorAddress
 		{
@@ -834,7 +879,12 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
+                        [RegularExpression(@"[^0-9]{0,50}$", ErrorMessage = "שם  איש קשר אינו יכול להכיל מספרים")]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorContactName", DbType="VarChar(20)")]
 		public string FinancingFactorContactName
 		{
@@ -854,7 +904,13 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
+                        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+
+                        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorContcatPhoneNumber", DbType="Char(10)")]
 		public string FinancingFactorContcatPhoneNumber
 		{
@@ -874,7 +930,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
+                        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+	
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorContactMail", DbType="VarChar(30)")]
 		public string FinancingFactorContactMail
 		{
@@ -1004,7 +1063,11 @@ namespace Eli.Models
 			this._tblParentPatients = new EntitySet<tblParentPatient>(new Action<tblParentPatient>(this.attach_tblParentPatients), new Action<tblParentPatient>(this.detach_tblParentPatients));
 			OnCreated();
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string ParentID
 		{
@@ -1024,7 +1087,12 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentFirstName", DbType="VarChar(20)")]
 		public string ParentFirstName
 		{
@@ -1044,7 +1112,12 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentSurName", DbType="VarChar(20)")]
 		public string ParentSurName
 		{
@@ -1064,7 +1137,14 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentBirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> ParentBirthDate
 		{
@@ -1104,7 +1184,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentAddress", DbType="VarChar(MAX)")]
 		public string ParentAddress
 		{
@@ -1124,7 +1206,13 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
+                        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+
+                        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentPhoneNumber", DbType="Char(10)")]
 		public string ParentPhoneNumber
 		{
@@ -1144,7 +1232,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
+                        [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentMail", DbType="VarChar(30)")]
 		public string ParentMail
 		{
@@ -1184,7 +1276,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Explain", DbType="VarChar(MAX)")]
 		public string Explain
 		{
@@ -1301,7 +1395,10 @@ namespace Eli.Models
 			this._tblPatient = default(EntityRef<tblPatient>);
 			OnCreated();
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string PatientID
 		{
@@ -1325,7 +1422,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string ParentID
 		{
@@ -1548,7 +1648,12 @@ namespace Eli.Models
 			this._tblRefererencePatients = new EntitySet<tblRefererencePatient>(new Action<tblRefererencePatient>(this.attach_tblRefererencePatients), new Action<tblRefererencePatient>(this.detach_tblRefererencePatients));
 			OnCreated();
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string ID
 		{
@@ -1568,7 +1673,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(20)")]
 		public string FirstName
 		{
@@ -1588,7 +1695,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="VarChar(20)")]
 		public string SurName
 		{
@@ -1608,7 +1717,13 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> BirthDate
 		{
@@ -1648,7 +1763,8 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EducationalFramework", DbType="VarChar(MAX)")]
 		public string EducationalFramework
 		{
@@ -1668,7 +1784,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+	
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientAddress", DbType="VarChar(MAX)")]
 		public string PatientAddress
 		{
@@ -1688,7 +1807,14 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+
+        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="VarChar(10)")]
 		public string PhoneNumber
 		{
@@ -1708,7 +1834,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientStatus", DbType="VarChar(7)")]
 		public string PatientStatus
 		{
@@ -2143,7 +2271,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonReference", DbType="VarChar(MAX)")]
 		public string ReasonReference
 		{
@@ -2163,7 +2293,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusReference", DbType="VarChar(20)")]
 		public string StatusReference
 		{
@@ -2203,7 +2333,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AbuseType", DbType="VarChar(20)")]
 		public string AbuseType
 		{
@@ -2223,7 +2353,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceSource", DbType="VarChar(20)")]
 		public string ReferenceSource
 		{
@@ -2263,7 +2393,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDateReference", DbType="Date")]
 		public System.Nullable<System.DateTime> StartDateReference
 		{
@@ -2283,7 +2416,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDateReference", DbType="Date")]
 		public System.Nullable<System.DateTime> EndDateReference
 		{
@@ -2432,7 +2568,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string TherapistID
 		{
@@ -2601,7 +2740,11 @@ namespace Eli.Models
 			this._tblReference = default(EntityRef<tblReference>);
 			OnCreated();
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string PatientID
 		{
@@ -2802,7 +2945,10 @@ namespace Eli.Models
 			this._tblReferenceTherapists = new EntitySet<tblReferenceTherapist>(new Action<tblReferenceTherapist>(this.attach_tblReferenceTherapists), new Action<tblReferenceTherapist>(this.detach_tblReferenceTherapists));
 			OnCreated();
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^[0-9]{0,15}$", ErrorMessage = "תעודת זהות חייב להכיל רק ספרות")]
+        [StringLength(9, ErrorMessage = "מספר תעודת זהות חייב להכיל 9 ספרות", MinimumLength = 9)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistID", DbType="Char(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string TherapistID
 		{
@@ -2822,7 +2968,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  פרטי אינו יכול להכיל מספרים")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistFirstName", DbType="VarChar(20)")]
 		public string TherapistFirstName
 		{
@@ -2842,7 +2990,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"[^0-9]{0,15}$", ErrorMessage = "שם  משפחה אינו יכול להכיל מספרים")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistSurName", DbType="VarChar(20)")]
 		public string TherapistSurName
 		{
@@ -2862,7 +3012,12 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistBirthDate", DbType="Date")]
 		public System.Nullable<System.DateTime> TherapistBirthDate
 		{
@@ -2902,7 +3057,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistAddress", DbType="VarChar(MAX)")]
 		public string TherapistAddress
 		{
@@ -2922,7 +3079,12 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+
+        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistPhoneNumber", DbType="Char(10)")]
 		public string TherapistPhoneNumber
 		{
@@ -2942,7 +3104,11 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+        [Required(ErrorMessage = "שדה חובה")]
+        [RegularExpression(".+@gmail.com", ErrorMessage = "please insert gmail mail")]
+                
+	
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TherapistMail", DbType="VarChar(30)")]
 		public string TherapistMail
 		{
@@ -2962,7 +3128,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="VarChar(20)")]
 		public string UserName
 		{
@@ -2982,7 +3148,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Passcode", DbType="VarChar(20)")]
 		public string Passcode
 		{
@@ -3002,7 +3168,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
+
+                        [Compare("Passcode", ErrorMessage = "סיסמא אינה תואמת לאימות סיסמא")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasscodeConfirm", DbType="VarChar(20)")]
 		public string PasscodeConfirm
 		{
@@ -3175,7 +3344,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(MAX)")]
 		public string TreatmentGoal
 		{
@@ -3195,7 +3364,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentSubject", DbType="VarChar(MAX)")]
 		public string TreatmentSubject
 		{
@@ -3215,7 +3384,8 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentStatusPatient", DbType="VarChar(MAX)")]
 		public string TreatmentStatusPatient
 		{
@@ -3235,7 +3405,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDescription", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentDescription
 		{
@@ -3255,7 +3425,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentSummary", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentSummary
 		{
@@ -3275,7 +3445,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextTreatment", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string NextTreatment
 		{
@@ -3295,7 +3465,12 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+                        [Required(ErrorMessage = "שדה חובה")]
+
+                        [DataType(DataType.Date)]
+                        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDate", DbType="Date")]
 		public System.Nullable<System.DateTime> TreatmentDate
 		{
@@ -3315,7 +3490,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentStartTime", DbType="Time")]
 		public System.Nullable<System.TimeSpan> TreatmentStartTime
 		{
@@ -3335,7 +3510,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentPlace", DbType="VarChar(MAX)")]
 		public string TreatmentPlace
 		{
@@ -3355,7 +3530,7 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPaid", DbType="VarChar(2)")]
 		public string IsPaid
 		{
@@ -3375,7 +3550,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+                        [Required(ErrorMessage = "שדה חובה")]
+                        [RegularExpression(@"[0-9]{0,15}$", ErrorMessage = "מחיר חייב להכיל רק מספרים")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Float")]
 		public System.Nullable<double> Cost
 		{

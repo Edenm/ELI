@@ -116,7 +116,7 @@ namespace Eli.Controllers
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
-            String s = "שם גורם מממן= " + name + " ,סוג גורם מממן = " + type ;
+            String s = "שם גורם מממן: " + name + " ,סוג גורם מממן : " + type ;
 
             htw.Write("<table><tr><td colspan='3'><h2><u><b>" + s + "<b></u></h2></td></tr>");
             
