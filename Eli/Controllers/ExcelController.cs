@@ -235,7 +235,7 @@ namespace Eli.Controllers
                                    select new
                                    {
 
-                                       תאריך = tr.TreatmentDate,
+                                       תאריך = tr.TreatmentDate.Value.ToString("dd-MM-yy"),
 
                                        שם_מטופל = p.FirstName + " " + p.SurName,
                                        עלות = tr.Cost,
@@ -593,7 +593,7 @@ namespace Eli.Controllers
                                    select new
                                    {
 
-                                       תאריך = tr.TreatmentDate,
+                                       תאריך = tr.TreatmentDate.Value.ToString("dd-MM-yy"),
 
                                        שם_מטופל = p.FirstName + " " + p.SurName,
                                        עלות = tr.Cost,
