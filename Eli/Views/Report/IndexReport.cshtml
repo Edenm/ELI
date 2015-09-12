@@ -5,7 +5,12 @@
 <body onload="changedReportView()">
 
     @using Eli.Models;
-    @{  EliManagerDB db = new EliManagerDB();}
+    @{  
+        EliManagerDB db = new EliManagerDB();
+        Model.StartDate = DateTime.Now;
+        Model.EndDate = DateTime.Now;
+        
+        }
 
     @using (Html.BeginForm("SelectReport", "Report"))
     {

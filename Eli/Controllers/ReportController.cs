@@ -18,7 +18,7 @@ namespace Eli.Controllers
 
         public ActionResult IndexReport()
         {       
-                return View();
+                return View(new DateModel());
         }
 
         public ActionResult SelectReport(string reportName, string ffParam, DateModel dm)
