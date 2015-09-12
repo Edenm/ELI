@@ -8,6 +8,13 @@
     string id;
     string submit;
     string strTitle;
+    DateTime start = DateTime.Now;
+
+    if (Model.TreatmentDate == null)
+    {
+        Model.TreatmentDate = start;
+    }
+    
     if (@Model.TreatmentNumber == 0)
     {
         id = "new";

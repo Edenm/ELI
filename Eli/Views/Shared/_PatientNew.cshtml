@@ -2,7 +2,14 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@{ if (Model.ID == null)
+@{ 
+    DateTime start = DateTime.Now;
+
+    if (Model.BirthDate == null)
+    {
+        Model.BirthDate = start;
+    } 
+ if (Model.ID == null)
  {
     <label float:right class="description" for="element_1">
         תעודת זהות

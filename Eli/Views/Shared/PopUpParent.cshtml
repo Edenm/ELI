@@ -3,6 +3,12 @@
 
 @{
     string id, method, controller, strTitle="";
+    DateTime start = DateTime.Now;
+
+    if (Model.ParentBirthDate == null)
+    {
+        Model.ParentBirthDate = start;
+    }
     
     if (ViewBag.pid!=null)
     {

@@ -727,7 +727,7 @@ namespace Eli.Models
 
         public List<tblTreatment> getAllTreatmentByTherapist(string tid)
         {
-            var treat = Treatment.Where(t => t.TherapistID == tid).Where(t => t.TreatmentDate > DateTime.Now).OrderBy(t => t.TreatmentDate).ToList();
+            var treat = Treatment.Where(t => t.TherapistID == tid).Where(t => t.TreatmentDate >= DateTime.Now).OrderBy(t => t.TreatmentDate).ToList();
 
             return treat;
         }

@@ -68,7 +68,7 @@
                                 </td>
                                 <td>
                                     @{
-                            string id = "1" + @item.TherapistID;
+                                        string id = "1" + @item.TherapistID;
                                     }
                                     <a src="~/Images/info.png" data-toggle="modal" href="#@id">
                                         <img src="~/Images/Mail-32.png" />
@@ -92,8 +92,7 @@
             @Html.Partial("_Mail", m);  
         }
         @{MailModel mail = new MailModel();
-
-        mail.redirect = "therapist";
+            mail.redirect = "therapist";
         }
         @Html.Partial("_MailToAll", mail)
         <!-- Button trigger modal -->

@@ -11,6 +11,13 @@
 string submit;
 string str;
 string str1;
+DateTime start = DateTime.Now;
+
+if (Model.TherapistBirthDate == null)
+{
+    Model.TherapistBirthDate = start;
+}
+
 if (@Model.TherapistID == null)
 {
     id = "new";
