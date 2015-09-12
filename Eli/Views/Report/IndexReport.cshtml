@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Eli.ViewModel.DateModel
+<!DOCTYPE html>
 <html lang="en">
     
 <body onload="changedReportView()">
@@ -25,21 +26,50 @@
                 }
             </select>
             <br />
-            <div style="visibility:hidden;" id="patientByFF">
-                <div class="small" align="right">בחר גורם מממן</div>
-                <select dir="rtl" class="element select" id="patientByFF" name="ffParam" style="width: 300px; height: 30px;">
-                    @{
-                        <option value="הכל">הכל</option>
-                        foreach (tblFinancingFactor item in db.getAllFinanceFactor())
-                        {
-                            <option value="@item.FinancingFactorName">@item.FinancingFactorName</option>
-                        }
-                    }
-                </select>
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="small" align="right" style="visibility:hidden;" id="patientByFFTitle">בחר גורם מממן</div>
+                    </td>
+                    <td style="padding-right:2%;">
+                        <div class="small" align="right" style="visibility:hidden;" id="StartDateForReportTitle">תאריך התחלה</div>
+                    </td>
+                    <td style="padding-right:2%;">
+                        <div class="small" align="right" style="visibility:hidden;" id="EndDateForReportTitle">תאריך סוף</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="visibility:hidden;" id="patientByFF">
+                            <select dir="rtl" class="element select" id="patientByFF" name="ffParam" style="width: 300px; height: 30px;">
+                                @{
+                                    <option value="הכל">הכל</option>
+                                    foreach (tblFinancingFactor item in db.getAllFinanceFactor())
+                                    {
+                                            <option value="@item.FinancingFactorName">@item.FinancingFactorName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </td>
+                    <td style="padding-right:2%;">
+                        <div style="visibility:hidden;" id="StartDateForReport">
+                            @Html.EditorFor(model => model.StartDate)
+                            @Html.ValidationMessageFor(model => model.StartDate)
+                        </div>
+                    </td>
+                    <td style="padding-right:2%;">
+                        <div style="visibility:hidden;" id="EndDateForReport">
+                            @Html.EditorFor(model => model.EndDate)
+                            @Html.ValidationMessageFor(model => model.EndDate)
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
             <br />
             <button type="submit" value="Next" dir="rtl" name="nextBtn" class="btn btn-primary" onmouseover="changedReport(id)">בחר </button>
-        </div>
+            </div>
 
     }
 
@@ -53,12 +83,32 @@
             var msg = document.getElementById(id).value;
             switch (msg) {
                 case "0": document.getElementById("patientByFF").style.visibility = "hidden";
+                          document.getElementById("patientByFFTitle").style.visibility = "hidden";
+                          document.getElementById("StartDateForReport").style.visibility = "hidden";
+                          document.getElementById("StartDateForReportTitle").style.visibility = "hidden";
+                          document.getElementById("EndDateForReport").style.visibility = "hidden";
+                          document.getElementById("EndDateForReportTitle").style.visibility = "hidden";
                     break;
                 case "1": document.getElementById("patientByFF").style.visibility = "visible";
+                          document.getElementById("patientByFFTitle").style.visibility = "visible";
+                          document.getElementById("StartDateForReport").style.visibility = "hidden";
+                          document.getElementById("StartDateForReportTitle").style.visibility = "hidden";
+                          document.getElementById("EndDateForReport").style.visibility = "hidden";
+                          document.getElementById("EndDateForReportTitle").style.visibility = "hidden";
                     break;
                 case "2": document.getElementById("patientByFF").style.visibility = "visible";
+                          document.getElementById("patientByFFTitle").style.visibility = "visible";
+                          document.getElementById("StartDateForReport").style.visibility = "visible";
+                          document.getElementById("StartDateForReportTitle").style.visibility = "visible";
+                          document.getElementById("EndDateForReport").style.visibility = "visible";
+                          document.getElementById("EndDateForReportTitle").style.visibility = "visible";
                     break;
                 case "3": document.getElementById("patientByFF").style.visibility = "hidden";
+                          document.getElementById("patientByFFTitle").style.visibility = "hidden";
+                          document.getElementById("StartDateForReport").style.visibility = "hidden";
+                          document.getElementById("StartDateForReportTitle").style.visibility = "hidden";
+                          document.getElementById("EndDateForReport").style.visibility = "hidden";
+                          document.getElementById("EndDateForReportTitle").style.visibility = "hidden";
                     break;
                 default:
             }

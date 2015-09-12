@@ -4,8 +4,8 @@
     ->
     תשלומים עבור גורם מממן
 </div>
-
-@{if (Model.Count() > 0)
+@{string dates = ViewBag.From.ToString("dd/MM/yy") + " תאריכים: מ " + ViewBag.To.ToString("dd/MM/yy") + " עד";
+ if (Model.Count() > 0)
 {
     string title = "";
     double total = 0;
@@ -20,6 +20,7 @@
     }
 
     <div class="medium" style="text-align:center;">@title</div>
+    <div class="medium" style="text-align:center;">@dates</div>
     <table class="table table-bordered" dir="rtl">
         <tr align="center">
             <th style="text-align: center;">גורם מממן</th>
@@ -79,12 +80,20 @@
 
     </table>
     <button style="float: right;" type="button" onclick="location.href='@Url.Action("PaymentByFinance", "Excel", new { name = @ViewBag.FinancingFactorName })'"> ייצוא דוח לקובץ אקסל</button>
-
 }
   else
   {
-    <div class="medium" style="text-align:center;"> עבור @ViewBag.FinancingFactorName לא קיימים חובות עבור  </div>
-}
+      string name = "";
+      if (ViewBag.FinancingFactorName == "הכל"){
+          name = "כלל הגורמים המנים";
+      }
+      else
+      { 
+          name = ViewBag.FinancingFactorName;
+      }
+    <div class="medium" style="text-align:center;">  לא קיימים חובות עבור @name</div>
+    <div class="medium" style="text-align:center;">@dates</div>
+  }
 
 }
 

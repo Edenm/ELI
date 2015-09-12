@@ -34,11 +34,6 @@ namespace Eli.Controllers
                 ViewBag.type = "success";
                 try{
                     if (submit.Equals("צור")){
-
-                        
-                       
-
-                   
                             db.addTherapist(tt);
                             ViewBag.operate = "מטפל התווסף בהצלחה";
                     }
@@ -47,7 +42,6 @@ namespace Eli.Controllers
                             ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
                     }
                  }
-
                
                 catch (Exception e){
                         ViewBag.operate = e.Message;

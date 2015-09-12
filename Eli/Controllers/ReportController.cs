@@ -21,13 +21,13 @@ namespace Eli.Controllers
                 return View();
         }
 
-        public ActionResult SelectReport(string reportName, string ffParam)
+        public ActionResult SelectReport(string reportName, string ffParam, DateModel dm)
         {
             switch (reportName)
             {
                 case "0": return RedirectToAction("PatientReport");
                 case "1": return RedirectToAction("PatientByFinanceFactorReport", new { FinancingFactorName = ffParam });
-                case "2": return RedirectToAction("FinanceFactorDebatorsReport", new { FinancingFactorName = ffParam });
+                case "2": return RedirectToAction("FinanceFactorDebatorsReport", new { FinancingFactorName = ffParam, from = dm.StartDate, to = dm.EndDate });
                 case "3": return RedirectToAction("ContactsPatientsReport");
             }
             return RedirectToAction("PatientReport");
@@ -51,7 +51,7 @@ namespace Eli.Controllers
         }
 
         // display FinanceFactorDebatorsReport
-        public ActionResult FinanceFactorDebatorsReport(string from, string to, string FinancingFactorName)
+        public ActionResult FinanceFactorDebatorsReport(DateTime from, DateTime to, string FinancingFactorName)
         {
             List<TreatmentByFinanceFactor> Result = getFinanceFactorDebatorByTreat(from, to, FinancingFactorName);
 
@@ -192,7 +192,7 @@ namespace Eli.Controllers
 
 
         // display PatientByFinanceFactorReport
-        public List<TreatmentByFinanceFactor> getFinanceFactorDebatorByTreat(string from, string to, string FinancingFactorName)
+        public List<TreatmentByFinanceFactor> getFinanceFactorDebatorByTreat(DateTime from, DateTime to, string FinancingFactorName)
         {
             List<TreatmentByFinanceFactor> Result = new List<TreatmentByFinanceFactor>();
             List<TreatmentPatient> treatPats = new List<TreatmentPatient>();
@@ -200,7 +200,6 @@ namespace Eli.Controllers
             tblTreatment tempTreatment = new tblTreatment();
             tblPatient tempPatient = new tblPatient();
             TreatmentByFinanceFactor temp = new TreatmentByFinanceFactor();
-            tblFinancingFactor tempFinanceNext = new tblFinancingFactor();
             Boolean flagJustOne = false;
             int NextId = 0;
             int CurId = 0;
@@ -215,13 +214,13 @@ namespace Eli.Controllers
                         + "inner join tblPatient p on p.ID=rp.PatientID "
                         + "inner join (select finf.FinancingFactorNumber, SUM(Cost) as SumCost "
                                        + "from tblFinancingFactor finf inner join tblTreatment tr on finf.FinancingFactorNumber=tr.FinancingFactorNumber "
-                                       + "where IsPaid='לא' "//and TreatmentDate between (" + from + ") and (" + to + ") "
+                                       + "where IsPaid='לא' and TreatmentDate between ('" + from + "') and ('" + to + "') "
                                        + "group by finf.FinancingFactorNumber) as deb on ff.FinancingFactorNumber=deb.FinancingFactorNumber "
                            + "inner join (select SUM(Cost) as SumCost, IsPaid "
                                        + "from tblFinancingFactor ff inner join tblTreatment tr on ff.FinancingFactorNumber=tr.FinancingFactorNumber "
                                        + "where IsPaid='לא' "
                                        + "group by IsPaid) as bSum on bSum.IsPaid=tr.IsPaid "
-                                       + "where tr.IsPaid='לא' ";//  and TreatmentDate between ("+from+") and ("+to+") ";
+                                       + "where tr.IsPaid='לא'  and TreatmentDate between ('"+from+"') and ('"+to+"') ";
             
             if (FinancingFactorName != "הכל")
             {
@@ -316,7 +315,7 @@ namespace Eli.Controllers
                                         treatPats = new List<TreatmentPatient>();
                                         treatPats.Add(tempTreatmentPatient);
 
-                                        tempFinanceNext = new tblFinancingFactor()
+                                        tempFinance = new tblFinancingFactor()
                                         {
                                             FinancingFactorName = (string)reader[1],
                                             FinancingFactorContactMail = (string)reader[2]
@@ -340,7 +339,7 @@ namespace Eli.Controllers
                                 {
                                     temp = new TreatmentByFinanceFactor()
                                     {
-                                        FinancingFactor = tempFinanceNext,
+                                        FinancingFactor = tempFinance,
                                         TreatmentPatient = treatPats,
                                         TotalDebateFinance = totalFinance,
                                         Total = total

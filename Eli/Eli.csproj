@@ -324,6 +324,7 @@
     <Compile Include="ViewFinanceFactorDebator.cs">
       <DependentUpon>ModelEliEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\DateModel.cs" />
     <Compile Include="ViewModel\PatientByFinanceFactor.cs" />
     <Compile Include="ViewModel\Family.cs" />
     <Compile Include="ViewModel\MailModel.cs" />
