@@ -313,7 +313,6 @@ namespace Eli.Models
 		}
 
 
-        [Required(ErrorMessage = "שדה חובה")]
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -859,7 +858,6 @@ namespace Eli.Models
 		}
 
 
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorAddress", DbType="VarChar(MAX)")]
 		public string FinancingFactorAddress
 		{
@@ -881,7 +879,6 @@ namespace Eli.Models
 		}
 
 
-                        [Required(ErrorMessage = "שדה חובה")]
                         [RegularExpression(@"[^0-9]{0,50}$", ErrorMessage = "שם  איש קשר אינו יכול להכיל מספרים")]
 
 
@@ -906,7 +903,6 @@ namespace Eli.Models
 		}
 
 
-                        [Required(ErrorMessage = "שדה חובה")]
                         [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
 
                         [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
@@ -930,7 +926,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
                         [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
 	
 
@@ -1139,7 +1134,6 @@ namespace Eli.Models
 		}
 
 
-        [Required(ErrorMessage = "שדה חובה")]
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -1186,7 +1180,6 @@ namespace Eli.Models
 		}
 
 
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentAddress", DbType="VarChar(MAX)")]
 		public string ParentAddress
 		{
@@ -1208,7 +1201,6 @@ namespace Eli.Models
 		}
 
 
-                        [Required(ErrorMessage = "שדה חובה")]
                         [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
 
                         [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
@@ -1234,7 +1226,6 @@ namespace Eli.Models
 		}
 
 
-                        [Required(ErrorMessage = "שדה חובה")]
                         [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
 
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentMail", DbType="VarChar(30)")]
@@ -1278,7 +1269,6 @@ namespace Eli.Models
 		}
 
 
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Explain", DbType="VarChar(MAX)")]
 		public string Explain
 		{
@@ -1809,7 +1799,6 @@ namespace Eli.Models
 		}
 
 
-        [Required(ErrorMessage = "שדה חובה")]
         [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
 
         [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
@@ -2273,7 +2262,6 @@ namespace Eli.Models
 		}
 
 
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonReference", DbType="VarChar(MAX)")]
 		public string ReasonReference
 		{
@@ -2293,7 +2281,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusReference", DbType="VarChar(20)")]
 		public string StatusReference
 		{
@@ -2333,7 +2320,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AbuseType", DbType="VarChar(20)")]
 		public string AbuseType
 		{
@@ -2353,7 +2339,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceSource", DbType="VarChar(20)")]
 		public string ReferenceSource
 		{
@@ -3344,7 +3329,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGoal", DbType="VarChar(MAX)")]
 		public string TreatmentGoal
 		{
@@ -3364,7 +3348,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentSubject", DbType="VarChar(MAX)")]
 		public string TreatmentSubject
 		{
@@ -3385,7 +3368,6 @@ namespace Eli.Models
 			}
 		}
 
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentStatusPatient", DbType="VarChar(MAX)")]
 		public string TreatmentStatusPatient
 		{
@@ -3405,7 +3387,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentDescription", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentDescription
 		{
@@ -3425,7 +3406,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentSummary", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentSummary
 		{
@@ -3445,7 +3425,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextTreatment", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string NextTreatment
 		{
@@ -3510,7 +3489,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentPlace", DbType="VarChar(MAX)")]
 		public string TreatmentPlace
 		{
@@ -3550,7 +3528,6 @@ namespace Eli.Models
 				}
 			}
 		}
-                        [Required(ErrorMessage = "שדה חובה")]
                         [RegularExpression(@"[0-9]{0,15}$", ErrorMessage = "מחיר חייב להכיל רק מספרים")]
 
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Float")]
