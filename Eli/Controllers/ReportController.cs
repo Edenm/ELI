@@ -206,6 +206,14 @@ namespace Eli.Controllers
             double totalFinance = 0;
             double total = 0;
 
+            int dayTo = to.Day;
+            int monthTo = to.Month;
+            int yearTo = to.Year;
+            int dayFrom = from.Day;
+            int monthFrom = from.Month;
+            int yearFrom = from.Year;
+            String dFrom = from.Year.ToString() + "/" + from.Month.ToString() + "/" + from.Day.ToString();
+            String dTo = to.Year.ToString() + "/" + to.Month.ToString() + "/" + to.Day.ToString();
 
             string Command = "select ff.FinancingFactorNumber,FinancingFactorName,FinancingFactorContactMail, TreatmentDate, tr.IsPaid,Cost ,p.FirstName,p.SurName , deb.SumCost as totalByFinance , bSum.SumCost as total "
                         + "from tblFinancingFactor ff inner join tblTreatment tr on ff.FinancingFactorNumber=tr.FinancingFactorNumber "
@@ -214,13 +222,13 @@ namespace Eli.Controllers
                         + "inner join tblPatient p on p.ID=rp.PatientID "
                         + "inner join (select finf.FinancingFactorNumber, SUM(Cost) as SumCost "
                                        + "from tblFinancingFactor finf inner join tblTreatment tr on finf.FinancingFactorNumber=tr.FinancingFactorNumber "
-                                       + "where IsPaid='לא' and TreatmentDate between ('" + from + "') and ('" + to + "') "
+                                       + "where IsPaid='לא' and TreatmentDate between ('" + dFrom + "') and ('" + dTo + "') "
                                        + "group by finf.FinancingFactorNumber) as deb on ff.FinancingFactorNumber=deb.FinancingFactorNumber "
                            + "inner join (select SUM(Cost) as SumCost, IsPaid "
                                        + "from tblFinancingFactor ff inner join tblTreatment tr on ff.FinancingFactorNumber=tr.FinancingFactorNumber "
-                                       + "where IsPaid='לא' "
+                                       + "where IsPaid='לא' and TreatmentDate between ('" + dFrom + "') and ('" + dTo + "') "
                                        + "group by IsPaid) as bSum on bSum.IsPaid=tr.IsPaid "
-                                       + "where tr.IsPaid='לא'  and TreatmentDate between ('"+from+"') and ('"+to+"') ";
+                                       + "where tr.IsPaid='לא'  and TreatmentDate between ('" + dFrom + "') and ('" + dTo + "') ";
             
             if (FinancingFactorName != "הכל")
             {

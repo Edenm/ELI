@@ -278,7 +278,6 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\ExcelController.cs" />
-    <Compile Include="Controllers\ExportPdfController.cs" />
     <Compile Include="Controllers\FinanceFactorController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -568,7 +567,6 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
@@ -588,8 +586,6 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\SendMailer\Index.cshtml" />
-    <Content Include="Views\SendMailer\success.cshtml" />
     <Content Include="Views\Patient\_BrotherSister.cshtml" />
     <Content Include="Views\Patient\_PopUpPatient.cshtml" />
     <Content Include="Views\Reference\_PopUpReference.cshtml" />
@@ -616,8 +612,6 @@
     <Content Include="Views\Shared\_ContactPatient.cshtml" />
     <Content Include="Views\Shared\_PatientNew.cshtml" />
     <Content Include="Views\Report\FinanceFactorDebatorsReport.cshtml" />
-    <Content Include="Views\Excel\PatientExcel.cshtml" />
-    <Content Include="Views\Excel\TreatExcel.cshtml" />
     <Content Include="Views\Report\PatientReport.cshtml" />
     <Content Include="Views\Report\ContactsPatientsReport.cshtml" />
     <Content Include="Views\Report\PatientByFinanceFactorReport.cshtml" />

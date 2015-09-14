@@ -25,7 +25,18 @@ namespace Eli.Controllers
             EliManagerDB db = new EliManagerDB();
 
             tblTherapist ther = (tblTherapist)Session["Therapist"];
-            var pat = db.getAllPatientsByTherapist(ther.TherapistID);
+
+            List<tblPatient> pat = null;
+
+            if (ther.UserName == "admin")
+            {
+                pat = db.getAllPatients();
+            }
+            else
+            {
+                pat = db.getAllPatientsByTherapist(ther.TherapistID);
+            }
+            
 
             List<Family> fams= new List<Family>();
 

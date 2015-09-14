@@ -44,37 +44,39 @@
                     {
                         if (@item.TherapistID != null)
                         {
-                            <tr align="center">
-                                <td>
-                                    @{if (item.TherapistGender == "זכר")
-                                    {
-                                        <div>מטפל</div>
-                                    }
-                                    else
-                                    {
-                                        <div>מטפלת</div>
-                                    }
-                                    }
-                                </td>
-                                <td> @item.TherapistID </td>
-                                @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
-                                <td> @FullName</td>
-                                <td> @item.TherapistAddress</td>
-                                <td> @item.TherapistPhoneNumber </td>
-                                <td>
-                                    <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.TherapistID">
-                                        <img src="~/Images/Information_32x32.png" />
-                                    </a>
-                                </td>
-                                <td>
-                                    @{
-                                        string id = "1" + @item.TherapistID;
-                                    }
-                                    <a src="~/Images/info.png" data-toggle="modal" href="#@id">
-                                        <img src="~/Images/Mail-32.png" />
-                                    </a>
-                                </td>
-                            </tr>
+                            if (item.UserName != "admin") { 
+                                <tr align="center">
+                                    <td>
+                                        @{if (item.TherapistGender == "זכר")
+                                        {
+                                            <div>מטפל</div>
+                                        }
+                                        else
+                                        {
+                                            <div>מטפלת</div>
+                                        }
+                                        }
+                                    </td>
+                                    <td> @item.TherapistID </td>
+                                    @{ String FullName = @item.TherapistFirstName + " " + @item.TherapistSurName;}
+                                    <td> @FullName</td>
+                                    <td> @item.TherapistAddress</td>
+                                    <td> @item.TherapistPhoneNumber </td>
+                                    <td>
+                                        <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.TherapistID">
+                                            <img src="~/Images/Information_32x32.png" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @{
+                                            string id = "1" + @item.TherapistID;
+                                        }
+                                        <a src="~/Images/info.png" data-toggle="modal" href="#@id">
+                                            <img src="~/Images/Mail-32.png" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
                         }
                     }
                 </tbody>
