@@ -255,7 +255,7 @@ namespace Eli.Controllers
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
-            String s = "שם גורם מממן= " + name + " ,סוג גורם מממן : " ;
+            String s = "שם גורם מממן: " + name + " ,סוג גורם מממן : "+db.getTypeByFinanceName(name) ;
             htw.Write("<table><tr><td colspan='3'><b><u><h3> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל: " + mail + " טווח תאריכים: " + fromDate.ToString().Substring(0, 10) + " ל " + toDate.ToString().Substring(0, 10) + " </h3></u><b></td></tr>");
             htw.Write("<table><tr><td colspan='3'><b><u><h3>חובות עבור גורם מממן  " + name + " בטווח תאריכים הנבחר: " + Financesum + "</h3></u><b></td></tr>");
 
@@ -392,20 +392,47 @@ namespace Eli.Controllers
                                    select new
                                    {
 
-                                       שם_איש_קשר1 = p.ContactName1,
-                                       תפקיד1 = p.ContactProfession1,
-                                       טלפון1 = "*" + p.ContactPhone1,
-                                       מייל1 = p.ContactMail1,
-                                       שם_איש_קשר2 = p.ContactName2,
-                                       תפקיד2 = p.ContactProfession2,
-                                       טלפון2 = "*" + p.ContactPhone2,
-                                       מייל2 = p.ContactMail2,
-                                       שם_איש_קשר3 = p.ContactName3,
-                                       תפקיד3 = p.ContactProfession3,
-                                       טלפון3 = "*" + p.ContactPhone3,
-                                       מייל3 = p.ContactMail3,
+                                       שם_איש_קשר = p.ContactName1,
+                                       תפקיד = p.ContactProfession1,
+                                       טלפון = "*" + p.ContactPhone1,
+                                       מייל = p.ContactMail1,
+                                      
 
-                                   }).ToList().Distinct(); grid.DataBind();
+                                   }).ToList().Distinct().Union
+                                   (
+
+                                   from p in pat
+
+                                   where p.ID.ToString() == pat.ElementAt(i).ID.ToString()
+                                   select new
+                                   {
+
+                                      
+                                      שם_איש_קשר = p.ContactName2,
+                                       תפקיד = p.ContactProfession2,
+                                       טלפון = "*" + p.ContactPhone2,
+                                       מייל = p.ContactMail2,
+                                      
+                                   }
+
+                                   ).ToList().Distinct().Union
+                                   (
+
+                                   from p in pat
+
+                                   where p.ID.ToString() == pat.ElementAt(i).ID.ToString()
+                                   select new
+                                   {
+
+                                      
+                                       שם_איש_קשר = p.ContactName3,
+                                       תפקיד = p.ContactProfession3,
+                                       טלפון = "*" + p.ContactPhone3,
+                                       מייל = p.ContactMail3,
+
+                                   }
+
+                                   ).ToList().Distinct(); grid.DataBind();
 
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
