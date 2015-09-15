@@ -80,7 +80,7 @@
         </tr>
 
     </table>
-    <button style="float: right;" type="button" onclick="location.href='@Url.Action("PaymentByFinance", "Excel", new { name = @ViewBag.FinancingFactorName })'"> ייצוא דוח לקובץ אקסל</button>
+    <button style="float: right;" type="button" onclick="location.href='@Url.Action("PaymentByFinance", "Excel", new { name = @ViewBag.FinancingFactorName,fromDate=@ViewBag.From,toDate=@ViewBag.To})'"> ייצוא דוח לקובץ אקסל</button>
 }
   else
   {

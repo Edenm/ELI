@@ -139,7 +139,6 @@ namespace Eli.Controllers
             List<tblTherapist> ter = db.Therapist.ToList();
             List<tblTreatment> treat = db.Treatment.ToList();
             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
-            Double totall = db.totatlNotPaidTreat();
             Response.ClearContent();
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=מטופלים לפי גורמים מממנים.xls");
@@ -201,12 +200,11 @@ namespace Eli.Controllers
             return View();
         }
 
-        public ActionResult PaymentByFinance(String name)
+        public ActionResult PaymentByFinance(String name, DateTime fromDate, DateTime toDate)
         {
 
             EliManagerDB db = new EliManagerDB();
-            var data = db.Treatment.Where(d => d.IsPaid == "לא");
-            var totallSum = data.Sum(d => d.Cost);
+            var totallSum = db.totatlNotPaidTreat(fromDate, toDate);
 
 
             List<tblPatient> pat = db.Patients.ToList();
@@ -217,11 +215,8 @@ namespace Eli.Controllers
             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
             var financeNum = db.getFinanceNumByName(name);
             var mail = db.getFinanceMailByName(name);
-            var allFinance = (from t in treat
-                              where t.FinancingFactorNumber.ToString() == financeNum && t.IsPaid=="לא"
-                              select new { t.Cost }
-                  ).ToList();
-            var Financesum = allFinance.Select(c => c.Cost).Sum();
+
+            var Financesum = db.getTotallDebatorByRange(name, fromDate, toDate);
             var grid = new GridView();
             if (name != "הכל")
             {
@@ -231,7 +226,7 @@ namespace Eli.Controllers
                                    join t in ter on rt.TherapistID equals t.TherapistID
                                    join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
                                    join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
-                                   where f.FinancingFactorName == name && tr.IsPaid=="לא"
+                                   where f.FinancingFactorName == name && tr.IsPaid == "לא" && tr.TreatmentDate >= fromDate && tr.TreatmentDate <= toDate
                                    select new
                                    {
 
@@ -245,7 +240,7 @@ namespace Eli.Controllers
             }
             else
             {
-                return RedirectToAction("allPaymentFinance");
+                return RedirectToAction("allPaymentFinance", new { fromDate = fromDate, toDate = toDate });
             }
 
             Response.ClearContent();
@@ -261,13 +256,13 @@ namespace Eli.Controllers
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
             String s = "שם גורם מממן= " + name + " ,סוג גורם מממן : " ;
-            htw.Write("<table><tr><td colspan='3'><b><u><h2> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל: " + mail + "</h2></u><b></td></tr>");
-            htw.Write("<table><tr><td colspan='3'><b><u><h3>חובות עבור גורם מממן " + name + " " + Financesum + "</h3></u><b></td></tr>");
+            htw.Write("<table><tr><td colspan='3'><b><u><h3> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל: " + mail + " טווח תאריכים: " + fromDate.ToString().Substring(0, 10) + " ל " + toDate.ToString().Substring(0, 10) + " </h3></u><b></td></tr>");
+            htw.Write("<table><tr><td colspan='3'><b><u><h3>חובות עבור גורם מממן  " + name + " בטווח תאריכים הנבחר: " + Financesum + "</h3></u><b></td></tr>");
 
 
            
             grid.RenderControl(htw);
-            htw.Write("<table><tr><td colspan='3'><b><u><h3>סהכ חובות עבור כל גורמים הממנים:" + totallSum + "</h3></u><b></td></tr>");
+            htw.Write("<table><tr><td colspan='3'><b><u><h3>סהכ חובות עבור כל גורמים המממנים בטווח תאריכים הנבחר :" + totallSum + "</h3></u><b></td></tr>");
 
             Response.Output.Write(sw.ToString());
             
@@ -376,6 +371,8 @@ namespace Eli.Controllers
 
             EliManagerDB db = new EliManagerDB();
             List<tblPatient> pat = db.inizializePatientNullValues(db.Patients.ToList());
+           // var pat =db.Patients.ToList();
+
             
             Response.ClearContent();
             Response.Buffer = true;
@@ -552,7 +549,7 @@ namespace Eli.Controllers
         }
 
 
-        public ActionResult allPaymentFinance()
+        public ActionResult allPaymentFinance(DateTime fromDate, DateTime toDate)
         {
 
             EliManagerDB db = new EliManagerDB();
@@ -562,7 +559,7 @@ namespace Eli.Controllers
             List<tblTherapist> ter = db.Therapist.ToList();
             List<tblTreatment> treat = db.Treatment.ToList();
             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
-            Double totall = db.totatlNotPaidTreat();
+            Double totall = db.totatlNotPaidTreat(fromDate, toDate);
             Response.ClearContent();
             Response.Buffer = true;
             Response.AddHeader("content-disposition", "attachment; filename=חובות לפי גורמים מממנים.xls");
@@ -575,13 +572,9 @@ namespace Eli.Controllers
             for (int i = 0; i < fin.Count(); i++)
             {
                 
-                var financeNum = db.getFinanceNumByName(fin.ElementAt(i).FinancingFactorName);
                 var mail = db.getFinanceMailByName(fin.ElementAt(i).FinancingFactorName);
-                var allFinance = (from t in treat
-                                  where t.FinancingFactorNumber.ToString() == financeNum && t.IsPaid == "לא"
-                                  select new { t.Cost }
-                      ).ToList();
-                var Financesum = allFinance.Select(c => c.Cost).Sum();
+
+                var Financesum = db.getTotallDebatorByRange(fin.ElementAt(i).FinancingFactorName, fromDate, toDate);
                 var grid = new GridView();
                 grid.DataSource = (from p in pat
                                    join rp in refpat on p.ID equals rp.PatientID
@@ -589,7 +582,7 @@ namespace Eli.Controllers
                                    join t in ter on rt.TherapistID equals t.TherapistID
                                    join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
                                    join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
-                                   where f.FinancingFactorName == fin.ElementAt(i).FinancingFactorName && tr.IsPaid == "לא"
+                                   where f.FinancingFactorName == fin.ElementAt(i).FinancingFactorName && tr.IsPaid == "לא" && tr.TreatmentDate >= fromDate && tr.TreatmentDate <= toDate
                                    select new
                                    {
 
@@ -607,19 +600,19 @@ namespace Eli.Controllers
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
                 if(i==0)
                 {
-                    htw.Write("<table><tr><td colspan='3'><b><u><h1> חובות לפי גורמים מממנים </h1></u><b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b><u><h1>  חובות לפי גורמים מממנים בטווח תאריכים "+fromDate+" ל : "+toDate+" </h1></u><b></td></tr>");
 
 
                 }
-                if (db.getNotPaidTreatmentByName(fin.ElementAt(i).FinancingFactorName) == 0)
+                if (Financesum == 0)
                 {
                     htw.Write("<table><tr><td colspan='3'><b><u><h4>" + fin.ElementAt(i).FinancingFactorName + "</h4></u><b></td></tr>");
-                    htw.Write("<table><tr><td colspan='3'><b> אין חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b> אין חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail +" בטווח תאריכים הנבחר <b></td></tr>");
                     grid.RenderControl(htw);
                     if (i == (fin.Count() - 1))
                     {
 
-                        htw.Write("<table><tr><td colspan='3'><b><u><h3> סהכ חובות עבור כל הגורמים מממנים " + totall + "</h3></u><b></td></tr>");
+                        htw.Write("<table><tr><td colspan='3'><b><u><h3> סהכ חובות עבור כל הגורמים ממנים בטווח תאריכים הנבחר " + totall + "</h3></u><b></td></tr>");
 
                     }
                     Response.Output.Write(sw.ToString());
@@ -630,13 +623,13 @@ namespace Eli.Controllers
                 htw.Write("<table><tr><td colspan='3'><u><h4><b>" + fin.ElementAt(i).FinancingFactorName + "<b></h4></u></td></tr>");
                 htw.Write("<table><tr><td colspan='3'><b> טיפולים שלא שולמו עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל: " + mail + "<b></td></tr>");
                 grid.RenderControl(htw);
-                htw.Write("<table><tr><td colspan='3'><b>סהכ חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + " :" + Financesum + "<b></td></tr>");
+                htw.Write("<table><tr><td colspan='3'><b>סהכ חובות עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + " בטווח תאריכים הנבחר: " + Financesum + "<b></td></tr>");
 
 
                 if (i == (fin.Count() - 1))
                 {
 
-                    htw.Write("<table><tr><td colspan='3'><b><u><h3> סהכ חובות עבור כל הגורמים מממנים " + totall + "</h3></u><b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b><u><h3> סהכ חובות עבור כל הגורמים ממנים בטווח תאריכים הנבחר " + totall + "</h3></u><b></td></tr>");
 
                 }
                 Response.Output.Write(sw.ToString());

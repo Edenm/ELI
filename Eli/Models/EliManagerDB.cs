@@ -552,6 +552,23 @@ namespace Eli.Models
             return (financeNum.FinancingFactorNumber.ToString());
         }
 
+        public double getTotallDebatorByRange(String name,DateTime fDate,DateTime tDate)
+        {
+            var financeNum = getFinanceNumByName(name);
+            List<tblTreatment> t = db.tblTreatments.ToList();
+            double totall = 0;
+            for(int i=0;i<t.Count();i++)
+            {
+                if(t.ElementAt(i).FinancingFactorNumber.ToString()==financeNum.ToString() && t.ElementAt(i).IsPaid=="לא" && 
+                    t.ElementAt(i).TreatmentDate>=fDate && t.ElementAt(i).TreatmentDate<=tDate)
+                {
+                    totall = totall + (Double)t.ElementAt(i).Cost;
+                }
+            }
+            return (totall);
+
+        }
+
 
         public String getFinanceMailByName(string name)
         {
@@ -567,13 +584,13 @@ namespace Eli.Models
                
         }
 
-         public Double totatlNotPaidTreat()
+         public Double totatlNotPaidTreat(DateTime dFrom,DateTime dTo)
         {
             Double sum = 0;
             List<tblTreatment> treat = db.tblTreatments.ToList();
             for (int i = 0; i < treat.Count(); i++)
             {
-                if (treat.ElementAt(i).IsPaid == "לא")
+                if (treat.ElementAt(i).IsPaid == "לא" && dFrom <= treat.ElementAt(i).TreatmentDate && treat.ElementAt(i).TreatmentDate <= dTo)
                     sum = sum + (Double)treat.ElementAt(i).Cost;
             }
             return (sum);
@@ -601,51 +618,51 @@ namespace Eli.Models
          {
              for(int i=0;i<arr.Count();i++)
              {
-                 if(arr.ElementAt(i).ContactMail1.ToString()=="")
+                 if(arr.ElementAt(i).ContactMail1==null || arr.ElementAt(i).ContactMail1.ToString()=="")
                  {
                      arr.ElementAt(i).ContactMail1 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactMail2.ToString() == "")
+                 if (arr.ElementAt(i).ContactMail2 == null || arr.ElementAt(i).ContactMail2.ToString() == "")
                  {
                      arr.ElementAt(i).ContactMail2 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactMail3.ToString() == "")
+                 if (arr.ElementAt(i).ContactMail3 == null || arr.ElementAt(i).ContactMail3.ToString() == "")
                  {
                      arr.ElementAt(i).ContactMail3 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactName1.ToString() == "")
+                 if (arr.ElementAt(i).ContactName1==null || arr.ElementAt(i).ContactName1.ToString() == "")
                  {
                      arr.ElementAt(i).ContactName1 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactName2.ToString() == "")
+                 if (arr.ElementAt(i).ContactName2 == null || arr.ElementAt(i).ContactName2.ToString() == "")
                  {
                      arr.ElementAt(i).ContactName2 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactName3.ToString() == "")
+                 if (arr.ElementAt(i).ContactName3 == null || arr.ElementAt(i).ContactName3.ToString() == "")
                  {
                      arr.ElementAt(i).ContactName3 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactPhone1.ToString() == "")
+                 if (arr.ElementAt(i).ContactPhone1==null || arr.ElementAt(i).ContactPhone1.ToString() == "")
                  {
                      arr.ElementAt(i).ContactPhone1 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactPhone2.ToString() == "")
+                 if (arr.ElementAt(i).ContactPhone2 == null || arr.ElementAt(i).ContactPhone2.ToString() == "")
                  {
                      arr.ElementAt(i).ContactPhone2 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactPhone3.ToString() == "")
+                 if (arr.ElementAt(i).ContactPhone3 == null || arr.ElementAt(i).ContactPhone3.ToString() == "")
                  {
                      arr.ElementAt(i).ContactPhone3 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactProfession1.ToString() == "")
+                 if (arr.ElementAt(i).ContactProfession1==null || arr.ElementAt(i).ContactProfession1.ToString() == "")
                  {
                      arr.ElementAt(i).ContactProfession1 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactProfession2.ToString() == "")
+                 if (arr.ElementAt(i).ContactProfession2 == null || arr.ElementAt(i).ContactProfession2.ToString() == "")
                  {
                      arr.ElementAt(i).ContactProfession2 = "מידע לא זמין";
                  }
-                 if (arr.ElementAt(i).ContactProfession3.ToString() == "")
+                 if (arr.ElementAt(i).ContactProfession3 == null || arr.ElementAt(i).ContactProfession3.ToString() == "")
                  {
                      arr.ElementAt(i).ContactProfession3 = "מידע לא זמין";
                  }
