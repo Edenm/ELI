@@ -576,10 +576,10 @@ namespace Eli.Models
             List<tblFinancingFactor> fin = db.tblFinancingFactors.ToList();
             for (int i = 0; i < fin.Count();i++ )
             {
-                if (fin.ElementAt(i).FinancingFactorName == name)
+                if (fin.ElementAt(i).FinancingFactorName == name && fin.ElementAt(i).FinancingFactorContactMail!=null && fin.ElementAt(i).FinancingFactorContactMail!="")
                     return (fin.ElementAt(i).FinancingFactorContactMail.ToString());
             }
-            return("No mail for finance factor");
+            return("לא קיים מייל");
 
                
         }
