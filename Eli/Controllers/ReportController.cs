@@ -68,7 +68,7 @@ namespace Eli.Controllers
         public ActionResult ContactsPatientsReport()
         {
             EliManagerDB db = new EliManagerDB();
-            return View(db.getAllPatients());
+            return View(db.inizializePatientNullValues(db.getAllPatients()));
         }
 
 
