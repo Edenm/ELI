@@ -5,6 +5,8 @@
     ->
     רשימת מטופלים
 </div>
+@if (Model.Count() > 0)
+{
                       <div align="right" id="divPrnt">
 
                           <div class="medium" style="text-align:center;">רשימת קשר של מטופלים</div>
@@ -29,15 +31,21 @@
                       </div>
                      
                       <button style="float: right;" type="button" onclick="location.href='@Url.Action("patientexcel", "Excel")'"> ייצוא דוח לקובץ אקסל</button>
+}
+else
+{
+    <div class="medium" style="text-align:center;"> לא קיימים מטופלים במערכת  </div>
+}
 
-                      <script type="text/javascript">
-                          function CallPrint(strid) {
-                              var prtContent = document.getElementById(strid);
-                              var WinPrint = window.open('', '', 'letf=100,top=100,width=600,height=600');
-                              WinPrint.document.write(prtContent.innerHTML);
-                              WinPrint.document.close();
-                              WinPrint.focus();
-                              WinPrint.print();
-                              //WinPrint.close()   
-                          }
-                      </script>
+    <script type="text/javascript">
+        function CallPrint(strid) {
+            var prtContent = document.getElementById(strid);
+            var WinPrint = window.open('', '', 'letf=100,top=100,width=600,height=600');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            //WinPrint.close()
+        }
+    </script>
+                  

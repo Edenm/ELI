@@ -59,7 +59,16 @@
 }
   else
   {
-    <div class="medium" style="text-align:center;"> עבור @ViewBag.FinancingFactorName לא קיימים מטופלים  </div>
+      string name = "";
+      if (ViewBag.FinancingFactorName == "הכל")
+      {
+          name = "גורמים המממנים";
+      }
+      else
+      {
+          name = ViewBag.FinancingFactorName;
+      }
+      <div class="medium" style="text-align:center;"> עבור @name לא קיימים מטופלים  </div>
   }
   
 }

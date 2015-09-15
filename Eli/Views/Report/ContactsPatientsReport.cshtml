@@ -6,43 +6,52 @@
     אנשי קשר של מטפלים
 </div>
 
-<div class="medium" style="text-align:center;">רשימת אנשי קשר של מטפלים</div>
+@if (Model.Count() > 0)
+{
 
-<table class="table table-bordered" dir="rtl">
-    <tr align="center">
-        <th style="text-align: center;">ת"ז</th>
-        <th style="text-align: center;">שם</th>
-        <th style="text-align: center;">מקצוע</th>
-        <th style="text-align: center;">טלפון</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        string name = item.FirstName + " " + item.SurName;
+    <div class="medium" style="text-align:center;">רשימת אנשי קשר של מטפלים</div>
+
+    <table class="table table-bordered" dir="rtl">
         <tr align="center">
-            <td><b>@item.ID</b></td>
-            <td><b>@name</b></td>
-            <td></td>
-            <td></td>
+            <th style="text-align: center;">ת"ז</th>
+            <th style="text-align: center;">שם</th>
+            <th style="text-align: center;">מקצוע</th>
+            <th style="text-align: center;">טלפון</th>
         </tr>
-        <tr>
-            <td></td>
-            <td>@item.ContactName1</td>
-            <td>@item.ContactProfession1</td>
-            <td>@item.ContactPhone1</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>@item.ContactName2</td>
-            <td>@item.ContactProfession2</td>
-            <td>@item.ContactPhone2</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>@item.ContactName3</td>
-            <td>@item.ContactProfession3</td>
-            <td>@item.ContactPhone3</td>
-        </tr>
-    }
-</table>
-                      <button style="float: right;" type="button" onclick="location.href='@Url.Action("ContactList", "Excel")'"> ייצוא דוח לקובץ אקסל</button>
+        @foreach (var item in Model)
+        {
+            string name = item.FirstName + " " + item.SurName;
+            <tr align="center">
+                <td><b>@item.ID</b></td>
+                <td><b>@name</b></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@item.ContactName1</td>
+                <td>@item.ContactProfession1</td>
+                <td>@item.ContactPhone1</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@item.ContactName2</td>
+                <td>@item.ContactProfession2</td>
+                <td>@item.ContactPhone2</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@item.ContactName3</td>
+                <td>@item.ContactProfession3</td>
+                <td>@item.ContactPhone3</td>
+            </tr>
+        }
+    </table>
+             
+    <button style="float: right;" type="button" onclick="location.href='@Url.Action("ContactList", "Excel")'"> ייצוא דוח לקובץ אקסל</button>
+}
+else
+{
+    <div class="medium" style="text-align:center;"> לא קיימים מטופלים במערכת  </div>
+}
 
