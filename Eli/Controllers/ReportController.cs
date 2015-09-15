@@ -42,8 +42,9 @@ namespace Eli.Controllers
         // display PatientByFinanceFactorReport
         public ActionResult PatientByFinanceFactorReport(string FinancingFactorName)
         {
+            EliManagerDB db = new EliManagerDB();
             List<PatientByFinanceFactor> Result = getPatientByFinanceFactor(FinancingFactorName);
-            ViewBag.type = Result.ElementAt(0).FinancingFactor.FinancingFactorType;
+            ViewBag.type = db.getTypeByFinanceName(FinancingFactorName);
 
             ViewBag.FinancingFactorName = FinancingFactorName;
 

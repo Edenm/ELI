@@ -839,6 +839,20 @@ namespace Eli.Models
               return list;
            }
 
+        public String getTypeByFinanceName(String name)
+           {
+               var fin = FinancingFactor.ToList();
+                for(int i=0;i<fin.Count();i++)
+                {
+                    if(fin.ElementAt(i).FinancingFactorContactName==name)
+                    {
+                        return (fin.ElementAt(i).FinancingFactorType);
+                    }
+                }
+                return "";
+
+           }
+
 
            /*the function return all treatment hours strings*/
            public List<String> getAllHours()
