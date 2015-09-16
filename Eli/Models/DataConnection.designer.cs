@@ -3090,7 +3090,7 @@ namespace Eli.Models
 			}
 		}
         [Required(ErrorMessage = "שדה חובה")]
-        [RegularExpression(".+@gmail.com", ErrorMessage = "please insert gmail mail")]
+        [RegularExpression(".+@gmail.com", ErrorMessage = " gmail אנא הכנס מייל ")]
                 
 	
 
