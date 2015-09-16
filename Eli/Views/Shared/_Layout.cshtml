@@ -155,10 +155,16 @@
                             @{
                                 var events = new EliManagerDB().getAllEvents();
                                 String msg="";
-                                foreach (var item in events)
+                                if (events.Count() > 0) { 
+                                    foreach (var item in events)
+                                    {
+                                        var hour = item.EventTime.Value.ToString();
+                                        msg +=" "+ item.EventDate.Value.ToString("dd/MM/yy") + " " + hour.Substring(0, 5) + " " + item.Description;
+                                    }
+                                }
+                                else
                                 {
-                                    var hour = item.EventTime.Value.ToString();
-                                    msg +=" "+ item.EventDate.Value.ToString("dd/MM/yy") + " " + hour.Substring(0, 5) + " " + item.Description;
+                                    msg += "לחץ כאן כדי להוסיף אירועים";
                                 }
                             }
                             <a href="~/Event/IndexEvent"><b>@msg</b></a>
