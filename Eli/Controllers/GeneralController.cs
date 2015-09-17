@@ -165,7 +165,7 @@ namespace Eli.Controllers
 
                     if (db.isNotAdminTherepist() == false)
                     {
-                        return RedirectToAction("IndexTherapist", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
+                        return RedirectToAction("IndexTherapist", "Therapist", new { operate = "אין מטפלים במערכת-הודעה לא נשלחה", type = "danger" });
 
                     }
                     for (int i = 0; i < therapist.Count(); i++)
@@ -208,7 +208,7 @@ namespace Eli.Controllers
 
                 if (finance.Count() == 0)
                 {
-                    return RedirectToAction("IndexFinancingFactor", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
+                    return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "אין גורמים מממנים במערכת-הודעה לא נשלחה", type = "danger" });
 
                 }
                 try
