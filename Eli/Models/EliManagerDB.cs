@@ -510,6 +510,15 @@ namespace Eli.Models
             return tr;
         }
 
+        /* Check if BrotherSister is exist**/
+        public  List<tblTherapist> getNotAdminTherepist()
+        {
+            var therapists = from t in Therapist
+                        where t.UserName!="admin"
+                        select t;
+            return t;
+        }
+
         public tblReference getReferenceByReferenceNumber(int rnum)
         {
             return Reference.Where(r => r.ReferenceNumber == rnum).First();

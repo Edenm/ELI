@@ -37,7 +37,7 @@ namespace Eli.Controllers
                               
                               select new
                               {
-                                  תז=p.ID,
+                                  תז = "*" + p.ID,
                                   מין=p.Gender,
                                   שם = p.FirstName+" "+p.SurName,
                                    
@@ -188,7 +188,7 @@ namespace Eli.Controllers
 
                 }
                 htw.Write("<table><tr><td colspan='3'><h3><u><b>" + fin.ElementAt(i).FinancingFactorName + "<b><u></h3></td></tr>");
-                htw.Write("<table><tr><td colspan='3'><b> מטופלים עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + "  מייל= " + mail + "<b></td></tr>");
+                htw.Write("<table><tr><td colspan='3'><b> מטופלים עבור גורם מממן " + fin.ElementAt(i).FinancingFactorName + ",  מייל " + mail + "<b></td></tr>");
                 grid.RenderControl(htw);
 
                 Response.Output.Write(sw.ToString());
@@ -256,7 +256,7 @@ namespace Eli.Controllers
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
             String s = "שם גורם מממן: " + name + " ,סוג גורם מממן : "+db.getTypeByFinanceName(name) ;
-            htw.Write("<table><tr><td colspan='3'><b><u><h3> טיפולים שלא שולמו עבור גורם מממן " + name + "  מייל: " + mail + " טווח תאריכים: " + fromDate.ToString().Substring(0, 10) + " ל " + toDate.ToString().Substring(0, 10) + " </h3></u><b></td></tr>");
+            htw.Write("<table><tr><td colspan='3'><b><u><h3> טיפולים שלא שולמו עבור גורם מממן " + name + ",  מייל: " + mail + " טווח תאריכים: " + fromDate.ToString().Substring(0, 10) + " ל " + toDate.ToString().Substring(0, 10) + " </h3></u><b></td></tr>");
             htw.Write("<table><tr><td colspan='3'><b><u><h3>חובות עבור גורם מממן  " + name + " בטווח תאריכים הנבחר: " + Financesum + "</h3></u><b></td></tr>");
 
 
