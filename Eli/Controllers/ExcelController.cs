@@ -90,8 +90,8 @@ namespace Eli.Controllers
                                    where f.FinancingFactorName == name
                                    select new
                                    {
-                                      
-                                       תז_מטופל = p.ID,
+
+                                       תז_מטופל = "*" + p.ID,
 
                                        שם_מטופל = p.FirstName + " " + p.SurName,
 
