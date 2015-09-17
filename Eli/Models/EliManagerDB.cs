@@ -511,12 +511,15 @@ namespace Eli.Models
         }
 
         /* Check if BrotherSister is exist**/
-        public  List<tblTherapist> getNotAdminTherepist()
+        public  Boolean isNotAdminTherepist()
         {
-            var therapists = from t in Therapist
-                        where t.UserName!="admin"
-                        select t;
-            return t;
+            var therapists = Therapist.ToList();
+            for (int i = 0; i < therapists.Count();i++ )
+            {
+                if (therapists.ElementAt(i).UserName != "admin")
+                    return true;
+            }
+            return false;
         }
 
         public tblReference getReferenceByReferenceNumber(int rnum)

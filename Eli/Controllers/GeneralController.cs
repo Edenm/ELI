@@ -162,9 +162,8 @@ namespace Eli.Controllers
                 try
                 {
                     List<tblTherapist> therapist = db.Therapist.ToList();
-                    List<tblTherapist> therapistCheck = db.getNotAdminTherepist();
 
-                    if (therapistCheck.Count() == 0)
+                    if (db.isNotAdminTherepist() == false)
                     {
                         return RedirectToAction("IndexTherapist", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
 
