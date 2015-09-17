@@ -681,7 +681,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [Required(ErrorMessage = "שדה חובה")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"{0:hh\:mm}")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventTime", DbType="Time")]
 		public System.Nullable<System.TimeSpan> EventTime
 		{
@@ -2262,6 +2265,8 @@ namespace Eli.Models
 		}
 
 
+        [Required(ErrorMessage = "שדה חובה")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonReference", DbType="VarChar(MAX)")]
 		public string ReasonReference
 		{
@@ -2281,6 +2286,10 @@ namespace Eli.Models
 				}
 			}
 		}
+
+
+        [Required(ErrorMessage = "שדה חובה")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusReference", DbType="VarChar(20)")]
 		public string StatusReference
 		{
@@ -3470,6 +3479,8 @@ namespace Eli.Models
 			}
 		}
                         [Required(ErrorMessage = "שדה חובה")]
+                        [DataType(DataType.Time)]
+                        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"{0:hh\:mm}")]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentStartTime", DbType="Time")]
 		public System.Nullable<System.TimeSpan> TreatmentStartTime
 		{
