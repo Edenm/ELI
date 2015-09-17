@@ -102,6 +102,11 @@ namespace Eli.Controllers
             {
                 if ((parents = db.getAllParentsByPatient(_objModelMail.patientId)) != null)
                 {
+                    if(parents.Count()==0)
+                    {
+                        return RedirectToAction("IndexPatients", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
+
+                    }
                     for (int i = 0; i < parents.Count(); i++)
                     {
                         _objModelMail.From = _objModelMail.From;
@@ -157,6 +162,12 @@ namespace Eli.Controllers
                 try
                 {
                     List<tblTherapist> therapist = db.Therapist.ToList();
+
+                    if (therapist.Count() == 0)
+                    {
+                        return RedirectToAction("IndexTherapist", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
+
+                    }
                     for (int i = 0; i < therapist.Count(); i++)
                     {
                         _objModelMail.From = _objModelMail.From;
@@ -193,10 +204,15 @@ namespace Eli.Controllers
             }
              if (_objModelMail.redirect == "finance")
             {
+                List<tblFinancingFactor> finance = db.FinancingFactor.ToList();
 
+                if (finance.Count() == 0)
+                {
+                    return RedirectToAction("IndexFinancingFactor", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
+
+                }
                 try
                 {
-                    List<tblFinancingFactor> finance = db.FinancingFactor.ToList();
                     for (int i = 0; i < finance.Count(); i++)
                     {
                         _objModelMail.From = _objModelMail.From;
@@ -236,6 +252,11 @@ namespace Eli.Controllers
                 try
                 {
                     List<tblParent> parents = db.Parent.ToList();
+                    if (parents.Count() == 0)
+                    {
+                        return RedirectToAction("IndexPatients", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
+
+                    }
                     for (int i = 0; i < parents.Count(); i++)
                     {
                         _objModelMail.From = _objModelMail.From;
