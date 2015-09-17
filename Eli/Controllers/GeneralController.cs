@@ -102,8 +102,15 @@ namespace Eli.Controllers
             {
                 if ((parents = db.getAllParentsByPatient(_objModelMail.patientId)) != null)
                 {
+                    if(parents.Count()==0)
+                    {
+                        return RedirectToAction("IndexPatients", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
+
+                    }
                     for (int i = 0; i < parents.Count(); i++)
                     {
+                        if (parents.ElementAt(i).ParentMail == null || parents.ElementAt(i).ParentMail == "")
+                            continue;
                         _objModelMail.From = _objModelMail.From;
                         MailMessage mail = new MailMessage();
                         mail.To.Add(parents.ElementAt(i).ParentMail);
@@ -157,8 +164,16 @@ namespace Eli.Controllers
                 try
                 {
                     List<tblTherapist> therapist = db.Therapist.ToList();
+
+                    if (db.isNotAdminTherepist() == false)
+                    {
+                        return RedirectToAction("IndexTherapist", "Therapist", new { operate = "אין מטפלים במערכת-הודעה לא נשלחה", type = "danger" });
+
+                    }
                     for (int i = 0; i < therapist.Count(); i++)
                     {
+                        if (therapist.ElementAt(i).TherapistMail == null || therapist.ElementAt(i).TherapistMail == "")
+                            continue;
                         _objModelMail.From = _objModelMail.From;
                         MailMessage mail = new MailMessage();
                         mail.To.Add(therapist.ElementAt(i).TherapistMail);
@@ -193,12 +208,19 @@ namespace Eli.Controllers
             }
              if (_objModelMail.redirect == "finance")
             {
+                List<tblFinancingFactor> finance = db.FinancingFactor.ToList();
 
+                if (finance.Count() == 0)
+                {
+                    return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "אין גורמים מממנים במערכת-הודעה לא נשלחה", type = "danger" });
+
+                }
                 try
                 {
-                    List<tblFinancingFactor> finance = db.FinancingFactor.ToList();
                     for (int i = 0; i < finance.Count(); i++)
                     {
+                        if (finance.ElementAt(i).FinancingFactorContactMail == null || finance.ElementAt(i).FinancingFactorContactMail == "")
+                            continue;
                         _objModelMail.From = _objModelMail.From;
                         MailMessage mail = new MailMessage();
                         mail.To.Add(finance.ElementAt(i).FinancingFactorContactMail);
@@ -236,8 +258,15 @@ namespace Eli.Controllers
                 try
                 {
                     List<tblParent> parents = db.Parent.ToList();
+                    if (parents.Count() == 0)
+                    {
+                        return RedirectToAction("IndexPatients", "Patient", new { operate = "אין מטופלים במערכת-הודעה לא נשלחה", type = "danger" });
+
+                    }
                     for (int i = 0; i < parents.Count(); i++)
                     {
+                        if (parents.ElementAt(i).ParentMail == null || parents.ElementAt(i).ParentMail == "")
+                            continue;
                         _objModelMail.From = _objModelMail.From;
                         MailMessage mail = new MailMessage();
                         mail.To.Add(parents.ElementAt(i).ParentMail);
