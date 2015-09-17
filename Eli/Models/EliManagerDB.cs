@@ -874,39 +874,6 @@ namespace Eli.Models
 
            }
 
-
-           /*the function return all treatment hours strings*/
-           public List<String> getAllHours()
-           {
-               List<String> list = new List<String>();
-               list.Add("08:00");
-               list.Add("08:30");
-               list.Add("09:00");
-               list.Add("09:30");
-               list.Add("10:00");
-               list.Add("10:30");
-               list.Add("11:00");
-               list.Add("11:30");
-               list.Add("12:00");
-               list.Add("12:30");
-               list.Add("13:00");
-               list.Add("13:30");
-               list.Add("14:00");
-               list.Add("14:30");
-               list.Add("15:00");
-               list.Add("15:30");
-               list.Add("16:00");
-               list.Add("16:30");
-               list.Add("17:00");
-               list.Add("17:30");
-               list.Add("18:00");
-               list.Add("18:30");
-               list.Add("19:00");
-               list.Add("19:30");
-               list.Add("20:00");
-               return list;
-           }
-
            /*the function return all the names of the reports*/
            public List<String> getAllReportNames()
            {
@@ -926,6 +893,18 @@ namespace Eli.Models
             var u = Therapist.Where(t => t.UserName == user.UserName && t.Passcode == user.Password).FirstOrDefault();
 
             return u;
+        }
+
+        /* Check if Not Admin Therepist**/
+        public Boolean isNotAdminTherepist()
+        {
+            var therapists = Therapist.ToList();
+            for (int i = 0; i < therapists.Count(); i++)
+            {
+                if (therapists.ElementAt(i).UserName != "admin")
+                    return true;
+            }
+            return false;
         }
     }
 
