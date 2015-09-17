@@ -109,6 +109,8 @@ namespace Eli.Controllers
                     }
                     for (int i = 0; i < parents.Count(); i++)
                     {
+                        if (parents.ElementAt(i).ParentMail == null || parents.ElementAt(i).ParentMail == "")
+                            continue;
                         _objModelMail.From = _objModelMail.From;
                         MailMessage mail = new MailMessage();
                         mail.To.Add(parents.ElementAt(i).ParentMail);
@@ -170,6 +172,8 @@ namespace Eli.Controllers
                     }
                     for (int i = 0; i < therapist.Count(); i++)
                     {
+                        if (therapist.ElementAt(i).TherapistMail == null || therapist.ElementAt(i).TherapistMail == "")
+                            continue;
                         _objModelMail.From = _objModelMail.From;
                         MailMessage mail = new MailMessage();
                         mail.To.Add(therapist.ElementAt(i).TherapistMail);
@@ -215,6 +219,8 @@ namespace Eli.Controllers
                 {
                     for (int i = 0; i < finance.Count(); i++)
                     {
+                        if (finance.ElementAt(i).FinancingFactorContactMail == null || finance.ElementAt(i).FinancingFactorContactMail == "")
+                            continue;
                         _objModelMail.From = _objModelMail.From;
                         MailMessage mail = new MailMessage();
                         mail.To.Add(finance.ElementAt(i).FinancingFactorContactMail);
@@ -259,6 +265,8 @@ namespace Eli.Controllers
                     }
                     for (int i = 0; i < parents.Count(); i++)
                     {
+                        if (parents.ElementAt(i).ParentMail == null || parents.ElementAt(i).ParentMail == "")
+                            continue;
                         _objModelMail.From = _objModelMail.From;
                         MailMessage mail = new MailMessage();
                         mail.To.Add(parents.ElementAt(i).ParentMail);
