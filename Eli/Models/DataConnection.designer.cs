@@ -3539,6 +3539,9 @@ namespace Eli.Models
 				}
 			}
 		}
+
+                                [Required(ErrorMessage = "שדה חובה")]
+
                         [RegularExpression(@"[0-9]{0,15}$", ErrorMessage = "מחיר חייב להכיל רק מספרים")]
 
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Float")]
