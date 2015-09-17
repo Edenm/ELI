@@ -25,6 +25,15 @@ namespace Eli.Controllers
         public ActionResult Step2(tblPatient pat, string nextBtn)
         {
             EliManagerDB db= new EliManagerDB();
+
+            tblTherapist ther = (tblTherapist)Session["Therapist"];
+            if (ther.UserName == "admin")
+            {
+                ViewBag.operate = "רק מטפל יכול להוסיף מטופלים למערכת";
+                ViewBag.type = "danger";
+                return View("Step1", pat);
+            }                    
+
             if (nextBtn != null)
             {
                 try{

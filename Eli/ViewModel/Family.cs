@@ -12,6 +12,8 @@ namespace Eli.ViewModel
 
         private tblReference reference;
 
+        private tblTreatment treatment;
+
         private tblTherapist therapist;
 
         private List<tblParent> parents;
@@ -35,6 +37,13 @@ namespace Eli.ViewModel
             patient = db.getPatientById(PID);
             brotherSisters = db.getAllBrotherSisterByPatient(PID);
             parents = db.getAllParentsByPatient(PID);
+            
+            treatment = db.getNextTreatmentByPatient(PID);
+            if (treatment!=null)
+            {
+                therapist = db.getTherapistByTreatmentNumber(treatment.TreatmentNumber);
+            }
+                
         }
 
         public tblPatient Patient
@@ -47,6 +56,12 @@ namespace Eli.ViewModel
         {
             get { return reference; }
             set { reference = value; }
+        }
+
+        public tblTreatment NextTreatment
+        {
+            get { return treatment; }
+            set { treatment = value; }
         }
 
         public tblTherapist Therapist

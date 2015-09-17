@@ -36,15 +36,28 @@
                     <th style="text-align: center;">הפניות</th>
                     <th style="text-align: center;">שליחה להורים</th>
                     <th style="text-align: center;">הוספת הורה/אח</th>
+                    <th style="text-align: center;">טיפול הבא</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
+                    string tooltip = "";
+                    string tooltip2 = "";
+                    if (item.NextTreatment != null)
+                    {
+                        tooltip = "הטיפול הבא בתאריך: " + item.NextTreatment.TreatmentDate.Value.ToString("dd-MM-yy");
+                        tooltip2 = "ע''י המטפל: " + item.Therapist.TherapistFirstName + " " + item.Therapist.TherapistSurName;
+                    }
+                    else
+                    {
+                        tooltip = "לא נקבע";
+                    }
+                    
                     <tr align="center">
                         <td>
                             <a data-toggle="modal" href="#@item.Patient.ID">
-                                <div style="color:blue">
+                                <div style="color:blue" data-toggle="tooltip" title=@tooltip>
                                     <u> @item.Patient.ID</u>
                                 </div>
                             </a>
@@ -87,7 +100,7 @@
                                 <img src="~/Images/sibling.png" />
                             </a>
                         </td>
-
+                        <td> @tooltip <br /> @tooltip2</td>
                     </tr>
                     
                 }

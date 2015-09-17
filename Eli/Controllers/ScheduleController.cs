@@ -29,7 +29,7 @@ namespace Eli.Controllers
 
             tblTherapist ther = (tblTherapist)Session["Therapist"];
 
-            var treat = db.getAllTreatmentByTherapist(ther.TherapistID);
+            var treat = db.getAllTreatmentByTherapistFromToday(ther.TherapistID);
 
             foreach (tblTreatment t in treat)
             {

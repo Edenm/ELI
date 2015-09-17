@@ -93,7 +93,6 @@ namespace Eli.Models
         /* The method add patient with all the details about him **/
         public void addPatient(Family family)
         {
-
             var patient = from p in Patients
                           where p.ID.Equals(family.Patient.ID)
                           select p;
@@ -536,7 +535,7 @@ namespace Eli.Models
 
         public tblTherapist getTherapistByMail(string tmail)
         {
-            
+
             return Therapist.Where(t => t.TherapistMail == tmail).FirstOrDefault();
         }
 
@@ -742,11 +741,33 @@ namespace Eli.Models
             return treat;
         }
 
-        public List<tblTreatment> getAllTreatmentByTherapist(string tid)
+        public List<tblTreatment> getAllTreatmentByTherapistFromToday(string tid)
         {
             var treat = Treatment.Where(t => t.TherapistID == tid).Where(t => t.TreatmentDate >= DateTime.Now).OrderBy(t => t.TreatmentDate).ToList();
 
             return treat;
+        }
+
+        public tblTreatment getNextTreatmentByPatient(string pid)
+        {
+            var refe = ReferencePatient.Where(p => p.PatientID == pid).ToList();
+            List<tblTreatment> treat = new List<tblTreatment>();
+
+            foreach (tblTreatment t in Treatment)
+            {
+                foreach (tblRefererencePatient r in refe)
+                {
+                    if(r.ReferenceNumber==t.ReferenceNumber && t.TreatmentDate >= DateTime.Now)
+                    {
+                        treat.Add(t);
+                        break;
+                    }
+                }
+            }
+
+            var nextTreat = treat.OrderBy(t => t.TreatmentDate).OrderBy(t => t.TreatmentDate).FirstOrDefault();
+
+            return nextTreat;
         }
 
         public List<tblReference> getAllReferencesByPatientAndTherapist(string pid, string tid)
@@ -862,6 +883,7 @@ namespace Eli.Models
                list.Add("08:30");
                list.Add("09:00");
                list.Add("09:30");
+               list.Add("10:00");
                list.Add("10:30");
                list.Add("11:00");
                list.Add("11:30");
