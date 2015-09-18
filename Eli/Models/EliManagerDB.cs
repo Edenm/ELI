@@ -748,6 +748,13 @@ namespace Eli.Models
             return treat;
         }
 
+        public List<tblTreatment> getAllTreatmentFromToday()
+        {
+            var treat = Treatment.Where(t => t.TreatmentDate >= DateTime.Now).OrderBy(t => t.TreatmentDate).ToList();
+
+            return treat;
+        }
+
         public List<tblTreatment> getAllTreatmentByTherapistFromToday(string tid)
         {
             var treat = Treatment.Where(t => t.TherapistID == tid).Where(t => t.TreatmentDate >= DateTime.Now).OrderBy(t => t.TreatmentDate).ToList();

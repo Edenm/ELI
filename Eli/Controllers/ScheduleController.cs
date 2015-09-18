@@ -28,9 +28,18 @@ namespace Eli.Controllers
             List<Treatment> treatments = new List<Treatment>();
 
             tblTherapist ther = (tblTherapist)Session["Therapist"];
+            List<tblTreatment> treat;
 
-            var treat = db.getAllTreatmentByTherapistFromToday(ther.TherapistID);
+            if (ther.UserName != "admin")
+            {
+                treat = db.getAllTreatmentByTherapistFromToday(ther.TherapistID);
+            }
+            else
+            {
+                treat = db.getAllTreatmentFromToday();
+            }
 
+           
             foreach (tblTreatment t in treat)
             {
                 treatments.Add(new Treatment(t.TreatmentNumber));

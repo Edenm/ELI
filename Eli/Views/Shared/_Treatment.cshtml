@@ -9,7 +9,7 @@
     string submit;
     string strTitle;
     DateTime start = DateTime.Now;
-
+    tblTherapist ther = (tblTherapist)Session["Therapist"];
     if (Model.TreatmentDate == null)
     {
         Model.TreatmentDate = start;
@@ -43,6 +43,15 @@
         <div class="modal-body">
             @using (Html.BeginForm("IndexTreatment", "Treatment", new { pid = @ViewBag.pid }, FormMethod.Post))
             {
+                if (ther.UserName == "admin")
+                {
+                    if (Model.TreatmentNumber != 0) { 
+                        tblTherapist tempTher = db.getTherapistByTreatmentNumber(Model.TreatmentNumber);
+                        string str = "מטפל: " + tempTher.TherapistFirstName + " " + tempTher.TherapistSurName;
+                        <div class="medium" align="right"><u><b>@str </b></u></div>
+                    }
+                }
+
                 <div class="medium" align="right"><u><b>@strTitle </b></u></div>
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
@@ -275,7 +284,6 @@
                     <input type="text" name="ReferenceNumber" dir="rtl" value="@Model.ReferenceNumber" hidden>
                     <br />
                     @{
-                        tblTherapist ther = (tblTherapist)Session["Therapist"];
                         if (ther.UserName != "admin")
                         {
                             <p>
