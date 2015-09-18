@@ -274,9 +274,15 @@
                     <br />
                     <input type="text" name="ReferenceNumber" dir="rtl" value="@Model.ReferenceNumber" hidden>
                     <br />
-                    <p>
-                        <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
-                    </p>
+                    @{
+                        tblTherapist ther = (tblTherapist)Session["Therapist"];
+                        if (ther.UserName != "admin")
+                        {
+                            <p>
+                                <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
+                            </p>
+                        }
+                    }
                 </fieldset>
             }
         </div>

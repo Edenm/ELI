@@ -83,11 +83,17 @@
             @Html.Partial("_PopUpReference", item, new ViewDataDictionary { { "pid", @ViewBag.Id }, { "name", @ViewBag.Name } });
 
         }
-        <!-- Button trigger modal -->
 
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
-            הוסף הפנייה חדשה
-        </button>
+        @{
+            tblTherapist ther = (tblTherapist)Session["Therapist"];
+            if (ther.UserName != "admin")
+            {
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+                הוסף הפנייה חדשה
+            </button>
+            }
+        }
         <br />
 
         <script>

@@ -12,7 +12,9 @@
     <meta name="viewport" content="width=device-width" />
 </head>
 <body >
-    @{ if (ViewBag.operate != null)
+    @{  
+        tblTherapist ther = (tblTherapist)Session["Therapist"];
+        if (ViewBag.operate != null)
         {
             @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
         }
@@ -35,7 +37,10 @@
                     <th style="text-align: center;">משפחה</th>
                     <th style="text-align: center;">הפניות</th>
                     <th style="text-align: center;">שליחה להורים</th>
-                    <th style="text-align: center;">הוספת הורה/אח</th>
+                    @if (ther.UserName != "admin")
+                    {
+                        <th style="text-align: center;">הוספת הורה/אח</th>
+                    }
                     <th style="text-align: center;">טיפול הבא</th>
                 </tr>
             </thead>
@@ -88,6 +93,8 @@
                                 <img src="~/Images/Mail-32.png" />
                             </a>
                         </td>
+                        @if (ther.UserName != "admin")
+                        {
                         <td>
                             @{
                                 string idAddParent = "3" + @item.Patient.ID;
@@ -100,6 +107,7 @@
                                 <img src="~/Images/sibling.png" />
                             </a>
                         </td>
+                        }
                         <td> @tooltip <br /> @tooltip2</td>
                     </tr>
                     

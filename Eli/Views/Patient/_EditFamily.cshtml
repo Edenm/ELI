@@ -116,10 +116,14 @@ string idCollapse = "collapseContact" + Model.Patient.ID;
                         </div>
                     </div>
 
-
-                    <p dir="rtl">
-                        <input type="submit" class="btn btn-primary btn-lg" value="שמור" />
-                    </p>
+                        tblTherapist ther = (tblTherapist)Session["Therapist"];
+                        if (ther.UserName != "admin")
+                        {
+                            <p dir="rtl">
+                                <input type="submit" class="btn btn-primary btn-lg" value="שמור" />
+                            </p>
+                        }
+                   
                 }
 
             </div>

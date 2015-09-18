@@ -45,9 +45,14 @@
                                         <fieldset align="right" dir="rtl">
                                             @Html.Partial("_Reference", Model)
                                             <br />
-                                            <p>
-                                                <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
-                                            </p>
+                                            @{tblTherapist ther = (tblTherapist)Session["Therapist"];
+                                                  if (ther.UserName != "admin")
+                                                  {
+                                                    <p>
+                                                        <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
+                                                    </p>
+                                                    }
+                                             }
                                         </fieldset>
                                 }
                             </div>

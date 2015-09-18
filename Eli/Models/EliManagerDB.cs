@@ -741,6 +741,13 @@ namespace Eli.Models
             return treat;
         }
 
+        public List<tblTreatment> getAllTreatmentByReference(int refNum)
+        {
+            var treat = Treatment.Where(t => t.ReferenceNumber == refNum).ToList();
+
+            return treat;
+        }
+
         public List<tblTreatment> getAllTreatmentByTherapistFromToday(string tid)
         {
             var treat = Treatment.Where(t => t.TherapistID == tid).Where(t => t.TreatmentDate >= DateTime.Now).OrderBy(t => t.TreatmentDate).ToList();
@@ -776,6 +783,15 @@ namespace Eli.Models
             var referencesListByTherapist = ReferenceTherapist.Where(t => t.TherapistID == tid).Select(re => re.ReferenceNumber).ToList();
 
             var refe = Reference.Where(r => referencesListByPatient.Contains(r.ReferenceNumber) && referencesListByTherapist.Contains(r.ReferenceNumber)).ToList();
+
+            return refe;
+        }
+
+        public List<tblReference> getAllReferencesByPatient(string pid)
+        {
+            var referencesListByPatient = ReferencePatient.Where(p => p.PatientID == pid).Select(re => re.ReferenceNumber).ToList();
+
+            var refe = Reference.Where(r => referencesListByPatient.Contains(r.ReferenceNumber)).ToList();
 
             return refe;
         }

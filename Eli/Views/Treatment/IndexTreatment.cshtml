@@ -91,10 +91,16 @@
             @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", @ViewBag.Id } });  
     }
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
-        הוסף טיפול חדש
-    </button>  
+    @{
+        tblTherapist ther = (tblTherapist)Session["Therapist"];
+        if (ther.UserName != "admin")
+        {
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+                הוסף טיפול חדש
+            </button>  
+        }
+    }
     <br />
 
 

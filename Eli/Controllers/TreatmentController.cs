@@ -21,7 +21,17 @@ namespace Eli.Controllers
 
             tblTherapist ther = (tblTherapist)Session["Therapist"];
 
-            var treat = db.getAllTreatmentByReferenceAndTherapist(rid, ther.TherapistID);
+            List<tblTreatment> treat = null;
+
+            if (ther.UserName != "admin")
+            {
+                treat = db.getAllTreatmentByReferenceAndTherapist(rid, ther.TherapistID);
+            }
+            else
+            {
+                treat = db.getAllTreatmentByReference(rid);
+            }
+ 
 
             foreach (tblTreatment t in treat)
             {

@@ -9,7 +9,7 @@
 @{string id;
  
 string submit;
-string str;
+string str="";
 string str1;
 DateTime start = DateTime.Now;
 
@@ -33,6 +33,10 @@ else
     str = "עריכת מטפל: " + @strTitle;
     str1 = "3" + @Model.TherapistID;
 }
+if (Model.UserName=="admin")
+{
+    str = "Admin - עריכת מנהל";
+}
 }
 
 
@@ -52,176 +56,185 @@ else
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
 
-    <fieldset align="right" dir="rtl">
-        @{ if (Model.TherapistID == null)
-         {
-            <label float:right class="description" for="element_1">
-                תעודת זהות
-            </label>
-            <div float:right; dir="rtl" class="editor-field">
-                @Html.EditorFor(model => model.TherapistID, new { StringLength = 9 })
-                @Html.ValidationMessageFor(model => model.TherapistID)
-            </div>
-         }
-         else
-         {
-            @Html.HiddenFor(model => model.TherapistID)
-         }
-        }
-        <table >
-            <tr>
-                <td>
+                <fieldset align="right" dir="rtl">
+                    @{if (@Model.UserName != "admin") { 
+                        if (Model.TherapistID == null)
+                        {
+                        <label float:right class="description" for="element_1">
+                            תעודת זהות
+                        </label>
+                        <div float:right; dir="rtl" class="editor-field">
+                            @Html.EditorFor(model => model.TherapistID, new { StringLength = 9 })
+                            @Html.ValidationMessageFor(model => model.TherapistID)
+                        </div>
+                     }
+                     else
+                     {
+                        @Html.HiddenFor(model => model.TherapistID)
+                     }
+                    
+                    <table >
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    שם פרטי
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    שם משפחה
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TherapistFirstName)
+                                    @Html.ValidationMessageFor(model => model.TherapistFirstName)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TherapistSurName)
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TherapistSurName)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    תאריך לידה
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    מגדר
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TherapistBirthDate)
+                                    @Html.ValidationMessageFor(model => model.TherapistBirthDate)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div style="text-align:right; float:right;">
+                                    <select dir="rtl" class="element select" id="TherapistGender" name="TherapistGender" style="width: 300px; height: 30px">
+                                        @if (@Model.TherapistGender == "נקבה")
+                                        {
+                                            <option selected="selected" value="נקבה">נקבה</option>
+                                            <option value="זכר">זכר</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected="selected" value="זכר">זכר</option>
+                                            <option value="נקבה">נקבה</option>
+                                        }
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label float:right class="description" for="element_1">
+                                    כתובת
+                                </label>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <label float:right class="description" for="element_1">
+                                    מספר טלפון
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TherapistAddress)
+                                    @Html.ValidationMessageFor(model => model.TherapistAddress)
+                                </div>
+                            </td>
+                            <td style="padding-right:2%;">
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.TherapistPhoneNumber, new { StringLength = 10 })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.TherapistPhoneNumber)
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+
                     <label float:right class="description" for="element_1">
-                        שם פרטי
+                        דואר אלקטרוני
                     </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        שם משפחה
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TherapistFirstName)
-                        @Html.ValidationMessageFor(model => model.TherapistFirstName)
+                        @Html.EditorFor(model => model.TherapistMail)
+                        @Html.ValidationMessageFor(model => model.TherapistMail)
                     </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TherapistSurName)
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TherapistSurName)
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label float:right class="description" for="element_1">
-                        תאריך לידה
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        מגדר
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TherapistBirthDate)
-                        @Html.ValidationMessageFor(model => model.TherapistBirthDate)
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div style="text-align:right; float:right;">
-                        <select dir="rtl" class="element select" id="TherapistGender" name="TherapistGender" style="width: 300px; height: 30px">
-                            @if (@Model.TherapistGender == "נקבה")
-                            {
-                                <option selected="selected" value="נקבה">נקבה</option>
-                                <option value="זכר">זכר</option>
+                    }
+                    
+
+                     tblTherapist ther = (tblTherapist)Session["Therapist"];
+                        if (ther.TherapistID.Equals(Model.TherapistID) || @Model.TherapistID == null)
+                        {
+                            if (Model.UserName != "admin")
+                            { 
+                                <label float:right class="description" for="element_1">
+                                    שם משתמש
+                                </label>
+                                <div float:right; dir="rtl" class="editor-field">
+                                    @Html.EditorFor(model => model.UserName)
+                                    @Html.ValidationMessageFor(model => model.UserName)
+                                </div>
                             }
                             else
                             {
-                                <option selected="selected" value="זכר">זכר</option>
-                                <option value="נקבה">נקבה</option>
+                                <br>
                             }
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label float:right class="description" for="element_1">
-                        כתובת
-                    </label>
-                </td>
-                <td style="padding-right:2%;">
-                    <label float:right class="description" for="element_1">
-                        מספר טלפון
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TherapistAddress)
-                        @Html.ValidationMessageFor(model => model.TherapistAddress)
-                    </div>
-                </td>
-                <td style="padding-right:2%;">
-                    <div float:right; dir="rtl" class="editor-field">
-                        @Html.EditorFor(model => model.TherapistPhoneNumber, new { StringLength = 10 })
-                        <br />
-                        @Html.ValidationMessageFor(model => model.TherapistPhoneNumber)
-                    </div>
-                </td>
-            </tr>
-        </table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label float:right class="description" for="element_1">
+                                            סיסמא
+                                        </label>
+                                    </td>
+                                    <td style="padding-right:2%;">
+                                        <label float:right class="description" for="element_1">
+                                            אימות סיסמא
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div float:right; dir="rtl" class="editor-field">
+                                            @Html.EditorFor(model => model.Passcode)
+                                            <br>
+                                            @Html.ValidationMessageFor(model => model.Passcode)
+                                        </div>
+                                    </td>
+                                    <td style="padding-right:2%;">
+                                        <div float:right; dir="rtl" class="editor-field">
+                                            @Html.EditorFor(model => model.PasscodeConfirm)
+                                            <br>
+                                            @Html.ValidationMessageFor(model => model.PasscodeConfirm)
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <p>
+                                <input type="submit" class="btn btn-primary btn-lg" onsubmit="return runSearch();" name="submit" value="@submit" />
+                            </p>
+                        }
 
-
-
-
-
-        <label float:right class="description" for="element_1">
-            דואר אלקטרוני
-        </label>
-        <div float:right; dir="rtl" class="editor-field">
-            @Html.EditorFor(model => model.TherapistMail)
-            @Html.ValidationMessageFor(model => model.TherapistMail)
-        </div>
-        
-
-            @{tblTherapist ther = (tblTherapist)Session["Therapist"];
-            if (ther.TherapistID.Equals(Model.TherapistID) || @Model.TherapistID == null)
-            {
-                <label float:right class="description" for="element_1">
-                    שם משתמש
-                </label>
-                <div float:right; dir="rtl" class="editor-field">
-                    @Html.EditorFor(model => model.UserName)
-                    @Html.ValidationMessageFor(model => model.UserName)
-                </div>
-                <table>
-                    <tr>
-                        <td>
-                            <label float:right class="description" for="element_1">
-                                סיסמא
-                            </label>
-                        </td>
-                        <td style="padding-right:2%;">
-                            <label float:right class="description" for="element_1">
-                                אימות סיסמא
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.Passcode)
-                                <br>
-                                @Html.ValidationMessageFor(model => model.Passcode)
-                            </div>
-                        </td>
-                        <td style="padding-right:2%;">
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.PasscodeConfirm)
-                                <br>
-                                @Html.ValidationMessageFor(model => model.PasscodeConfirm)
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <br />
-                <p>
-                    <input type="submit" class="btn btn-primary btn-lg" onsubmit="return runSearch();" name="submit" value="@submit" />
-                </p>
-            }
-
-            }
-            </fieldset>
+                        }
+                        </fieldset>
             }
 
         </div>

@@ -19,7 +19,17 @@ namespace Eli.Controllers
             EliManagerDB db= new EliManagerDB();
 
             tblTherapist ther = (tblTherapist)Session["Therapist"];
-            var refe = db.getAllReferencesByPatientAndTherapist(pid, ther.TherapistID);
+
+            List<tblReference> refe=null;
+
+            if (ther.UserName != "admin")
+            {
+                refe = db.getAllReferencesByPatientAndTherapist(pid, ther.TherapistID);
+            }
+            else
+            {
+                refe = db.getAllReferencesByPatient(pid);
+            }
 
             refe.Add(new tblReference());
 

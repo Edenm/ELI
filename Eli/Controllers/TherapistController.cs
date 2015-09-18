@@ -30,7 +30,7 @@ namespace Eli.Controllers
         public ActionResult IndexTherapist(tblTherapist tt, string submit)
         {
                 EliManagerDB db = new EliManagerDB();
-
+                tblTherapist ther = (tblTherapist)Session["Therapist"];
                 ViewBag.type = "success";
                 try{
                     if (submit.Equals("צור")){
@@ -38,8 +38,15 @@ namespace Eli.Controllers
                             ViewBag.operate = "מטפל התווסף בהצלחה";
                     }
                     else{
-                            db.EditTherapist(tt);
-                            ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
+                        if (ther.UserName == "admin")
+                        {
+                            string pass= tt.Passcode;
+                            tt = ther;
+                            ther.Passcode = pass;
+                            ther.PasscodeConfirm = pass;
+                        }
+                        db.EditTherapist(tt);
+                        ViewBag.operate = "פרטי מטפל התעדכנו בהצלחה";
                     }
                  }
                
