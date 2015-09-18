@@ -180,7 +180,7 @@ namespace Eli.Controllers
                 if (db.getNumPatientPerFinance(fin.ElementAt(i).FinancingFactorName) == 0)
                 {
                     htw.Write("<br><table><tr><td colspan='3'><h3><u><b>" + fin.ElementAt(i).FinancingFactorName + "<b></u></h3></td></tr>");
-                    htw.Write("<table><tr><td colspan='3'><b> אין מטופלים עבור גורם מממן  " + fin.ElementAt(i).FinancingFactorName + "  מייל: " + mail + "<b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b> אין מטופלים עבור גורם מממן  " + fin.ElementAt(i).FinancingFactorName + ",  מייל: " + mail + "<b></td></tr>");
                     grid.RenderControl(htw);
 
                     Response.Output.Write(sw.ToString());
