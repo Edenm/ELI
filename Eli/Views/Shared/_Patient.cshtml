@@ -1,4 +1,5 @@
 ﻿@model Eli.Models.tblPatient
+@using Eli.Models;
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -17,7 +18,17 @@
                            else
                            {
                              string strTitle = Model.FirstName + " " + Model.SurName;
-                            <div class="medium" align="right"><u><b> עריכת פרטי המטופל: @strTitle </b></u></div>
+                             string subTitle = "";
+                             tblTherapist t = (tblTherapist)Session["Therapist"];
+                               if(t.UserName=="admin")
+                               {
+                                   subTitle = "צפייה בפרטי המטופל :";
+                               }
+                               else
+                               {
+                                   subTitle = "עריכת פרטי המטופל :";
+                               }
+                            <div class="medium" align="right"><u><b> @subTitle @strTitle </b></u></div>
                             @Html.HiddenFor(model => model.ID)
                          }
                         }

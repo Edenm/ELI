@@ -20,6 +20,13 @@
       submit = "שמור";
       str = "עריכת הפנייה: " + Model.ReasonReference +" עבור המטופל " + ViewBag.Name;
   }
+  tblTherapist t = (tblTherapist)Session["Therapist"];
+
+  if(t.UserName=="admin")
+  {
+      str = "צפייה בהפנייה: " + Model.ReasonReference + " עבור המטופל " + ViewBag.Name;
+
+  }
 }
 
 

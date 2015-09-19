@@ -51,8 +51,19 @@
                             <th style="text-align: center;">מצב המטופל</th>
                             <th style="text-align: center;">תיאור</th>
                             <th style="text-align: center;">האם שולם?</th>
-                            <th style="text-align: center;">עריכה</th>
-                        </tr>
+                            @{
+                                tblTherapist therap = (tblTherapist)Session["Therapist"];
+                                if (therap.UserName == "admin")
+                                {
+                                    <th style="text-align: center;">פרטים נוספים</th>
+
+                                }
+                                else
+                                {
+                                    <th style="text-align: center;">עריכה</th>
+
+                                }
+                            }                        </tr>
                     </thead>
                     <tbody>
                         @{ int count = 1;}

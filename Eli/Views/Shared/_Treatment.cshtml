@@ -27,6 +27,11 @@
         submit = "שמור";
         strTitle = "עריכת טיפול בנושא: " + Model.TreatmentSubject;
     }
+    tblTherapist t = (tblTherapist)Session["Therapist"];
+    if(t.UserName=="admin")
+    {
+        strTitle = "צפייה בטיפול בנושא: " + Model.TreatmentSubject; 
+    }
 }
 
 

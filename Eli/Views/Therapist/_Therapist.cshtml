@@ -37,6 +37,12 @@ if (Model.UserName=="admin")
 {
     str = "Admin - עריכת מנהל";
 }
+                     tblTherapist t = (tblTherapist)Session["Therapist"];
+
+ if ((Model.UserName != "admin" && t.UserName == "admin") || t.UserName.ToString() != Model.UserName)
+{
+    str = " צפייה בפרטי המטפל: " + Model.TherapistFirstName + " " + Model.TherapistSurName;
+}
 }
 
 
