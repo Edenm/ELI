@@ -539,6 +539,15 @@ namespace Eli.Models
             return Therapist.Where(t => t.TherapistMail == tmail).FirstOrDefault();
         }
 
+        public string getTherapistById(string id)
+        {
+
+            tblTherapist therapist= Therapist.Where(t => t.TherapistID.ToString() == id.ToString()).FirstOrDefault();
+
+            string fullName = therapist.TherapistFirstName + " " + therapist.TherapistSurName;
+            return fullName;
+        }
+
         public String getFinanceNumByName(string name)
         {
             if (name == "הכל")

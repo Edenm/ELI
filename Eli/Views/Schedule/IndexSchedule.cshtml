@@ -11,6 +11,11 @@
     <title></title>
     <meta name="viewport" content="width=device-width" />
 </head>
+@{
+    EliManagerDB db=new EliManagerDB();
+    tblTherapist ther = (tblTherapist)Session["Therapist"];
+   
+}
 <body>
     <div class="big"> יומן טיפולים</div>
     <div align="right" dir="rtl">
@@ -24,6 +29,11 @@
                         <th style="text-align: center;">שעה</th>
                         <th style="text-align: center;">מקום</th>
                         <th style="text-align: center;">שם המטופל </th>
+                        @{if(ther.UserName=="admin")
+                          { 
+                        <th style="text-align: center;">שם המטפל </th>
+                        }
+                        }
                         <th style="text-align: center;">עריכה</th>
                     </tr>
                 </thead>
@@ -41,6 +51,10 @@
                                 <td> @hour.Substring(0, 5)</td>
                                 <td> @item.treatment.TreatmentPlace </td>
                                 <td> @patient </td>
+                            @{if(ther.UserName=="admin")
+                                {
+                                <td> @db.getTherapistById(item.treatment.TherapistID.ToString()) </td>
+                            }}
                                 <td style="text-align: center;">
                                     <a class="btn " src="~/Images/info.png" data-toggle="modal" href="#@item.treatment.TreatmentNumber">
                                         <img src="~/Images/info.png" />
