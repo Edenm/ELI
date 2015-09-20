@@ -16,7 +16,13 @@ namespace Eli.Controllers
         public ActionResult IndexTreatment(int rid, string pid, string operate, string type)
         {
             EliManagerDB db = new EliManagerDB();
-           
+           if(db.FinancingFactor.ToList().Count()==0)
+           {
+               ViewBag.operate = "נא הוסף גורם מממן למערכת";
+               ViewBag.type = "danger";
+               return RedirectToAction("IndexReference", "Reference", new { pid = pid, operate = ViewBag.operate, type = ViewBag.type });
+
+           }
             List<Treatment> treatments = new List<Treatment>();
 
             tblTherapist ther = (tblTherapist)Session["Therapist"];

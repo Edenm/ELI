@@ -3583,7 +3583,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+                                [Required(ErrorMessage = "שדה חובה")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorNumber", DbType="Int")]
 		public System.Nullable<int> FinancingFactorNumber
 		{
