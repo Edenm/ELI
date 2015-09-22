@@ -14,6 +14,7 @@
 <body >
     @{  
         tblTherapist ther = (tblTherapist)Session["Therapist"];
+        EliManagerDB db=new EliManagerDB();
         if (ViewBag.operate != null)
         {
             @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
@@ -49,9 +50,10 @@
                 {
                     string tooltip = "";
                     string tooltip2 = "";
-                    if (item.NextTreatment != null)
+                    String cur_treat = db.getRecenttDateTreatmentByPatientId(item.Patient.ID.ToString());
+                    if (cur_treat != null)
                     {
-                        tooltip = "הטיפול הבא בתאריך: " + item.NextTreatment.TreatmentDate.Value.ToString("dd-MM-yy");
+                        tooltip = "הטיפול הבא בתאריך: " + cur_treat;
                         tooltip2 = "ע''י המטפל: " + item.Therapist.TherapistFirstName + " " + item.Therapist.TherapistSurName;
                     }
                     else

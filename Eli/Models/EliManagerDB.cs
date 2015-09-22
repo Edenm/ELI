@@ -705,6 +705,38 @@ namespace Eli.Models
 
 
          }
+
+        public String getRecenttDateTreatmentByPatientId(String id)
+         {
+             List<tblPatient> pat = Patients.ToList();
+             List<tblRefererencePatient> refpat = ReferencePatient.ToList();
+             List<tblReferenceTherapist> refterapist = ReferenceTherapist.ToList();
+             List<tblTherapist> ter = Therapist.ToList();
+             List<tblTreatment> treat = Treatment.ToList();
+             List<tblFinancingFactor> fin = FinancingFactor.ToList();
+             var temp = (from p in pat
+                         join rp in refpat on p.ID equals rp.PatientID
+                         join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                         join t in ter on rt.TherapistID equals t.TherapistID
+                         join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                         join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                         where p.ID == id.ToString() && tr.TreatmentDate >= DateTime.Now
+                         select new
+                         {
+
+                             tr_date = tr.TreatmentDate.Value,
+
+
+                         }).ToList();
+
+             if (temp.Count() == 0)
+                 return null;
+             return temp.OrderBy(x=>x.tr_date).ToList().FirstOrDefault().tr_date.ToString().Substring(0,10);
+         }
+
+
+
+        
         public tblFinancingFactor getFinancingFactorByTreatmentNumber(int tnum)
         {
             var financeNum = getTreatmentByNumber(tnum).FinancingFactorNumber;
