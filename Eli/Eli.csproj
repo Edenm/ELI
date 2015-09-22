@@ -495,7 +495,6 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\special.css" />
     <Content Include="Scripts\special1.css" />
-    <Content Include="Views\Shared\ReportViewer.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

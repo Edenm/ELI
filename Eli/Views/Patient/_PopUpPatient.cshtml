@@ -20,7 +20,7 @@
                     <br />
                     @{
                         tblTherapist ther = (tblTherapist)Session["Therapist"];
-                        if (ther.UserName != "admin") 
+                        if (Model.PatientStatus=="לא פעיל" || ther.UserName != "admin") 
                         { 
                             <p>
                                 <input type="submit" class="btn btn-primary btn-lg" value="שמירה" />

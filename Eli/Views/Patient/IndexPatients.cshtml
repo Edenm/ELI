@@ -50,7 +50,7 @@
                 {
                     string tooltip = "";
                     string tooltip2 = "";
-                    String cur_treat = db.getRecenttDateTreatmentByPatientId(item.Patient.ID.ToString());
+                    String cur_treat = db.getRecentDateTreatmentByPatientId(item.Patient.ID.ToString());
                     if (cur_treat != null)
                     {
                         tooltip = "הטיפול הבא בתאריך: " + cur_treat;

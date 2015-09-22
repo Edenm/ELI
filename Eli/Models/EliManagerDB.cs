@@ -346,16 +346,21 @@ namespace Eli.Models
         }
 
         /* The method is editing exist Patient**/
-        public void EditPatient(tblPatient pat)
+        public void EditPatient(tblPatient pat, string type)
         {
             var patient = Patients.First(p => p.ID == pat.ID);
-            patient.FirstName = pat.FirstName;
-            patient.SurName = pat.SurName;
-            patient.PatientAddress = pat.PatientAddress;
-            patient.BirthDate = pat.BirthDate;
-            patient.PhoneNumber = pat.PhoneNumber;
-            patient.EducationalFramework = pat.EducationalFramework;
-            patient.Gender = pat.Gender;
+
+            if (type != "admin")
+            {
+                patient.FirstName = pat.FirstName;
+                patient.SurName = pat.SurName;
+                patient.PatientAddress = pat.PatientAddress;
+                patient.BirthDate = pat.BirthDate;
+                patient.PhoneNumber = pat.PhoneNumber;
+                patient.EducationalFramework = pat.EducationalFramework;
+                patient.Gender = pat.Gender;
+            }
+            
             patient.PatientStatus = pat.PatientStatus;
 
             db.SubmitChanges();
@@ -706,7 +711,7 @@ namespace Eli.Models
 
          }
 
-        public String getRecenttDateTreatmentByPatientId(String id)
+        public String getRecentDateTreatmentByPatientId(String id)
          {
              List<tblPatient> pat = Patients.ToList();
              List<tblRefererencePatient> refpat = ReferencePatient.ToList();
@@ -752,7 +757,7 @@ namespace Eli.Models
 
             var refePat = (RefererencePatients.Where(rp => therRrfe.Contains(rp.ReferenceNumber))).Select(rp => rp.PatientID).ToList();
 
-            var pats = (Patients.Where(p => refePat.Contains(p.ID))).ToList();
+            var pats = (Patients.Where(p => refePat.Contains(p.ID) && p.PatientStatus!="לא פעיל")).ToList();
 
             return  pats;
         }

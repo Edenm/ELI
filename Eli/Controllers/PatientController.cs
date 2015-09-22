@@ -56,13 +56,19 @@ namespace Eli.Controllers
         public ActionResult IndexPatients(tblPatient pat)
         {
             EliManagerDB db = new EliManagerDB();
-            string type = "success", operate = "פרטי מטופל עודכנו בהצלחה";
-            String gender = Request.Form["gender"];
-            pat.Gender = gender;
-            String status = Request.Form["status"];
-            pat.PatientStatus = status;
-            db.EditPatient(pat);
+            tblTherapist ther = (tblTherapist)Session["Therapist"];
+            string type = "success", operate = "";
 
+            if (ther.UserName != "admin")
+            {
+                operate = "פרטי מטופל עודכנו בהצלחה";
+            }
+            else
+            {
+                operate = " מנהל יכול לערוך רק סטטוס מטופל, סטטוס נשמר";
+            }
+
+            db.EditPatient(pat, ther.UserName);
             return RedirectToAction("IndexPatients",new { operate = operate, type = type });
         }
 

@@ -39,7 +39,7 @@ if (Model.UserName=="admin")
 }
                      tblTherapist t = (tblTherapist)Session["Therapist"];
 
- if ((Model.UserName != "admin" && t.UserName == "admin") || t.UserName.ToString() != Model.UserName)
+if (@Model.TherapistID != null && ((Model.UserName != "admin" && t.UserName == "admin") || t.UserName.ToString() != Model.UserName))
 {
     str = " צפייה בפרטי המטפל: " + Model.TherapistFirstName + " " + Model.TherapistSurName;
 }
@@ -220,15 +220,15 @@ if (Model.UserName=="admin")
                     </tr>
                     <tr>
                         <td>
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.Passcode)
+                            <div float:right; dir="rtl" class="editor-field password">
+                                @Html.PasswordFor(model => model.Passcode)
                                 <br>
                                 @Html.ValidationMessageFor(model => model.Passcode)
                             </div>
                         </td>
                         <td style="padding-right:2%;">
-                            <div float:right; dir="rtl" class="editor-field">
-                                @Html.EditorFor(model => model.PasscodeConfirm)
+                            <div float:right; dir="rtl" class="editor-field password">
+                                @Html.PasswordFor(model => model.PasscodeConfirm)
                                 <br>
                                 @Html.ValidationMessageFor(model => model.PasscodeConfirm)
                             </div>
