@@ -35,7 +35,7 @@ namespace Eli.Controllers
                 {
                     Session["Therapist"] = ther;
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                  
+                    sendMailInEnter();
                     return RedirectToAction("HomePage", "Login");
                 }
             }
@@ -44,6 +44,76 @@ namespace Eli.Controllers
             return View(new User());
         }
 
+
+
+        private ActionResult sendMailInEnter()
+        {
+            List<String> mails = new List<string>();
+            mails.Add("margulis_shahar@walla.co.il");
+            mails.Add("manoreden@gmail.com");
+
+
+                     string connectionString = SQLConnection.GetConnectionString();
+                     string title = "";
+                        tblTherapist ther = (tblTherapist)Session["Therapist"];
+
+            if(connectionString=="Data Source=SHAHAR-PC\\SQLEXPRESS;Initial Catalog=Eli;Integrated Security=True")
+            {
+                title = ther.UserName + " נכנס למערכת מהמחשב של שחר ב: " + DateTime.Now;
+            }
+            if(connectionString=="Data Source=Eden-PC\\SQLEXPRESS1;Initial Catalog=Eli;Integrated Security=True")
+            {
+                title = ther.UserName + " נכנס למערכת מהמחשב של עדן ב: " + DateTime.Now;
+
+            }
+            if (connectionString == "Data Source=132.75.252.109;Initial Catalog=es2015;Persist Security Info=True;User ID=es2015;Password=th41pn9")
+            {
+                title = ther.UserName + " נכנס למערכת מהמחשב של השרת ב: " + DateTime.Now;
+
+            }
+            string email = "otzmotnoreply@gmail.com";
+            for (int i = 0; i < mails.Count(); i++)
+            {
+                MailMessage mail = new MailMessage();
+                mail.To.Add(mails.ElementAt(i).ToString());
+                // mail.From = new MailAddress(_objModelMail.From);  no need for this line!!!!
+                mail.Subject = title;
+                string Body = "";
+                mail.Body = Body;
+                mail.IsBodyHtml = false;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential
+              (email, "shahareden");// Enter seders User name and password
+                smtp.EnableSsl = true;
+
+               
+                    try
+                    {
+                        smtp.Send(mail);
+
+
+                    }
+                    catch (SmtpException e)
+                    {
+
+                        return RedirectToAction("HomePage", "Login");
+
+                    }
+                    catch (Exception e)
+                    {
+
+                        return RedirectToAction("HomePage", "Login");
+
+                    }
+                }
+            return RedirectToAction("HomePage", "Login");
+
+            
+
+        }
         /** The method transfer HomePage screen */
         [Authorize]
         public ActionResult HomePage()
