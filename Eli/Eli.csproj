@@ -453,6 +453,8 @@
     <Content Include="fonts\GISHABD.TTF" />
     <None Include="Properties\PublishProfiles\MyComp.pubxml" />
     <None Include="Properties\PublishProfiles\Eden.pubxml" />
+    <None Include="Properties\PublishProfiles\tryLocal.pubxml" />
+    <None Include="Properties\PublishProfiles\uploadlocal.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-3.3.2.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -595,7 +597,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55251</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

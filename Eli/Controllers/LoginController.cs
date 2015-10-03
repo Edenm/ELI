@@ -8,6 +8,7 @@ using Eli.Models;
 using System.Web.Security;
 using WebMatrix.WebData;
 using System.Net.Mail;
+using System.Net;
 
 
 namespace Eli.Controllers
@@ -114,6 +115,9 @@ namespace Eli.Controllers
             
 
         }
+
+
+       
         /** The method transfer HomePage screen */
         [Authorize]
         public ActionResult HomePage()
