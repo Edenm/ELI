@@ -254,7 +254,7 @@ namespace Eli.Models
                                 select f;
 
             if (financeFactor.Any())
-                throw new Exception("למערכת, קיים גורם מממן עם שם זהה" +ff.FinancingFactorName+ " לא ניתן להוסיף את");
+                throw new Exception("למערכת, קיים  גורם מממן עם שם " +ff.FinancingFactorName+ " לא ניתן להוסיף את ");
 
             ff.FinancingFactorNumber = FinancingFactor.Count()+1;
 
