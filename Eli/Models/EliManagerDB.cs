@@ -254,7 +254,7 @@ namespace Eli.Models
                                 select f;
 
             if (financeFactor.Any())
-                throw new Exception("למערכת, קיים  גורם מממן עם שם " +ff.FinancingFactorName+ " אנא בחר שם גורם מממן אחר. ");
+                throw new Exception("למערכת קיים  גורם מממן עם שם " + ff.FinancingFactorName + " אנא בחר שם גורם מממן אחר ");
 
             ff.FinancingFactorNumber = FinancingFactor.Count()+1;
 
@@ -318,8 +318,12 @@ namespace Eli.Models
         /* The method is editing exist Finance Factor **/
         public void EditFinanceFactor(tblFinancingFactor ff)
         {
-           
+            var financeFactor = from f in FinancingFactor
+                                where f.FinancingFactorName.Equals(ff.FinancingFactorName)
+                                select f;
 
+            if (financeFactor.Any())
+                throw new Exception("למערכת קיים  גורם מממן עם שם " + ff.FinancingFactorName + " אנא בחר שם גורם מממן אחר ");
 
             var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
             d.FinancingFactorName = ff.FinancingFactorName;
