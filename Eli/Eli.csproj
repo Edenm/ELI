@@ -453,6 +453,7 @@
     <Content Include="fonts\GISHABD.TTF" />
     <None Include="Properties\PublishProfiles\MyComp.pubxml" />
     <None Include="Properties\PublishProfiles\Eden.pubxml" />
+    <None Include="Properties\PublishProfiles\PublishToAnoterComp.pubxml" />
     <None Include="Properties\PublishProfiles\tryLocal.pubxml" />
     <None Include="Properties\PublishProfiles\uploadlocal.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />

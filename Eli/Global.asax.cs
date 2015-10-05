@@ -18,7 +18,7 @@ namespace Eli
         protected void Application_Start()
         {
             //for shahar
-            WebSecurity.InitializeDatabaseConnection("ELIConnectionString", "tblTherapist", "UserName", "Passcode", false);
+            //WebSecurity.InitializeDatabaseConnection("ELIConnectionString", "tblTherapist", "UserName", "Passcode", false);
             //for eden
             //WebSecurity.InitializeDatabaseConnection("ELIConnectionString2", "tblTherapist", "UserName", "Passcode", false);
             //for server
