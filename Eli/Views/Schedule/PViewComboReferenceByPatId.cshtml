@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Eli.Models.tblReference>
+@using Eli.Models
+
+<select dir="rtl" class="element select" id="ReferenceNumber" name="ReferenceNumber" style="width: 300px; height: 30px">
+    @{
+        foreach (tblReference refe in Model)
+        {
+            <option selected="selected" value="@refe.ReferenceNumber">@refe.ReferenceNumber</option>
+        }
+    }
+</select>

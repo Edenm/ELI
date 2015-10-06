@@ -81,9 +81,23 @@
         </div>
     </div>
 
-    @foreach (Treatment item in Model)
+    
+    @{
+    string type="schedule";  
+    foreach (Treatment item in Model)
     {
-        @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", @item.patient.ID } });
+        @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", type } });
+    }
+    }
+
+    @{
+        if (ther.UserName != "admin")
+        {
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+                הוסף טיפול חדש
+            </button>
+        }
     }
 
     <script>

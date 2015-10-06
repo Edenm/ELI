@@ -567,6 +567,7 @@
     <Content Include="Views\Report\PatientReport.cshtml" />
     <Content Include="Views\Report\ContactsPatientsReport.cshtml" />
     <Content Include="Views\Report\PatientByFinanceFactorReport.cshtml" />
+    <Content Include="Views\Schedule\PViewComboReferenceByPatId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

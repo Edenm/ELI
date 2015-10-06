@@ -21,7 +21,7 @@ namespace Eli.Controllers
         //
         // GET: /Schedule/
 
-        public ActionResult IndexSchedule()
+        public ActionResult IndexSchedule(string patId)
         {
             EliManagerDB db = new EliManagerDB();
 
@@ -45,10 +45,29 @@ namespace Eli.Controllers
                 treatments.Add(new Treatment(t.TreatmentNumber));
             }
 
+            Treatment tr = new Treatment();
+            tr.treatment.TherapistID = ther.TherapistID;
+            if (patId != null)
+            {
+                ViewBag.references = db.getAllReferencesByPatient(patId);
+            }
+
+            treatments.Add(tr);
+
             return View(treatments);
         }
 
-        
+
+        public ActionResult FillReference(string pid)
+        {
+            return RedirectToAction("IndexSchedule", new { patId = pid});
+        }
+
+        public ActionResult PViewComboReferenceByPatId(string patId)
+        {
+            EliManagerDB db = new EliManagerDB();
+            return PartialView(db.getAllReferencesByPatient(patId));
+        }
     }
 }
 
