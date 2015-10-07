@@ -5,7 +5,7 @@
 <link href="~/Content/ModalSize.css" rel="stylesheet" />
 
 @{  EliManagerDB db = new EliManagerDB();
-    string id;
+    string id, firstId=null;
     string submit;
     string strTitle;
     DateTime start = DateTime.Now;
@@ -82,11 +82,16 @@
                                 <td>
                                     <div style="text-align:right; float:right;">
                                         <select dir="rtl" class="element select" id="PatientID" name="PatientID" style="width: 300px; height: 30px" onchange="FillRefe()" onclick="FillRefe()">
-                                            @{foreach (tblPatient pat in db.getAllPatientsByTherapist(ther.TherapistID))
-                                            {
-                                                string name = pat.ID + " " + pat.FirstName + " " + pat.SurName;
-                                                <option selected="selected" value="@pat.ID">@name</option>
-                                            }
+                                            @{int count=0;
+                                            foreach (tblPatient pat in db.getAllPatientsByTherapist(ther.TherapistID))
+                                                {
+                                                    if (count==0){
+                                                        firstId=pat.ID;
+                                                    }
+                                                    string name = pat.ID + " " + pat.FirstName + " " + pat.SurName;
+                                                    <option selected="selected" value="@pat.ID">@name</option>
+                                                    count++;
+                                                }
                                             }
                                         </select>
 
@@ -106,6 +111,12 @@
                                 <td>
                                     <div style="text-align:right; float:right;" id="referenceID">
                                         <select dir="rtl" class="element select" id="ReferenceNumber" name="ReferenceNumber" style="width: 300px; height: 30px" > 
+                                            @{
+                                                tblReference refe = db.getFirstReferenceByPatientId(firstId);
+                                                string nameRefe = "הפנייה בנושא " + refe.ReasonReference;
+                                            }
+                                            
+                                            <option selected="selected" value="@refe.ReferenceNumber">@nameRefe</option>
                                         </select>
                                     </div>
                                 </td>

@@ -494,6 +494,15 @@ namespace Eli.Models
             return p;
         }
 
+        public tblReference getFirstReferenceByPatientId(String pId)
+        {
+            var refPat = (ReferencePatient.Where(pat => pat.PatientID == pId)).Select(refere => refere.ReferenceNumber).FirstOrDefault();
+
+            var refe = (Reference.Where(r => r.ReferenceNumber == refPat)).FirstOrDefault();
+
+            return refe;
+        }
+
         public tblPatient getPatientByReferencNumber(int rid)
         {
             var patId = (ReferencePatient.Where(rp => rp.ReferenceNumber == rid)).Select(rp => rp.PatientID).First();

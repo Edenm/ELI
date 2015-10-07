@@ -74,7 +74,7 @@ namespace Eli.Controllers
             if (submit.Equals("צור"))
             {
                 db.addTreatment(treat);
-                ViewBag.operate = "הטיפול התווספף בהצלחה";
+                ViewBag.operate = "הטיפול התווסף בהצלחה";
             }
 
             else
