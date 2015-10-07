@@ -5,7 +5,8 @@
     @{
         foreach (tblReference refe in Model)
         {
-            <option selected="selected" value="@refe.ReferenceNumber">@refe.ReferenceNumber</option>
+            string name = "הפנייה בנושא "+refe.ReasonReference;
+            <option selected="selected" value="@refe.ReferenceNumber">@name</option>
         }
     }
 </select>

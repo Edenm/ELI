@@ -86,7 +86,7 @@
     string type="schedule";  
     foreach (Treatment item in Model)
     {
-        @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", type } });
+        @Html.Partial("_Treatment", item.treatment, new ViewDataDictionary { { "pid", @ViewBag.Id }, { "type", type } });
     }
     }
 

@@ -21,7 +21,7 @@ namespace Eli.Controllers
         //
         // GET: /Schedule/
 
-        public ActionResult IndexSchedule(string patId)
+        public ActionResult IndexSchedule()
         {
             EliManagerDB db = new EliManagerDB();
 
@@ -47,10 +47,6 @@ namespace Eli.Controllers
 
             Treatment tr = new Treatment();
             tr.treatment.TherapistID = ther.TherapistID;
-            if (patId != null)
-            {
-                ViewBag.references = db.getAllReferencesByPatient(patId);
-            }
 
             treatments.Add(tr);
 

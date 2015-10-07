@@ -32,7 +32,7 @@
     {
         strTitle = "צפייה בטיפול בנושא: " + Model.TreatmentSubject; 
     }
-    if (ViewBag.pid == "schedule")
+    if (ViewBag.type == "schedule" && id == "new")
     {
         strTitle = "הוספת טיפול";
     }
@@ -68,7 +68,8 @@
                 <fieldset align="right" dir="rtl">
                     <legend>tblTreatment</legend>
                     @Html.HiddenFor(model => model.TreatmentNumber)
-                    @if (ViewBag.pid == "schedule"){
+                    @if (ViewBag.type == "schedule" && id == "new")
+                    {
                         <table>
                             <tr>
                                 <td>
@@ -333,7 +334,7 @@
                     </table>
 
                     
-                    @if (ViewBag.pid != "schedule")
+                    @if (ViewBag.type != "schedule" || id != "new")
                     {
                         <br />
                         <input type="text" name="ReferenceNumber" dir="rtl" value="@Model.ReferenceNumber" hidden>
@@ -360,6 +361,8 @@
         document.getElementById("finance").value = x;
     }
 
+   
+
     function FillRefe() {
         $.ajax({
             url: "/Schedule/PViewComboReferenceByPatId",
@@ -367,7 +370,6 @@
             dataType: "html",
             data: { patId: $("#PatientID").val() },
             success: function (data) {
-                alert(data);
                 $('#referenceID').html(data);
             }
         });

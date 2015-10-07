@@ -83,10 +83,10 @@ namespace Eli.Controllers
                 ViewBag.operate = "פרטי הטיפול התעדכנו בהצלחה";
             }
 
-            var refId = treat.ReferenceNumber;
-            var patId = pid;
+            int refId = (int)treat.ReferenceNumber;
+            tblPatient patId = db.getPatientByReferencNumber(refId);
 
-            return RedirectToAction("IndexTreatment", new { rid = refId, pid = patId, operate = ViewBag.operate, type = ViewBag.type });
+            return RedirectToAction("IndexTreatment", new { rid = refId, pid = patId.ID, operate = ViewBag.operate, type = ViewBag.type });
         }
 
     }
