@@ -97,11 +97,8 @@
                                                 }
                                                 count++;
                                             }
-}
+                                        }
                                         </select>
-
-
-
                                     </div>
                                 </td>
                             </tr>
@@ -115,7 +112,7 @@
                             <tr>
                                 <td>
                                     <div style="text-align:right; float:right;" id="referenceID">
-                                            @Html.Partial("PViewComboReferenceByPatId", db.getAllReferencesByPatient(firstId));
+                                            @Html.Partial("PViewComboReferenceByPatId", db.getAllReferencesByPatient(firstId))
                                     </div>
                                 </td>
                             </tr>
@@ -370,11 +367,11 @@
         document.getElementById("finance").value = x;
     }
 
-   
+
 
     function FillRefe() {
         $.ajax({
-            url: "/Schedule/PViewComboReferenceByPatId",
+            url: '@Url.Action("PViewComboReferenceByPatId", "Schedule")' ,
             type: "POST",
             dataType: "html",
             data: { patId: $("#PatientID").val() },
