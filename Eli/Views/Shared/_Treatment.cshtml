@@ -82,17 +82,22 @@
                                 <td>
                                     <div style="text-align:right; float:right;">
                                         <select dir="rtl" class="element select" id="PatientID" name="PatientID" style="width: 300px; height: 30px" onchange="FillRefe()" onclick="FillRefe()">
-                                            @{int count=0;
+                                            @{int count = 0;
                                             foreach (tblPatient pat in db.getAllPatientsByTherapist(ther.TherapistID))
+                                            {
+                                                string name = pat.ID + " " + pat.FirstName + " " + pat.SurName;
+                                                if (count == 0)
                                                 {
-                                                    if (count==0){
-                                                        firstId=pat.ID;
-                                                    }
-                                                    string name = pat.ID + " " + pat.FirstName + " " + pat.SurName;
+                                                    firstId = pat.ID;
                                                     <option selected="selected" value="@pat.ID">@name</option>
-                                                    count++;
                                                 }
+                                                else
+                                                {
+                                                    <option value="@pat.ID">@name</option>
+                                                }
+                                                count++;
                                             }
+}
                                         </select>
 
 
@@ -110,14 +115,7 @@
                             <tr>
                                 <td>
                                     <div style="text-align:right; float:right;" id="referenceID">
-                                        <select dir="rtl" class="element select" id="ReferenceNumber" name="ReferenceNumber" style="width: 300px; height: 30px" > 
-                                            @{
-                                                tblReference refe = db.getFirstReferenceByPatientId(firstId);
-                                                string nameRefe = "הפנייה בנושא " + refe.ReasonReference;
-                                            }
-                                            
-                                            <option selected="selected" value="@refe.ReferenceNumber">@nameRefe</option>
-                                        </select>
+                                            @Html.Partial("PViewComboReferenceByPatId", db.getAllReferencesByPatient(firstId));
                                     </div>
                                 </td>
                             </tr>
