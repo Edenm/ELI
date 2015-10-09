@@ -820,7 +820,7 @@ namespace Eli.Models
         [RegularExpression(@"[^0-9]{0,50}$", ErrorMessage = "שם  גורם מממן אינו יכול להכיל מספרים")]
 
 	
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorName", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancingFactorName", DbType="varchar(MAX)")]
 		public string FinancingFactorName
 		{
 			get
