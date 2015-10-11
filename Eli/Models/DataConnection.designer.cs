@@ -1888,7 +1888,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+                                [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail1", DbType="VarChar(30)")]
 		public string ContactMail1
 		{
@@ -1908,7 +1910,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+
+        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPhone1", DbType="VarChar(10)")]
 		public string ContactPhone1
 		{
@@ -1968,7 +1973,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+                                [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail2", DbType="VarChar(30)")]
 		public string ContactMail2
 		{
@@ -1988,7 +1995,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+
+        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPhone2", DbType="VarChar(10)")]
 		public string ContactPhone2
 		{
@@ -2048,7 +2058,9 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+          [RegularExpression(".+@.+\\..+", ErrorMessage = "אנא הכנס כתובת מייל תקינה")]
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactMail3", DbType="VarChar(30)")]
 		public string ContactMail3
 		{
@@ -2068,7 +2080,10 @@ namespace Eli.Models
 				}
 			}
 		}
-		
+
+        [RegularExpression(@"^0[0-9]{0,15}$", ErrorMessage = "טלפון לא חוקי")]
+
+        [StringLength(10, ErrorMessage = "מספר פלא חייב להכיל 10 ספרות", MinimumLength = 10)]
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPhone3", DbType="VarChar(10)")]
 		public string ContactPhone3
 		{

@@ -24,7 +24,7 @@
     </td>
     <td class="col-sm-1">
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.ContactPhone1, new { @class = "col-sm-12" })
+            @Html.TextBoxFor(model => model.ContactPhone1, new { @class = "col-sm-12", StringLength = 10 })
             @Html.ValidationMessageFor(model => model.ContactPhone1)
         </div>
     </td>
@@ -50,7 +50,7 @@
     </td>
     <td class="col-sm-1">
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.ContactPhone2, new { @class = "col-sm-12" })
+            @Html.TextBoxFor(model => model.ContactPhone2, new { @class = "col-sm-12", StringLength = 10 })
             @Html.ValidationMessageFor(model => model.ContactPhone2)
         </div>
     </td>
@@ -76,7 +76,7 @@
     </td>
     <td class="col-sm-1">
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.ContactPhone3, new { @class = "col-sm-12" })
+            @Html.TextBoxFor(model => model.ContactPhone3, new { @class = "col-sm-12", StringLength = 10 })
             @Html.ValidationMessageFor(model => model.ContactPhone3)
         </div>
     </td>

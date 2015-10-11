@@ -17,14 +17,16 @@ namespace Eli
     {
         protected void Application_Start()
         {
+
+
             //for shahar
-            //WebSecurity.InitializeDatabaseConnection("ELIConnectionString", "tblTherapist", "UserName", "Passcode", false);
+            WebSecurity.InitializeDatabaseConnection("ELIConnectionString", "tblTherapist", "UserName", "Passcode", false);
             //for eden
             //WebSecurity.InitializeDatabaseConnection("ELIConnectionString2", "tblTherapist", "UserName", "Passcode", false);
             //for server
             //WebSecurity.InitializeDatabaseConnection("ELIConnectionString3", "tblTherapist", "UserName", "Passcode", false);
             //for Hila
-            WebSecurity.InitializeDatabaseConnection("ELIConnectionString4", "tblTherapist", "UserName", "Passcode", false);
+           // WebSecurity.InitializeDatabaseConnection("ELIConnectionString4", "tblTherapist", "UserName", "Passcode", false);
 
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
