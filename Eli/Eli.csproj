@@ -450,6 +450,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\GISHA.TTF" />
     <Content Include="fonts\GISHABD.TTF" />
+    <None Include="Properties\PublishProfiles\demo.pubxml" />
     <None Include="Properties\PublishProfiles\MyComp.pubxml" />
     <None Include="Properties\PublishProfiles\Eden.pubxml" />
     <None Include="Properties\PublishProfiles\PublishToAnoterComp.pubxml" />
