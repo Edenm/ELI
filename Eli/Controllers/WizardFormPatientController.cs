@@ -185,6 +185,7 @@ namespace Eli.Controllers
                     try
                     {
                         db.addPatient(fam);
+                        RemoveFamily();
                     }
                     catch(Exception ex)
                     {
