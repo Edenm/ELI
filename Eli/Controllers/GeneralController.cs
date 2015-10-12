@@ -46,13 +46,13 @@ namespace Eli.Controllers
                   return RedirectToAction("IndexTherapist", "Therapist", new { operate = operate, type = type });
 
               }
-              catch (SmtpException e)
+              catch (SmtpException )
               {
 
                   return RedirectToAction("IndexTherapist", "Therapist", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
               }
-              catch (Exception e)
+              catch (Exception )
               {
 
                   return RedirectToAction("IndexTherapist", "Therapist", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
@@ -68,13 +68,13 @@ namespace Eli.Controllers
                     return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = operate, type = type });
 
                 }
-                catch (SmtpException e)
+                catch (SmtpException )
                 {
 
                     return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
 
                     return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
@@ -136,13 +136,13 @@ namespace Eli.Controllers
                 return RedirectToAction("IndexPatients", "Patient",new { operate = "ההודעה נשלחה בהצלחה", type = "success" });
             }
             
-            catch (SmtpException e)
+            catch (SmtpException )
             {
 
                 return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
             }
-            catch (Exception e)
+            catch (Exception )
             {
 
                 return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
@@ -194,12 +194,12 @@ namespace Eli.Controllers
 
                     return RedirectToAction("IndexTherapist", "Therapist",new { operate = "ההודעה נשלחה בהצלחה", type = "success" });
                 }
-                catch (SmtpException e)
+                catch (SmtpException )
                 {
                     return RedirectToAction("IndexTherapist", "Therapist", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
                     return RedirectToAction("IndexTherapist", "Therapist", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
@@ -241,12 +241,12 @@ namespace Eli.Controllers
 
                     return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה נשלחה בהצלחה", type = "success" });
                 }
-                catch (SmtpException e)
+                catch (SmtpException )
                 {
                     return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
                     return RedirectToAction("IndexFinancingFactor", "FinanceFactor", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
@@ -287,12 +287,12 @@ namespace Eli.Controllers
 
                     return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה נשלחה בהצלחה", type = "success" });
                 }
-                catch (SmtpException e)
+                catch (SmtpException )
                 {
                     return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
                     return RedirectToAction("IndexPatients", "Patient", new { operate = "ההודעה לא נשלחה.אנא בדוק סיסמא או הגדרות אבטחה של המייל", type = "danger" });
 

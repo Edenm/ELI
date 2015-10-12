@@ -97,13 +97,13 @@ namespace Eli.Controllers
 
 
                     }
-                    catch (SmtpException e)
+                    catch (SmtpException )
                     {
 
                         return RedirectToAction("HomePage", "Login");
 
                     }
-                    catch (Exception e)
+                    catch (Exception )
                     {
 
                         return RedirectToAction("HomePage", "Login");
