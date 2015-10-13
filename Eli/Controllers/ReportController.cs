@@ -79,7 +79,7 @@ namespace Eli.Controllers
             tblPatient tempPatient = new tblPatient();
             tblFinancingFactor tempFinanceNext = new tblFinancingFactor();
             PatientByFinanceFactor temp = new PatientByFinanceFactor();
-            Boolean flagJustOne = false;
+            Boolean flagJustOne=false,isOver = false;
             int NextId = 0;
             int CurId = 0;
 
@@ -95,7 +95,7 @@ namespace Eli.Controllers
                 Command += "where finan.FinancingFactorName='" + FinancingFactorName + "' ";
                 flagJustOne = true;
             }
-            Command += "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber desc";
+            Command += "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber asc";
 
             using (SqlConnection mConnection = new SqlConnection(connectionString))
             {
@@ -108,6 +108,13 @@ namespace Eli.Controllers
                         {
                             while (true)
                             {
+                                if (isOver)
+                                {
+                                    break;
+                                }
+
+                                pats = new List<tblPatient>();
+
                                 CurId = (Int32)reader[0];
                                 NextId = (Int32)reader[0];
 
@@ -123,65 +130,39 @@ namespace Eli.Controllers
                                     FirstName = (string)reader[4],
                                     SurName = (string)reader[5]
                                 };
-
                                 pats.Add(tempPatient);
-
-                                while (NextId == CurId && reader.Read())
+                                while (NextId == CurId)// && reader.Read())
                                 {
-
-                                    NextId = (Int32)reader[0];
-
-                                    tempPatient = new tblPatient()
+                                    if (reader.Read())
                                     {
-                                        ID = (string)reader[3],
-                                        FirstName = (string)reader[4],
-                                        SurName = (string)reader[5]
-                                    };
-
-                                    if (NextId == CurId)
-                                    {
-                                        pats.Add(tempPatient);
+                                        NextId = (Int32)reader[0];
+                                        if (NextId == CurId)
+                                        {
+                                            tempPatient = new tblPatient()
+                                            {
+                                                ID = (string)reader[3],
+                                                FirstName = (string)reader[4],
+                                                SurName = (string)reader[5]
+                                            };
+                                            pats.Add(tempPatient);
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
                                     }
                                     else
                                     {
-                                        temp = new PatientByFinanceFactor()
-                                        {
-                                            Patients = pats,
-                                            FinancingFactor = tempFinance
-                                        };
-
-                                        Result.Add(temp);
-                                        pats = new List<tblPatient>();
-                                        pats.Add(tempPatient);
-
-                                        tempFinanceNext = new tblFinancingFactor()
-                                        {
-                                            FinancingFactorName = (string)reader[1],
-                                            FinancingFactorType = (string)reader[2]
-                                        };
-
+                                        isOver = true;
+                                        break;
                                     }
                                 }
-                                if (flagJustOne)
+                                temp = new PatientByFinanceFactor()
                                 {
-                                    temp = new PatientByFinanceFactor()
-                                    {
-                                        Patients = pats,
-                                        FinancingFactor = tempFinance
-                                    };
-                                    Result.Add(temp);
-                                    break;
-                                }
-                                if (!reader.Read())
-                                {
-                                    temp = new PatientByFinanceFactor()
-                                    {
-                                        Patients = pats,
-                                        FinancingFactor = tempFinanceNext
-                                    };
-                                    Result.Add(temp);
-                                    break;
-                                }
+                                    Patients = pats,
+                                    FinancingFactor = tempFinance
+                                };
+                                Result.Add(temp);
                             }
                         }
                     }
