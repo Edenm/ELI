@@ -217,7 +217,7 @@ namespace Eli.Controllers
                 flagJustOne = true;
             }
             
-            Command +="order by FinancingFactorContactName, TreatmentDate";
+            Command +="order by FinancingFactorContactName";
 
             using (SqlConnection mConnection = new SqlConnection(connectionString))
             {
