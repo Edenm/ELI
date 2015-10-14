@@ -79,7 +79,7 @@ namespace Eli.Controllers
             tblPatient tempPatient = new tblPatient();
             tblFinancingFactor tempFinanceNext = new tblFinancingFactor();
             PatientByFinanceFactor temp = new PatientByFinanceFactor();
-            Boolean flagJustOne=false,isOver = false;
+            Boolean isOver = false;
             int NextId = 0;
             int CurId = 0;
 
@@ -93,7 +93,6 @@ namespace Eli.Controllers
             if (FinancingFactorName != "הכל")
             {
                 Command += "where finan.FinancingFactorName='" + FinancingFactorName + "' ";
-                flagJustOne = true;
             }
             Command += "group by ID,FirstName,SurName,FinancingFactorName,FinancingFactorType order by FinancingFactorNumber asc";
 
@@ -182,6 +181,7 @@ namespace Eli.Controllers
             tblPatient tempPatient = new tblPatient();
             TreatmentByFinanceFactor temp = new TreatmentByFinanceFactor();
             Boolean flagJustOne = false;
+            Boolean isOver = false;
             int NextId = 0;
             int CurId = 0;
             double totalFinance = 0;
@@ -230,6 +230,13 @@ namespace Eli.Controllers
                         {
                             while (true)
                             {
+                                if (isOver)
+                                {
+                                    break;
+                                }
+
+                                treatPats = new List<TreatmentPatient>();
+
                                 CurId = (Int32)reader[0];
                                 NextId = (Int32)reader[0];
 
@@ -262,56 +269,59 @@ namespace Eli.Controllers
 
                                 treatPats.Add(tempTreatmentPatient);
 
-                                while (NextId == CurId && reader.Read())
+                                while (NextId == CurId)
                                 {
-
-                                    NextId = (Int32)reader[0];
-                                    
-                                    tempTreatment = new tblTreatment()
+                                    if (reader.Read())
                                     {
-                                        TreatmentDate = (DateTime)reader[3],
-                                        Cost = (double)reader[5],
-                                    };
-                                    
-                                    tempPatient = new tblPatient()
-                                    {
-                                        FirstName = (string)reader[6],
-                                        SurName = (string)reader[7],
-                                    };
+                                        NextId = (Int32)reader[0];
+                                        if (NextId == CurId)
+                                        {
+                                            tempTreatment = new tblTreatment()
+                                            {
+                                                TreatmentDate = (DateTime)reader[3],
+                                                Cost = (double)reader[5],
+                                            };
+
+                                            tempPatient = new tblPatient()
+                                            {
+                                                FirstName = (string)reader[6],
+                                                SurName = (string)reader[7],
+                                            };
 
 
-                                    tempTreatmentPatient = new TreatmentPatient()
-                                    {
-                                        Treatment = tempTreatment,
-                                        Patient = tempPatient
-                                    };
+                                            tempTreatmentPatient = new TreatmentPatient()
+                                            {
+                                                Treatment = tempTreatment,
+                                                Patient = tempPatient
+                                            };
 
-                                    if (NextId == CurId)
-                                    {
-                                        treatPats.Add(tempTreatmentPatient);
+                                            treatPats.Add(tempTreatmentPatient);
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
                                     }
                                     else
                                     {
-                                        temp = new TreatmentByFinanceFactor()
-                                        {
-                                            FinancingFactor = tempFinance,
-                                            TreatmentPatient=treatPats,
-                                            TotalDebateFinance = totalFinance,
-                                            Total = total
-                                        };
-
-                                        Result.Add(temp);
-                                        treatPats = new List<TreatmentPatient>();
-                                        treatPats.Add(tempTreatmentPatient);
-
-                                        tempFinance = new tblFinancingFactor()
-                                        {
-                                            FinancingFactorName = (string)reader[1],
-                                            FinancingFactorContactMail = (string)reader[2]
-                                        };
-
+                                        isOver = true;
+                                        break;
                                     }
                                 }
+                                temp = new TreatmentByFinanceFactor()
+                                {
+                                     FinancingFactor = tempFinance,
+                                     TreatmentPatient=treatPats,
+                                     TotalDebateFinance = totalFinance,
+                                     Total = total
+                                };        
+                                Result.Add(temp);
+                                    
+                                    
+
+                                    
+                                        
+                                        /*
                                 if (flagJustOne)
                                 {
                                     temp = new TreatmentByFinanceFactor()
@@ -336,6 +346,7 @@ namespace Eli.Controllers
                                     Result.Add(temp);
                                     break;
                                 }
+                                         * */
                             }
                         }
                     }
