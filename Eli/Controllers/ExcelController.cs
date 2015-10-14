@@ -627,7 +627,7 @@ namespace Eli.Controllers
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
                 if(i==0)
                 {
-                    htw.Write("<table><tr><td colspan='3'><b><u><h1>  חובות לפי גורמים מממנים בטווח תאריכים "+fromDate+" ל : "+toDate+" </h1></u><b></td></tr>");
+                    htw.Write("<table><tr><td colspan='3'><b><u><h1>  חובות לפי גורמים מממנים בטווח תאריכים " + fromDate.ToString().Substring(0, 10) + " ל : " + toDate.ToString().Substring(0, 10) + " </h1></u><b></td></tr>");
 
 
                 }
