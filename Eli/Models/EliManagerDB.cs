@@ -318,11 +318,16 @@ namespace Eli.Models
         /* The method is editing exist Finance Factor **/
         public void EditFinanceFactor(tblFinancingFactor ff)
         {
+            var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
+
             var financeFactor = from f in FinancingFactor
-                                where f.FinancingFactorName.Equals(ff.FinancingFactorName)
+                                where f.FinancingFactorName.Equals(ff.FinancingFactorName) && f.FinancingFactorName!=d.FinancingFactorName
                                 select f;
 
-            var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
+            if (financeFactor.Any())
+                throw new Exception("למערכת קיים  גורם מממן עם שם " + ff.FinancingFactorName + " אנא בחר שם גורם מממן אחר ");
+
+            
             d.FinancingFactorName = ff.FinancingFactorName;
             d.FinancingFactorType = ff.FinancingFactorType;
             d.FinancingFactorContactName = ff.FinancingFactorContactName;
@@ -346,6 +351,21 @@ namespace Eli.Models
             t.UserName = tt.UserName;
             t.TherapistMail = tt.TherapistMail;
             t.TherapistPhoneNumber = tt.TherapistPhoneNumber;
+
+            var therapist = from ther in Therapist
+                            where ther.TherapistMail.Equals(tt.TherapistMail) && t.TherapistID!=ther.TherapistID
+                            select ther;
+
+            if (therapist.Any())
+                throw new Exception("לא ניתן לערוך את המטפל כיוון שהמייל או שם המשתמש כבר מופיעים במערכת");
+
+            therapist = from ther in Therapist
+                        where ther.UserName.Equals(tt.UserName) && t.TherapistID != ther.TherapistID
+                        select ther;
+
+            if (therapist.Any())
+                throw new Exception("לא ניתן לערוך את המטפל כיוון שהמייל או שם המשתמש כבר מופיעים במערכת");
+
             db.SubmitChanges();
         }
 
