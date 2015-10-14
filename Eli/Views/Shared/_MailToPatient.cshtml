@@ -59,11 +59,20 @@
                                                         </label>
 
                                                         <div float:right; dir="rtl" class="editor-field">
-                                                            @Html.EditorFor(model => model.MailPassword)
-                                                            @Html.ValidationMessageFor(model => model.MailPassword)
-                                                            <a href="https://www.google.com/accounts/recovery/" target="_blank">  שכחתי סיסמת gmail</a><br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                            <a href="https://www.google.com/settings/security/lesssecureapps " target="_blank">  שינוי הגדרות gmail</a>
-
+                                                            <table>
+                                                                <tr>
+                                                                    <td>
+                                                                        @Html.EditorFor(model => model.MailPassword)
+                                                                        @Html.ValidationMessageFor(model => model.MailPassword)
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="https://www.google.com/accounts/recovery/" target="_blank">  שכחתי סיסמת gmail</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="https://www.google.com/settings/security/lesssecureapps " target="_blank">  שינוי הגדרות gmail</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
                                                         </div>
                                                      <br />
 
