@@ -322,9 +322,6 @@ namespace Eli.Models
                                 where f.FinancingFactorName.Equals(ff.FinancingFactorName)
                                 select f;
 
-            if (financeFactor.Any())
-                throw new Exception("למערכת קיים  גורם מממן עם שם " + ff.FinancingFactorName + " אנא בחר שם גורם מממן אחר ");
-
             var d = FinancingFactor.First(x => x.FinancingFactorNumber == ff.FinancingFactorNumber);
             d.FinancingFactorName = ff.FinancingFactorName;
             d.FinancingFactorType = ff.FinancingFactorType;
