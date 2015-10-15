@@ -40,6 +40,7 @@
                             <th style="text-align: center;">סוג</th>
                             <th style="text-align: center;">כיצד הגיע?</th>
                             <th style="text-align: center;">תאריך התחלה</th>
+                            <th style="text-align: center;">שיתוף הפנייה</th>
                             @{
                                 tblTherapist t = (tblTherapist)Session["Therapist"];
                                 if (t.UserName == "admin")
@@ -72,6 +73,14 @@
                                     <td> @item.ReferenceSource </td>
                                     <td> @item.StartDateReference.Value.ToString("dd-MM-yy") </td>
                                     <td style="text-align: center;">
+                                        @{
+                                            string id = "share" + @item.ReferenceNumber;
+                                        }
+                                        <a class="btn " data-toggle="modal" href="#@id">
+                                            <img src="~/Images/share.png" />
+                                        </a>
+                                    </td>
+                                    <td style="text-align: center;">
                                         <a class="btn " data-toggle="modal" href="#@item.ReferenceNumber">
                                             <img src="~/Images/info.png" />
                                         </a>
@@ -93,7 +102,7 @@
         @foreach (tblReference item in Model)
         {
             @Html.Partial("_PopUpReference", item, new ViewDataDictionary { { "pid", @ViewBag.Id }, { "name", @ViewBag.Name } });
-
+            @Html.Partial("_SheredReferencesWithTherapist", item, new ViewDataDictionary { { "pid", @ViewBag.Id } });
         }
 
         @{

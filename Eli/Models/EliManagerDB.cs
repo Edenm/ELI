@@ -262,7 +262,7 @@ namespace Eli.Models
             db.SubmitChanges();
         }
 
-        /* Add Treatment to data base **/
+        /* Add Reference to data base **/
         public void addReference(tblReference re, string pid , string tid)
         {
             re.ReferenceNumber = Reference.Count() + 1;
@@ -314,6 +314,28 @@ namespace Eli.Models
 
 
         //-------------------------Edit methods----------------------------------------------------------
+
+        /*the method share reference to another therapist*/
+        public void ShareReferenceToAnotherFinanceFactor(int refeNumber, string therId)
+        {
+            var therapistRefe = from rt in ReferenceTherapist
+                                where rt.ReferenceNumber.Equals(refeNumber) && rt.TherapistID.Equals(therId)
+                                select rt;
+
+            if (therapistRefe.Any())
+                throw new Exception("מטפל זה כבר קשור להפנייה זו");
+
+
+            tblReferenceTherapist refTher = new tblReferenceTherapist()
+            {
+                ReferenceNumber = refeNumber,
+                TherapistID = therId
+            };
+
+            ReferenceTherapist.InsertOnSubmit(refTher);
+
+            db.SubmitChanges();
+        }
 
         /* The method is editing exist Finance Factor **/
         public void EditFinanceFactor(tblFinancingFactor ff)
@@ -886,6 +908,11 @@ namespace Eli.Models
         public List<tblPatient> getAllPatients()
         {
             return Patients.ToList();
+        }
+
+        public List<tblTherapist> getAllTherapists()
+        {
+            return Therapist.ToList();
         }
 
 

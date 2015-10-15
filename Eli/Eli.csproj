@@ -437,6 +437,7 @@
     <Content Include="Images\pic3.jpg" />
     <Content Include="Images\References-32.png" />
     <Content Include="Images\separator.jpg" />
+    <Content Include="Images\share.png" />
     <Content Include="Images\sibling.png" />
     <Content Include="Images\treat.png" />
     <Content Include="Images\User.png" />
@@ -572,6 +573,7 @@
     <Content Include="Views\Report\ContactsPatientsReport.cshtml" />
     <Content Include="Views\Report\PatientByFinanceFactorReport.cshtml" />
     <Content Include="Views\Schedule\PViewComboReferenceByPatId.cshtml" />
+    <Content Include="Views\Reference\_SheredReferencesWithTherapist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

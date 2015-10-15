@@ -1,0 +1,68 @@
+﻿@model Eli.Models.tblReference
+@using Eli.Models
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/ModalSize.css" rel="stylesheet" />
+<meta charset="utf-8">
+@{
+    EliManagerDB db = new EliManagerDB();
+    tblTherapist therapist = (tblTherapist)Session["Therapist"];
+    string id = "share"+ @Model.ReferenceNumber.ToString();
+    string submit;
+    string str;
+
+    submit = "שתף";
+    str = "בחר מטפל שברצונך לשתף עימו את ההפנייה " + Model.ReasonReference;
+
+}
+<!-- Modal -->
+<div id="myModal">
+    <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:75%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 align="right " class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("ShareReference", "Reference", new {pid = @ViewBag.pid }, FormMethod.Post))
+                    {
+                        <fieldset align="right" dir="rtl">
+                            <div class="medium" align="right"><u><b>@str </b></u></div>
+                            @Html.HiddenFor(model => model.ReferenceNumber)
+                            <br />
+                            <table>
+                                <tr>
+                                    <td>
+                                         <div style="text-align:right; float:right;">
+                                            <select dir="rtl" class="element select" id="therID" name="therID" style="width: 300px; height: 30px">
+                                                @{
+                                                 foreach (tblTherapist ther in db.getAllTherapists())
+                                                 {
+                                                     if (ther.UserName != "admin" && ther.UserName != therapist.UserName)
+                                                     {
+                                                        string name = ther.TherapistID + " " + ther.TherapistFirstName + " " + ther.TherapistSurName;
+                                                        <option value="@ther.TherapistID">@name</option>
+                                                    }
+                                                 }
+                                                }
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br />
+                                        <p>
+                                            <input type="submit" class="btn btn-primary btn-lg" name="submit" value="@submit" />
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

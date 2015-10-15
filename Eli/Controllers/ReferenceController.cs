@@ -71,6 +71,20 @@ namespace Eli.Controllers
             return RedirectToAction("IndexReference", new { pid = pid, operate = ViewBag.operate, type = ViewBag.type });
         }
 
+        [HttpPost]
+        public ActionResult ShareReference(tblReference refe, string submit, string pid, string therID)
+        {
+            EliManagerDB db = new EliManagerDB();
+
+            ViewBag.type = "success";
+            if (submit.Equals("שתף"))
+            {
+                db.ShareReferenceToAnotherFinanceFactor(refe.ReferenceNumber, therID);
+                ViewBag.operate = "ההפנייה שותפה בהצלחה";
+            }
+
+            return RedirectToAction("IndexReference", new { pid = pid, operate = ViewBag.operate, type = ViewBag.type });
+        }
 
     }
 }
