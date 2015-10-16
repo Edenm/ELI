@@ -653,7 +653,7 @@ namespace Eli.Controllers
         }
 
 
-        public ActionResult TreatByRefAndTher(String Refid,String Therid)
+        public ActionResult TreatByRefAndTher(String Refid, String Therid, Boolean isAdmin, String patId)
         {
 
             EliManagerDB db = new EliManagerDB();
@@ -665,50 +665,65 @@ namespace Eli.Controllers
             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
             String refName = db.getReferenceByReferenceNumber(Int32.Parse(Refid)).ReasonReference.ToString();
             String therName = db.getTherapistById(Therid);
-            var grid = new GridView();
-            grid.DataSource = (from p in pat
-                               join rp in refpat on p.ID equals rp.PatientID
-                               join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
-                               join t in ter on rt.TherapistID equals t.TherapistID
-                               join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
-                               join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
-                               where tr.ReferenceNumber.ToString()==Refid && tr.TherapistID.ToString()==Therid
-                               select new
-                               {
+            if (isAdmin == true)
+                Therid = db.getTherapistIdByPatientAndRef(patId, Refid);
+                var grid = new GridView();
+                grid.DataSource = (from p in pat
+                                   join rp in refpat on p.ID equals rp.PatientID
+                                   join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                                   join t in ter on rt.TherapistID equals t.TherapistID
+                                   join tr in treat on rt.ReferenceNumber equals tr.ReferenceNumber
+                                   join f in fin on tr.FinancingFactorNumber equals f.FinancingFactorNumber
+                                   where tr.ReferenceNumber.ToString() == Refid && tr.TherapistID.ToString() == Therid
+                                   select new
+                                   {
 
 
-                                   שם_מטופל = p.FirstName + " " + p.SurName,
-                                   תאיך_טיפול = tr.TreatmentDate.Value.ToString("dd-MM-yy"),
-                                   שעת_טיפול = tr.TreatmentStartTime.ToString().Substring(0,6),
-                                   מקום_טיפול = tr.TreatmentPlace,
-                                   מטרת_טיפול = tr.TreatmentGoal,
-                                   נושא_טיפול = tr.TreatmentSubject,
-                                   סיכום_טיפול = tr.TreatmentSummary,
-                                   הערות_לפגישה_הבאה = tr.NextTreatment,
+                                       שם_מטופל = p.FirstName + " " + p.SurName,
+                                       תאיך_טיפול = tr.TreatmentDate.Value.ToString("dd-MM-yy"),
+                                       שעת_טיפול = tr.TreatmentStartTime.ToString().Substring(0, 6),
+                                       מקום_טיפול = tr.TreatmentPlace,
+                                       מטרת_טיפול = tr.TreatmentGoal,
+                                       נושא_טיפול = tr.TreatmentSubject,
+                                       סטטוס_טיפול = tr.TreatmentStatusPatient,
+
+
+                                       תיאור_טיפול = tr.TreatmentSubject,
+
+                                       סיכום_טיפול = tr.TreatmentSummary,
+                                       הערות_לפגישה_הבאה = tr.NextTreatment,
+                                       האם_שולם = tr.IsPaid,
+                                       מחיר = tr.Cost,
+                                       האם_הגיע = tr.IsArrived,
+                                       גורם_מממן = f.FinancingFactorName,
+                                       שם_מטפל = db.getTherapistById(tr.TherapistID).ToString(),
 
 
 
-                               }).ToList().Distinct();
-            grid.DataBind();
 
-            Response.ClearContent();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=רשימת טיפולים.xls");
-            Response.ContentType = "application/ms-excel";
-            Response.ContentEncoding = System.Text.Encoding.Unicode;
-            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
-            Response.Charset = "";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור מטפל:"+therName+" ,הפנייה: " +refName+" <b></u></h2></td></tr>");
-            if (db.checkIfTreatByRefAndTher(Refid, Therid) == false)
-                htw.Write("<table><tr><td colspan='3'><h2><b>אין טיפולים עבור מטפל והפנייה אלו    <b></h2></td></tr>");
 
-            grid.RenderControl(htw);
 
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+                                   }).ToList().Distinct();
+                grid.DataBind();
+
+                Response.ClearContent();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment; filename=רשימת טיפולים.xls");
+                Response.ContentType = "application/ms-excel";
+                Response.ContentEncoding = System.Text.Encoding.Unicode;
+                Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+                Response.Charset = "";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור מטפל:" + db.getTherapistById(Therid).ToString() + " ,הפנייה: " + refName + " <b></u></h2></td></tr>");
+                if (db.checkIfTreatByRefAndTher(Refid, Therid) == false)
+                    htw.Write("<table><tr><td colspan='3'><h2><b>אין טיפולים עבור מטפל והפנייה אלו    <b></h2></td></tr>");
+
+                grid.RenderControl(htw);
+
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
             
             return View();
 

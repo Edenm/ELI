@@ -1087,6 +1087,33 @@ namespace Eli.Models
             }
             return false;
         }
+
+
+        public String getTherapistIdByPatientAndRef(string patId,string refId)
+        {
+            List<tblPatient> pat = Patients.ToList();
+            List<tblRefererencePatient> refpat = ReferencePatient.ToList();
+            List<tblReferenceTherapist> refterapist = ReferenceTherapist.ToList();
+            List<tblTherapist> ter = Therapist.ToList();
+            List<tblTreatment> treat = Treatment.ToList();
+            List<tblFinancingFactor> fin = FinancingFactor.ToList();
+            var temp = (from p in pat
+                        join rp in refpat on p.ID equals rp.PatientID
+                        join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                        join t in ter on rt.TherapistID equals t.TherapistID
+
+                        where p.ID.ToString() == patId.ToString() && rt.ReferenceNumber.ToString()==refId
+                        select new
+                        {
+
+                            ther_id = rt.TherapistID,
+
+
+                        }).ToList().Distinct();
+
+            
+            return temp.ToList().ElementAt(0).ther_id.ToString();
+        }
     }
 
 }

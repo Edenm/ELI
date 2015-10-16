@@ -113,7 +113,7 @@
         }
     }
 
-    <button style="float: left;" type="button" onclick="location.href='@Url.Action("TreatByRefAndTher", "Excel", new { Refid = @ViewBag.RefId, Therid = @ther.TherapistID.ToString() })'"> ייצוא דוח לקובץ אקסל</button>
+    <button style="float: left;" type="button" onclick="location.href='@Url.Action("TreatByRefAndTher", "Excel", new { Refid = @ViewBag.RefId, Therid = @ther.TherapistID.ToString(), isAdmin = (@ther.UserName == "admin"), patId = @ViewBag.Id.ToString() })'"> ייצוא דוח לקובץ אקסל</button>
 
 
     <script>
