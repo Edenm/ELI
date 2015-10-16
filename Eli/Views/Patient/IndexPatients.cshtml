@@ -43,6 +43,10 @@
                         <th style="text-align: center;">הוספת הורה/אח</th>
                     }
                     <th style="text-align: center;">טיפול הבא</th>
+                    @if (ther.UserName == "admin")
+                    {
+                        <th style="text-align: center;">מטפלים</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -111,6 +115,12 @@
                         </td>
                         }
                         <td> @tooltip <br /> @tooltip2</td>
+                        @if (ther.UserName == "admin")
+                        {
+                            <td>
+                                @db.getAllTherapistOfPatient(@item.Patient.ID)
+                            </td>
+                            }
                     </tr>
                     
                 }

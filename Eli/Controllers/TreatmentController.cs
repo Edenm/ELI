@@ -55,6 +55,8 @@ namespace Eli.Controllers
             ViewBag.Id = pat.ID;
             ViewBag.Name = pat.FirstName + " " + pat.SurName;
             ViewBag.Ref = db.getReferenceByReferenceNumber(rid).ReasonReference;
+            ViewBag.RefId = rid;
+
             ViewBag.operate = operate;
             ViewBag.type = type;
 

@@ -994,6 +994,16 @@ namespace Eli.Models
               return list;
            }
 
+
+        public Boolean checkIfTreatByRefAndTher(String refId,String therId)
+           {
+                for(int i=0;i<Treatment.Count();i++)
+                {
+                    if (Treatment.ToList().ElementAt(i).ReferenceNumber.ToString() == refId && Treatment.ToList().ElementAt(i).TherapistID.ToString() == therId)
+                        return true;
+                }
+                return false;
+           }
         public String getTypeByFinanceName(String name)
            {
                var fin = FinancingFactor.ToList();
@@ -1018,6 +1028,43 @@ namespace Eli.Models
                list.Add("אנשי קשר של מטפלים");
 
                return list;
+           }
+
+
+           public String getAllTherapistOfPatient(string patId)
+           {
+               List<tblPatient> pat = Patients.ToList();
+               List<tblRefererencePatient> refpat = ReferencePatient.ToList();
+               List<tblReferenceTherapist> refterapist = ReferenceTherapist.ToList();
+               List<tblTherapist> ter = Therapist.ToList();
+               List<tblTreatment> treat = Treatment.ToList();
+               List<tblFinancingFactor> fin = FinancingFactor.ToList();
+               var temp = (from p in pat
+                           join rp in refpat on p.ID equals rp.PatientID
+                           join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
+                           join t in ter on rt.TherapistID equals t.TherapistID
+
+                           where p.ID.ToString() == patId.ToString()
+                           select new
+                           {
+
+                               ther_name = t.TherapistFirstName+" "+t.TherapistSurName,
+
+
+                           }).ToList().Distinct();
+
+               String names = "";
+               int tempSize = temp.Count();
+               for(int i=0;i<temp.Count();i++)
+               {
+                   if (i == (tempSize-1))
+                   names+=temp.ElementAt(i).ther_name.ToString();
+                   else
+                       names += (temp.ElementAt(i).ther_name.ToString() + ",");
+
+
+               }
+               return names;
            }
 
     //----------------------------LOGIN-------------------------------------------------------------------
