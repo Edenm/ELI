@@ -27,6 +27,11 @@
       str = "צפייה בהפנייה: " + Model.ReasonReference + " עבור המטופל " + ViewBag.Name;
 
   }
+
+  if (ViewBag.type == "NewReferenceExistPatient" && id == "new")
+  {
+      str = "הוספת הפנייה למטופל קיים";
+  }
 }
 
 
@@ -42,7 +47,7 @@
             </div>
 
             <div class="modal-body">
-                                @using (Html.BeginForm("IndexReference", "Reference", new { pid = @ViewBag.pid }, FormMethod.Post))
+                                @using (Html.BeginForm("AddNewReferenceToExistPatient", "Patient", new { pid = @ViewBag.pid }, FormMethod.Post))
                                 {
                                     <div class="medium" align="right">
                                         <u><b>@str </b></u></div>
@@ -50,7 +55,7 @@
                                         @Html.ValidationSummary(true)
 
                                         <fieldset align="right" dir="rtl">
-                                            @Html.Partial("_Reference", Model)
+                                            @Html.Partial("_Reference", Model, new ViewDataDictionary {{ "type", ViewBag.type }})
                                             <br />
                                             @{tblTherapist ther = (tblTherapist)Session["Therapist"];
                                                   if (ther.UserName != "admin")

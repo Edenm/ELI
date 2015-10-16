@@ -122,8 +122,27 @@ namespace Eli.Controllers
 
             return RedirectToAction("IndexPatients", new { id = pid,operate = operate, type = type });
         }
-       
 
+        [HttpPost]
+        public ActionResult AddNewReferenceToExistPatient(tblReference refe, string submit, FormCollection patForm)
+        {
+            EliManagerDB db = new EliManagerDB();
+            var patID = patForm.GetValues("PatientID")[0];
+            string type = "success", operate;
+
+            try
+            {
+                tblTherapist ther = (tblTherapist)Session["Therapist"];
+                db.addReference(refe, patID, ther.TherapistID);
+                operate = "ההפנייה התווספה בהצלחה";
+            }
+            catch (Exception e)
+            {
+                operate = e.Message;
+                type = "danger";
+            }
+            return RedirectToAction("IndexPatients", new { operate = operate, type = type });
+        }
 
 
             public ActionResult childs()

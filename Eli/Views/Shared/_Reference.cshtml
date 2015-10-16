@@ -7,14 +7,48 @@
   EliManagerDB db = new EliManagerDB();
   DateTime start = DateTime.Now;
 
-  
-  if(Model.StartDateReference==null)
+  tblTherapist ther = (tblTherapist)Session["Therapist"];
+
+  if (Model.StartDateReference == null)
   {
-      Model.StartDateReference = start;
+          Model.StartDateReference = start;
   }
+  
 }
 
     @Html.HiddenFor(model => model.ReferenceNumber)
+    @if (ViewBag.type == "NewReferenceExistPatient" && @Model.ReferenceNumber == 0)
+    {
+        <p style="color:red;">
+            הוספת הפנייה מכאן היא אך ורק למטופלים שהם לא שלך
+        </p>
+        <table>
+            <tr>
+                <td>
+                    <label float:right class="description" for="element_1">
+                        מטופל
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="text-align:right; float:right;">
+                        <select dir="rtl" class="element select" id="PatientID" name="PatientID" style="width: 300px; height: 30px" >
+                            @{
+                            foreach (tblPatient pat in db.getAllPatientsByNoTherapist(ther.TherapistID))
+                            {
+                                string name = pat.ID + " " + pat.FirstName + " " + pat.SurName;
+                                {
+                                    <option value="@pat.ID">@name</option>
+                                }
+                            }
+                            }
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
     <label float:right class="description" for="element_1">
         סיבת הפנייה
     </label>

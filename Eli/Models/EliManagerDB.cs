@@ -808,6 +808,20 @@ namespace Eli.Models
             return  pats;
         }
 
+        /* Return all patient that not of that therapist */
+        public List<tblPatient> getAllPatientsByNoTherapist(String tid)
+        {
+            var therRrfe = (ReferenceTherapist.Where(rt => rt.TherapistID == tid).Select(rt => rt.ReferenceNumber)).ToList();
+
+            var refePat = (RefererencePatients.Where(rp => therRrfe.Contains(rp.ReferenceNumber))).Select(rp => rp.PatientID).ToList();
+
+            var patsNotActive = (Patients.Where(p => refePat.Contains(p.ID) && p.PatientStatus != "לא פעיל")).Select(rp => rp.ID).ToList();
+
+            var pats= (Patients.Where(p=> !patsNotActive.Contains(p.ID))).ToList();
+
+            return pats;
+        }
+
         public List<tblBrotherSister> getAllBrotherSisterByPatient(String PID)
         {
             var BSP= (BrotherSisterPatient.Where(bs => bs.PatientID==PID).Select(bs=> bs.BrotherSisterID));

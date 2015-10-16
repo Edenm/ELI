@@ -180,7 +180,6 @@ namespace Eli.Controllers
             tblTreatment tempTreatment = new tblTreatment();
             tblPatient tempPatient = new tblPatient();
             TreatmentByFinanceFactor temp = new TreatmentByFinanceFactor();
-            Boolean flagJustOne = false;
             Boolean isOver = false;
             int NextId = 0;
             int CurId = 0;
@@ -214,7 +213,6 @@ namespace Eli.Controllers
             if (FinancingFactorName != "הכל")
             {
                 Command += "and FinancingFactorName='" + FinancingFactorName + "' ";
-                flagJustOne = true;
             }
             
             Command +="order by FinancingFactorContactName";

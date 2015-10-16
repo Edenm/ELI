@@ -545,7 +545,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Patient\_BrotherSister.cshtml" />
     <Content Include="Views\Patient\_PopUpPatient.cshtml" />
-    <Content Include="Views\Reference\_PopUpReference.cshtml" />
+    <Content Include="Views\Shared\_PopUpReference.cshtml" />
     <Content Include="Views\WizardFormPatient\Step1.cshtml" />
     <Content Include="Views\WizardFormPatient\Step2.cshtml" />
     <Content Include="Views\WizardFormPatient\Step3.cshtml" />

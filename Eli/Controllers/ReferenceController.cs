@@ -55,18 +55,27 @@ namespace Eli.Controllers
 
             }
             ViewBag.type = "success";
-            if (submit.Equals("צור"))
+            try
             {
-                tblTherapist ther = (tblTherapist)Session["Therapist"];
-                db.addReference(refe, pid, ther.TherapistID);
-                ViewBag.operate = "ההפנייה התווספה בהצלחה";
-            }
+                if (submit.Equals("צור"))
+                {
+                    tblTherapist ther = (tblTherapist)Session["Therapist"];
+                    db.addReference(refe, pid, ther.TherapistID);
+                    ViewBag.operate = "ההפנייה התווספה בהצלחה";
+                }
 
-            else
-            {
-                db.EditReference(refe);
-                ViewBag.operate = "פרטי ההפנייה התעדכנו בהצלחה";
+                else
+                {
+                    db.EditReference(refe);
+                    ViewBag.operate = "פרטי ההפנייה התעדכנו בהצלחה";
+                }
             }
+            catch (Exception e)
+            {
+                ViewBag.operate = e.Message;
+                ViewBag.type = "danger";
+            }
+            
 
             return RedirectToAction("IndexReference", new { pid = pid, operate = ViewBag.operate, type = ViewBag.type });
         }
@@ -77,10 +86,18 @@ namespace Eli.Controllers
             EliManagerDB db = new EliManagerDB();
 
             ViewBag.type = "success";
-            if (submit.Equals("שתף"))
+
+            try { 
+                if (submit.Equals("שתף"))
+                {
+                    db.ShareReferenceToAnotherFinanceFactor(refe.ReferenceNumber, therID);
+                    ViewBag.operate = "ההפנייה שותפה בהצלחה";
+                }
+            }
+            catch (Exception e)
             {
-                db.ShareReferenceToAnotherFinanceFactor(refe.ReferenceNumber, therID);
-                ViewBag.operate = "ההפנייה שותפה בהצלחה";
+                ViewBag.operate = e.Message;
+                ViewBag.type = "danger";
             }
 
             return RedirectToAction("IndexReference", new { pid = pid, operate = ViewBag.operate, type = ViewBag.type });
