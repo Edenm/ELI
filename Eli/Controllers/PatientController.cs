@@ -132,6 +132,11 @@ namespace Eli.Controllers
 
             try
             {
+                if (patID == "null")
+                {
+                    throw new Exception("אתה מורשה כבר עבור כל המטופלים במערכת");
+                }
+           
                 tblTherapist ther = (tblTherapist)Session["Therapist"];
                 db.addReference(refe, patID, ther.TherapistID);
                 operate = "ההפנייה התווספה בהצלחה";

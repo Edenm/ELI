@@ -132,7 +132,17 @@
         var table = $('#myTable').DataTable();
         new $.fn.dataTable.KeyTable(table);
     </script>
-
+    <br />
+    @{  string type = "NewReferenceExistPatient";
+        @Html.Partial("_PopUpReference", new tblReference(), new ViewDataDictionary {{ "type", type }});
+        if (ther.UserName != "admin")
+        {
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
+                הוסף הפנייה חדשה
+            </button>
+        }
+    }
 
 
     @foreach (Family item in Model)
@@ -158,18 +168,6 @@
     @{MailModel mail = new MailModel();
       mail.redirect = "patient";
       @Html.Partial("_MailToAll", mail)
-    }
-
-    <br />
-    @{  string type = "NewReferenceExistPatient";
-        @Html.Partial("_PopUpReference", new tblReference(), new ViewDataDictionary {{ "type", type }});
-        if (ther.UserName != "admin")
-        {
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
-                הוסף הפנייה חדשה
-            </button>
-        }
     }
     
    

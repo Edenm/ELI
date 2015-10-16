@@ -35,14 +35,21 @@
                     <div style="text-align:right; float:right;">
                         <select dir="rtl" class="element select" id="PatientID" name="PatientID" style="width: 300px; height: 30px" >
                             @{
-                            foreach (tblPatient pat in db.getAllPatientsByNoTherapist(ther.TherapistID))
-                            {
-                                string name = pat.ID + " " + pat.FirstName + " " + pat.SurName;
-                                {
-                                    <option value="@pat.ID">@name</option>
+                                var patients=db.getAllPatientsByNoTherapist(ther.TherapistID);
+                                if (patients.Any()) { 
+                                    foreach (tblPatient pat in patients)
+                                    {
+                                        string name = pat.ID + " " + pat.FirstName + " " + pat.SurName;
+                                        {
+                                            <option value="@pat.ID">@name</option>
+                                        }
+                                    }
                                 }
-                            }
-                            }
+                                else
+                                {
+                                    <option value="null">אין מטופלים נוספים</option>
+                                }
+}
                         </select>
                     </div>
                 </td>

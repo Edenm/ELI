@@ -110,13 +110,10 @@
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" style="float:right" data-target="#new">
                 הוסף טיפול חדש
             </button>
-    <button style="float: left;" type="button" onclick="location.href='@Url.Action("TreatByRefAndTher", "Excel", new { Refid = @ViewBag.RefId, Therid = @ther.TherapistID.ToString() })'"> ייצוא דוח לקובץ אקסל</button>
-
         }
-}
-    <br />
+    }
 
-
+    <button style="float: left;" type="button" onclick="location.href='@Url.Action("TreatByRefAndTher", "Excel", new { Refid = @ViewBag.RefId, Therid = @ther.TherapistID.ToString() })'"> ייצוא דוח לקובץ אקסל</button>
 
 
     <script>
