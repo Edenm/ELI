@@ -13,7 +13,8 @@
     <link href="~/Content/LinkStyle.css" rel="stylesheet" />
 </head>
 <body>
-    @{ if (ViewBag.operate != null)
+    @{ tblTherapist ther = (tblTherapist)Session["Therapist"];
+        if (ViewBag.operate != null)
      {
         @Html.Partial("_Alert", new ViewDataDictionary { { "operate", ViewBag.operate }, { "type", ViewBag.type } })
      }
@@ -40,18 +41,15 @@
                             <th style="text-align: center;">סוג</th>
                             <th style="text-align: center;">כיצד הגיע?</th>
                             <th style="text-align: center;">תאריך התחלה</th>
-                            <th style="text-align: center;">שיתוף הפנייה</th>
                             @{
-                                tblTherapist t = (tblTherapist)Session["Therapist"];
-                                if (t.UserName == "admin")
+                                if (ther.UserName != "admin")
                                 {
-                                    <th style="text-align: center;">פרטים נוספים</th>
-
+                                        <th style="text-align: center;">שיתוף הפנייה</th>
+                                        <th style="text-align: center;">עריכה</th>
                                 }
                                 else
                                 {
-                                    <th style="text-align: center;">עריכה</th>
-
+                                     <th style="text-align: center;">פרטים נוספים</th>
                                 }
                             }
                             <th style="text-align: center;">טיפולים</th>
@@ -62,7 +60,7 @@
 
                         @foreach (var item in Model)
                         {
-                            if (@item.ReferenceNumber != 0)
+                            if (item.ReferenceNumber != 0)
                             {
                                 <tr>
                                     <td> @count</td>
@@ -72,14 +70,15 @@
                                     <td> @item.AbuseType </td>
                                     <td> @item.ReferenceSource </td>
                                     <td> @item.StartDateReference.Value.ToString("dd-MM-yy") </td>
-                                    <td style="text-align: center;">
-                                        @{
-                                            string id = "share" + @item.ReferenceNumber;
-                                        }
+                                    @{if (ther.UserName != "admin"){
+                                          string id = "share" + @item.ReferenceNumber;
+                                        <td style="text-align: center;">
                                         <a class="btn " data-toggle="modal" href="#@id">
                                             <img src="~/Images/share.png" />
                                         </a>
                                     </td>
+                                    }
+                                    }
                                     <td style="text-align: center;">
                                         <a class="btn " data-toggle="modal" href="#@item.ReferenceNumber">
                                             <img src="~/Images/info.png" />
@@ -94,6 +93,7 @@
                                 count++;
                             }
                         }
+                        
                     </tbody>
                 </table>
                 <br /><br />
@@ -105,8 +105,7 @@
             @Html.Partial("_SheredReferencesWithTherapist", item, new ViewDataDictionary { { "pid", @ViewBag.Id } });
         }
 
-        @{
-            tblTherapist ther = (tblTherapist)Session["Therapist"];
+        @{ 
             if (ther.UserName != "admin")
             {
             <!-- Button trigger modal -->
