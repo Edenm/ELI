@@ -705,7 +705,6 @@ namespace Eli.Controllers
                                        מחיר = tr.Cost,
                                        האם_הגיע = tr.IsArrived,
                                        גורם_מממן = f.FinancingFactorName,
-                                       שם_מטפל = db.getTherapistById(tr.TherapistID).ToString(),
 
 
 
@@ -725,9 +724,19 @@ namespace Eli.Controllers
                 Response.Charset = "";
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
-                htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור מטופל :" + "  " + patName + ", הפניה: "+refName+" <b></u></h2></td></tr>");
+                
                 if (flag == 1 || treatNum == "No")
+                {
+                    htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור מטופל :" + "  " + patName + ", הפניה: " + refName + " <b></u></h2></td></tr>");
+
                     htw.Write("<table><tr><td colspan='3'><h2><b>אין טיפולים עבור הפנייה זו    <b></h2></td></tr>");
+                }
+                else
+                {
+                    htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור מטופל :" + "  " + patName + ", הפניה: " + refName + " <b></u></h2></td></tr>");
+
+                    htw.Write("<table><tr><td colspan='3'><h3><u><b>שם מטפל :" + db.getTherapistById(Therid).ToString() + " <b></u></h3></td></tr>");
+                }
 
                 grid.RenderControl(htw);
 
