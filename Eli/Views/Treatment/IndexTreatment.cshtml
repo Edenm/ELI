@@ -31,7 +31,9 @@
     <div align="right" dir="rtl">
         <div class="big">טיפולים</div>
 
-        @{String name = ViewBag.Name; }
+        @{String name = ViewBag.Name;
+          String treatNum = "No";
+          }
         <div class="medium">
             <b>טיפולים עבור: @name</b>
             <br />עבור הפניית @ViewBag.Ref
@@ -71,6 +73,9 @@
                         {
                             if (@item.treatment.TreatmentNumber != 0)
                             {
+                               
+                                treatNum = item.treatment.TreatmentNumber.ToString();
+                                
                                 var hour = @item.treatment.TreatmentStartTime.Value.ToString();
                                 <tr>
                                     <td> @count </td>
@@ -113,7 +118,7 @@
         }
     }
 
-    <button style="float: left;" type="button" onclick="location.href='@Url.Action("TreatByRefAndTher", "Excel", new { Refid = @ViewBag.RefId, Therid = @ther.TherapistID.ToString(), isAdmin = (@ther.UserName == "admin"), patId = @ViewBag.Id.ToString() })'"> ייצוא דוח לקובץ אקסל</button>
+    <button style="float: left;" type="button" onclick="location.href='@Url.Action("TreatByRefAndTher", "Excel", new { Refid = @ViewBag.RefId, Therid = @ther.TherapistID.ToString(), isAdmin = (@ther.UserName == "admin"), patId = @ViewBag.Id.ToString(), treatNum = treatNum })'"> ייצוא דוח לקובץ אקסל</button>
 
 
     <script>

@@ -1089,30 +1089,20 @@ namespace Eli.Models
         }
 
 
-        public String getTherapistIdByPatientAndRef(string patId,string refId)
+        public String getTherapistIdByPatientAndRef(string patId,string refId,string treatNum)
         {
-            List<tblPatient> pat = Patients.ToList();
-            List<tblRefererencePatient> refpat = ReferencePatient.ToList();
-            List<tblReferenceTherapist> refterapist = ReferenceTherapist.ToList();
-            List<tblTherapist> ter = Therapist.ToList();
+            if (treatNum == "")
+                return ("");
+           
             List<tblTreatment> treat = Treatment.ToList();
-            List<tblFinancingFactor> fin = FinancingFactor.ToList();
-            var temp = (from p in pat
-                        join rp in refpat on p.ID equals rp.PatientID
-                        join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
-                        join t in ter on rt.TherapistID equals t.TherapistID
+            for (int i = 0; i < treat.Count();i++ )
+            {
+                if (treat.ElementAt(i).TreatmentNumber.ToString() == treatNum)
+                    return treat.ElementAt(i).TherapistID.ToString();
+            }
 
-                        where p.ID.ToString() == patId.ToString() && rt.ReferenceNumber.ToString()==refId
-                        select new
-                        {
-
-                            ther_id = rt.TherapistID,
-
-
-                        }).ToList().Distinct();
-
+            return "";
             
-            return temp.ToList().ElementAt(0).ther_id.ToString();
         }
     }
 

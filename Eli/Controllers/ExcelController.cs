@@ -653,7 +653,7 @@ namespace Eli.Controllers
         }
 
 
-        public ActionResult TreatByRefAndTher(String Refid, String Therid, Boolean isAdmin, String patId)
+        public ActionResult TreatByRefAndTher(String Refid, String Therid, Boolean isAdmin, String patId,String treatNum)
         {
 
             EliManagerDB db = new EliManagerDB();
@@ -664,10 +664,18 @@ namespace Eli.Controllers
             List<tblTreatment> treat = db.Treatment.ToList();
             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
             String refName = db.getReferenceByReferenceNumber(Int32.Parse(Refid)).ReasonReference.ToString();
-            String therName = db.getTherapistById(Therid);
+            int flag = 0;
+            var grid = new GridView();
+
             if (isAdmin == true)
-                Therid = db.getTherapistIdByPatientAndRef(patId, Refid);
-                var grid = new GridView();
+                Therid = db.getTherapistIdByPatientAndRef(patId, Refid, treatNum);
+            if (Therid == "")
+            {
+                flag = 1;
+
+            }
+            if (flag == 0)
+            {
                 grid.DataSource = (from p in pat
                                    join rp in refpat on p.ID equals rp.PatientID
                                    join rt in refterapist on rp.ReferenceNumber equals rt.ReferenceNumber
@@ -704,6 +712,7 @@ namespace Eli.Controllers
 
 
                                    }).ToList().Distinct();
+            }
                 grid.DataBind();
 
                 Response.ClearContent();
@@ -715,9 +724,9 @@ namespace Eli.Controllers
                 Response.Charset = "";
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
-                htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור מטפל:" + db.getTherapistById(Therid).ToString() + " ,הפנייה: " + refName + " <b></u></h2></td></tr>");
-                if (db.checkIfTreatByRefAndTher(Refid, Therid) == false)
-                    htw.Write("<table><tr><td colspan='3'><h2><b>אין טיפולים עבור מטפל והפנייה אלו    <b></h2></td></tr>");
+                htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור הפניה :" + "  " + refName + " <b></u></h2></td></tr>");
+                if (flag == 1 || treatNum == "No")
+                    htw.Write("<table><tr><td colspan='3'><h2><b>אין טיפולים עבור הפנייה זו    <b></h2></td></tr>");
 
                 grid.RenderControl(htw);
 
