@@ -36,7 +36,7 @@ namespace Eli.Controllers
                 {
                     Session["Therapist"] = ther;
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    //sendMailInEnter();
+                    sendMailInEnter();
                     return RedirectToAction("HomePage", "Login");
                 }
             }

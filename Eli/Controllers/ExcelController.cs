@@ -664,6 +664,8 @@ namespace Eli.Controllers
             List<tblTreatment> treat = db.Treatment.ToList();
             List<tblFinancingFactor> fin = db.FinancingFactor.ToList();
             String refName = db.getReferenceByReferenceNumber(Int32.Parse(Refid)).ReasonReference.ToString();
+            tblPatient patRes = db.getPatientById(patId);
+            String patName = patRes.FirstName + " " + patRes.SurName;
             int flag = 0;
             var grid = new GridView();
 
@@ -724,7 +726,7 @@ namespace Eli.Controllers
                 Response.Charset = "";
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
-                htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור הפניה :" + "  " + refName + " <b></u></h2></td></tr>");
+                htw.Write("<table><tr><td colspan='3'><h2><u><b>רשימת טיפולים עבור מטופל :" + "  " + patName + ", הפניה: "+refName+" <b></u></h2></td></tr>");
                 if (flag == 1 || treatNum == "No")
                     htw.Write("<table><tr><td colspan='3'><h2><b>אין טיפולים עבור הפנייה זו    <b></h2></td></tr>");
 
