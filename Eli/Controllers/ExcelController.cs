@@ -689,7 +689,6 @@ namespace Eli.Controllers
                                    {
 
 
-                                       שם_מטופל = p.FirstName + " " + p.SurName,
                                        תאיך_טיפול = tr.TreatmentDate.Value.ToString("dd-MM-yy"),
                                        שעת_טיפול = tr.TreatmentStartTime.ToString().Substring(0, 6),
                                        מקום_טיפול = tr.TreatmentPlace,
