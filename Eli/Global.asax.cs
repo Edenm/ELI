@@ -24,10 +24,12 @@ namespace Eli
             //for eden
             //WebSecurity.InitializeDatabaseConnection("ELIConnectionString2", "tblTherapist", "UserName", "Passcode", false);
             //for server
-            WebSecurity.InitializeDatabaseConnection("ELIConnectionString3", "tblTherapist", "UserName", "Passcode", false);
+            //WebSecurity.InitializeDatabaseConnection("ELIConnectionString3", "tblTherapist", "UserName", "Passcode", false);
             //for Hila
             //WebSecurity.InitializeDatabaseConnection("ELIConnectionString4", "tblTherapist", "UserName", "Passcode", false);
-
+            //for VirtualBox
+            WebSecurity.InitializeDatabaseConnection("ELIConnectionString5", "tblTherapist", "UserName", "Passcode", false);
+            
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
